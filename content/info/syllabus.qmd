@@ -34,6 +34,7 @@ will be very userful reference material for topics covered in the course.
 
 - Process control - Analysis, Design, and Assessment course from IIT Madras. 
   The youtube play list is [here](https://www.youtube.com/playlist?list=PLyqSpQzTE6M-OjiNwE2GQzXmZ6NaVWUnf).
+- [Process Dynamics and Control](https://apmonitor.com/che436/index.php/Main/HomePage) course from BYU. 
 
 ### MATLAB
 
