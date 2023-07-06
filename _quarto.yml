@@ -72,9 +72,9 @@ website:
       text: "{{< fa house >}} Home"
     - section: "Course Information"
       contents:
-        - href: syllabus.qmd
+        - file: ./content/info/syllabus.qmd
           text: Syllabus
-        - content/index.qmd
+        - content/info/index.qmd
 
     - section: "Lecture Notes"
       id: lecture-notes
