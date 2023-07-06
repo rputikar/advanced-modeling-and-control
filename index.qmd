@@ -23,17 +23,50 @@ metadata-files:
 
 ## Course Overview
 
-**Focus:** the focus of this course is to learn stuff
+This course builds upon introductory process control course (CHEN3005: Process
+Instrumentation and Control). It introduces advanced modeling and control
+techniques. The course aims to provide broad overview of various topics and
+provide foundational knowledge for further exploration of the subject. 
+While not comprehensive, it covers essential material, and current trends.
 
-**How:** hands-on learning
+Most of the material is designed to be easily understood by undergraduate 
+chemical engineering student. However, some background in mathematics,
+including differential equations, as well as a solid understanding of material
+and energy balance concepts and unit operations.
 
-## Learning Objectives
+The unit is divided into two parts: advanced control, and advanced modeling. In
+the advanced control section, we delve into the complexities of industrial
+processes, which are dynamic and often multivariable. To effectively control
+such processes, advanced techniques beyond simple feedback loops studied in the
+Process Instrumentation and Control unit are required. The key focus of this
+section is on the design and implementation of advanced process control methods
+in process plants. Additionally, we will explore the utilization of Simulink, a
+MATLAB tool, for controller design and simulation.
 
-- You will discover how to do X
-- Distinguish X from **X**
-- Practice how to put things _in italic_
-- Discover how to highlight `code` inline
-- Proceed to learn stuff
+In advanced modeling section, we will address the crucial role of
+mathematical modeling in the design and optimization of process equipment. This
+section equips students with modeling tools for data analysis, empirical
+modeling, and process design. These tools are essential for understanding and
+representing the behavior of complex processes, aiding in optimization efforts
+and decision-making. This year, we will focus on data driven models and also
+explore some aspects of machine learning and its applications to statistical
+process control. 
+
+By combining the two components, students will gain the necessary skills to
+tackle the challenges of dynamic and multivariable industrial processes,
+enabling them to understand, and design effective control strategies and
+optimize process performance.
+
+## Learning Outcomes
+
+- Apply a range of advanced control techniques to chemical, mineral and
+  petrochemical processes
+- Explain multi-loop control design, including pairing and decoupling of
+  chemical processes
+- Apply a range of advanced model formulation and solution techniques to
+  chemical processes
+- Demonstrate the effective use of software, such as MATLAB and Control
+  Station, for process modeling and for control system design
 
 
 ## Teaching Staff

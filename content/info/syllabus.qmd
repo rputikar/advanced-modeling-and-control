@@ -1,3 +1,72 @@
 ---
-title: Overview
+title: Syllabus
 ---
+
+## Topics covered
+
+We will cover a broad range of topics including: 
+
+- Cascade, Ratio and Feedforward control. 
+- PID Enhancements: inferential, over-ride and selective control; scheduling
+  controller tuning; implementation 
+- Other Advanced Control Techniques: deadtime compensation; adaptive control
+  (programmed adaptation; self-tuning control; online parameter estimation). 
+- Multi-input Multi-output Systems: process and control loop interactions;
+  control loop pairings; decoupling control systems; multivariable control.
+- Digital Control Systems: Z transforms; discrete time models; dynamic
+  response; discrete time control algorithms; closed loop analysis; digital
+  control system implementation. Review of process modelling and simulation
+  techniques. Modelling for Fault Diagnosis: prediction-based and
+  identification-based diagnosis. Empirical Modelling: linear and non-linear
+  models; artificial neural networks; ARMAX models. 
+- Modelling Hybrid (Discrete- Continuous) Systems: representation and solution. 
+- Case Studies and Applications in Process Engineering.
+
+## Course materials
+
+### Books
+
+The books listed in [the course reading
+list](https://curtin.alma.exlibrisgroup.com/leganto/readinglist/lists/14056101590001951)
+will be very userful reference material for topics covered in the course.   
+
+### Other materials
+
+- Process control - Analysis, Design, and Assessment course from IIT Madras. 
+  The youtube play list is [here](https://www.youtube.com/playlist?list=PLyqSpQzTE6M-OjiNwE2GQzXmZ6NaVWUnf).
+
+### MATLAB
+
+We will use [MATLAB](https://au.mathworks.com/products/matlab.html)
+extensively. The mathworks website has tons of resources to help you learn
+MATLAB.
+
+## Course structure
+
+![Program calender 2023, Semester 2](../../assets/images/program_calender_2023_s2.png)
+
+## Course policies
+
+Please refer to the unit outline posted on blackboard for assessment policies. 
+
+## Assessments and grades
+
+- **Assessment Task 1: Lab reports (30%)** <br> 
+  Lab report (a group of 2) needs to be submitted within two
+  weeks of conducting the lab. Total 9 reports are submitted for 9 labs. The
+  best six assessments are considered in the final marks.
+
+- **Assessment Task 2: Midsemester Test (30%)** <br>
+  This will cover the lectures 1 to 5. The format for the test will be
+  communicated in due course. 
+
+- **Assessment Task 3: Group project (40%)** <br>
+  This is a group project (maximum 3 students per group) which focuses on the
+  applications of the theories and concepts (in decentralized control, model
+  development and analysis) on a given case study (to be explained further
+  during the lectures). The project statement will be released in week 6.
+
+**Pass requirements** <br>
+Students must achieve final mark of 50% or greater to pass this unit. Please
+refer to the unit outline posted on blackboard for more details. 
+
