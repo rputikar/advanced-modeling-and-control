@@ -4,9 +4,9 @@ staff:
     name_no_title: Ranjeet Utikar
     email: r.utikar.edu.au
     phone: +61 0892669837
-    url: "https://www.utikar.com"
+    url: https://www.utikar.com
     mastodon: "@smilelab@mstdn.social"
-    github: "rputikar"
+    github: rputikar
     office:
       Building 204, Room 432 <br>
       Bentley Campus
@@ -15,16 +15,18 @@ staff:
       I hope to respond within 24-36 hours.
       If you would like to see me, please book an appointment. 
     appointment_url: 
-      "https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/"
+      https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/
     photo: ./assets/images/RanjeetUtikar.jpg
+    role: 
+    - coordinator
 
   - id: jn
     name: A/Prof. Jobrun Nandong
     name_no_title: Jobrun Nandong
     email: jobrun.n@curtin.edu.my
     phone: "+60 85 630 100 Ext: 2412"
-    url: "https://engsci.curtin.edu.my/departments/chemical-energy-engineering/people/jobrun-nandong/"
-    orcid: "0000-0001-7897-8306"
+    url: https://engsci.curtin.edu.my/departments/chemical-energy-engineering/people/jobrun-nandong/
+    orcid: 0000-0001-7897-8306
     office:
       Skylark 3 Room 322 <br>
       Miri Campus
@@ -33,6 +35,24 @@ staff:
       I hope to respond within 24-36 hours.
       If you would like to see me, please book an appointment. 
     photo: ./assets/images/JobrunNandong.jpg
+    role: 
+    - teaching
+
+  - id: rl
+    name: Ms. Ruby Lo
+    name_no_title: Ruby Lo
+    email: TeachingSupport-WASM-MECE@curtin.edu.au
+    url: https://staffportal.curtin.edu.au/staff/profile/view/ruby-lo-fc65c900/
+    office:
+      Faculty of Science and Engineering <br>
+      Bentley Campus
+    contact_policy:
+      Best way to contact is via email. 
+      I hope to respond within 24-36 hours.
+      If you would like to see me, please book an appointment. 
+    photo: ./assets/images/scientist_woman.jpeg
+    role: 
+    - admin
 
 coordinator:
   id: rpu
