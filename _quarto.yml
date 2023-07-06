@@ -6,6 +6,7 @@ project:
     - "*.qmd"
     - "*.md"
     - "!README.md"
+    - "!LICENSE.md"
     - "!ideas/"
     - "!_env/"
     - "!renv/"
@@ -65,16 +66,22 @@ website:
       {{< fa brands creative-commons-sa >}} Except where otherwise noted,
       content on this site <br>is licensed under a [Creative Commons CC BY-NC
       4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
+
   sidebar:
     style: docked
+    collapse-level: 3
     contents:
     - file: index.qmd
       text: "{{< fa house >}} Home"
-    - section: "Course Information"
+    - section: "Overview"
       contents:
-        - file: ./content/info/syllabus.qmd
+        - file: content/info/index.qmd
+        - file: content/info/syllabus.qmd
           text: Syllabus
-        - content/info/index.qmd
+
+    # - section: "Lecture Notes"
+    #   id: lecture-notes
+    #   content: content/lecture-notes/*/*.qmd
 
     - section: "Lecture Notes"
       id: lecture-notes
@@ -94,47 +101,47 @@ website:
     - section: "Workshops"
       id: workshops
       contents: 
-        - href: ./content/workshops/workshop-01
+        - file: ./content/workshops/workshop-01/index.qmd
           text: Workshop 01
-        - href: ./content/workshops/workshop-02
+        - file: ./content/workshops/workshop-02/index.qmd
           text: Workshop 02
-        - href: ./content/workshops/workshop-03
+        - file: ./content/workshops/workshop-03/index.qmd
           text: Workshop 03
-        - href: ./content/workshops/workshop-04
+        - file: ./content/workshops/workshop-04/index.qmd
           text: Workshop 04
-        - href: ./content/workshops/workshop-05
+        - file: ./content/workshops/workshop-05/index.qmd
           text: Workshop 05
-        - href: ./content/workshops/workshop-06
+        - file: ./content/workshops/workshop-06/index.qmd
           text: Workshop 06
-        - href: ./content/workshops/workshop-07
+        - file: ./content/workshops/workshop-07/index.qmd
           text: Workshop 07
-        - href: ./content/workshops/workshop-08
+        - file: ./content/workshops/workshop-08/index.qmd
           text: Workshop 08
-        - href: ./content/workshops/workshop-09
+        - file: ./content/workshops/workshop-09/index.qmd
           text: Workshop 09
  
     - section: "Computer Labs"
       id: computer-labs
       contents:
-        - href: ./content/labs/lab-01
+        - file: ./content/labs/lab-01/index.qmd
           text: Lab 01
-        - href: ./content/labs/lab-02
+        - file: ./content/labs/lab-02/index.qmd
           text: Lab 02
-        - href: ./content/labs/lab-03
+        - file: ./content/labs/lab-03/index.qmd
           text: Lab 03
-        - href: ./content/labs/lab-04
+        - file: ./content/labs/lab-04/index.qmd
           text: Lab 04
-        - href: ./content/labs/lab-05
+        - file: ./content/labs/lab-05/index.qmd
           text: Lab 05
-        - href: ./content/labs/lab-06
+        - file: ./content/labs/lab-06/index.qmd
           text: Lab 06
-        - href: ./content/labs/lab-07
+        - file: ./content/labs/lab-07/index.qmd
           text: Lab 07
-        - href: ./content/labs/lab-08
+        - file: ./content/labs/lab-08/index.qmd
           text: Lab 08
-        - href: ./content/labs/lab-09
+        - file: ./content/labs/lab-09/index.qmd
           text: Lab 09
-
+ 
     # - section: "🗓️ Weeks"
     #     contents:
     #     - href: "." 
@@ -157,14 +164,3 @@ format:
     email-obfuscation: javascript
     link-external-newwindow: true
     link-external-filter: ^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)
-  revealjs:
-    keep-yaml: true
-    controls: true
-    # self-contained: true
-    chalkboard: true
-    toc: true
-    toc-depth: 1
-    menu: true
-    theme: [default, ../styles/slide.custom.scss]
-    logo: ./assets/images/cee_logo_path.svg
-    slide-number: c/t

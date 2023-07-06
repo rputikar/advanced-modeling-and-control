@@ -12,15 +12,13 @@ details:
    West Australian School of Mines: Minerals, Energy, and Chemical Engineering <br>
    Curtin University"
 editor: source
-course-logo: assets/images/amc-course-hero.jpeg
+course-logo: ./assets/images/amc-course-hero.jpeg
 format:
   html:
     template-partials:
-    - assets/partials/home/title-block.html
+    - ./assets/partials/home/title-block.html
 metadata-files:
   - metadata.yml
-filters:
-  - staff-filter.lua
 ---
 
 ## Course Overview
@@ -71,7 +69,31 @@ filters:
 
 ## Teaching Staff
 
-[]{#coordinator-from-pandoc}
+<!-- Grid person --> 
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### photo -->
+![]({{< meta coordinator.photo >}})
+:::
+
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+#### {{< fa user >}} &nbsp; [{{< meta coordinator.name >}}]({{< meta coordinator.url >}})
+
+- {{< fa university >}} &nbsp; {{< meta coordinator.office >}}
+- {{< fa envelope >}} &nbsp; <a href="mailto:{{< meta coordinator.email >}}">{{< meta coordinator.email >}}</a>
+- {{< fa phone >}} &nbsp; {{< meta coordinator.phone >}}
+- {{< fa calendar-check >}} &nbsp; [Schedule an appointment]({{< meta coordinator.appointment_url >}})
+:::
+
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+{{< meta coordinator.contact_policy >}}
+:::
+::: 
+<!-- Grid person --> 
+
 
 ## Administrative Staff
 

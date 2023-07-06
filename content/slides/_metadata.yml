@@ -1,3 +1,15 @@
 subtitle: "CHEN4011: Advanced Modeling and Control"
 footer: "CHEN4011: Advanced Modeling and Control"
 
+format:
+  revealjs:
+    keep-yaml: true
+    controls: true
+    # self-contained: true
+    chalkboard: true
+    toc: true
+    toc-depth: 1
+    menu: true
+    theme: [default, ./styles/slide.custom.scss]
+    logo: ../../assets/images/cee_logo_path.svg
+    slide-number: c/t
