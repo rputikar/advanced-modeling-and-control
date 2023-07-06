@@ -1,0 +1,10 @@
+---
+title: Recap
+format: revealjs
+---
+
+#  Introduction 
+
+* What is evaporation? 
+* Difference between evaporation and other techniques
+
