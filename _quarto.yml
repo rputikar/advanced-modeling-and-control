@@ -67,9 +67,8 @@ website:
       4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
   sidebar:
     style: docked
-    collapse-level: 3
     contents:
-    - href: index.qmd
+    - file: index.qmd
       text: "{{< fa house >}} Home"
     - section: "Course Information"
       contents:
@@ -135,7 +134,7 @@ website:
           text: Lab 08
         - href: ./content/labs/lab-09
           text: Lab 09
- 
+
     # - section: "🗓️ Weeks"
     #     contents:
     #     - href: "." 

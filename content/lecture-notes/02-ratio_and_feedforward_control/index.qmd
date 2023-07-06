@@ -3,6 +3,7 @@ title:
   PID Enhancement Techniques
 subtitle: 
   Ratio and Feedforward Control
+order: 20
 ---
 
 ## Readings
