@@ -1,0 +1,124 @@
+---
+title: Advanced Modeling and Control
+subtitle: 
+  "Explore cutting-edge techniques in advanced control, including the design and
+  implementation of advanced process control methods in dynamic and
+  multivariable industrial processes using MATLAB's Simulink tool. Dive into the
+  world of advanced modelling, discovering tools for data analysis, empirical
+  modelling, and process design to optimize the performance and efficiency of
+  process equipment."
+details: 
+  "CHEN4011, Semester 2, 2023 <br>
+   West Australian School of Mines: Minerals, Energy, and Chemical Engineering <br>
+   Curtin University"
+editor: source
+course-logo: ./assets/images/amc-course-hero.jpeg
+format:
+  html:
+    template-partials:
+    - ./assets/partials/home/title-block.html
+metadata-files:
+  - metadata.yml
+---
+
+## Course Overview
+
+**Focus:** the focus of this course is to learn stuff
+
+**How:** hands-on learning
+
+## Learning Objectives
+
+- You will discover how to do X
+- Distinguish X from **X**
+- Practice how to put things _in italic_
+- Discover how to highlight `code` inline
+- Proceed to learn stuff
+
+
+## Teaching Staff
+
+::: {.panel-tabset}
+## Course Coordinator
+
+<!-- Grid person --> 
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### photo -->
+![]({{< meta coordinator.photo >}})
+:::
+
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+#### {{< fa user >}} &nbsp; [{{< meta coordinator.name >}}]({{< meta coordinator.url >}})
+
+- {{< fa university >}} &nbsp; {{< meta coordinator.office >}}
+- {{< fa envelope >}} &nbsp; <a href="mailto:{{< meta coordinator.email >}}">{{< meta coordinator.email >}}</a>
+- {{< fa phone >}} &nbsp; {{< meta coordinator.phone >}}
+- {{< fa calendar-check >}} &nbsp; [Schedule an appointment]({{< meta coordinator.appointment_url >}})
+:::
+
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+{{< meta coordinator.contact_policy >}}
+:::
+::: 
+<!-- Grid person --> 
+
+
+## Teaching Staff
+
+<!-- Grid person --> 
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### photo -->
+![]({{< meta coordinator.photo >}})
+:::
+
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+#### {{< fa user >}} &nbsp; [{{< meta coordinator.name >}}]({{< meta coordinator.url >}})
+
+- {{< fa university >}} &nbsp; {{< meta coordinator.office >}}
+- {{< fa envelope >}} &nbsp; <a href="mailto:{{< meta coordinator.email >}}">{{< meta coordinator.email >}}</a>
+- {{< fa phone >}} &nbsp; {{< meta coordinator.phone >}}
+- {{< fa calendar-check >}} &nbsp; [Schedule an appointment]({{< meta coordinator.appointment_url >}})
+:::
+
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+{{< meta coordinator.contact_policy >}}
+:::
+::: 
+<!-- Grid person --> 
+
+
+## Administrative Staff
+
+<!-- Grid person --> 
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### photo -->
+![]({{< meta admin.photo >}})
+:::
+
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+#### {{< fa user >}} &nbsp; [{{< meta admin.name >}}]({{< meta admin.url >}})
+
+- {{< fa university >}} &nbsp; {{< meta admin.office >}}
+- {{< fa envelope >}} &nbsp; <a href="mailto:{{< meta admin.email >}}">{{< meta admin.email >}}</a>
+:::
+
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+{{< meta admin.contact_policy >}}
+:::
+::: 
+<!-- Grid person --> 
+
+:::
+

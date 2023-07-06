@@ -1,0 +1,7 @@
+Id                               Version    Contributes
+quarto-ext/fontawesome           1.1.0      shortcodes
+quarto-ext/include-code-files    1.0.0      filters
+quarto-ext/latex-environment     1.1.2      filters, formats
+quarto-ext/lightbox              0.1.9      filters
+schochastics/academicons         0.2.2      shortcodes
+schochastics/social-share        0.1.0      filters

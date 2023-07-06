@@ -1,0 +1,38 @@
+/.vscode
+
+# R project stuff
+.Rproj.User
+.Rhistory
+.Rhistoryt
+.Rdata
+.Ruserdata
+
+# Quarto stuff
+/.quarto/
+/_site/
+/_freeze/
+/_output/
+/_extensions/
+/_*.local
+
+# Mac OS 
+.DS_Store
+Icon
+._*
+Thumbs.db
+
+README.html
+
+# knitr and caching stuff
+**/*_files/*
+**/*_cache/*
+
+# python
+/.ipynb_checkpoints/
+/env/
+/_env/
+/.venv/
+/.condaenv/
+
+/.luarc.json
+
