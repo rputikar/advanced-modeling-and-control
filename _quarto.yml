@@ -82,7 +82,7 @@ website:
         - file: ./content/lecture-notes/01-recap/index.qmd
         - file: ./content/lecture-notes/02-ratio_and_feedforward_control/index.qmd
         - file: ./content/lecture-notes/03-override_control/index.qmd
-        - file: ./content/lecture-notes/04–other_advanced_control_techniques/index.qmd
+        - file: ./content/lecture-notes/04-other_advanced_control_techniques/index.qmd
         - file: ./content/lecture-notes/05-time_series_modelling_and_analysis/index.qmd
         - file: ./content/lecture-notes/06-principal_component_analysis/index.qmd
         - file: ./content/lecture-notes/07-decentralized_control/index.qmd

@@ -16,7 +16,7 @@ staff:
       If you would like to see me, please book an appointment. 
     appointment_url: 
       https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/
-    photo: ./assets/images/RanjeetUtikar.jpg
+    photo: assets/images/RanjeetUtikar.jpg
     role: 
     - coordinator
 
@@ -34,7 +34,7 @@ staff:
       Best way to contact is via email. 
       I hope to respond within 24-36 hours.
       If you would like to see me, please book an appointment. 
-    photo: ./assets/images/JobrunNandong.jpg
+    photo: assets/images/JobrunNandong.jpg
     role: 
     - teaching
 
@@ -50,7 +50,7 @@ staff:
       Best way to contact is via email. 
       I hope to respond within 24-36 hours.
       If you would like to see me, please book an appointment. 
-    photo: ./assets/images/scientist_woman.jpeg
+    photo: assets/images/scientist_woman.jpeg
     role: 
     - admin
 
@@ -61,7 +61,7 @@ coordinator:
   email: r.utikar.edu.au
   phone: +61 08 9266 9837
   url: https://www.utikar.com
-  mastodon: "@smilelab@mstdn.social"
+  # mastodon: "@smilelab@mstdn.social"
   github: rputikar
   office:
     Building 204, Room 432 <br>
@@ -72,7 +72,7 @@ coordinator:
     If you would like to see me, please book an appointment. 
   appointment_url: 
     "https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/"
-  photo: ./assets/images/RanjeetUtikar.jpg
+  photo: assets/images/RanjeetUtikar.jpg
 
 admin: 
   id: rl
@@ -87,15 +87,6 @@ admin:
     Best way to contact is via email. 
     I hope to respond within 24-36 hours.
     If you would like to see me, please book an appointment. 
-  photo: ./assets/images/scientist_woman.jpeg
+  photo: assets/images/scientist_woman.jpeg
 
 
-# teaching-staff: 
-#   staff: 
-#     - ref: rpu
-#     - ref: jd
-#
-# admin-staff: 
-#   staff:
-#     - ref: rl
-#
