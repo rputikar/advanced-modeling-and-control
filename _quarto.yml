@@ -71,7 +71,7 @@ website:
     contents:
     - href: index.qmd
       text: "{{< fa house >}} Home"
-    - section: "Overview"
+    - section: "Course Information"
       contents:
         - href: syllabus.qmd
           text: Syllabus
@@ -80,24 +80,17 @@ website:
     - section: "Lecture Notes"
       id: lecture-notes
       contents: 
-        - href: ./content/lecture-notes/01-recap
-          text: Lecture 01
-        - href: ./content/lecture-notes/02–cascade_control_strategy
-          text: Lecture 02
-        - href: ./content/lecture-notes/03–cascade_control_design
-          text: Lecture 03
-        - href: ./content/lecture-notes/04-ratio_and_feedforward_control
-          text: Lecture 04
-        - href: ./content/lecture-notes/05-override_control_inferential_and_gain_scheduling
-          text: Lecture 05
-        - href: ./content/lecture-notes/06-decentralized_control
-          text: Lecture 06
-        - href: ./content/lecture-notes/07-multivariable_centralized_control_and_MPC
-          text: Lecture 07
-        - href: ./content/lecture-notes/08-time_series_modelling_and_analysis
-          text: Lecture 08
-        - href: ./content/lecture-notes/09-ANN_modelling
-          text: Lecture 09
+        - file: ./content/lecture-notes/01-recap/index.qmd
+        - file: ./content/lecture-notes/02-ratio_and_feedforward_control/index.qmd
+        - file: ./content/lecture-notes/03-override_control/index.qmd
+        - file: ./content/lecture-notes/04–other_advanced_control_techniques/index.qmd
+        - file: ./content/lecture-notes/05-time_series_modelling_and_analysis/index.qmd
+        - file: ./content/lecture-notes/06-principal_component_analysis/index.qmd
+        - file: ./content/lecture-notes/07-decentralized_control/index.qmd
+        - file: ./content/lecture-notes/08-model_predictive_control/index.qmd
+        - file: ./content/lecture-notes/09-ANN_modelling/index.qmd
+        - file: ./content/lecture-notes/10-pattern_recognition_and_machine_learning/index.qmd
+        - file: ./content/lecture-notes/11-model_based_optimization/index.qmd
 
     - section: "Workshops"
       id: workshops
@@ -165,4 +158,14 @@ format:
     email-obfuscation: javascript
     link-external-newwindow: true
     link-external-filter: ^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)
-
+  revealjs:
+    keep-yaml: true
+    controls: true
+    # self-contained: true
+    chalkboard: true
+    toc: true
+    toc-depth: 1
+    menu: true
+    theme: [default, ../styles/slide.custom.scss]
+    logo: ./assets/images/cee_logo_path.svg
+    slide-number: c/t

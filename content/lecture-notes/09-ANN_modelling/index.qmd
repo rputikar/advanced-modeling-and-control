@@ -1,0 +1,4 @@
+---
+title: 
+  Artificial Neural Network and Other Models
+---
