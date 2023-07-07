@@ -13,47 +13,16 @@ buttons below to open the slides either as an interactive website or as a
 static PDF (for printing or storing for later). You can also click in the
 slides below and navigate through them with your left and right arrow keys.
 
-<!---->
-<!-- ```{r show-slide-tabs, echo=FALSE, results="asis"} -->
-<!-- slide_buttons("/slides/01-slides") -->
-<!-- slide_tabs(slide_details, "/slides/01-slides.html") -->
-<!-- ``` -->
-<!---->
-<!-- <div class="container" style="position: relative;overflow: hidden;width: -->
-<!-- 100%;min-height:600px;"> <iframe src="slides.html" -->
-<!-- style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width: -->
-<!-- 100%;min-height:600px;"></iframe> </div> -->
-<!---->
+Either click on the slide area below or click
+[here](../../slides/01-recap/index.qmd){target="_blank"} to view it in
+fullscreen (The link will open in a new tab or window). Use your keypad to
+navigate the slides.
 
-```{python}
-#| echo: false
-x = 'hello, python world!'
-print(x)
-print(x.split(' '))
-```
-```{python}
-#| echo: false
-#| output: asis
-
-def stylize_div():
-
-  ytlink = "https://youtu.be/JU8LlQwHHLA"
-  div_content = '''
-  <div style="background-color: #F5F5F5; padding: 10px;">
-  <h3>This is a styled div</h3>
-  '''
-  
-  div_content += ytlink
-
-  div_content += '''<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </div>
-  '''
-  return div_content
-
-styled_div = stylize_div()
-
-print ("", styled_div ,"")
-```
+<div class="container" style="position: relative;overflow: hidden;width:
+100%;min-height:600px;"> <iframe src="../../slides/01-recap/"
+style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width:
+100%;min-height:600px;"></iframe>
+</div>
 
 ## Videos
 

@@ -1,0 +1,15 @@
+{
+  "name": "content",
+  "version": "1.0.0",
+  "description": "Github repository For Advanced modeling and control course .\r [The website can be found here.](https://amc.utikar.com/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "decktape": "^3.9.0"
+  }
+}

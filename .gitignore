@@ -1,5 +1,9 @@
 /.vscode
 
+# Node
+node_modules
+package-lock.json
+
 # R project stuff
 .Rproj.User
 .Rhistory

@@ -78,7 +78,6 @@ optimize process performance.
 - Demonstrate the effective use of software, such as MATLAB and Control
   Station, for process modeling and for control system design.
 
-
 ## Teaching Staff
 
 ::: {.panel-tabset}
