@@ -1,10 +1,76 @@
 ---
-title: Recap
+title: "Recap: Basics of Process Control and Modelling"
 format: revealjs
 ---
 
-#  Introduction 
+# Why process control 
 
-* What is evaporation? 
-* Difference between evaporation and other techniques
+* Process control 
+* Importance of process analysis and control
+* Process control objectives
 
+<!-- [This section is based on chapter 1 Ramagnoli.] -->
+
+## Process control
+
+## Importance of process analysis and control
+
+## Process control objectives
+
+# Fundamentals of process modeling
+
+* Introduction to process modeling
+* Types of process models (empirical, mechanistic, etc.)
+* Process variables and units
+* Basic principles of mass and energy balances
+* Process control terminology
+
+## Introduction to process modeling
+
+## Types of process models (empirical, mechanistic, etc.)
+
+## Process variables and units
+
+## Basic principles of mass and energy balances
+
+## Process control terminology
+
+# Dynamic Behavior of Processes
+* Response of first-order systems
+* Response of second-order systems
+* Transient and steady-state behavior of processes
+* Process time constants and lags
+
+## Response of first-order systems
+## Response of second-order systems
+## Transient and steady-state behavior of processes
+## Process time constants and lags
+
+# Analysis of Process Systems
+* Linearization of process models
+* Stability analysis and the concept of poles and zeros
+* Frequency response analysis
+* Bode plots and Nyquist plots
+
+## Linearization of process models
+
+## Stability analysis and the concept of poles and zeros
+
+## Frequency response analysis
+
+## Bode plots and Nyquist plots
+
+
+# Feedback Control Systems
+* Introduction to feedback control
+* Proportional, integral, and derivative control actions
+* PID control and tuning methods
+* Stability analysis
+
+## Introduction to feedback control
+
+## Proportional, integral, and derivative control actions
+
+## PID control and tuning methods
+
+## Stability analysis

@@ -57,16 +57,26 @@ tackle the challenges of dynamic and multivariable industrial processes,
 enabling them to understand, and design effective control strategies and
 optimize process performance.
 
+## What do process control engineers do?
+
+::: {.panel-tabset}
+## Day in the Life: process control engineer
+{{< video https://www.youtube.com/embed/kK_8gvijNPI >}}
+
+## Water Works Wednesday - Process Control Systems Engineer
+{{< video https://www.youtube.com/watch?v=fsWU13R3azU >}}
+:::
+
 ## Learning Outcomes
 
 - Apply a range of advanced control techniques to chemical, mineral and
-  petrochemical processes
+  petrochemical processes.
 - Explain multi-loop control design, including pairing and decoupling of
-  chemical processes
+  chemical processes.
 - Apply a range of advanced model formulation and solution techniques to
-  chemical processes
+  chemical processes.
 - Demonstrate the effective use of software, such as MATLAB and Control
-  Station, for process modeling and for control system design
+  Station, for process modeling and for control system design.
 
 
 ## Teaching Staff
