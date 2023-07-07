@@ -34,7 +34,7 @@ website:
   title: "AMC | Advanced Modeling and Control"
   page-navigation: true
   open-graph: true
-  cookie-consent: true
+  # cookie-consent: true
   favicon: ./assets/images/logo/favicon.png
   search:
     type: overlay
