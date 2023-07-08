@@ -32,6 +32,7 @@ execute:
 
 website:
   title: "AMC | Advanced Modeling and Control"
+  site-url: https://amc.utikar.com/
   page-navigation: true
   open-graph: true
   # cookie-consent: true
@@ -60,7 +61,7 @@ website:
     border: false
     background: "#535353"
     left: |
-      Copyright 2023 &copy; [SMILE Lab](https://utikar.com) <br>
+      Copyright 2023 &copy; [SMILE Lab](https://www.utikar.com) <br>
     right: |
       {{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}}
       {{< fa brands creative-commons-sa >}} Except where otherwise noted,
@@ -79,24 +80,24 @@ website:
         - file: content/info/syllabus.qmd
           text: Syllabus
 
-    # - section: "Lecture Notes"
-    #   id: lecture-notes
-    #   content: content/lecture-notes/*/*.qmd
+    # - section: "Lectures"
+    #   id: lectures
+    #   content: content/lectures/*/*.qmd
 
-    - section: "Lecture Notes"
-      id: lecture-notes
+    - section: "Lectures"
+      id: lectures
       contents: 
-        - file: ./content/lecture-notes/01-recap/index.qmd
-        - file: ./content/lecture-notes/02-ratio_and_feedforward_control/index.qmd
-        - file: ./content/lecture-notes/03-override_control/index.qmd
-        - file: ./content/lecture-notes/04-other_advanced_control_techniques/index.qmd
-        - file: ./content/lecture-notes/05-time_series_modelling_and_analysis/index.qmd
-        - file: ./content/lecture-notes/06-principal_component_analysis/index.qmd
-        - file: ./content/lecture-notes/07-decentralized_control/index.qmd
-        - file: ./content/lecture-notes/08-model_predictive_control/index.qmd
-        - file: ./content/lecture-notes/09-ANN_modelling/index.qmd
-        - file: ./content/lecture-notes/10-pattern_recognition_and_machine_learning/index.qmd
-        - file: ./content/lecture-notes/11-model_based_optimization/index.qmd
+        - file: ./content/lectures/01-recap/index.qmd
+        - file: ./content/lectures/02-ratio_and_feedforward_control/index.qmd
+        - file: ./content/lectures/03-override_control/index.qmd
+        - file: ./content/lectures/04-other_advanced_control_techniques/index.qmd
+        - file: ./content/lectures/05-time_series_modelling_and_analysis/index.qmd
+        - file: ./content/lectures/06-principal_component_analysis/index.qmd
+        - file: ./content/lectures/07-decentralized_control/index.qmd
+        - file: ./content/lectures/08-model_predictive_control/index.qmd
+        - file: ./content/lectures/09-ANN_modelling/index.qmd
+        - file: ./content/lectures/10-pattern_recognition_and_machine_learning/index.qmd
+        - file: ./content/lectures/11-model_based_optimization/index.qmd
 
     - section: "Workshops"
       id: workshops
@@ -142,13 +143,6 @@ website:
         - file: ./content/labs/lab-09/index.qmd
           text: Lab 09
  
-    # - section: "🗓️ Weeks"
-    #     contents:
-    #     - href: "." 
-    #       text: Week 01
-    #     contents:
-    #     - href: "." 
-    #       text: 👨‍🏫 Lecture Material
 format:
   html:
     theme: 
@@ -163,4 +157,6 @@ format:
       margin-width: 300px
     email-obfuscation: javascript
     link-external-newwindow: true
-    link-external-filter: ^(?:http:|https:)\/\/(?:lse-dsi\.github\.io\/|localhost)
+    link-external-icon: true
+    # link-external-filter: ^(?:http:|https:)\/\/(?:utikar\.com\/|localhost)
+    link-external-filter: ^(?:http:|https:)\/\/(?:\w+\.)?utikar\.com\/|localhost

@@ -49,7 +49,8 @@ coordinator:
   contact_policy:
     Best way to contact is via email. 
     I hope to respond within 24-36 hours.
-    If you would like to see me, please book an appointment. 
+    If you would like to see me, please book an appointment using "_schedule an
+    appointment_" link on the left. 
   appointment_url: 
     "https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/"
   photo: ./assets/images/RanjeetUtikar.jpg

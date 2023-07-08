@@ -1,0 +1,134 @@
+---
+title: "Basics of Process Control and Modeling"
+date: 2023-07-08
+---
+
+::: {.content-visible when-format="html"}
+
+:::{.grid}
+::: {.g-col-5}
+[Lecture resources](../../lectures/01-recap/index.qmd){.btn .btn-success .btn-lg role="button"}
+:::
+:::
+
+:::
+
+## Importance of process analysis and control
+
+Chemical processes greatly influence every aspect of our life. 
+All important industrial sector such as food production, water treatment,
+healthcare and pharmaceuticals, energy, automotives, and so on rely on chemical
+process industry to supply ingradients, raw materials, and enabling
+technologies. 
+In recent years, significant attention is given to sustainability in the
+chemical process industry. New processes and retrofit of existing processes are 
+based on responsible resource utilization, minimizes environmental impact,
+and considerations to long-term viability and competitiveness.
+Chemical processes involve several unit operations, such as
+mixing, heat exchange, mass transfer, and reaction.
+In a chemical process, required unit operations are performed in a specific
+sequence to achieve specific objectives.
+In order to ensure optimal operations of the process it is important to have
+efficient and effective control over process variables such as temperature,
+pressure, flow rate, and composition. 
+Optimal operations are crucial for maintaining safety, and achieving desired
+product quality. 
+Control systems and advanced algorithms are deployed to monitor, regulate, and
+optimize the process variables.  
+
+Controlling processes involves influencing their operation to achieve
+desired outcomes. This is accomplished through the use of control units, which
+regulate and guide processes to maintain steady operation and prevent
+deviations from target conditions. It is important to recognize that all
+industrial processes are dynamic, meaning their behavior changes over time.
+Control engineers must have a deep understanding of process dynamics and
+develop suitable mechanisms to influence and manage their behavior effectively.
+
+Control engineering is an integral part of chemical engineering. 
+Design engineers must account for dynamic operation and its consequences, while
+plant operators must respond to disruptions for smooth operation. Experimental
+engineers rely on process control for precise conditions. Without process
+control, modern processing facilities cannot operate safely, reliably, and
+profitably while meeting quality and environmental standards.
+
+## Process control objectives
+
+Control systems play a crucial role in ensuring safe and
+profitable operation of processes involving various streams. 
+These control systems continuously monitor process variables such as
+temperature, pressure, level, flow, and concentration. 
+They take actions, such as adjusting valves, controlling pump
+speed, and regulating heaters, to maintain these variables at specified set
+point values defined by operators. 
+This enables processes to operate efficiently, meeting desired objectives while
+prioritizing safety and profitability.
+
+The primary objective of any control system is safety. 
+Control systems are designed to ensure the safety of people, protect
+the environment, and safeguard equipment. 
+By continuously monitoring and
+adjusting process variables, these systems can detect and respond to deviations
+or disturbances that may pose risks or compromise the integrity of the system.
+This proactive approach to safety helps prevent accidents, minimize
+environmental impact, and preserve the longevity of equipment.
+
+When faced with competing objectives, the specific tradeoff considerations vary
+depending on the industry, scale, and potential consequences involved.
+For example, 
+In extreme scenarios such as a nuclear plant, the control system may shut down
+the operations to prevent potential deadly radiation leaks. 
+On the other hand, in power or chemical industry,
+there is a tradeoff between controlling emissions and equipment safety. 
+In order to keep the operations running optimally, the control system may
+deviate from the emission norms occasionally. 
+Stricter emission control measures, may place additional stress on equipment
+and require diligent maintenance to ensure safe operation. 
+Balancing emissions control with equipment safety becomes crucial to mitigate
+environmental harm while ensuring the integrity and reliability of the
+industrial process.
+
+In addition to safety, automatic control also enhances efficiency and
+performance. 
+By maintaining process variables at optimal set points, these
+systems enable processes to operate at peak efficiency, reduce energy
+consumption, improve product quality, and increase overall productivity. 
+This not only maximizes output and profitability but also contributes to
+sustainability efforts by minimizing resource wastage and emissions.
+
+After ensuring the people, environment, and equipment safety objectives are met, 
+the control objectives can focus on the profit. 
+
+![Poor control requires set point far from
+constraint](../../../assets/images/01-recap-fig1-pv_poorly_controlled.png){#fig-poor-set-point width=60%}
+
+## Process control terminology
+
+## Introduction to process modeling
+
+## Types of process models (empirical, mechanistic, etc.)
+
+## Process variables and units
+
+## Basic principles of mass and energy balances
+
+## Response of first-order systems
+## Response of second-order systems
+## Transient and steady-state behavior of processes
+## Process time constants and lags
+
+## Linearization of process models
+
+## Stability analysis and the concept of poles and zeros
+
+## Frequency response analysis
+
+## Bode plots and Nyquist plots
+
+
+## Introduction to feedback control
+
+## Proportional, integral, and derivative control actions
+
+## PID control and tuning methods
+
+## Stability analysis

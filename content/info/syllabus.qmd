@@ -32,9 +32,16 @@ will be very userful reference material for topics covered in the course.
 
 ### Other materials
 
-- Process control - Analysis, Design, and Assessment course from IIT Madras. 
-  The youtube play list is [here](https://www.youtube.com/playlist?list=PLyqSpQzTE6M-OjiNwE2GQzXmZ6NaVWUnf).
-- [Process Dynamics and Control](https://apmonitor.com/che436/index.php/Main/HomePage) course from BYU. 
+- Process control - Analysis, Design, and Assessment course from IIT Madras by
+  [Prof. Raghunathan
+  Rengaswamy](https://rbcdsai.iitm.ac.in/people/raghunathan-rengaswamy/). The
+  youtube play list is
+  [here](https://www.youtube.com/playlist?list=PLyqSpQzTE6M-OjiNwE2GQzXmZ6NaVWUnf).
+- [Process Dynamics and
+  Control](https://apmonitor.com/che436/index.php/Main/HomePage) course from
+  BYU by [Prof. John D.
+  Hedengren](https://apm.byu.edu/prism/index.php/Members/JohnHedengren). 
+- Prof. Douglas Cooper's [Contol Guru](https://controlguru.com/table-of-contents/) website.
 
 ### MATLAB
 

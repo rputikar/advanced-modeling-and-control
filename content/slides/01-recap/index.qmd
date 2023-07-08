@@ -13,10 +13,6 @@ format: revealjs
 
 ## Process control
 
-```{r echo=FALSE}
-countdown(minutes = 3)
-```
-
 ## Importance of process analysis and control
 
 ## Process control objectives
