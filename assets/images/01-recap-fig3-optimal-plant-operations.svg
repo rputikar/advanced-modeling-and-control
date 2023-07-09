@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 374.36 246.08">
+  <defs>
+    <linearGradient id="IBM_Carbon" data-name="IBM Carbon" x1="429.4" y1="261.66" x2="429.4" y2="261.66" gradientTransform="translate(-125.89 644.9) rotate(-90)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#231f20"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="183.75" cy="135.14" rx="32" ry="50" style="fill: #facfe2;"/>
+  <g>
+    <g>
+      <line x1="27.77" y1="216" x2="27.77" y2="5.97" style="fill: none; stroke: #231f20; stroke-miterlimit: 10;"/>
+      <polygon points="31.47 8.78 27.77 7.21 24.06 8.78 27.77 0 31.47 8.78" style="fill: #231f20;"/>
+    </g>
+    <g>
+      <line x1="27.77" y1="215.5" x2="243.77" y2="215.5" style="fill: url(#IBM_Carbon);"/>
+      <g>
+        <line x1="27.77" y1="215.5" x2="237.8" y2="215.5" style="fill: none; stroke: #231f20; stroke-miterlimit: 10;"/>
+        <polygon points="234.99 219.2 236.56 215.5 234.99 211.8 243.77 215.5 234.99 219.2" style="fill: #231f20;"/>
+      </g>
+    </g>
+  </g>
+  <text transform="translate(81.73 243.14)" style="fill: #231f20; font-family: IBMPlexSans, &apos;IBM Plex Sans&apos;; font-size: 12px;"><tspan x="0" y="0" style="letter-spacing: -.01em;">P</tspan><tspan x="7.15" y="0" style="letter-spacing: 0em;">r</tspan><tspan x="11.5" y="0">o</tspan><tspan x="18.22" y="0" style="letter-spacing: 0em;">c</tspan><tspan x="24.18" y="0">e</tspan><tspan x="30.77" y="0" style="letter-spacing: 0em;">s</tspan><tspan x="36.54" y="0">s </tspan><tspan x="45.22" y="0" style="letter-spacing: 0em;">v</tspan><tspan x="51.01" y="0" style="letter-spacing: 0em;">ariable 1</tspan></text>
+  <text transform="translate(10.19 153.04) rotate(-90)" style="fill: #231f20; font-family: IBMPlexSans, &apos;IBM Plex Sans&apos;; font-size: 12px;"><tspan x="0" y="0" style="letter-spacing: -.01em;">P</tspan><tspan x="7.15" y="0" style="letter-spacing: 0em;">r</tspan><tspan x="11.5" y="0">o</tspan><tspan x="18.22" y="0" style="letter-spacing: 0em;">c</tspan><tspan x="24.18" y="0">e</tspan><tspan x="30.77" y="0" style="letter-spacing: 0em;">s</tspan><tspan x="36.54" y="0">s </tspan><tspan x="45.22" y="0" style="letter-spacing: 0em;">v</tspan><tspan x="51.01" y="0" style="letter-spacing: 0em;">ariable 2</tspan></text>
+  <ellipse cx="137.83" cy="89.79" rx="49.5" ry="22.96" transform="translate(-24.57 115.96) rotate(-42.24)" style="fill: none; stroke: #997eba; stroke-miterlimit: 10;"/>
+  <ellipse cx="146.5" cy="96.92" rx="69.32" ry="51.94" transform="translate(-25.63 131.98) rotate(-45)" style="fill: none; stroke: #056262; stroke-miterlimit: 10;"/>
+  <ellipse cx="137.45" cy="106.89" rx="89.13" ry="68.97" transform="translate(-35.33 128.5) rotate(-45)" style="fill: none; stroke: #253e8d; stroke-miterlimit: 10;"/>
+  <text transform="translate(243.75 27.14)" style="fill: #231f20; font-family: IBMPlexSans, &apos;IBM Plex Sans&apos;; font-size: 12px;"><tspan x="0" y="0">Con</tspan><tspan x="20.99" y="0" style="letter-spacing: 0em;">t</tspan><tspan x="25.15" y="0" style="letter-spacing: 0em;">ours </tspan><tspan x="51.77" y="0" style="letter-spacing: 0em;">o</tspan><tspan x="58.42" y="0" style="letter-spacing: 0em;">f </tspan><tspan x="0" y="14.4">inc</tspan><tspan x="15.85" y="14.4" style="letter-spacing: 0em;">r</tspan><tspan x="20.2" y="14.4" style="letter-spacing: 0em;">easing p</tspan><tspan x="64.98" y="14.4" style="letter-spacing: 0em;">r</tspan><tspan x="69.32" y="14.4" style="letter-spacing: 0em;">o</tspan><tspan x="75.97" y="14.4">fit</tspan></text>
+  <text transform="translate(243.75 70.34)" style="fill: #231f20; font-family: IBMPlexSans, &apos;IBM Plex Sans&apos;; font-size: 12px;"><tspan x="0" y="0">O</tspan><tspan x="8.5" y="0" style="letter-spacing: 0em;">p</tspan><tspan x="15.38" y="0">timal </tspan><tspan x="45.58" y="0" style="letter-spacing: 0em;">f</tspan><tspan x="49.42" y="0">easible</tspan><tspan x="0" y="14.4">ope</tspan><tspan x="20.27" y="14.4" style="letter-spacing: 0em;">r</tspan><tspan x="24.62" y="14.4" style="letter-spacing: 0em;">ating point</tspan></text>
+  <text transform="translate(243.75 113.54)" style="fill: #231f20; font-family: IBMPlexSans, &apos;IBM Plex Sans&apos;; font-size: 12px;"><tspan x="0" y="0">Ope</tspan><tspan x="22.04" y="0" style="letter-spacing: 0em;">r</tspan><tspan x="26.4" y="0">ating ta</tspan><tspan x="66.62" y="0" style="letter-spacing: -.02em;">r</tspan><tspan x="70.75" y="0" style="letter-spacing: 0em;">g</tspan><tspan x="77.02" y="0">et</tspan></text>
+  <text transform="translate(243.75 171.14)" style="fill: #231f20; font-family: IBMPlexSans, &apos;IBM Plex Sans&apos;; font-size: 12px;"><tspan x="0" y="0" style="letter-spacing: -.02em;">F</tspan><tspan x="6.41" y="0">easible </tspan><tspan x="47.89" y="0" style="letter-spacing: 0em;">r</tspan><tspan x="52.24" y="0">egion</tspan></text>
+  <text transform="translate(243.75 142.34)" style="fill: #231f20; font-family: IBMPlexSans, &apos;IBM Plex Sans&apos;; font-size: 12px;"><tspan x="0" y="0" style="letter-spacing: -.07em;">T</tspan><tspan x="6.08" y="0">ole</tspan><tspan x="22.66" y="0" style="letter-spacing: 0em;">r</tspan><tspan x="27.01" y="0">agle ope</tspan><tspan x="72.71" y="0" style="letter-spacing: 0em;">r</tspan><tspan x="77.06" y="0" style="letter-spacing: 0em;">ating limit</tspan></text>
+  <circle cx="174.75" cy="97.14" r="9" style="fill: #f174a5;"/>
+  <circle cx="169.25" cy="87.64" r="2.5" style="fill: #352562;"/>
+  <circle cx="174.25" cy="96.64" r="2.5" style="fill: #76113b;"/>
+  <g>
+    <line x1="194.57" y1="35.14" x2="235.75" y2="35.14" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="196.36 37.51 195.36 35.14 196.36 32.77 190.75 35.14 196.36 37.51"/>
+  </g>
+  <g>
+    <polyline points="174.88 84.12 224.59 70.34 235.75 70.34" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="177.25 85.92 175.65 83.91 175.98 81.35 171.2 85.14 177.25 85.92"/>
+  </g>
+  <g>
+    <polyline points="180.44 97.61 226.25 109.64 235.75 109.64" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="181.58 100.36 181.21 97.81 182.78 95.77 176.75 96.64 181.58 100.36"/>
+  </g>
+  <g>
+    <polyline points="182.24 106.92 225.25 138.64 235.75 138.64" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="182.28 109.9 182.88 107.39 185.1 106.08 179.17 104.66 182.28 109.9"/>
+  </g>
+  <g>
+    <line x1="204.31" y1="164.95" x2="235.75" y2="164.95" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="206.11 167.32 205.1 164.95 206.11 162.58 200.49 164.95 206.11 167.32"/>
+  </g>
+</svg>

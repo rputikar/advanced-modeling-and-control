@@ -98,8 +98,93 @@ sustainability efforts by minimizing resource wastage and emissions.
 After ensuring the people, environment, and equipment safety objectives are met, 
 the control objectives can focus on the profit. 
 
+Plant-level control objectives motivated by profit include:
+
+- meeting final product specifications
+- minimizing waste production
+- minimizing environmental impact
+- minimizing energy use
+- maximizing overall production rate
+
+::: {#fig-process-variability layout="[45,-10,45]"}
 ![Poor control requires set point far from
-constraint](../../../assets/images/01-recap-fig1-pv_poorly_controlled.png){#fig-poor-set-point width=60%}
+constraint](../../../assets/images/01-recap-fig1-pv_poorly_controlled.png){#fig-poor-control}
+
+![Good control permits set point near
+constraint](../../../assets/images/01-recap-fig2-pv_tightly_controlled.png){#fig-good-control}
+
+Process control plays a vital role in reducing variability
+:::
+
+The optimization of process operating conditions aims to maximize economic
+objectives, such as annual profit. Effective plant management involves
+determining desirable operating targets and implementing an efficient automatic
+control strategy to maintain these targets within acceptable limits. Chemical
+engineers are well-suited for setting control objectives as they possess a
+clear understanding of how the plant operates.
+
+To identify the most desirable operating conditions, the feasible region of
+operation is defined based on the physical limits of decision variables. Plant
+economics are then evaluated by assessing increasing profit contours. While the
+optimum operating point often lies at a corner of the feasible region,
+practical considerations and plant disturbances necessitate operating at a
+slight distance from this point to ensure feasible operation (@fig-optimal-plant-operations).
+
+The control strategy focuses on minimizing variations around the operating
+target and reducing the acceptable operating limits. Advanced control systems
+offer the potential for operating even closer to the optimal target, resulting
+in increased profitability. This improvement, quantified by a shift towards a
+more profitable regime, demonstrates the financial benefits of the control
+system.
+
+![Optimal plant operations](../../../assets/images/01-recap-fig3-optimal-plant-operations.png){#fig-optimal-plant-operations}
+
+## Hirarchy of process control activities
+
+- Measurement and Actuations (Level 1)
+- Safety and environmental/ equipment protection (Level 2) 
+- Regulatory control (Level 3a)
+- Multivariable and constraint control (Level 3b)
+- Real time optimization (Level 4)
+- Planning and scheduling (Level 5) 
+
+![Hirarchy of process control activities](../../../assets/images/01-recap-time-scales-of-process-control-activities.png){#fig-control-activity-hirarchy}
+
+## Overview of control system design
+
+The major steps involved in designing and installing a control system using the
+model-based approach are shown in the flow chart of @fig-major-steps. The first
+step, formulation of the control objectives, is a critical decision. The
+formulation is based on the operating objectives for the plants and the process
+constraints. For example, in the distillation column control problem, the
+objective might be to regulate a key component in the distillate stream, the
+bottoms stream, or key components in both streams. An alternative would be to
+minimize energy consumption (e.g., reboiler heat duty) while meeting product
+quality specifications on one or both product streams. The inequality
+constraints should include upper and lower limits on manipulated variables,
+conditions that lead to flooding or weeping in the column, and product impurity
+levels. After the control objectives have been formulated, a dynamic model of
+the process is developed. The dynamic model can have a theoretical basis, for
+example, physical and chemical principles such as conservation laws and rates
+of reactions, or the model can be developed empirically from
+experimental data. If experimental data are available, the dynamic
+model should be validated, and the model accuracy is characterized. This latter
+information is useful for control system design and tuning. The next step in
+the control system design is to devise an appropriate control strategy that
+will meet the control objectives while satisfying process constraints. As
+indicated in @fig-major-steps, this design activity is both an art and a science.
+Process understanding and the experience and preferences of the design team are
+key factors. Computer simulation of the controlled process is used to screen
+alternative control strategies and to provide preliminary estimates of
+appropriate controller settings. Finally, the control system hardware and
+instrumentation are selected, ordered, and installed in the plant. Then the
+control system is tuned in the plant using the preliminary estimates from the
+design step as a starting point. Controller tuning usually involves
+trial-and-error procedures.
+
+![Major steps in control system
+development.](../../../assets/images/major-steps-control-system-developement.png){#fig-major-steps}
+
 
 ## Process control terminology
 
