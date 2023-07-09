@@ -5,7 +5,7 @@ author:
     url: https://utikar.com
 format:
   html: 
-    fig-cap-location: margin
+    fig-cap-location: bottom
   docx:
     number-sections: true
     number-depth: 3
