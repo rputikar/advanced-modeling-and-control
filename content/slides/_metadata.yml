@@ -11,5 +11,5 @@ format:
     toc-depth: 1
     menu: true
     theme: [default, ./styles/slide.custom.scss]
-    logo: ../../assets/images/cee_logo_path.svg
+    logo: ../../assets/images/cee_logo.svg
     slide-number: c/t

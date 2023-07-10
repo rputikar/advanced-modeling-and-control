@@ -64,7 +64,7 @@ optimize the process variables.
 
 ## Optimal plant operations
 
-![](../../../assets/images/01-recap-fig3-optimal-plant-operations.png){.absolute top=100 right=50}
+![](../../../assets/images/01-recap-fig3-optimal-plant-operations.png){.absolute top=100 right=50 width=80%}
 
 ## Hirarchy of process control activities
 
@@ -80,16 +80,6 @@ optimize the process variables.
 
 ::: {.column width=50%}
 
-* The boiling point of the solution is related to the pressure of the system.
-  The higher the operating pressure of the evaporator, the higher boiling
-  temperature.
-
-* As the concentration of the solution increases by evaporation, the boiling
-  temperature may rise. This phenomenon called boiling point rise or elevation.
-  
-* To keep the temperature low in heat sensitive materials, it is often
-  necessary to operate below atmospheric pressure or under vacuum.
-
 :::
 
 ::::
@@ -103,6 +93,7 @@ optimize the process variables.
 * Process control terminology
 
 ## Introduction to process modeling
+
 
 ## Types of process models (empirical, mechanistic, etc.)
 
