@@ -5,17 +5,94 @@ format: revealjs
 
 # Why process control 
 
-* Process control 
 * Importance of process analysis and control
 * Process control objectives
-
+* Hirarchy of process control activities
+* Overview of control system design
 <!-- [This section is based on chapter 1 Ramagnoli.] -->
-
-## Process control
 
 ## Importance of process analysis and control
 
-## Process control objectives
+* Chemical processes greatly influence every aspect of our life 
+* [Sustainability]{.highlight} in the chemical process industry 
+  - responsible resource utilization
+  - minimizes environmental impact
+  - long-term viability and competitiveness
+* Optimal process operations require [efficient and effective control]{.highlight}
+* Control systems and advanced algorithms are deployed to monitor, regulate, and
+optimize the process variables.  
+
+## Control objectives
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+### Safety First
+
+- People
+- Environment
+- Equipment
+
+### Profit
+
+- meeting final product specifications
+- minimizing waste production
+- minimizing environmental impact
+- minimizing energy use
+- maximizing overall production rate
+
+:::
+
+::: {.column width=50%}
+
+### Reducing variability
+
+- Poor control requires set point far from constraint
+
+  ![](../../../assets/images/01-recap-fig1-pv_poorly_controlled.png){width="50%"}
+
+- Good control permits set point near constraint 
+    
+  ![](../../../assets/images/01-recap-fig2-pv_tightly_controlled.png){width="50%"}
+:::
+
+::::
+
+  <!-- right: 800px !important; -->
+  <!---->
+
+## Optimal plant operations
+
+![](../../../assets/images/01-recap-fig3-optimal-plant-operations.png){.absolute top=100 right=50}
+
+## Hirarchy of process control activities
+
+![](../../../assets/images/01-recap-time-scales-of-process-control-activities.png){.absolute top=150 right=50}
+
+## Overview of control system design
+
+:::: {.columns}
+
+::: {.column width=50%}
+![](../../../assets/images/major-steps-control-system-developement.png)
+:::
+
+::: {.column width=50%}
+
+* The boiling point of the solution is related to the pressure of the system.
+  The higher the operating pressure of the evaporator, the higher boiling
+  temperature.
+
+* As the concentration of the solution increases by evaporation, the boiling
+  temperature may rise. This phenomenon called boiling point rise or elevation.
+  
+* To keep the temperature low in heat sensitive materials, it is often
+  necessary to operate below atmospheric pressure or under vacuum.
+
+:::
+
+::::
 
 # Fundamentals of process modeling
 

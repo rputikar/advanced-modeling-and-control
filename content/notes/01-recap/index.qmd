@@ -185,9 +185,6 @@ trial-and-error procedures.
 ![Major steps in control system
 development.](../../../assets/images/major-steps-control-system-developement.png){#fig-major-steps}
 
-
-## Process control terminology
-
 ## Introduction to process modeling
 
 ## Types of process models (empirical, mechanistic, etc.)
@@ -195,6 +192,8 @@ development.](../../../assets/images/major-steps-control-system-developement.png
 ## Process variables and units
 
 ## Basic principles of mass and energy balances
+
+## Process control terminology
 
 ## Response of first-order systems
 ## Response of second-order systems
