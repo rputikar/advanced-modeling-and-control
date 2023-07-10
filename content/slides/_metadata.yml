@@ -6,7 +6,9 @@ format:
     keep-yaml: true
     controls: true
     # self-contained: true
-    chalkboard: true
+    chalkboard:
+      boardmarker-width: 5
+      buttons: false
     toc: true
     toc-depth: 1
     menu: true

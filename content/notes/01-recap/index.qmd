@@ -1,7 +1,7 @@
 ---
 title: "Basics of Process Control and Modeling"
 date: 2023-07-08
----
+--
 
 ::: {.content-visible when-format="html"}
 
@@ -187,7 +187,43 @@ development.](../../../assets/images/major-steps-control-system-developement.png
 
 ## Introduction to process modeling
 
+Dynamic models play a central role in the subject of process dynamics and control.
+
+- Dynamic models and computer simulation enhance process understanding by
+  enabling the study of transient behavior without disturbing the actual
+  process. Through simulation, valuable insights into dynamic and steady-state
+  process behavior can be gained, providing valuable information even prior to
+  plant construction.
+
+- Process simulators are essential for training plant operators in handling
+  complex units and emergency situations. By connecting simulators to process
+  control equipment, a realistic training environment is created, similar to
+  flight simulators in the aerospace industry. This enables operators to
+  develop practical skills and effectively respond to challenging scenarios.
+
+- A dynamic process model facilitates the evaluation of different control
+  strategies by identifying the variables to be controlled and manipulated. It
+  can also aid in preliminary controller tuning and the use of empirical models
+  prior to plant start-up. In model-based control strategies, the process model
+  plays an explicit role within the control law formulation, enabling more
+  effective control implementation.
+
+- Periodic recalculation of optimum operating conditions can be beneficial to
+  maximize profit or minimize costs in a process. By utilizing a steady-state
+  process model and economic information, the most profitable operating
+  conditions can be determined. This approach, discussed in Chapter 19, allows
+  for optimization and continual improvement of process performance. 
+
 ## Types of process models (empirical, mechanistic, etc.)
+
+Models can be classified as:
+
+- Theoretical models are developed using the principles of chemistry, physics,
+  and biology.
+- Empirical models are obtained by fitting experimental data.
+- Semi-empirical models are a combination of the models in categories (a) and
+  (b); the numerical values of one or more of the parameters in a theoretical
+  model are calculated from experimental data.
 
 ## Process variables and units
 

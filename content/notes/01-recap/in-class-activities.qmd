@@ -1,0 +1,117 @@
+---
+title: "Session 1. Getting started with MATLAB/ Simulink"
+date: 2023-07-08
+format:
+  pdf
+---
+
+|||
+|-|-|
+| **General functions**: ||
+| `cd`| Change subdirectory |
+| `demo`|  Launch the demo (introduction)|
+| `dir (what)`| Listof files in currentdirectory (or only M-files)|
+| `help, helpwin`| Help! Help window|
+| `load`| Load workspace|
+| `lookfor`| Keyword search|
+| `print`| Printgraph; can use pull-down menu|
+| `quit`| Quit!|
+| `save`| Save workspace|
+| `who, whos`| Listof variables in workspace|
+| **Calculation functions**: ||
+| `conv`| Convolution function to multiply polynomials|
+| `size, length`| Size of an array, length of a vector|
+| **Plotting functions**:||
+| `axis`| Override axis defaultof plot|
+| `grid`| Add grid to plot|
+| `hold`| Hold a figure to add more plots (curves)|
+| `legend`| Add legend to plot|
+| `plot`| Make plots|
+| `text (gtext)`| Add text (graphical control) to plot|
+| `title`| Add title to plot|
+| `xlabel, ylabel`| Add axis labels to plot|
+
+: Useful functions
+
+
+## Activities
+
+1. Explore MATLAB user interface
+
+2. Define a vector `x = [1 2 3 4 5 6 7 8 9 10]`. 
+
+   What are different ways you can define x? What happens when you put ; at the end?
+
+3. Convert vector `x` into a column vector.
+
+4. Create vector `y = [0, 0.1, 0.2, ...., 2.0]`
+
+5. Create a 3 x 3 matrix.
+
+6. print the size of the matrix and lengths of vectors defined so far. 
+
+7. Define 3 polynomials 
+
+   $p_1(s) = s^2 - 5s + 4$ 
+   
+   $p_2(s) = s^2 + 4$
+
+   $p_3(s) = s^2 - 5s$
+
+8. Calculate $p_1(s)p_2(s)$
+
+9. Perform some mathematical computations on the vectors, matrices, and
+   polynomials defined so far. 
+
+10. Solve **Ax = b**
+
+    `A = [ 4 -2 -10; 2 10 -12; -4 -6 16];`
+
+    `b = [-10; 32; -16];`
+
+11. Check the solution
+
+12. Calculate eigenvalues and eigenvectors. 
+
+13. Consider data:
+
+    `x = [ 0 1 2 4 6 10];`
+
+    `y = [ 1 7 23 109 307 1231];`
+
+    Fit a third-order polynomial. plot the results
+
+14. Explore MATLAB plotting capabiities. 
+
+15. Solve differential equations using Simulink
+
+a)  An object falling under gravity
+
+    $$\frac{d^2 y}{dt^2}=-g$$ 
+
+    Compare the result with analytical solution $y = -gt^2/2$
+
+b)  Systems of ODEs
+
+1.  $$\frac{d^2 y}{dt^2} + 2\frac{dy}{dt} + 5y = 1$$ 
+    $$\dot{y}(0) = y(0) = 0$$ 
+
+2. $$
+      \begin{bmatrix} 
+        \dot{x}  \\
+        \dot{y} 
+      \end{bmatrix}
+    =
+      \begin{bmatrix} 
+       1  \\
+       0 
+      \end{bmatrix}
+      \begin{bmatrix} 
+       -2 & -5  \\
+        1 &  0 
+      \end{bmatrix}
+      \begin{bmatrix} 
+        x  \\
+        y 
+      \end{bmatrix}
+   $$ 
