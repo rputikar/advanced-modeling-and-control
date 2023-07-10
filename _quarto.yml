@@ -159,5 +159,6 @@ format:
     email-obfuscation: javascript
     link-external-newwindow: true
     link-external-icon: true
-    # link-external-filter: ^(?:http:|https:)\/\/(?:utikar\.com\/|localhost)
-    link-external-filter: ^(?:http:|https:)\/\/(?:\w+\.)?utikar\.com\/|localhost
+    # link-external-filter: ^(?:http:|https:)\/\/(amc\.utikar\.com\|localhost)
+    link-external-filter: ^(?:http:|https:)\/\/(?:[a-zA-Z0-9-]+\.)?utikar\.com\/|localhost
+    include-after-body: ./assets/helpers/goatcounter.html
