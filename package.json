@@ -4,12 +4,14 @@
   "description": "Github repository For Advanced modeling and control course .\r [The website can be found here.](https://amc.utikar.com/)",
   "main": "index.js",
   "scripts": {
-    "topdf": "node convert-to-pdf.js"
+    "topdf": "node convert-to-pdf.js",
+    "cleanbib": "bibtex-tidy -m --omit=file --curly --numeric --tab --align=13 --duplicates=key --no-escape --sort-fields --no-remove-dupe-fields --remove-braces=title,shorttitle,location,publisher ./bibliography/library.bib"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bibtex-tidy": "^1.11.0",
     "decktape": "^3.9.0"
   }
 }
