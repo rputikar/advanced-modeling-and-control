@@ -22,8 +22,10 @@ description-meta: "An undergraduate course on advanced modeling and Control."
 # Course library
 bibliography: ./bibliography/library.bib
 csl: ./bibliography/chicago-author-date.csl
+link-citations: true
+link-bibliography: true
 
-execute: 
+execute:
   warning: true
   echo: true
   freeze: auto
@@ -38,7 +40,8 @@ website:
   # cookie-consent: true
   favicon: ./assets/images/logo/favicon.png
   search:
-    type: overlay
+    type:
+      overlay
       # location: navbar
       # type: textbox
   navbar:
@@ -46,7 +49,7 @@ website:
     logo: ./assets/images/logo/smile-lab-logo-dark-bg.png
     logo-alt: "Smile lab logo."
     title: false
-    left: 
+    left:
       - text: Research
         href: https://utikar.com/research/
       - text: Publications
@@ -73,81 +76,81 @@ website:
     collapse-level: 2
     background: "#f4f4f4"
     contents:
-    - file: index.qmd
-      text: "{{< fa house >}} Home"
-    - section: "Overview"
-      contents:
-        - file: content/info/index.qmd
-        - file: content/info/syllabus.qmd
-          text: Syllabus
+      - file: index.qmd
+        text: "{{< fa house >}} Home"
+      - section: "Overview"
+        contents:
+          - file: content/info/index.qmd
+          - file: content/info/syllabus.qmd
+            text: Syllabus
 
-    # - section: "Lectures"
-    #   id: lectures
-    #   content: content/lectures/*/*.qmd
+      # - section: "Lectures"
+      #   id: lectures
+      #   content: content/lectures/*/*.qmd
 
-    - section: "Lectures"
-      id: lectures
-      contents: 
-        - file: ./content/lectures/01-recap/index.qmd
-        # - file: ./content/lectures/02-ratio_and_feedforward_control/index.qmd
-        # - file: ./content/lectures/03-override_control/index.qmd
-        # - file: ./content/lectures/04-other_advanced_control_techniques/index.qmd
-        # - file: ./content/lectures/05-time_series_modelling_and_analysis/index.qmd
-        # - file: ./content/lectures/06-principal_component_analysis/index.qmd
-        # - file: ./content/lectures/07-decentralized_control/index.qmd
-        # - file: ./content/lectures/08-model_predictive_control/index.qmd
-        # - file: ./content/lectures/09-ANN_modelling/index.qmd
-        # - file: ./content/lectures/10-pattern_recognition_and_machine_learning/index.qmd
-        # - file: ./content/lectures/11-model_based_optimization/index.qmd
-        #
- #    - section: "Workshops"
- #      id: workshops
- #      contents: 
- #        - file: ./content/workshops/workshop-01/index.qmd
- #          text: Workshop 01
- #        - file: ./content/workshops/workshop-02/index.qmd
- #          text: Workshop 02
- #        - file: ./content/workshops/workshop-03/index.qmd
- #          text: Workshop 03
- #        - file: ./content/workshops/workshop-04/index.qmd
- #          text: Workshop 04
- #        - file: ./content/workshops/workshop-05/index.qmd
- #          text: Workshop 05
- #        - file: ./content/workshops/workshop-06/index.qmd
- #          text: Workshop 06
- #        - file: ./content/workshops/workshop-07/index.qmd
- #          text: Workshop 07
- #        - file: ./content/workshops/workshop-08/index.qmd
- #          text: Workshop 08
- #        - file: ./content/workshops/workshop-09/index.qmd
- #          text: Workshop 09
- # 
- #    - section: "Computer Labs"
- #      id: computer-labs
- #      contents:
- #        - file: ./content/labs/lab-01/index.qmd
- #          text: Lab 01
- #        - file: ./content/labs/lab-02/index.qmd
- #          text: Lab 02
- #        - file: ./content/labs/lab-03/index.qmd
- #          text: Lab 03
- #        - file: ./content/labs/lab-04/index.qmd
- #          text: Lab 04
- #        - file: ./content/labs/lab-05/index.qmd
- #          text: Lab 05
- #        - file: ./content/labs/lab-06/index.qmd
- #          text: Lab 06
- #        - file: ./content/labs/lab-07/index.qmd
- #          text: Lab 07
- #        - file: ./content/labs/lab-08/index.qmd
- #          text: Lab 08
- #        - file: ./content/labs/lab-09/index.qmd
- #          text: Lab 09
- # 
+      - section: "Lectures"
+        id: lectures
+        contents:
+          - file: ./content/lectures/01-recap/index.qmd
+          # - file: ./content/lectures/02-ratio_and_feedforward_control/index.qmd
+          # - file: ./content/lectures/03-override_control/index.qmd
+          # - file: ./content/lectures/04-other_advanced_control_techniques/index.qmd
+          # - file: ./content/lectures/05-time_series_modelling_and_analysis/index.qmd
+          # - file: ./content/lectures/06-principal_component_analysis/index.qmd
+          # - file: ./content/lectures/07-decentralized_control/index.qmd
+          # - file: ./content/lectures/08-model_predictive_control/index.qmd
+          # - file: ./content/lectures/09-ANN_modelling/index.qmd
+          # - file: ./content/lectures/10-pattern_recognition_and_machine_learning/index.qmd
+          # - file: ./content/lectures/11-model_based_optimization/index.qmd
+          #
+  #    - section: "Workshops"
+  #      id: workshops
+  #      contents:
+  #        - file: ./content/workshops/workshop-01/index.qmd
+  #          text: Workshop 01
+  #        - file: ./content/workshops/workshop-02/index.qmd
+  #          text: Workshop 02
+  #        - file: ./content/workshops/workshop-03/index.qmd
+  #          text: Workshop 03
+  #        - file: ./content/workshops/workshop-04/index.qmd
+  #          text: Workshop 04
+  #        - file: ./content/workshops/workshop-05/index.qmd
+  #          text: Workshop 05
+  #        - file: ./content/workshops/workshop-06/index.qmd
+  #          text: Workshop 06
+  #        - file: ./content/workshops/workshop-07/index.qmd
+  #          text: Workshop 07
+  #        - file: ./content/workshops/workshop-08/index.qmd
+  #          text: Workshop 08
+  #        - file: ./content/workshops/workshop-09/index.qmd
+  #          text: Workshop 09
+  #
+  #    - section: "Computer Labs"
+  #      id: computer-labs
+  #      contents:
+  #        - file: ./content/labs/lab-01/index.qmd
+  #          text: Lab 01
+  #        - file: ./content/labs/lab-02/index.qmd
+  #          text: Lab 02
+  #        - file: ./content/labs/lab-03/index.qmd
+  #          text: Lab 03
+  #        - file: ./content/labs/lab-04/index.qmd
+  #          text: Lab 04
+  #        - file: ./content/labs/lab-05/index.qmd
+  #          text: Lab 05
+  #        - file: ./content/labs/lab-06/index.qmd
+  #          text: Lab 06
+  #        - file: ./content/labs/lab-07/index.qmd
+  #          text: Lab 07
+  #        - file: ./content/labs/lab-08/index.qmd
+  #          text: Lab 08
+  #        - file: ./content/labs/lab-09/index.qmd
+  #          text: Lab 09
+  #
 format:
   html:
-    theme: 
-      light: 
+    theme:
+      light:
         - ./assets/styles/carbon_light.scss
     toc: true
     code-copy: true

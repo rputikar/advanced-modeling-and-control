@@ -30,6 +30,18 @@ The books listed in [the course reading
 list](https://curtin.alma.exlibrisgroup.com/leganto/readinglist/lists/14056101590001951)
 will be very userful reference material for topics covered in the course.   
 
+The content is mainly based on following books. 
+
+- @riggs2007
+- @seborg2016
+- @romagnoli2020
+- @coughanowr2008
+
+Besides these books the following online books are useful as well. 
+
+- @marlin1995
+- @peterwoolf
+
 ### Other materials
 
 - Process control - Analysis, Design, and Assessment course from IIT Madras by
