@@ -55,26 +55,6 @@ MATLAB.
 
 ## Course policies
 
-Please refer to the unit outline posted on blackboard for assessment policies. 
-
-## Assessments and grades
-
-- **Assessment Task 1: Lab reports (30%)** <br> 
-  Lab report (a group of 2) needs to be submitted within two
-  weeks of conducting the lab. Total 9 reports are submitted for 9 labs. The
-  best six assessments are considered in the final marks.
-
-- **Assessment Task 2: Midsemester Test (30%)** <br>
-  This will cover the lectures 1 to 5. The format for the test will be
-  communicated in due course. 
-
-- **Assessment Task 3: Group project (40%)** <br>
-  This is a group project (maximum 3 students per group) which focuses on the
-  applications of the theories and concepts (in decentralized control, model
-  development and analysis) on a given case study (to be explained further
-  during the lectures). The project statement will be released in week 6.
-
-**Pass requirements** <br>
-Students must achieve final mark of 50% or greater to pass this unit. Please
-refer to the unit outline posted on blackboard for more details. 
+Please refer to the unit outline posted on blackboard for assessment policies,
+assessments, grades, and pass requirements. 
 

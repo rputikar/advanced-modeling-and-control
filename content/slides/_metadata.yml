@@ -12,6 +12,6 @@ format:
     toc: true
     toc-depth: 1
     menu: true
-    theme: [default, ./styles/slide.custom.scss]
+    theme: [default, ../../assets/styles/revealjs/slide.custom.scss]
     logo: ../../assets/images/cee_logo.svg
     slide-number: c/t
