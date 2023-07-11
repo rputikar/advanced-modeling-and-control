@@ -48,6 +48,9 @@ $min-contrast-ratio:   2.6 !default;
 
 $enable-rounded: false !default;
 
+:root {
+  color-scheme: only light;
+}
 
 // Body
 
