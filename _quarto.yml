@@ -50,8 +50,8 @@ website:
     logo-alt: "Smile lab logo."
     title: false
     left:
-      - text: Research
-        href: https://utikar.com/research/
+      # - text: Research
+      #   href: https://utikar.com/research/
       - text: Publications
         href: https://utikar.com/publications/
       - text: Teaching

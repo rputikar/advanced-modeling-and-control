@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "topdf": "node convert-to-pdf.js",
-    "cleanbib": "bibtex-tidy -m --omit=file --curly --numeric --tab --align=13 --duplicates=key --no-escape --sort-fields --no-remove-dupe-fields --remove-braces=title,shorttitle,location,publisher ./bibliography/library.bib"
+    "cleanbib": "bibtex-tidy -m --omit=file --curly --numeric --tab --align=13 --duplicates=key --no-escape --sort-fields --no-remove-dupe-fields --remove-braces=title,shorttitle,location,publisher,organization ./bibliography/library.bib"
   },
   "keywords": [],
   "author": "",
