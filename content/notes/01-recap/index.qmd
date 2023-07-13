@@ -22,7 +22,7 @@ process industry to supply ingradients, raw materials, and enabling
 technologies. 
 In recent years, significant attention is given to sustainability in the
 chemical process industry. New processes and retrofit of existing processes are 
-based on responsible resource utilization, minimizes environmental impact,
+based on responsible resource utilization, minimization of environmental impact,
 and considerations to long-term viability and competitiveness.
 Chemical processes involve several unit operations, such as
 mixing, heat exchange, mass transfer, and reaction.
