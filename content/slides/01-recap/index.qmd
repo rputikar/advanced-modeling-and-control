@@ -13,20 +13,31 @@ format: revealjs
 
 ## Importance of process analysis and control
 
-* Chemical processes greatly influence every aspect of our life 
-* [Sustainability]{.highlight} in the chemical process industry 
-  - responsible resource utilization
-  - minimizes environmental impact
-  - long-term viability and competitiveness
-* Optimal process operations require [efficient and effective control]{.highlight}
-* Control systems and advanced algorithms are deployed to monitor, regulate, and
-optimize the process variables.  
+::: {.r-stack}
+
+![](./chemical-processes-01.png){.fragment width=90%}
+
+![](./chemical-processes-02.png){.fragment width=90%}
+
+:::
+
+::: {.fragment}
+
+* Optimal process operations require [efficient and effective
+  control]{.highlight}
+* Control systems and advanced algorithms are deployed to monitor, regulate,
+  and
+  optimize the process variables.  
+
+:::
 
 ## Control objectives
 
 :::: {.columns}
 
 ::: {.column width=50%}
+
+::: {.fragment}
 
 ### Safety First
 
@@ -44,7 +55,12 @@ optimize the process variables.
 
 :::
 
+:::
+
+
 ::: {.column width=50%}
+
+::: {.fragment}
 
 ### Reducing variability
 
@@ -52,9 +68,16 @@ optimize the process variables.
 
   ![](../../../assets/images/01-recap-fig1-pv_poorly_controlled.png){width="50%"}
 
+:::
+
+:::{.fragment}
+
 - Good control permits set point near constraint 
     
   ![](../../../assets/images/01-recap-fig2-pv_tightly_controlled.png){width="50%"}
+
+:::
+
 :::
 
 ::::
@@ -64,25 +87,59 @@ optimize the process variables.
 
 ## Optimal plant operations
 
-![](../../../assets/images/01-recap-fig3-optimal-plant-operations.png){.absolute top=100 right=50 width=80%}
+::: {.r-stack}
+
+![](./01-recap-fig3-optimal-plant-operations-01.png){.fragment .absolute top=100 right=50 width=80%}
+
+![](./01-recap-fig3-optimal-plant-operations-02.png){.fragment .absolute top=100 right=50 width=80%}
+
+![](./01-recap-fig3-optimal-plant-operations-03.png){.fragment .absolute top=100 right=50 width=80%}
+
+![](./01-recap-fig3-optimal-plant-operations-04.png){.fragment .absolute top=100 right=50 width=80%}
+
+![](./01-recap-fig3-optimal-plant-operations-05.png){.fragment .absolute top=100 right=50 width=80%}
+
+![](./01-recap-fig3-optimal-plant-operations-06.png){.fragment .absolute top=100 right=50 width=80%}
+
+
+::: 
 
 ## Hirarchy of process control activities
 
-![](../../../assets/images/01-recap-time-scales-of-process-control-activities.png){.absolute top=150 right=50}
+::: {.r-stack}
+
+![](./01-recap-time-scales-of-process-control-activities-01.png){.fragment .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-02.png){.fragment .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-03.png){.fragment .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-04.png){.fragment .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-05.png){.fragment .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-06.png){.fragment .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-07.png){.fragment .absolute top=150 right=50}
+
+:::
 
 ## Overview of control system design
 
-:::: {.columns}
-
-::: {.column width=50%}
 ![](../../../assets/images/major-steps-control-system-developement.png)
-:::
 
-::: {.column width=50%}
-
-:::
-
-::::
+<!-- :::: {.columns} -->
+<!---->
+<!-- ::: {.column width=50%} -->
+<!-- ![](../../../assets/images/major-steps-control-system-developement.png) -->
+<!-- ::: -->
+<!---->
+<!-- ::: {.column width=50%} -->
+<!---->
+<!-- ::: -->
+<!---->
+<!-- :::: -->
+<!---->
 
 # Fundamentals of process modeling
 
@@ -94,8 +151,97 @@ optimize the process variables.
 
 ## Introduction to process modeling
 
+::: {.incremental}
+- Enhancing Process Understanding
+  
+  :::{.smaller}
+  Enable study of transient behavior without disruption
 
-## Types of process models (empirical, mechanistic, etc.)
+  Provide valuable insights into dynamic and steady-state process behavior
+
+  Useful even before plant construction
+  :::
+
+- Process Simulators for Training
+
+  ::: {.smaller}
+  Essential for training plant operators in complex units and emergencies
+
+  Create a realistic training environment when connected to process control equipment
+  :::
+
+- Facilitating Evaluation of Control Strategies
+
+  ::: {.smaller}
+  Assist in identifying variables to be controlled and manipulated
+  
+  Aid in preliminary controller tuning
+
+  Play an explicit role in model-based control strategies
+  :::
+
+- Optimization of Operating Conditions
+
+  ::: {.smaller}
+  Recalculation of optimum conditions maximizes profit or minimizes costs
+
+  Utilize steady-state process model and economic data
+
+  Allow for continuous enhancement of process performance
+  :::
+
+::: 
+
+## Types of process models
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+- Theoretical models 
+  
+  ::: {.smaller}
+  Developed using the principles of chemistry, physics,
+  and biology.
+
+  First principles models
+
+  Mass, momentum, and heat balances
+
+  :::
+- Empirical models 
+
+  ::: {.smaller}
+
+  Obtained by fitting experimental data.
+
+  Statistical models
+
+  Correlations
+
+  data driven models
+
+  :::
+  
+- Semi-empirical/ hybrid models 
+
+  ::: {.smaller}
+  A combination of the theoretical and empirical models
+
+  The numerical values of one or more of the parameters in a theoretical model
+  are calculated from experimental data.
+
+  :::
+
+:::
+
+::: {.column width=50%}
+
+![](../../../assets/images/hybrid_models.png)
+
+:::
+
+::::
 
 ## Process variables and units
 

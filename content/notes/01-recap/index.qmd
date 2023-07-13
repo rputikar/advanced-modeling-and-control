@@ -141,12 +141,106 @@ system.
 
 ## Hirarchy of process control activities
 
-- Measurement and Actuations (Level 1)
-- Safety and environmental/ equipment protection (Level 2) 
-- Regulatory control (Level 3a)
-- Multivariable and constraint control (Level 3b)
-- Real time optimization (Level 4)
-- Planning and scheduling (Level 5) 
+The hierarchy of process control activities is shown in @fig-control-activity-hirarchy. 
+
+### Measurement and Actuation (Level 1)
+
+  Instrumentation, which includes sensors and transmitters, is used to measure
+  variables in a process. Actuation equipment, such as control valves, is
+  employed to carry out the control actions determined by these measurements.
+  In essence, measurement and actuation functions are fundamental components of
+  any control system, as they enable the system to gather data about the
+  process and respond accordingly to maintain optimal conditions or meet set
+  parameters.
+
+### Safety and environmental/ equipment protection (Level 2)
+
+  Level 2 functions are essential in ensuring both the safety of the process
+  and its compliance with environmental regulations. As discussed in Chapter
+  10, the approach to process safety involves the establishment of multiple
+  layers of protection, consisting of various equipment and human actions. 
+
+  A layer of this protection includes process control functions, like managing
+  alarms during unusual situations and utilizing safety instrumented systems
+  for emergency shutdowns. The safety gear, which encompasses sensors and
+  control valves, functions independently of the standard instrumentation used
+  for regulatory control in Level 3a.
+
+  Methods for validating sensor functionality can be utilized to verify that
+  these sensors are operating correctly.
+
+### Regulatory control (Level 3a)
+
+  The successful operation of a process requires that critical process
+  variables, such as flow rates, temperatures, pressures, and compositions, are
+  managed at or near their specified set points. This activity, known as
+  regulatory control, is achieved by applying standard feedback and feedforward
+  control techniques. 
+
+  However, if these conventional control methods are not sufficient, a range of
+  advanced control techniques is at our disposal. In recent times, there's been
+  an increasing interest in the performance monitoring of control systems.
+
+### Multivariable and constraint control (Level 3b)
+
+  Many challenging process control issues have two key characteristics: they
+  involve significant interactions among important process variables and they
+  have inequality constraints for manipulated and controlled variables. These
+  constraints, which include upper and lower limits, could be based on the
+  capabilities of equipment or operational objectives for the process.
+
+  Operating a process near a constraint limit is a significant goal for
+  advanced process control. In many industrial operations, optimal conditions
+  are often at the constraint limit. However, the set point should not be the
+  constraint value to prevent surpassing the limit due to disturbances.
+  Therefore, it's critical to set a conservative set point depending on the
+  control system's capacity to minimize disturbances.
+
+  Standard process control techniques might not be sufficient for managing
+  complex control problems that involve severe process interactions and
+  inequality constraints. In such cases, advanced control methods should be
+  considered, including multivariable control and constraint control.
+  Specifically, the model predictive control (MPC) strategy is designed to
+  handle process interactions and inequality constraints.
+
+### Real time optimization (Level 4)
+
+  The optimal operating conditions for a plant are established during the
+  process design phase. However, during the operation of the plant, these
+  conditions can frequently change due to variations in equipment availability,
+  process disturbances, and economic circumstances such as changes in raw
+  material costs and product prices. As a result, it can be highly beneficial
+  to frequently recalculate the optimal operating conditions. This activity,
+  known as real-time optimization (RTO), involves implementing new optimal
+  conditions as set points for controlled variables.
+
+  The RTO calculations are based on a steady-state model of the plant and
+  economic data like costs and product values. The usual objective of the
+  optimization is to either minimize operating costs or maximize operating
+  profits. RTO calculations can be conducted for an individual process unit or
+  for the whole plant.
+
+  Level 4 activities also incorporate data analysis to confirm the accuracy of
+  the process model used in the RTO calculations under current conditions.
+  Therefore, data reconciliation techniques can be utilized to ensure that
+  steady-state mass and energy balances are met. Additionally, the process
+  model can be updated using parameter estimation techniques and recent plant
+  data.
+
+### Planning and scheduling (Level 5) 
+
+  The highest tier of the process control hierarchy is focused on strategizing
+  and orchestrating operations for the entire plant. For continuous processes,
+  the production rates of all products and intermediates need to be planned and
+  harmonized. This involves considering equipment limitations, storage
+  capacity, sales forecasts, and the operations of other plants, which can
+  sometimes be globally distributed.
+
+  For the intermittent operation of batch and semi-batch processes, production
+  control transforms into a batch scheduling issue, guided by similar
+  considerations. Hence, planning and scheduling tasks present challenging
+  optimization problems that are founded on both engineering factors and
+  business forecasts.
 
 ![Hirarchy of process control activities](../../../assets/images/01-recap-time-scales-of-process-control-activities.png){#fig-control-activity-hirarchy}
 
@@ -187,32 +281,31 @@ development.](../../../assets/images/major-steps-control-system-developement.png
 
 ## Introduction to process modeling
 
-Dynamic models play a central role in the subject of process dynamics and control.
+Dynamic models are crucial in the field of process dynamics and control.
 
-- Dynamic models and computer simulation enhance process understanding by
-  enabling the study of transient behavior without disturbing the actual
-  process. Through simulation, valuable insights into dynamic and steady-state
-  process behavior can be gained, providing valuable information even prior to
-  plant construction.
+- They enhance process understanding by allowing the study of transient
+  behavior without disrupting the actual process. Through computer simulations,
+  we can gain valuable insights into both dynamic and steady-state process
+  behaviors, providing useful information even before a plant is constructed.
 
-- Process simulators are essential for training plant operators in handling
-  complex units and emergency situations. By connecting simulators to process
-  control equipment, a realistic training environment is created, similar to
-  flight simulators in the aerospace industry. This enables operators to
-  develop practical skills and effectively respond to challenging scenarios.
+- Process simulators are indispensable for training plant operators to manage
+  complex units and emergency situations. When connected to process control
+  equipment, these simulators create a realistic training environment, much
+  like flight simulators in the aviation industry. This helps operators build
+  practical skills and respond effectively to challenging situations.
 
-- A dynamic process model facilitates the evaluation of different control
-  strategies by identifying the variables to be controlled and manipulated. It
-  can also aid in preliminary controller tuning and the use of empirical models
-  prior to plant start-up. In model-based control strategies, the process model
-  plays an explicit role within the control law formulation, enabling more
-  effective control implementation.
+- A dynamic process model assists in evaluating various control strategies by
+  pinpointing the variables to be controlled and manipulated. It can also help
+  in preliminary controller tuning and in the application of empirical models
+  before the plant's start-up. In strategies based on model control, the
+  process model explicitly participates in the formulation of the control law,
+  resulting in more efficient control implementation.
 
-- Periodic recalculation of optimum operating conditions can be beneficial to
-  maximize profit or minimize costs in a process. By utilizing a steady-state
-  process model and economic information, the most profitable operating
-  conditions can be determined. This approach, discussed in Chapter 19, allows
-  for optimization and continual improvement of process performance. 
+- Periodically recalculating optimum operating conditions can prove beneficial
+  in maximizing profit or reducing costs in a process. By using a steady-state
+  process model and economic data, the most profitable operating conditions can
+  be identified. This approach allows for optimization and continuous
+  enhancement of process performance.
 
 ## Types of process models (empirical, mechanistic, etc.)
 

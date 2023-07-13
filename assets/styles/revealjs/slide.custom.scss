@@ -11,6 +11,7 @@ $cyan-40: #33b1ff !default;
 $gray-60: #6f6f6f !default;
 $green-60: #198038 !default;
 $magenta-60: #d02670 !default;
+$magenta-70: #9f1853 !default;
 $orange-40: #ff832b !default;
 $purple-60: #8a3ffc !default;
 $red-60: #da1e28 !default;
@@ -30,7 +31,7 @@ $cool-gray: $cool-gray-60 !default;
 $cyan: $cyan-40 !default;
 $gray: $gray-60 !default;
 $green: $green-60 !default;
-$magenta: $magenta-60 !default;
+$magenta: $magenta-70 !default;
 $orange: $orange-40 !default;
 $purple: $purple-60 !default;
 $red: $red-60 !default;
@@ -48,9 +49,20 @@ $light: $gray-10 !default;
 $dark: $gray-90 !default;
 
 // Fonts and link colors
-$font-family-sans-serif: "IBM Plex Sans", sans-serif !default;
-$font-family-serif: "IBM Plex Sans", serif !default;
+
+$font-prefix: "./assets/fonts/IBM-Plex/";
+
+$font-family-sans-serif: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif: "IBM Plex Sans", "Georgia", Times, serif;
+// $font-family-monospace: "IBM Plex Mono", "Menlo", "DejaVu Sans Mono",
+//  "Bitstream Vera Sans Mono", Courier, monospace;
+$headings-font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif !default;
+
+//
+// $font-family-sans-serif: "IBM Plex Sans", sans-serif !default;
+// $font-family-serif: "IBM Plex Sans", serif !default;
 $font-family-monospace: "JetBrains Mono", monospace;
+//
 
 $presentation-font-size-root: 28px;
 $presentation-line-height: 1.2em;
