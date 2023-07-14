@@ -244,7 +244,7 @@ in increased profitability. This improvement, quantified by a shift towards a
 more profitable regime, demonstrates the financial benefits of the control
 system.
 
-![Optimal plant operations](../../../assets/images/01-recap-fig3-optimal-plant-operations.png){#fig-optimal-plant-operations}
+![Optimal plant operations](../../../assets/images/01-recap-fig3-optimal-plant-operations.png){#fig-optimal-plant-operations width=60%}
 
 ## Hirarchy of process control activities
 
@@ -349,7 +349,17 @@ The hierarchy of process control activities is shown in @fig-control-activity-hi
   optimization problems that are founded on both engineering factors and
   business forecasts.
 
+::: {.content-visible when-format="html"}
+
+![Hirarchy of process control activities](../../../assets/images/01-recap-time-scales-of-process-control-activities.png){#fig-control-activity-hirarchy width=60%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
 ![Hirarchy of process control activities](../../../assets/images/01-recap-time-scales-of-process-control-activities.png){#fig-control-activity-hirarchy}
+
+:::
 
 ## Overview of control system design
 
@@ -445,7 +455,7 @@ design step as a starting point. Controller tuning usually involves
 trial-and-error procedures.
 
 ![Major steps in control system
-development.](../../../assets/images/major-steps-control-system-developement.png){#fig-major-steps}
+development.](../../../assets/images/major-steps-control-system-developement.png){#fig-major-steps width=60%}
 
 ## Introduction to process modeling
 
@@ -514,7 +524,7 @@ Models can be classified as:
   The numerical values of one or more of the parameters in a theoretical model
   are calculated from experimental data.
 
-![Creating a hybrid model](../../../assets/images/hybrid_models.png)
+![Creating a hybrid model](../../../assets/images/hybrid_models.png){#fig-hybrid-models width=60%}
 
 ## Basic principles of mass and energy balances
 
@@ -599,7 +609,7 @@ $$ {#eq-energy_bal}
 
 ## Blending of two components
 
-![Stirred tank blending process](../../../assets/images/blending-example.png)
+![Stirred tank blending process](../../../assets/images/blending-example.png){#fig-stirred-tank-blending width=60%}
 
 - Overall mass balance 
 
