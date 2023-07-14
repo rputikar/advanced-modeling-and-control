@@ -53,6 +53,93 @@ profitably while meeting quality and environmental standards.
 
 ## Process control objectives
 
+### Implicit and explicit control objectives
+Both implicit and explicit control objectives refer to the desired outcomes or
+goals for a system's performance. They provide the framework for designing and
+tuning control systems.
+
+**Explicit Control Objectives**
+
+Explicit control objectives are clearly defined and typically quantifiable
+goals for the performance of a control system. These objectives are explicitly
+stated and usually include desired system responses such as stability, speed of
+response, minimal overshoot, accuracy, and robustness to disturbances. They may
+also include compliance with safety and environmental regulations. Explicit
+control objectives form the basis of the formal design and analysis of control
+systems [@seborg2016].
+
+Some examples of explicit objectives are given below:
+
+1. **Setpoint Tracking:** The control system should be able to maintain a
+   process variable (such as temperature, pressure, or flow rate) at a desired
+   setpoint. For example, a temperature control system in a reactor might have
+   an explicit objective to maintain the temperature at 175°C.
+
+2. **Disturbance Rejection:** The control system should be able to minimize the
+   impact of disturbances on the process variable. For example, if a
+   disturbance causes the temperature in a reactor to increase, the control
+   system should bring it back to the setpoint as quickly and smoothly as
+   possible.
+
+3. **Stability:** The control system should maintain stability in the face of
+   disturbances or setpoint changes. This means that it should not induce
+   oscillations or lead to runaway conditions.
+
+4. **Speed of Response:** The control system should achieve its control
+   objectives quickly. This involves minimizing the rise time (the time it
+   takes for the process to go from 10% to 90% of the final value) and settling
+   time (the time it takes for the process to settle within a certain
+   percentage of the final value).
+
+5. **Overshoot Minimization:** When a setpoint change or disturbance occurs,
+   the system should minimize overshoot, which is the extent to which the
+   process variable exceeds the final value.
+
+6. **Regulatory Compliance:** The control system should ensure that the process
+   meets any applicable regulatory requirements. For instance, a control system
+   for an industrial waste treatment process might have an explicit objective
+   to maintain pollutant concentrations below regulatory limits.
+
+**Implicit Control Objectives**
+
+Implicit control objectives are usually not explicitly stated or quantified,
+but are understood to be desirable or necessary. Implicit objectives are often
+evaluated qualitatively, and they can have a significant impact on the
+long-term success of a control system. While explicit control objectives
+usually take precedence, implicit control objectives play a crucial role in the
+successful implementation and operation of control systems [@luyben1990].
+
+Examples of implicit control objectives include:
+
+1. **Simplicity:** The control system should be as simple as possible, making
+   it easy to understand, implement, and maintain. For instance, a PID
+   controller might be preferred over a more complex control strategy for a
+   relatively simple process.
+
+2. **Reliability:** The control system should operate reliably under normal and
+   abnormal conditions. This could involve factors like hardware reliability,
+   software robustness, and fault tolerance.
+
+3. **Cost-effectiveness:** The cost of implementing and maintaining the control
+   system should be reasonable. This includes not only the cost of hardware and
+   software but also the cost of any downtime caused by control system issues.
+
+4. **Safety:** While safety is often an explicit objective, it can also be an
+   implicit goal in the sense that all control systems should inherently
+   contribute to safe operation. This includes avoiding dangerous conditions
+   and responding appropriately to emergency situations.
+
+5. **Flexibility:** The control system should be adaptable to changes in the
+   process or operating conditions. This could include the ability to handle
+   different operating modes or the ability to be easily updated or
+   reconfigured.
+
+6. **Scalability:** The control system should be capable of handling increases
+   in process size or complexity without a significant degradation in
+   performance.
+
+### Implicit control objectives of process control
+ 
 Control systems play a crucial role in ensuring safe and
 profitable operation of processes involving various streams. 
 These control systems continuously monitor process variables such as
@@ -116,8 +203,28 @@ constraint](../../../assets/images/01-recap-fig2-pv_tightly_controlled.png){#fig
 Process control plays a vital role in reducing variability
 :::
 
-The optimization of process operating conditions aims to maximize economic
-objectives, such as annual profit. Effective plant management involves
+### Control and Optimization
+
+Both control and optimization share the common goal of improving the
+performance of a system, but they focus on different aspects and are used in
+different contexts.
+
+Control involves adjusting an input variable to
+maintain an output variable at a desired value. This is accomplished using a
+control strategy, which continually measures the output, compares it with the
+desired value, and adjusts the input to minimize the difference or error
+between the desired value and output. Control is a dynamic process that occurs
+in real time. It's primarily concerned with maintaining stability, reducing
+variability, and reacting to disturbances in the system.
+
+On the other hand, optimization involves finding the best possible value of an
+output or set of outputs. In the context of process control, optimization often
+involves determining the best setpoint that will maximize or minimize a certain
+objective function (such as profit, energy usage, or waste production).
+
+Optimization is often a higher-level task that takes place over a longer
+timeframe. The optimization of process operating conditions aims to maximize
+economic objectives, such as annual profit. Effective plant management involves
 determining desirable operating targets and implementing an efficient automatic
 control strategy to maintain these targets within acceptable limits. Chemical
 engineers are well-suited for setting control objectives as they possess a
@@ -245,6 +352,67 @@ The hierarchy of process control activities is shown in @fig-control-activity-hi
 ![Hirarchy of process control activities](../../../assets/images/01-recap-time-scales-of-process-control-activities.png){#fig-control-activity-hirarchy}
 
 ## Overview of control system design
+
+Control System Design of a plant involves two parts, namely, control structure
+design, and controller algorithm design.
+
+### Control Structure Design
+
+The first step in designing a control system for a plant is defining the
+control structure. This includes deciding which variables to control
+(Controlled Variables, CVs), which variables to adjust (Manipulated Variables,
+MVs), and the structure that links these two sets of variables.
+
+1. **Controlled Variables (CVs):** These are the variables that the control
+   system aims to maintain at a certain level or setpoint. In a chemical
+   reactor, for instance, you might want to control the temperature, pressure,
+   or concentration of a certain species. The selection of CVs depends on the
+   objectives of the process, such as product quality, safety, or environmental
+   compliance.
+
+2. **Manipulated Variables (MVs):** These are the variables that the control
+   system can adjust to influence the CVs. In a reactor, these could include
+   the flow rate of the reactants, the cooling rate, or the stirring speed. The
+   selection of MVs depends on their influence on the CVs and their
+   controllability.
+
+3. **Structure Linking CVs and MVs:** Once the CVs and MVs are selected, the
+   next step is to decide how they should be linked. In a single-loop control
+   system, each CV is paired with one MV. In more complex systems, you might
+   use multivariable control strategies where each MV can influence multiple
+   CVs and vice versa. The structure should be designed to achieve the best
+   control performance while considering practical aspects such as equipment
+   limitations and interaction between variables.
+
+### Controller Algorithm Design
+
+Once the control structure is defined, the next step is to design the control
+algorithm. This involves selecting the type of controller and tuning its
+parameters.
+
+1. **Controller Type:** This could be a simple PID
+   (Proportional-Integral-Derivative) controller, which is widely used in the
+   industry due to its simplicity and effectiveness. For more complex systems,
+   advanced control strategies like Model Predictive Control (MPC) might be
+   used. The selection of controller type depends on the complexity of the
+   process, the required performance, and the available resources.
+
+2. **Controller Tuning:** This involves adjusting the parameters of the
+   controller to achieve the best control performance. For a PID controller,
+   this includes the proportional, integral, and derivative gains. For an MPC
+   controller, this might involve tuning the prediction and control horizons,
+   weights in the cost function, and model parameters.
+
+
+### Model based control
+
+Model-based control represents a significant advancement in control engineering
+and has become increasingly important due to the growing complexity of systems
+and the need for improved performance. In model-based control, a mathematical
+model of the process is used to predict future outputs and decide on control
+actions. This approach allows for optimal control decisions, the handling of
+constraints, and the accommodation of system nonlinearity and multivariable
+interactions. 
 
 The major steps involved in designing and installing a control system using the
 model-based approach are shown in the flow chart of @fig-major-steps. The first

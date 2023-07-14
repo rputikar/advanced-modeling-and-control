@@ -14,7 +14,7 @@ format: revealjs
 
 ::: {.r-stack}
 
-![](./chemical-processes-01.png){.fragment width=90%}
+![](./chemical-processes-01.png){.fragment .hide width=90%}
 
 ![](./chemical-processes-02.png){.fragment width=90%}
 
@@ -88,15 +88,15 @@ format: revealjs
 
 ::: {.r-stack}
 
-![](./01-recap-fig3-optimal-plant-operations-01.png){.fragment .absolute top=100 right=50 width=80%}
+![](./01-recap-fig3-optimal-plant-operations-01.png){.fragment .hide .absolute top=100 right=50 width=80%}
 
-![](./01-recap-fig3-optimal-plant-operations-02.png){.fragment .absolute top=100 right=50 width=80%}
+![](./01-recap-fig3-optimal-plant-operations-02.png){.fragment .hide .absolute top=100 right=50 width=80%}
 
-![](./01-recap-fig3-optimal-plant-operations-03.png){.fragment .absolute top=100 right=50 width=80%}
+![](./01-recap-fig3-optimal-plant-operations-03.png){.fragment .hide .absolute top=100 right=50 width=80%}
 
-![](./01-recap-fig3-optimal-plant-operations-04.png){.fragment .absolute top=100 right=50 width=80%}
+![](./01-recap-fig3-optimal-plant-operations-04.png){.fragment .hide .absolute top=100 right=50 width=80%}
 
-![](./01-recap-fig3-optimal-plant-operations-05.png){.fragment .absolute top=100 right=50 width=80%}
+![](./01-recap-fig3-optimal-plant-operations-05.png){.fragment .hide .absolute top=100 right=50 width=80%}
 
 ![](./01-recap-fig3-optimal-plant-operations-06.png){.fragment .absolute top=100 right=50 width=80%}
 
@@ -107,17 +107,17 @@ format: revealjs
 
 ::: {.r-stack}
 
-![](./01-recap-time-scales-of-process-control-activities-01.png){.fragment .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-01.png){.fragment .hide .absolute top=150 right=50}
 
-![](./01-recap-time-scales-of-process-control-activities-02.png){.fragment .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-02.png){.fragment .hide .absolute top=150 right=50}
 
-![](./01-recap-time-scales-of-process-control-activities-03.png){.fragment .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-03.png){.fragment .hide .absolute top=150 right=50}
 
-![](./01-recap-time-scales-of-process-control-activities-04.png){.fragment .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-04.png){.fragment .hide .absolute top=150 right=50}
 
-![](./01-recap-time-scales-of-process-control-activities-05.png){.fragment .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-05.png){.fragment .hide .absolute top=150 right=50}
 
-![](./01-recap-time-scales-of-process-control-activities-06.png){.fragment .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-06.png){.fragment .hide .absolute top=150 right=50}
 
 ![](./01-recap-time-scales-of-process-control-activities-07.png){.fragment .absolute top=150 right=50}
 
