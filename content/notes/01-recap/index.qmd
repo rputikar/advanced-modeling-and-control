@@ -318,9 +318,218 @@ Models can be classified as:
   (b); the numerical values of one or more of the parameters in a theoretical
   model are calculated from experimental data.
 
-## Process variables and units
+## Basic principles of mass and energy balances
+
+- Theoretical models 
+  
+  Developed using the principles of chemistry, physics,
+  and biology.
+
+  First principles models
+
+  Mass, momentum, and heat balances
+
+- Empirical models 
+
+  Obtained by fitting experimental data.
+
+  Statistical models
+
+  Correlations
+
+  data driven models
+
+- Semi-empirical/ hybrid models 
+
+  A combination of the theoretical and empirical models
+
+  The numerical values of one or more of the parameters in a theoretical model
+  are calculated from experimental data.
+
+![Creating a hybrid model](../../../assets/images/hybrid_models.png)
 
 ## Basic principles of mass and energy balances
+
+- In general
+
+  $$
+  \text{accumulation} = \text{in} - \text{out} - \text{reaction} - \text{tranfer}
+  $$ {#eq-gen_bal}
+
+- Mass balance (without reaction and transfer)
+
+  $$
+  \left\{\begin{array}{c}
+  \text {rate of mass} \\
+  \text {accumulation}
+  \end{array}\right\} 
+  = \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {mass in}
+    \end{array}\right\}
+  - \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {mass out}
+    \end{array}\right\}
+  $$ {#eq-mass_bal}
+
+
+- For component _i_ (with reaction term included) 
+
+  $$
+    \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {component i} \\
+    \text {accumulation}
+    \end{array}\right\} 
+    = \left\{\begin{array}{c}
+      \text {rate of} \\
+      \text {component i} \\
+      \text {in}
+      \end{array}\right\}
+    - \left\{\begin{array}{c}
+      \text {rate of} \\
+      \text {componenti } \\
+      \text {out}
+      \end{array}\right\}
+    + \left\{\begin{array}{c}
+      \text {rate of} \\
+      \text {component i} \\
+      \text {produced}
+      \end{array}\right\}
+  $$ {#eq-component_bal}
+
+## Basic principles of mass and energy balances
+
+- Energy balance
+
+$$
+\begin{aligned}
+\left\{\begin{array}{c}
+\text { rate of energy } \\
+\text { accumulation }
+\end{array}\right\} &= \left\{\begin{array}{c}
+\text { rate of energy in } \\
+\text { by convection }
+\end{array}\right\} \\
+& -\left\{\begin{array}{c}
+\text { rate of energy out } \\
+\text { by convection }
+\end{array}\right\} \\
+& +\left\{\begin{array}{c}
+\text { net rate of heat addition } \\
+\text { to the system from } \\
+\text { the surroundings }
+\end{array}\right\} \\
+& +\left\{\begin{array}{c}
+\text { net rate of work } \\
+\text { performed on the system } \\
+\text { by the surroundings }
+\end{array}\right\}
+\end{aligned}
+$$ {#eq-energy_bal}
+
+## Blending of two components
+
+![Stirred tank blending process](../../../assets/images/blending-example.png)
+
+- Overall mass balance 
+
+  $$
+  \left\{\begin{array}{c}
+  \text {rate of accumulation} \\
+  \text {of mass in the tank}
+  \end{array}\right\} 
+  = \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {mass in}
+    \end{array}\right\}
+  - \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {mass out}
+    \end{array}\right\}
+  $$ {#eq-blend_mass_bal_verbose}
+
+  $$
+  \frac{d(V \rho)}{dt} = w_1 + w_2 - w
+  $$ {#eq-blend_mass_bal}
+
+- Component balance
+
+  $$
+  \frac{d(V \rho x)}{dt} = w_1 x_1 + w_2 x_2 - w x
+  $$ {#eq-blend_component_bal}
+
+It is possible to further simplify the system of two differential equations to 
+
+$$
+  \frac{dV}{dt} = \frac{1}{\rho}\left(w_1 x_1 + w_2 x_2 - w x\right)
+$$ {#eq-blend_1}
+
+$$
+  \frac{dx}{dt} = \frac{w_1}{V \rho} \left(x_1 - x\right)+ \frac{w_2}{V \rho} \left(x_2 - x\right)
+$$ {#eq-blend_2}
+
+
+## Degrees of freedom (DOF) analysis
+To simulate a process, it's crucial to confirm that the model equations, both
+differential and algebraic, form a set of relations that can be solved. In
+simple terms, we need to ensure that the output variables (usually those on the
+left side of the equations) can be determined based on the input variables
+(those on the right side of the equations). For instance, consider a set of
+linear algebraic equations represented as **y = Ax**. To have a unique solution
+for **x**, vectors **x** and **y** need to have the same number of elements and
+matrix **A** should be nonsingular, meaning it has a nonzero determinant.
+
+For large, complex steady-state or dynamic models, evaluating such a condition
+is not straightforward. However, a general requirement exists: for the model to
+have a unique solution, the count of unknown variables should match the number
+of independent model equations. In other words, all available degrees of
+freedom must be taken into account. The number of degrees of freedom,
+represented as $N_F$, can be determined using a particular expression.
+
+$$N_F = N_V - N_E$$ {#eq-dof}
+
+where $N_V$ is the total number of process variables (distinct from constant
+process parameters) and $N_E$ is the number of independent equations.
+
+A degrees of freedom analysis allows modeling problems to be classified
+according to the following categories:
+
+1. $N_F = 0$: 
+   The process model is exactly specified. If $NF = 0$, then the number of
+   equations is equal to the number of process variables and the set of
+   equations has a solution. (However, the solution may not be unique for a set
+   of nonlinear equations.)
+
+2. $N_F > 0$: 
+   The process is underspecified. If $N_F > 0$, then $N_V > N_E$, so there are
+   more process variables than equations. Consequently, the $N_E$ equations have
+   an infinite number of solutions, because NF process variables can be
+   specified arbitrarily.
+
+3. $N_F < 0$:
+   The process model is overspecified. For $N_F < 0$, there are fewer process
+   variables than equations, and consequently the set of equations has no
+   solution.
+
+### DOF for the blending problem
+
+- Parameters (2): $V, \rho$
+- Variables ($N_V = 4): $x, x_1, x_2, w_1, w_1$
+- equation ($N_E = 1$): @eq-blend_mass_bal
+
+The degrees of freedom are calculated as $N_F = 4 − 1 = 3$. Thus, we must
+identify three input variables that can be specified as known functions of time
+in order for the equation to have a unique solution. The dependent variable $x$
+is an obvious choice for the output variable in this simple example.
+Consequently, we have
+
+- output (1): $x$
+- inputs (3): $x_1, w_1, w_2$
+
+Because all of the degrees of freedom have been utilized, the single equation
+is exactly specified and can be solved.
 
 ## Process control terminology
 
