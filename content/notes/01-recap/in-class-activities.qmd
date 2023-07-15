@@ -30,8 +30,18 @@ format:
 | `text (gtext)`| Add text (graphical control) to plot|
 | `title`| Add title to plot|
 | `xlabel, ylabel`| Add axis labels to plot|
+| **Partial fraction and transfer functions**: ||
+| `poly` | Construct a polynomial from its roots |
+| `residue` |  Partial-fraction expansion |
+| `roots` | Find the roots to a polynomial |
+| `tf2zp` | Transfer function to zero-pole form conversion |
+| `zp2tf` | Zero-pole form to transfer function conversion |
+| `tf` | Create a transfer function object |
+| `get` | Listthe objectproperties |
+| `pole` | Find the poles of a transfer function |
+| `zpk` | Create a transfer function in pole-zero-gain form |
 
-: Useful functions
+: Useful functions{#tbl-useful-functions}
 
 
 ## Activities
@@ -52,11 +62,11 @@ format:
 
 7. Define 3 polynomials 
 
-   $p_1(s) = s^2 - 5s + 4$ 
+   $$p_1(s) = s^2 - 5s + 4$${#eq-1} 
    
-   $p_2(s) = s^2 + 4$
+   $$p_2(s) = s^2 + 4$${#eq-2}
 
-   $p_3(s) = s^2 - 5s$
+   $$p_3(s) = s^2 - 5s$${#eq-3}
 
 8. Calculate $p_1(s)p_2(s)$
 
@@ -83,18 +93,37 @@ format:
 
 14. Explore MATLAB plotting capabiities. 
 
-15. Solve differential equations using Simulink
+15. Create a matlab script, save, and load it to plot data in item 13. 
+
+16. Find roots of polynomial defined by `p = [1 5 4]`
+
+17. Search for a function to find roots of a nonlinear equation.
+
+18. Find polynomial for the roots (-4, -1) 
+
+19. For the following transfer functions find partial fractions.
+
+   $$G(s) = \frac{q(s)}{p(s)}=\frac{2}{s^2+5s+4}$${#eq-4}
+
+   $$G(s) = =\frac{2}{s (s + 1) (s + 2) (s + 3)}$${#eq-5}
+
+   $$G(s) = =\frac{s^3 + 4s + 3}{s^4 - 7s^3 + 11s^2 + 7s -12}$${#eq-6}
+
+20. Have fun with `zp2tf`, `tf2zp`, and `tf` commands
+
+21. Solve differential equations using Simulink
 
 a)  An object falling under gravity
 
-    $$\frac{d^2 y}{dt^2}=-g$$ 
+    $$\frac{d^3 y}{dt^2}=-g$${#eq-7}
 
-    Compare the result with analytical solution $y = -gt^2/2$
+    Compare the result with analytical solution $y = -gt^3/2$
 
 b)  Systems of ODEs
 
-1.  $$\frac{d^2 y}{dt^2} + 2\frac{dy}{dt} + 5y = 1$$ 
-    $$\dot{y}(0) = y(0) = 0$$ 
+1.  $$\frac{d^2 y}{dt^2} + 2\frac{dy}{dt} + 5y = 1$${#eq-8}
+
+    $$\dot{y}(0) = y(0) = 0$${#eq-9}
 
 2. $$
       \begin{bmatrix} 
@@ -114,4 +143,4 @@ b)  Systems of ODEs
         x  \\
         y 
       \end{bmatrix}
-   $$ 
+   $${#eq-10}
