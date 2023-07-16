@@ -3,6 +3,15 @@ title: "Recap: Basics of Process Control and Modelling"
 format: revealjs
 ---
 
+```{python}
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import control
+from scipy.optimize import minimize
+plt.style.use('../../../assets/templates/present.mpstyle')
+```
+
 # Why process control 
 
 * Importance of process analysis and control
@@ -14,7 +23,7 @@ format: revealjs
 
 ::: {.r-stack}
 
-![](./chemical-processes-01.png){.fragment .hide width=90%}
+![](./chemical-processes-01.png){.fragment width=90%}
 
 ![](./chemical-processes-02.png){.fragment width=90%}
 
@@ -33,7 +42,109 @@ format: revealjs
 ## Process System, Input and Output
 
 
+::: {.r-stack}
+
+![](./process-system-nomenclature-01.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-02.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-03.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-04.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-05.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-06.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-07.png){.fragment .absolute top=150 right=50 width=90%}
+
+:::
+
+::: {.fragment .absolute top=450}
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+![](./liquid-level-tank-example.png){width=70%}
+
+:::
+::: {.column .smaller width=50%}
+
+- Manipulated Variable (MV): The flow rate of the liquid into or out of the
+  tank. 
+
+- Controlled Variable (CV): Level of the liquid in the tank
+
+- Disturbances: Changes in inlet flow rate, changes in outlet flow rate,
+  temperature variations, pressure fluctuations
+
+- Unmeasured Output: The temperature of the liquid in the tank
+
+:::
+::::
+:::
+
 ## Control objectives
+
+:::: {.columns}
+
+::: {.column .fragment width=45%}
+
+### Explicit control objectives (ECOs)
+
+- Clearly defined and typically quantifiable goals for the performance of a
+  control system. 
+
+- These objectives are explicitly stated
+
+- Form the basis of the formal design and analysis of control systems
+
+- [Examples]{.highlight}:
+
+  ::: {.smaller}
+  Setpoint Tracking, Disturbance Rejection, Stability, Speed of Response,
+  Overshoot Minimization, Regulatory Compliance 
+  :::
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column .fragment width=45%}
+
+### Implicit control objectives (ICOs)
+
+- Not explicitly stated or quantified
+
+- Often evaluated qualitatively
+
+- Have a significant long-term impact
+
+- Play a crucial role in the successful implementation
+
+- [Examples]{.highlight}:
+
+  :::{.smaller}
+  Simplicity, Reliability, Cost-effectiveness, Safety, Flexibility, Scalability 
+  :::
+  
+:::
+
+::::
+
+:::{.fragment}
+:::{.callout-note appearance="simple"}
+
+Control System Design should link the two types of control objectives.
+
+Real plants can have similar ICOs but different ECOs
+
+:::
+:::
+
+
+## Implicit control objectives
 
 :::: {.columns}
 
@@ -91,15 +202,15 @@ format: revealjs
 
 ::: {.r-stack}
 
-![](./01-recap-fig3-optimal-plant-operations-01.png){.fragment .hide .absolute top=100 right=50 width=80%}
+![](./01-recap-fig3-optimal-plant-operations-01.png){.fragment  .absolute top=100 right=50 width=80%}
 
-![](./01-recap-fig3-optimal-plant-operations-02.png){.fragment .hide .absolute top=100 right=50 width=80%}
+![](./01-recap-fig3-optimal-plant-operations-02.png){.fragment  .absolute top=100 right=50 width=80%}
 
-![](./01-recap-fig3-optimal-plant-operations-03.png){.fragment .hide .absolute top=100 right=50 width=80%}
+![](./01-recap-fig3-optimal-plant-operations-03.png){.fragment  .absolute top=100 right=50 width=80%}
 
-![](./01-recap-fig3-optimal-plant-operations-04.png){.fragment .hide .absolute top=100 right=50 width=80%}
+![](./01-recap-fig3-optimal-plant-operations-04.png){.fragment  .absolute top=100 right=50 width=80%}
 
-![](./01-recap-fig3-optimal-plant-operations-05.png){.fragment .hide .absolute top=100 right=50 width=80%}
+![](./01-recap-fig3-optimal-plant-operations-05.png){.fragment  .absolute top=100 right=50 width=80%}
 
 ![](./01-recap-fig3-optimal-plant-operations-06.png){.fragment .absolute top=100 right=50 width=80%}
 
@@ -110,17 +221,17 @@ format: revealjs
 
 ::: {.r-stack}
 
-![](./01-recap-time-scales-of-process-control-activities-01.png){.fragment .hide .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-01.png){.fragment  .absolute top=150 right=50}
 
-![](./01-recap-time-scales-of-process-control-activities-02.png){.fragment .hide .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-02.png){.fragment  .absolute top=150 right=50}
 
-![](./01-recap-time-scales-of-process-control-activities-03.png){.fragment .hide .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-03.png){.fragment  .absolute top=150 right=50}
 
-![](./01-recap-time-scales-of-process-control-activities-04.png){.fragment .hide .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-04.png){.fragment  .absolute top=150 right=50}
 
-![](./01-recap-time-scales-of-process-control-activities-05.png){.fragment .hide .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-05.png){.fragment  .absolute top=150 right=50}
 
-![](./01-recap-time-scales-of-process-control-activities-06.png){.fragment .hide .absolute top=150 right=50}
+![](./01-recap-time-scales-of-process-control-activities-06.png){.fragment  .absolute top=150 right=50}
 
 ![](./01-recap-time-scales-of-process-control-activities-07.png){.fragment .absolute top=150 right=50}
 
@@ -448,15 +559,158 @@ $$
 ## Degrees of freedom analysis
 
 
-## Process control terminology
+## Solution of model equations
+
+- **Nonlinear Chemical Processes:** These result in complex ordinary
+  differential equations when modeled.
+   
+- **Linear System Controls:** These tools are well-established and provide
+  valuable insights when processes operate near a specific point.
+
+- **Laplace Transform:** This simplifies creation of input-output models by
+  converting differential equations to algebraic ones.
+
+- **Transfer Function:** An essential tool in control system design and
+  analysis, representing linear control theory.
+
+![](../../../assets/images/Laplace-transform-concept.png){#fig-Laplace-transform}
+
+
+## Empirical models
+
+- We can construct an empirical model using plant data
+
+- Assume a certain idealized model structure
+
+- First-order plus deadtime (FOPDT) model
+ 
+  Time domain form
+  $$\tau_p \frac{dy(t)}{dt} + y(t) = K_p u(t - \theta_p)$$
+
+  Frequency domain form (transfer function)
+  $$ G_p(s) = \frac{K_p e^{-\theta_p s}}{\tau_p s + 1}$$
+
+- $K_p$: Process gain; $\tau_p$: time constant; $\theta_p$: deadtime
+
+:::{.callout-note appearance="simple"}
+FOPDT model is often used in controller tuning.
+A transfer function is a mathematical formula that describes how a system responds to different inputs over time.
+:::
+
+## Second-Order plus Deadtime (SOPDT) Model
+
+- Time domain
+
+  $$ \tau^2 \frac{ d^2 y(t)}{dt^2} + 2 \xi \tau \frac{d y(t)}{dt} + y(t) = K_p u(t)$$
+
+- Frequency domain
+
+  $$ G_p(s) = \frac{Y(s)}{U(s)} = \frac{K_p}{\tau^2 s^2 + 2 \xi \tau s + 1}$$
+
+
+- $K_p$: Process gain; $\tau$: time constant; $\xi$: damping factor or coefficient
+
+- Behavior: 
+  
+  :::: {.columns .smaller}
+
+  ::: {.column width=40%}
+   
+   $\xi > 1$: Overdamped 
+
+   $0 < \xi < 1$:  Underdamped
+
+  :::
+
+  ::: {.column width=40%}
+   
+   $\xi = 1$: Critically damped 
+
+   $\xi = 0$: Sustained oscillations
+
+  :::
+
+  ::: {.column width=20%}
+   
+   $\xi < 0$: Unstable
+
+  :::
+
+
+  ::::
 
 # Dynamic Behavior of Processes
+
+* Input types
 * Response of first-order systems
 * Response of second-order systems
 * Transient and steady-state behavior of processes
 * Process time constants and lags
 
+## Input types
+
+![](../../../assets/images/Input-types.png){#fig-input-types}
+
 ## Response of first-order systems
+
+:::: {.columns}
+
+::: {.column}
+
+```{python}
+def foptd(t, K=1, tau=1, tau_d=0):
+    tau_d = max(0,tau_d)
+    tau = max(0,tau)
+    return np.array([K*(1-np.exp(-(t-tau_d)/tau)) if t >= tau_d else 0 for t in t])
+
+t = np.linspace(0,80,200)
+tau = 10
+tau_delay = 0
+K = 1
+
+t_by_tau = t/tau
+
+y = foptd(t,K,tau,tau_delay)
+
+y_632 = np.max(y) * 0.632 
+t_632 = t_by_tau[np.where(y >= y_632)[0][0]]
+
+t_by_tau_5 = 5
+y_t_by_tau_5 = y[np.where(t_by_tau >= t_by_tau_5)[0][0]]
+
+fig = plt.figure(facecolor='none')
+
+plt.plot(t_by_tau,y, color='#65489d')
+
+# plt.axhline(y_632, color='#0d5e5e', linestyle='--')
+# plt.axvline(t_632, color='#0d5e5e', linestyle='--')
+
+# plt.axhline(y_t_by_tau_5, color='#0d5e5e', linestyle='--')
+# plt.axvline(t_by_tau_5, color='#0d5e5e', linestyle='--')
+
+plt.plot([0, t_632], [y_632, y_632], color='#0d5e5e', linestyle='--')
+plt.plot([t_632, t_632], [0, y_632], color='#0d5e5e', linestyle='--')
+
+plt.plot([0, t_by_tau_5], [y_t_by_tau_5, y_t_by_tau_5], color='#0d5e5e', linestyle='--')
+plt.plot([t_by_tau_5, t_by_tau_5], [0, y_t_by_tau_5], color='#0d5e5e', linestyle='--')
+
+plt.xlabel('$\\frac{t}{\\tau}$')
+plt.ylabel('Normalized Response $\\left[\\frac{h(t)}{h(\\infty)}\\right]$')
+plt.xlim([0, 8])
+plt.ylim([0, 1.2])
+
+plt.text(1.1, 0.632, '0.632')
+
+plt.gca().set_facecolor('none')
+plt.show()
+```
+:::
+
+::: {.column}
+:::
+
+::::
+
 ## Response of second-order systems
 ## Transient and steady-state behavior of processes
 ## Process time constants and lags

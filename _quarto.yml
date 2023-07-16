@@ -27,7 +27,7 @@ link-bibliography: true
 
 execute:
   warning: true
-  echo: true
+  echo: false
   freeze: auto
   enabled: true
   execute-dir: project

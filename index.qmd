@@ -75,8 +75,8 @@ optimize process performance.
   chemical processes.
 - Apply a range of advanced model formulation and solution techniques to
   chemical processes.
-- Demonstrate the effective use of software, such as MATLAB and Control
-  Station, for process modeling and for control system design.
+- Demonstrate the effective use of software, such as MATLAB for process
+  modeling and for control system design.
 
 ## Teaching Staff
 

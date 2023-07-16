@@ -80,6 +80,7 @@ $h6-font-size: $font-size-base * 0.8;
 
 $presentation-heading-color: $blue;
 $body-bg: $light;
+// $body-bg: $white;
 $link-color: $magenta;
 // $link-color: $red;
 $link-hover-color: $yellow;
@@ -170,5 +171,6 @@ h1.title {
 }
 
 .fragment.hide {
-  display: none !important;
+  transition: all 0s !important;
+  # display: none !important;
 }
