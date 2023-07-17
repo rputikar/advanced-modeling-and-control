@@ -609,7 +609,7 @@ A transfer function is a mathematical formula that describes how a system respon
   $$ G_p(s) = \frac{Y(s)}{U(s)} = \frac{K_p e^{-\theta s}}{\tau^2 s^2 + 2 \xi \tau s + 1}$$
 
 
-- $K_p$: Process gain; $\tau$: time constant; $\xi$: damping factor or coefficient
+- $K_p$: Process gain; $\tau$: time constant; θ: dead time; $\xi$: damping factor or coefficient
 
 - Behavior: 
   
@@ -1017,9 +1017,270 @@ plt.show()
 * Frequency response analysis
 * Bode plots and Nyquist plots
 
-## Stability analysis and the concept of poles and zeros
+## Properties of transfer functions 
+
+- For transfer function
+
+  $$g(s)= \frac{y(s)}{u(s)} = 
+  \frac{b_0 s^m + \ldots + b_m}{a_0 s^n + \ldots + a_n} = 
+  \frac{z(s)}{p(s)}
+  $$
+
+- The roots of the polynomial z(s) are the **zeros** of the transfer function or
+  the zeros of the process.
+
+- The roots of the polynomial p(s) are the **poles** of the transfer function or
+  the poles of the process.
+
+- A physical system needs to be *proper* ($n \geq m$), and *casual* (output
+  depends only on past inputs)
+
+- Characteristic equation
+
+  The denominator polynomial p(s) when equated to zero is called the
+  characteristic equation:
+
+  $p(s) = a_0 s^n + \ldots + a_n = 0$
+
+## Stability of linear systems {auto-animate=true}
+
+::::{.columns}
+
+:::{.column width=60%}
+
+:::{.fragment index=1}
+
+- The location of the poles of a transfer function determines the bounded
+  input–bounded output (BIBO) stability of a process.
+
+:::
+
+:::{.fragment index=2}
+
+- If the transfer function of a dynamic process has a pole with a positive real
+  part, the process is unstable. If the real part is zero, then the process is
+  critically stable
+
+:::
+
+:::{.fragment index=4}
+
+- We need to be cautious when we derive a transfer function model from a
+  statespace model, because a zero (or zeros) may cancel a pole (or poles).
+  This becomes especially important if the canceled pole is unstable, which
+  means that those modes of the process would be hidden from us.
+
+:::
+
+:::
+
+::: {.column width=40%}
+
+![](../../../assets/images/regions-of-stability-s-plane.png)
+
+:::
+
+::::
+
+## Routh's Stability Criterion
+
+Routh's Criterion is a mathematical test that is used to determine whether a
+linear system is stable or unstable. It does not require explicit calculation
+of the roots of the characteristic equation.
+
+::::{.columns}
+
+:::{.column width=60%}
+
+- The first step in Routh's Criterion is to set up the Routh array.
+
+- Then, we examine the first column of the array. If there are no sign changes
+  in the first column, the system is stable.
+
+- If there are sign changes in the first column, the system is unstable. The
+  number of sign changes corresponds to the number of roots with positive real
+  parts.
+  
+:::
+
+:::{.column width=40%}
+
+![](../../../assets/images/routh-array.png)
+
+:::
+
+::::
+
+:::{.callout-note appearance='simple'}
+
+Routh's Criterion can also be used to determine relative stability and system type.
+
+:::
+
+## Root locus method
+
+:::: {.columns}
+
+:::{.column width=60%}
+
+Root Locus is a graphical method used in control systems to examine how the
+system stability changes with varying gain. 
+
+- It shows possible pole locations as system gain varies from zero to infinity.
+
+- The method provides insights into stability and transient response.
+
+- Root locus begins at open-loop poles and ends at open-loop zeros.
+
+- The plot exists on parts of the complex plane where the number of open-loop
+  poles and zeros to the right is odd.
+
+- Consider the characteristic equation
+  $$p(s,k)= s^2 + s + k =0$$
 
 
+:::
+
+::: {.column width=40%}
+
+```{python}
+
+# Define the system
+num = [1]
+den = [1, 1, 0]  # Coefficients of the characteristic equation
+sys = control.TransferFunction(num, den)
+
+# Calculate and plot the root locus
+rlist, klist = control.root_locus(sys)
+
+plt.xlabel('Re')
+plt.ylabel('Im')
+
+plt.xlim([-1, 0])
+plt.ylim([-1, 1])
+
+# plt.arrow(-0.8, 0, 0.3, 0, color='black', width=0.01, length_includes_head=True)
+
+plt.show()
+
+# # Define the system
+# num = [1]
+# den = [1, 1, 0]  # Coefficients of the characteristic equation
+# sys = control.TransferFunction(num, den)
+#
+# # Calculate the root locus
+# rlist, klist = control.root_locus(sys)
+#
+# # Create the plot
+# plt.figure()
+# for i in range(rlist.shape[1]):
+#     # plot a line for this branch
+#     branch = rlist[:, i]
+#     plt.plot(branch.real, branch.imag)
+#
+#     # plot an arrow at 25% and 75% along the line
+#     for loc in [0.25, 0.75]:
+#         s = int(np.round(loc * len(branch)))
+#         plt.arrow(branch[s-1].real, branch[s-1].imag,
+#                   branch[s].real - branch[s-1].real,
+#                   branch[s].imag - branch[s-1].imag,
+#                   shape='full', lw=0, length_includes_head=True, head_width=.03)
+#
+# plt.title('Root Locus for the System s^2 + s + k')
+# plt.xlabel('Re')
+# plt.ylabel('Im')
+# plt.grid(True)
+# plt.show()
+#
+```
+:::
+
+::::
+
+## 
+
+```{python}
+# Define the system parameter
+tau = 0.5  # time constant
+
+# Calculate the root
+root = -1/tau
+
+# Plot the root on the complex plane
+plt.figure()
+plt.plot(np.real(root), np.imag(root), 'x')
+plt.title('Roots of a first order system')
+plt.xlabel('Real')
+plt.ylabel('Imaginary')
+plt.grid(True)
+plt.xlim([-3, 1])
+plt.ylim([-3, 3])
+plt.axvline(x=0, color='k')  # y-axis
+plt.axhline(y=0, color='k')  # x-axis
+plt.show()
+```
+
+## Second order
+
+```{python}
+
+import cmath
+import matplotlib.pyplot as plt
+
+# Calculate the square root of -4 using cmath
+root = cmath.sqrt(-4)
+print("The square root of -4 is: ", root)
+
+# Plot the root on the complex plane
+plt.figure()
+plt.plot(root.real, root.imag, 'x', label='root')
+plt.title('Square root of -4 on the complex plane')
+plt.xlabel('Real')
+plt.ylabel('Imaginary')
+plt.legend()
+plt.grid(True)
+plt.xlim([-3, 3])
+plt.ylim([-3, 3])
+plt.axvline(x=0, color='k')  # y-axis
+plt.axhline(y=0, color='k')  # x-axis
+plt.show()
+
+```
+## tansfer function
+
+```{python}
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+# Define the system parameters
+zeros = [1, -2]  # zeros of the system
+poles = [-1, 2]  # poles of the system
+
+# Define the system
+system = signal.TransferFunction(np.poly(zeros), np.poly(poles))
+
+# Calculate the poles and zeros
+zeros = system.zeros
+poles = system.poles
+
+# Plot the poles and zeros
+plt.figure()
+plt.plot(np.real(zeros), np.imag(zeros), 'o', label='zeros')
+plt.plot(np.real(poles), np.imag(poles), 'x', label='poles')
+plt.title('Poles and zeros of a complex transfer function')
+plt.xlabel('Real')
+plt.ylabel('Imaginary')
+plt.legend()
+plt.grid(True)
+plt.xlim([-3, 3])
+plt.ylim([-3, 3])
+plt.axvline(x=0, color='k')  # y-axis
+plt.axhline(y=0, color='k')  # x-axis
+plt.show()
+
+```
 ## Frequency response analysis
 
 
