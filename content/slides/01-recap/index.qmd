@@ -602,11 +602,11 @@ A transfer function is a mathematical formula that describes how a system respon
 
 - Time domain
 
-  $$ \tau^2 \frac{ d^2 y(t)}{dt^2} + 2 \xi \tau \frac{d y(t)}{dt} + y(t) = K_p u(t)$$
+  $$ \tau^2 \frac{ d^2 y(t)}{dt^2} + 2 \xi \tau \frac{d y(t)}{dt} + y(t) = K_p u(t - \theta)$$
 
 - Frequency domain
 
-  $$ G_p(s) = \frac{Y(s)}{U(s)} = \frac{K_p}{\tau^2 s^2 + 2 \xi \tau s + 1}$$
+  $$ G_p(s) = \frac{Y(s)}{U(s)} = \frac{K_p e^{-\theta s}}{\tau^2 s^2 + 2 \xi \tau s + 1}$$
 
 
 - $K_p$: Process gain; $\tau$: time constant; $\xi$: damping factor or coefficient
@@ -761,7 +761,7 @@ plt.show()
 - When the elapsed time is equal to the process time constant $t = \tau$, the
   system reaches 63.2% of its final response.
 
-- After approximately 3τ, the transient response can be considered as having
+- After approximately 5τ, the transient response can be considered as having
   reached steady-state.
 
 - For a given t / τ, the output reaches the same fraction of the ultimate
