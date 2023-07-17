@@ -15,3 +15,10 @@ format:
     theme: [default, ../../assets/styles/revealjs/slide.custom.scss]
     logo: ../../assets/images/cee_logo.svg
     slide-number: c/t
+
+    pointer:
+      # set pointer configuration options here
+      - color: "#d02670"
+      - pointerSize: 20
+revealjs-plugins:
+  - pointer

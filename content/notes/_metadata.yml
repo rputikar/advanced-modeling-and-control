@@ -1,10 +1,10 @@
 citation: true
 subtitle: Lecture notes for Advanced modeling and Control
-author: 
+author:
   - name: Ranjeet Utikar
     url: https://utikar.com
 format:
-  html: 
+  html:
     fig-cap-location: bottom
   docx:
     number-sections: true
@@ -19,7 +19,7 @@ format:
   pdf:
     citeproc: true
     pdf-engine: lualatex
-    latex-auto-install: true 
+    latex-auto-install: true
     shift-heading-level-by: -1
     geometry:
       - top=20mm
@@ -33,7 +33,7 @@ format:
     mainfont: Gentium Plus
     sansfont: Gentium Plus
     mathfont: Gentium Plus
- 
+
     fontsize: 12pt
     hyperrefoptions:
       - linktoc=all
@@ -42,5 +42,6 @@ format:
         \usepackage{mhchem}
         \usepackage{float}
         \usepackage{gensymb}
+        \usepackage{unicode-math}
 filters:
   - latex-environment

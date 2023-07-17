@@ -10,13 +10,14 @@ font.sans-serif: IBM Plex Sans
 # Figure 
 figure.figsize: 5,5 
 figure.dpi: 300
+figure.facecolor: none
 
 # Axes
 xtick.minor.visible: True
 ytick.minor.visible: True
+axes.facecolor: none
 
 # Lines
-lines.linewidth = 2.0
+lines.linewidth: 2.0
 
-# Colors
-axes.prop_cycle : cycler('color', ['#65489d', '#388ecc', '#105e5d', '#9f1d54', '#4d1013'])
+# axes.prop_cycle: cycler('color', ['#65489d', '#388ecc', '#105e5d', '#9f1d54', '#4d1013'])
