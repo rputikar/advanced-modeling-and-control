@@ -20,5 +20,6 @@ format:
       # set pointer configuration options here
       - color: "#d02670"
       - pointerSize: 20
+
 revealjs-plugins:
   - pointer

@@ -9,14 +9,16 @@ import matplotlib
 import matplotlib.pyplot as plt
 import control
 from scipy.optimize import minimize
+from scipy import signal
 plt.style.use('../../../assets/templates/publish.mplstyle')
 ```
-::: {.content-visible when-format="html"}
 
-:::{.grid} ::: {.g-col-5} [Lecture
-resources](../../lectures/01-recap/index.qmd){.btn .btn-success .btn-lg
-role="button"} ::: :::
-
+:::{.content-visible when-format="html"}
+ :::{.grid} 
+  :::{.g-col-5} 
+  [Lecture resources](../../lectures/01-recap/index.qmd){.btn .btn-success .btn-lg role="button"} 
+  ::: 
+ :::
 :::
 
 ## Importance of process analysis and control
@@ -869,23 +871,26 @@ A transfer function is a mathematical formula that describes how a system respon
 
 ### Response of first-order systems
 
-```{python}
-#| label: fig-fopdt-response
-#| fig-cap: FOPTD Step Response
+:::: {.columns}
 
-def foptd(t, K=1, tau=1, tau_d=0):
+::: {.column}
+
+```{python}
+
+def fopdt(t, K=1, tau=1, tau_d=0):
     tau_d = max(0,tau_d)
     tau = max(0,tau)
     return np.array([K*(1-np.exp(-(t-tau_d)/tau)) if t >= tau_d else 0 for t in t])
 
 t = np.linspace(0,80,200)
+
 tau = 10
 tau_delay = 0
 K = 1
 
 t_by_tau = t/tau
 
-y = foptd(t,K,tau,tau_delay)
+y = fopdt(t,K,tau,tau_delay)
 
 y_632 = np.max(y) * 0.632 
 t_632 = t_by_tau[np.where(y >= y_632)[0][0]]
@@ -893,19 +898,19 @@ t_632 = t_by_tau[np.where(y >= y_632)[0][0]]
 t_by_tau_5 = 5
 y_t_by_tau_5 = y[np.where(t_by_tau >= t_by_tau_5)[0][0]]
 
-plt.plot(t_by_tau,y)
+plt.plot(t_by_tau,y, color='#65489d')
 
-# plt.axhline(y_632, color='#65489d', linestyle='--')
-# plt.axvline(t_632, color='#65489d', linestyle='--')
+# plt.axhline(y_632, color='#0d5e5e', linestyle='--')
+# plt.axvline(t_632, color='#0d5e5e', linestyle='--')
 
-# plt.axhline(y_t_by_tau_5, color='#65489d', linestyle='--')
-# plt.axvline(t_by_tau_5, color='#65489d', linestyle='--')
+# plt.axhline(y_t_by_tau_5, color='#0d5e5e', linestyle='--')
+# plt.axvline(t_by_tau_5, color='#0d5e5e', linestyle='--')
 
-plt.plot([0, t_632], [y_632, y_632], color='#65489d', linestyle='--')
-plt.plot([t_632, t_632], [0, y_632], color='#65489d', linestyle='--')
+plt.plot([0, t_632], [y_632, y_632], color='#0d5e5e', linestyle='--')
+plt.plot([t_632, t_632], [0, y_632], color='#0d5e5e', linestyle='--')
 
-plt.plot([0, t_by_tau_5], [y_t_by_tau_5, y_t_by_tau_5], color='#65489d', linestyle='--')
-plt.plot([t_by_tau_5, t_by_tau_5], [0, y_t_by_tau_5], color='#65489d', linestyle='--')
+plt.plot([0, t_by_tau_5], [y_t_by_tau_5, y_t_by_tau_5], color='#0d5e5e', linestyle='--')
+plt.plot([t_by_tau_5, t_by_tau_5], [0, y_t_by_tau_5], color='#0d5e5e', linestyle='--')
 
 plt.xlabel('$\\frac{t}{\\tau}$')
 plt.ylabel('Normalized Response $\\left[\\frac{h(t)}{h(\\infty)}\\right]$')
@@ -916,13 +921,452 @@ plt.text(1.1, 0.632, '0.632')
 
 plt.show()
 ```
+:::
 
+::: {.column}
+
+- The ultimate (steady-state) value of the response, $\bar{h} (t \to \infty)$, is
+  equal to k for a unit-step change.
+
+- When the elapsed time is equal to the process time constant $t = \tau$, the
+  system reaches 63.2% of its final response.
+
+- After approximately 5τ, the transient response can be considered as having
+  reached steady-state.
+
+- For a given t / τ, the output reaches the same fraction of the ultimate
+  output response value.
+
+:::
+
+::::
+
+:::{.callout-note .smaller .smaller appearance='simple'}
+
+In a tank process, a rise in the inlet flow rate elevates the liquid level,
+which in turn increases the hydrostatic pressure and subsequently the outlet
+flow rate. The system eventually reaches a new steady state. This feature is
+termed 'self-regulation'. 
+
+:::
+
+### Response of first-order systems
+
+```{python}
+
+tau = 10
+tau_delay = 10
+K = 4
+
+t_by_tau = t/tau
+
+y1 = fopdt(t, 1, tau, tau_delay)
+y2_5_t20 = fopdt(t, 2.5, 20, tau_delay)
+y2_5_t5 = fopdt(t, 2.5, 5, tau_delay)
+y4 = fopdt(t,K,tau,tau_delay)
+
+# y_632 = np.max(y) * 0.632 
+# t_632 = t_by_tau[np.where(y >= y_632)[0][0]]
+#
+# t_by_tau_5 = 5
+# y_t_by_tau_5 = y[np.where(t_by_tau >= t_by_tau_5)[0][0]]
+#
+plt.plot(t_by_tau,y1, color='#65489d')
+plt.plot(t_by_tau,y2_5_t20, color='#388ecc')
+plt.plot(t_by_tau,y2_5_t5, color='#0d5e5e')
+plt.plot(t_by_tau,y4, color='#9f1d54')
+
+plt.xlabel('$\\frac{t}{\\tau}$')
+plt.ylabel('Normalized Response $\\left[\\frac{h(t)}{h(\\infty)}\\right]$')
+plt.xlim([0, 8])
+plt.ylim([0, 4.2])
+
+# plt.text(1.1, 0.632, '0.632')
+
+plt.text(1.4, 0.2, '$\\tau_d = \\tau$')
+plt.arrow(1.4, 0.2, -0.3, -0.15, color='black', width=0.01, length_includes_head=True)
+
+plt.text(8.2, 1, '$k = 1$')
+plt.text(8.2, 2.4, '$k = 2.5$')
+plt.text(8.2, 4, '$k = 4$')
+
+plt.text(6.9, 3.8, '$\\tau = 1$')
+plt.text(6.9, 1.05, '$\\tau = 1$')
+plt.text(6.9, 2.55, '$\\tau = 2$')
+plt.text(6.9, 2.25, '$\\tau = 0.5$')
+
+plt.show()
+```
 
 ### Response of second-order systems
-### Transient and steady-state behavior of processes
-### Process time constants and lags
 
-## Stability analysis and the concept of poles and zeros
+::::{.columns}
+
+:::{.column width=50%}
+
+![](../../../assets/images/Performance-characteristics-underdamped-system.png)
+
+:::
+
+:::{.column width=50%}
+
+- Rise time ($t_r$): time required for y(t) to first cross its new steady state
+  value
+
+- Overshoot (a/b):  The maximum amount by which the response exceeds the new
+  steady state value
+
+- Decay ratio (c/a): Ratio of the height of successive peaks in the response
+
+- Period of oscillation (P): time for a complete cycle
+
+- Response/ settling time ($t_s$): time required for the response to remain
+  within a ± 5% band based upon steady state value.
+
+:::
+
+::::
+
+:::{.callout-note appearance="simple"}
+
+Decay ratio, overshoot, response time, and damping factor (ξ) can be used as a
+basis for tuning.
+
+:::
+
+### Response of second-order systems
+
+::::{.columns}
+
+:::{.column width=50%}
+
+#### Critically damped (ξ = 1)
+
+```{python}
+# Response of second order system
+# G_p(s) = Y(s) / U(s) = K_p / (τ^2 s^2 + 2ζτ s + 1)
+# K_p is the gain of the system, τ is the time constant, and ζ is the
+# damping ratio. The time constant τ of the system is related to the natural
+# frequency ω_n and damping ratio as follows: τ = 1 / (ζω_n)
+
+# Define the system parameters
+
+K_p = 1.0  # gain
+tau5 = 5.0  # time constant
+tau10 = 10.0  # time constant
+tau20 = 20.0  # time constant
+zeta = 1  # damping ratio
+
+# Define the system
+num = [K_p]
+den5 = [tau5**2, 2*zeta*tau5, 1]
+den10 = [tau10**2, 2*zeta*tau10, 1]
+den20 = [tau20**2, 2*zeta*tau20, 1]
+
+system5 = signal.TransferFunction(num, den5)
+system10 = signal.TransferFunction(num, den10)
+system20 = signal.TransferFunction(num, den20)
+
+# Define the time array
+t = np.linspace(0, 120, 1000)
+
+# Simulate the step response
+t, y5 = signal.step(system5, T=t)
+t, y10 = signal.step(system10, T=t)
+t, y20 = signal.step(system20, T=t)
+
+# Plot the response
+
+plt.plot(t,y5, color='#65489d', label ='$\\tau = 5$')
+plt.plot(t,y10, color='#388ecc', label ='$\\tau = 10$')
+plt.plot(t,y20, color='#0d5e5e', label ='$\\tau = 20$')
+
+plt.axhline(1.0, color='#535353', linestyle='--')
+
+plt.xlabel('Time')
+plt.ylabel('y(t)')
+plt.legend(loc='lower right')
+
+plt.xlim([0, 120])
+plt.ylim([0, 1.2])
+
+# plt.text(22, 0.9, '$\\tau = 5$')
+# plt.text(45, 0.9, '$\\tau = 10$')
+# plt.text(88, 0.9, '$\\tau =20$')
+
+plt.show()
+```
+::: {.smaller}
+
+- Output response becomes more sluggish as τ increases.
+
+- The responses are qualitatively similar. 
+
+:::
+
+:::
+
+::: {.column .fragment width=50%}
+
+#### Effect of ξ
+
+```{python}
+# Response of second order system
+# G_p(s) = Y(s) / U(s) = K_p / (τ^2 s^2 + 2ζτ s + 1)
+# K_p is the gain of the system, τ is the time constant, and ζ is the
+# damping ratio. The time constant τ of the system is related to the natural
+# frequency ω_n and damping ratio as follows: τ = 1 / (ζω_n)
+
+# Define the system parameters
+
+K_p = 1.0  # gain
+tau = 10.0  # time constant
+
+zeta = 1.0
+zeta2 = 2.0  # damping ratio
+zeta_p5 = 0.5
+zeta_p25 = 0.25
+
+# Define the system
+num = [K_p]
+den_z = [tau**2, 2*zeta*tau, 1]
+den_z2 = [tau**2, 2*zeta2*tau, 1]
+den_zp5 = [tau**2, 2*zeta_p5*tau, 1]
+den_zp25 = [tau**2, 2*zeta_p25*tau, 1]
+
+system_z = signal.TransferFunction(num, den_z)
+system_z2 = signal.TransferFunction(num, den_z2)
+system_zp5 = signal.TransferFunction(num, den_zp5)
+system_zp25 = signal.TransferFunction(num, den_zp25)
+
+# Define the time array
+t = np.linspace(0, 120, 1000)
+
+# Simulate the step response
+t, y_z = signal.step(system_z, T=t)
+t, y_z2 = signal.step(system_z2, T=t)
+t, y_zp5 = signal.step(system_zp5, T=t)
+t, y_zp25 = signal.step(system_zp25, T=t)
+
+# Plot the response
+
+plt.plot(t,y_z2, color='#65489d', label='$\\xi = 2$')
+plt.plot(t,y_z, color='#388ecc', label='$\\xi = 1$')
+plt.plot(t,y_zp5, color='#0d5e5e', label='$\\xi = 0.5$')
+plt.plot(t,y_zp25, color='#9f1d54', label='$\\xi = 0.25$')
+# plt.plot(t,y_zm1, color='#4d1013', label='$\\xi = -0.1$')
+
+plt.axhline(1.0, color='#535353', linestyle='--')
+
+plt.xlabel('Time')
+plt.ylabel('y(t)')
+plt.legend(loc='lower right')
+
+plt.xlim([0, 120])
+plt.ylim([0, 1.5])
+
+plt.show()
+```
+
+::: {.smaller}
+
+- ξ < 1: Oscillation and overshoot
+
+- ξ > 1: Sluggish response, no oscillations; no overshoot
+
+- ξ = 1: Fastest response, no oscillations; no overshoot
+
+:::
+
+:::
+
+::::
+
+# Analysis of Process Systems
+* Stability analysis and the concept of poles and zeros
+* Frequency response analysis
+* Bode plots and Nyquist plots
+
+### Properties of transfer functions 
+
+- For transfer function
+
+  $$g(s)= \frac{y(s)}{u(s)} = 
+  \frac{b_0 s^m + \ldots + b_m}{a_0 s^n + \ldots + a_n} = 
+  \frac{z(s)}{p(s)}
+  $$
+
+- The roots of the polynomial z(s) are the **zeros** of the transfer function or
+  the zeros of the process.
+
+- The roots of the polynomial p(s) are the **poles** of the transfer function or
+  the poles of the process.
+
+- A physical system needs to be *proper* ($n \geq m$), and *casual* (output
+  depends only on past inputs)
+
+- Characteristic equation
+
+  The denominator polynomial p(s) when equated to zero is called the
+  characteristic equation:
+
+  $p(s) = a_0 s^n + \ldots + a_n = 0$
+
+### Stability of linear systems {auto-animate=true}
+
+::::{.columns}
+
+:::{.column width=60%}
+
+:::{.fragment index=1}
+
+- The location of the poles of a transfer function determines the bounded
+  input–bounded output (BIBO) stability of a process.
+
+:::
+
+:::{.fragment index=2}
+
+- If the transfer function of a dynamic process has a pole with a positive real
+  part, the process is unstable. If the real part is zero, then the process is
+  critically stable
+
+:::
+
+:::{.fragment index=4}
+
+- We need to be cautious when we derive a transfer function model from a
+  statespace model, because a zero (or zeros) may cancel a pole (or poles).
+  This becomes especially important if the canceled pole is unstable, which
+  means that those modes of the process would be hidden from us.
+
+:::
+
+:::
+
+::: {.column width=40%}
+
+![](../../../assets/images/regions-of-stability-s-plane.png)
+
+:::
+
+::::
+
+### Routh's Stability Criterion
+
+Routh's Criterion is a mathematical test that is used to determine whether a
+linear system is stable or unstable. It does not require explicit calculation
+of the roots of the characteristic equation.
+
+::::{.columns}
+
+:::{.column width=60%}
+
+- The first step in Routh's Criterion is to set up the Routh array.
+
+- Then, we examine the first column of the array. If there are no sign changes
+  in the first column, the system is stable.
+
+- If there are sign changes in the first column, the system is unstable. The
+  number of sign changes corresponds to the number of roots with positive real
+  parts.
+  
+:::
+
+:::{.column width=40%}
+
+![](../../../assets/images/routh-array.png)
+
+:::
+
+::::
+
+:::{.callout-note appearance='simple'}
+
+Routh's Criterion can also be used to determine relative stability and system type.
+
+:::
+
+### Root locus method
+
+:::: {.columns}
+
+:::{.column width=60%}
+
+Root Locus is a graphical method used in control systems to examine how the
+system stability changes with varying gain. 
+
+- It shows possible pole locations as system gain varies from zero to infinity.
+
+- The method provides insights into stability and transient response.
+
+- Root locus begins at open-loop poles and ends at open-loop zeros.
+
+- The plot exists on parts of the complex plane where the number of open-loop
+  poles and zeros to the right is odd.
+
+- Consider the characteristic equation
+  $$p(s,k)= s^2 + s + k =0$$
+
+
+:::
+
+::: {.column width=40%}
+
+```{python}
+
+# Define the system
+num = [1]
+den = [1, 1, 0]  # Coefficients of the characteristic equation
+sys = control.TransferFunction(num, den)
+
+# Calculate and plot the root locus
+rlist, klist = control.root_locus(sys)
+
+plt.xlabel('Re')
+plt.ylabel('Im')
+
+plt.xlim([-1, 0])
+plt.ylim([-1, 1])
+
+# plt.arrow(-0.8, 0, 0.3, 0, color='black', width=0.01, length_includes_head=True)
+
+plt.show()
+
+# # Define the system
+# num = [1]
+# den = [1, 1, 0]  # Coefficients of the characteristic equation
+# sys = control.TransferFunction(num, den)
+#
+# # Calculate the root locus
+# rlist, klist = control.root_locus(sys)
+#
+# # Create the plot
+# plt.figure()
+# for i in range(rlist.shape[1]):
+#     # plot a line for this branch
+#     branch = rlist[:, i]
+#     plt.plot(branch.real, branch.imag)
+#
+#     # plot an arrow at 25% and 75% along the line
+#     for loc in [0.25, 0.75]:
+#         s = int(np.round(loc * len(branch)))
+#         plt.arrow(branch[s-1].real, branch[s-1].imag,
+#                   branch[s].real - branch[s-1].real,
+#                   branch[s].imag - branch[s-1].imag,
+#                   shape='full', lw=0, length_includes_head=True, head_width=.03)
+#
+# plt.title('Root Locus for the System s^2 + s + k')
+# plt.xlabel('Re')
+# plt.ylabel('Im')
+# plt.grid(True)
+# plt.show()
+#
+```
+:::
+
+::::
+
 
 ## Frequency response analysis
 
