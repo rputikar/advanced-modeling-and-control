@@ -1,7 +1,7 @@
 {
   "name": "content",
   "version": "1.0.0",
-  "description": "Github repository For Advanced modeling and control course .\r [The website can be found here.](https://amc.utikar.com/)",
+  "description": "Github repository For Advanced modeling and control course .\r [The website can be found here.](https://amc.smielab.dev/)",
   "main": "index.js",
   "scripts": {
     "topdf": "node convert-to-pdf.js",

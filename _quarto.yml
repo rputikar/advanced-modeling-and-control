@@ -34,7 +34,7 @@ execute:
 
 website:
   title: "AMC | Advanced Modeling and Control"
-  site-url: https://amc.utikar.com/
+  site-url: https://amc.smilelab.dev/
   page-navigation: true
   open-graph: true
   # cookie-consent: true
@@ -51,20 +51,20 @@ website:
     title: false
     left:
       # - text: Research
-      #   href: https://utikar.com/research/
+      #   href: https://smilelab.dev/research/
       - text: Publications
-        href: https://utikar.com/publications/
+        href: https://smilelab.dev/publications/
       - text: Teaching
-        href: https://utikar.com/teaching/
+        href: https://smilelab.dev/teaching/
       - text: People
-        href: https://utikar.com/people/
+        href: https://smilelab.dev/people/
       - text: Blog
-        href: https://utikar.com/blog/
+        href: https://smilelab.dev/blog/
   page-footer:
     border: false
     background: "#535353"
     left: |
-      Copyright 2023 &copy; [SMILE Lab](https://www.utikar.com) <br>
+      Copyright 2023 &copy; [SMILE Lab](https://www.smilelab.dev) <br>
     right: |
       {{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}}
       {{< fa brands creative-commons-sa >}} Except where otherwise noted,
