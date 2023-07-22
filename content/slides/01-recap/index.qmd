@@ -7,7 +7,7 @@ format: revealjs
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-import control
+import control as ctrl
 from scipy.optimize import minimize
 from scipy import signal
 plt.style.use('../../../assets/templates/present.mpstyle')
@@ -1148,10 +1148,10 @@ system stability changes with varying gain.
 # Define the system
 num = [1]
 den = [1, 1, 0]  # Coefficients of the characteristic equation
-sys = control.TransferFunction(num, den)
+sys = ctrl.TransferFunction(num, den)
 
 # Calculate and plot the root locus
-rlist, klist = control.root_locus(sys)
+rlist, klist = ctrl.root_locus(sys)
 
 plt.xlabel('Re')
 plt.ylabel('Im')
@@ -1166,10 +1166,10 @@ plt.show()
 # # Define the system
 # num = [1]
 # den = [1, 1, 0]  # Coefficients of the characteristic equation
-# sys = control.TransferFunction(num, den)
+# sys = ctrl.TransferFunction(num, den)
 #
 # # Calculate the root locus
-# rlist, klist = control.root_locus(sys)
+# rlist, klist = ctrl.root_locus(sys)
 #
 # # Create the plot
 # plt.figure()
@@ -1197,12 +1197,6 @@ plt.show()
 
 ::::
 
-## Frequency response analysis
-
-
-## Bode plots and Nyquist plots
-
-
 
 # Feedback Control Systems
 * Introduction to feedback control
@@ -1213,12 +1207,200 @@ plt.show()
 ## Introduction to feedback control
 
 
+::: {.r-stack}
+
+![](../../../assets/images/feedback-control-1.png){.fragment .absolute top=150 right=50 width=90%}
+![](../../../assets/images/feedback-control-2.png){.fragment .absolute top=150 right=50 width=90%}
+![](../../../assets/images/feedback-control-3.png){.fragment .absolute top=150 right=50 width=90%}
+![](../../../assets/images/feedback-control-4.png){.fragment .absolute top=150 right=50 width=90%}
+
+:::
+
+
+## Introduction to feedback control
+
+![](../../../assets/images/heat-exchanger-feedback-control.png){.absolute top=150 right=50 width=90%}
+
+## Introduction to feedback control
+
+![](../../../assets/images/heat-exchanger-feedback-control-schematic.png){.absolute top=150 right=50 width=90%}
+
+
 ## Proportional, integral, and derivative control actions
+
+```{python}
+
+# Define system parameters
+Kp_p5 = 0.5  # Proportional gain
+Kp_1 = 1  # Proportional gain
+Kp_4 = 4  # Proportional gain
+
+# Define the P controller
+# C(s) = K_p 
+p_controller_p5 = ctrl.TransferFunction([Kp_p5], [1])
+p_controller_1 = ctrl.TransferFunction([Kp_1], [1])
+p_controller_4 = ctrl.TransferFunction([Kp_4], [1])
+
+# Define the plant
+plant = ctrl.TransferFunction([2], [5, 1])
+
+# Define the disturbance
+disturbance = ctrl.TransferFunction([1], [5, 1])
+
+# Define the open loop system for disturbance rejection
+open_loop_sys = disturbance 
+
+# Define the closed loop system for disturbance rejection
+closed_loop_sys_p5 = disturbance/(1 + plant*p_controller_p5) 
+closed_loop_sys_1 = disturbance/(1 + plant*p_controller_1) 
+closed_loop_sys_4 = disturbance/(1 + plant*p_controller_4) 
+
+# Define time array
+t = np.linspace(0, 30, 3000)
+
+# Calculate the step response for the setpoint change and disturbance
+t_ol, y_open_loop = ctrl.step_response(open_loop_sys, t)
+t_cl_p5, y_setpoint_p5 = ctrl.step_response(closed_loop_sys_p5, t)
+t_cl_1, y_setpoint_1 = ctrl.step_response(closed_loop_sys_1, t)
+t_cl_4, y_setpoint_4 = ctrl.step_response(closed_loop_sys_4, t)
+
+# Plot the responses
+plt.figure()
+plt.plot(t_ol, y_open_loop, label="Open Loop Response")
+plt.plot(t_cl_p5, y_setpoint_p5, label="$K_p = 0.5$")
+plt.plot(t_cl_1, y_setpoint_1, label="$K_p = 1$")
+plt.plot(t_cl_4, y_setpoint_4, label="$K_p = 4$")
+plt.xlabel('Time')
+plt.ylabel('$y(t)$')
+plt.legend()
+plt.show()
+
+```
+
+
+## Proportional, integral, and derivative control actions
+
+```{python}
+
+# Define system parameters
+Kp = 2.5  # Proportional gain
+
+Tau_I_2 = 2 # integral time const
+Tau_I_10 = 10 # integral time const
+Tau_I_30 = 30 # integral time const
+
+Ki_2 = Kp/Tau_I_2 # integral gain
+Ki_10 = Kp/Tau_I_10 # integral gain
+Ki_30 = Kp/Tau_I_30 # integral gain
+
+# Define the PI controller
+# C(s) = K_p + K_i/s
+pi_controller_2 = ctrl.TransferFunction([Ki_2], [1, 0])
+pi_controller_10 = ctrl.TransferFunction([Ki_10], [1, 0])
+pi_controller_30 = ctrl.TransferFunction([Ki_30], [1, 0])
+
+# Define the plant
+plant = ctrl.TransferFunction([2], [5, 1])
+
+# define set point
+setpoint = ctrl.TransferFunction([1], [1])
+
+# for setpoint tracking
+setpoint_tf_2 = (plant*pi_controller_2*setpoint)/(1+plant*pi_controller_2)
+setpoint_tf_10 = (plant*pi_controller_10*setpoint)/(1+plant*pi_controller_10)
+setpoint_tf_30 = (plant*pi_controller_30*setpoint)/(1+plant*pi_controller_30)
+
+# Define time array
+t = np.linspace(0, 60, 3000)
+
+# Calculate the step response for the setpoint change and disturbance
+t_sp_2, y_setpoint_2 = ctrl.step_response(setpoint_tf_2, t)
+t_sp_10, y_setpoint_10 = ctrl.step_response(setpoint_tf_10, t)
+t_sp_30, y_setpoint_30 = ctrl.step_response(setpoint_tf_30, t)
+
+# Plot the responses
+plt.figure()
+plt.plot(t_sp_2, y_setpoint_2, label="$\\tau_I = 2$")
+plt.plot(t_sp_10, y_setpoint_10, label="$\\tau_I = 10$")
+plt.plot(t_sp_30, y_setpoint_30, label="$\\tau_I = 30$")
+plt.xlabel('Time')
+plt.ylabel('$y(t)$')
+plt.legend()
+plt.show()
+
+```
+
+## Proportional, integral, and derivative control actions
+
+
+```{python}
+
+# Define system parameters
+Kp = 2  # Proportional gain
+tau_i = 5
+Ki = Kp/tau_i  # integral gain
+
+tau_d_2 = 2  # derivative time const
+tau_d_10 = 10  
+tau_d_30 = 30 
+
+Kd_2 = Kp*tau_d_2
+Kd_10 = Kp*tau_d_10
+Kd_30 = Kp*tau_d_30
+
+# Define the PID controller
+# C(s) = K_p  + K_i/s + K_d s
+controller_d2 = ctrl.TransferFunction([Kd_2, Kp, Ki], [1, 0])
+controller_d10 = ctrl.TransferFunction([Kd_10, Kp, Ki], [1, 0])
+controller_d30 = ctrl.TransferFunction([Kd_30, Kp, Ki], [1, 0])
+
+# Define the plant
+plant = ctrl.TransferFunction([2], [5, 1])
+
+# Define the disturbance
+disturbance = ctrl.TransferFunction([1], [5, 1])
+
+# Define the open loop system for disturbance rejection
+open_loop_sys = disturbance 
+
+# Define the closed loop system for disturbance rejection
+closed_loop_sys_d2 = disturbance/(1 + plant*controller_d2) 
+closed_loop_sys_d10 = disturbance/(1 + plant*controller_d10) 
+closed_loop_sys_d30 = disturbance/(1 + plant*controller_d30) 
+
+# Define time array
+t = np.linspace(0, 300, 3000)
+
+# Calculate the step response for the setpoint change and disturbance
+t_cl_d2, y_d2 = ctrl.step_response(closed_loop_sys_d2, t)
+t_cl_d10, y_d10 = ctrl.step_response(closed_loop_sys_d10, t)
+t_cl_d30, y_d30 = ctrl.step_response(closed_loop_sys_d30, t)
+
+# Plot the responses
+plt.figure()
+plt.plot(t_cl_d2, y_d2, label="$\\tau_d = 2$")
+plt.plot(t_cl_d10, y_d10, label="$\\tau_d = 10$")
+plt.plot(t_cl_d30, y_d30, label="$\\tau_d = 30$")
+plt.xlabel('Time')
+plt.ylabel('$y(t)$')
+plt.legend()
+plt.show()
+
+```
+
+
+
 
 
 ## PID control and tuning methods
 
 
 ## Stability analysis
+
+## Frequency response analysis
+
+
+## Bode plots and Nyquist plots
+
 
 

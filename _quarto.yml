@@ -163,5 +163,5 @@ format:
     link-external-newwindow: true
     link-external-icon: true
     # link-external-filter: ^(?:http:|https:)\/\/(amc\.utikar\.com\|localhost)
-    link-external-filter: ^(?:http:|https:)\/\/(?:[a-zA-Z0-9-]+\.)?utikar\.com\/|localhost
+    link-external-filter: ^(?:http:|https:)\/\/(?:[a-zA-Z0-9-]+\.)?smilelab\.dev\/|localhost
     include-after-body: ./assets/helpers/goatcounter.html
