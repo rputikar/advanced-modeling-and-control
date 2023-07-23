@@ -45,6 +45,7 @@ style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width:
 
 ## Videos
 
+<!--
 ## Lecture notes
 
 Detailed lcture notes are available for this lecture. 
@@ -59,6 +60,7 @@ the link.
 
 :::
 :::
+-->
 
 ## In-Class Resources
 

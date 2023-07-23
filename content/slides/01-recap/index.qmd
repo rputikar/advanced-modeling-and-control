@@ -8,8 +8,10 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import control as ctrl
+import scipy as sp
 from scipy.optimize import minimize
 from scipy import signal
+from IPython.display import display, Markdown
 plt.style.use('../../../assets/templates/present.mpstyle')
 ```
 
@@ -557,7 +559,43 @@ $$
 :::
 :::
 
-## Degrees of freedom analysis
+## Degrees of freedom analysis 
+
+::: {.fragment}
+- To simulate a process, it’s crucial to confirm that the model equations, both
+  differential and algebraic, form a set of relations that can be solved.
+:::
+
+::: {.fragment}
+- For the model to have a unique solution, the number of unknown variables
+  should match the number of independent model equations.
+:::
+
+:::: {.fragment}
+- $N_F = N_V - N_E$
+
+  ::: {.smaller}
+  ::: {.fragment}
+  1. $N_F = 0$: The process model is exactly specified. If $NF = 0$, then the
+     number of equations is equal to the number of process variables and the
+     set of equations has a solution. (However, the solution may not be unique
+     for a set of nonlinear equations.)
+  :::
+
+  ::: {.fragment}
+  2. $N_F > 0$: The process is underspecified. If $N_F > 0$, then $N_V > N_E$,
+     so there are more process variables than equations. Consequently, the
+     $N_E$ equations have an infinite number of solutions, because NF process
+     variables can be specified arbitrarily.
+  :::
+
+  ::: {.fragment}
+  3. $N_F < 0$: The process model is overspecified. For $N_F < 0$, there are
+     fewer process variables than equations, and consequently the set of
+     equations has no solution.
+  :::
+  :::
+::::
 
 
 ## Solution of model equations
@@ -645,6 +683,8 @@ A transfer function is a mathematical formula that describes how a system respon
 * Input types
 * Response of first-order systems
 * Response of second-order systems
+* Properties of transfer functions
+* Stability of linear systems
 
 ## Input types
 
@@ -707,20 +747,34 @@ change in the input.
 
 ```{python}
 
-def fopdt(t, K=1, tau=1, tau_d=0):
-    tau_d = max(0,tau_d)
-    tau = max(0,tau)
-    return np.array([K*(1-np.exp(-(t-tau_d)/tau)) if t >= tau_d else 0 for t in t])
+# FOPDT system
+# G(s) = K_p / (τs + 1) * e^(-θs)
+
+def fopdt(Kp, tau, theta):
+    # Create a transfer function for the FOPDT process
+    numerator = [Kp]
+    denominator = [tau, 1]
+    
+    # Use zero-order Pade approximation for time delay
+    delay = ctrl.pade(theta, 0)[0]
+    
+    # Combine the process and delay into a single transfer function
+    fopdt_process = ctrl.series(delay, ctrl.tf(numerator, denominator))
+    
+    return fopdt_process
+```
+
+```{python}
+K_p = 1
+tau = 10
+theta = 0
+
+fopdt_process = fopdt(K_p, tau, theta)
 
 t = np.linspace(0,80,200)
-
-tau = 10
-tau_delay = 0
-K = 1
+_,y = ctrl.step_response(fopdt_process,t)
 
 t_by_tau = t/tau
-
-y = fopdt(t,K,tau,tau_delay)
 
 y_632 = np.max(y) * 0.632 
 t_632 = t_by_tau[np.where(y >= y_632)[0][0]]
@@ -729,12 +783,6 @@ t_by_tau_5 = 5
 y_t_by_tau_5 = y[np.where(t_by_tau >= t_by_tau_5)[0][0]]
 
 plt.plot(t_by_tau,y, color='#65489d')
-
-# plt.axhline(y_632, color='#0d5e5e', linestyle='--')
-# plt.axvline(t_632, color='#0d5e5e', linestyle='--')
-
-# plt.axhline(y_t_by_tau_5, color='#0d5e5e', linestyle='--')
-# plt.axvline(t_by_tau_5, color='#0d5e5e', linestyle='--')
 
 plt.plot([0, t_632], [y_632, y_632], color='#0d5e5e', linestyle='--')
 plt.plot([t_632, t_632], [0, y_632], color='#0d5e5e', linestyle='--')
@@ -785,31 +833,44 @@ termed 'self-regulation'.
 ```{python}
 
 tau = 10
-tau_delay = 10
-K = 4
+theta = 10
 
-t_by_tau = t/tau
+t = np.linspace(0,80,200)
+s1 = fopdt(1, tau, theta)
+s2 = fopdt(4, tau, theta)
+s3 = fopdt(2.5, tau, theta)
+s4 = fopdt(2.5, tau*2, theta)
 
-y1 = fopdt(t, 1, tau, tau_delay)
-y2_5_t20 = fopdt(t, 2.5, 20, tau_delay)
-y2_5_t5 = fopdt(t, 2.5, 5, tau_delay)
-y4 = fopdt(t,K,tau,tau_delay)
 
-# y_632 = np.max(y) * 0.632 
-# t_632 = t_by_tau[np.where(y >= y_632)[0][0]]
-#
-# t_by_tau_5 = 5
-# y_t_by_tau_5 = y[np.where(t_by_tau >= t_by_tau_5)[0][0]]
-#
-plt.plot(t_by_tau,y1, color='#65489d')
-plt.plot(t_by_tau,y2_5_t20, color='#388ecc')
-plt.plot(t_by_tau,y2_5_t5, color='#0d5e5e')
-plt.plot(t_by_tau,y4, color='#9f1d54')
+T, y1 = ctrl.step_response(s1,t) 
+T, y2 = ctrl.step_response(s2,t) 
+T, y3 = ctrl.step_response(s3,t) 
+T, y4 = ctrl.step_response(s4,t) 
+
+t_by_tau = T/tau
+
+# While the Pade approximation helps to make delay a part of the transfer
+# function that can be used in standard control analysis and design methods,
+# it's not perfect and does not represent a "true" delay.
+
+# Introduce delay
+delay_samples = int(theta / (T[1] - T[0]))  # Calculate the number of samples to shift
+
+# Start with zeros and then append the delayed response
+yd1 = np.concatenate((np.zeros(delay_samples), y1[:len(y1) - delay_samples]))
+yd2 = np.concatenate((np.zeros(delay_samples), y2[:len(y2) - delay_samples]))
+yd3 = np.concatenate((np.zeros(delay_samples), y3[:len(y3) - delay_samples]))
+yd4 = np.concatenate((np.zeros(delay_samples), y4[:len(y4) - delay_samples]))
 
 plt.xlabel('$\\frac{t}{\\tau}$')
 plt.ylabel('Normalized Response $\\left[\\frac{h(t)}{h(\\infty)}\\right]$')
 plt.xlim([0, 8])
 plt.ylim([0, 4.2])
+
+plt.plot(t_by_tau,yd1, color='#65489d')
+plt.plot(t_by_tau,yd2, color='#388ecc')
+plt.plot(t_by_tau,yd3, color='#0d5e5e')
+plt.plot(t_by_tau,yd4, color='#9f1d54')
 
 # plt.text(1.1, 0.632, '0.632')
 
@@ -823,7 +884,7 @@ plt.text(8.2, 4, '$k = 4$')
 plt.text(6.9, 3.8, '$\\tau = 1$')
 plt.text(6.9, 1.05, '$\\tau = 1$')
 plt.text(6.9, 2.55, '$\\tau = 2$')
-plt.text(6.9, 2.25, '$\\tau = 0.5$')
+plt.text(6.9, 2.25, '$\\tau = 1$')
 
 plt.show()
 ```
@@ -1012,11 +1073,6 @@ plt.show()
 
 ::::
 
-# Analysis of Process Systems
-* Stability analysis and the concept of poles and zeros
-* Frequency response analysis
-* Bode plots and Nyquist plots
-
 ## Properties of transfer functions 
 
 - For transfer function
@@ -1200,9 +1256,9 @@ plt.show()
 
 # Feedback Control Systems
 * Introduction to feedback control
+* Control law
 * Proportional, integral, and derivative control actions
-* PID control and tuning methods
-* Stability analysis
+* Further topics
 
 ## Introduction to feedback control
 
@@ -1216,6 +1272,68 @@ plt.show()
 
 :::
 
+## Introduction to feedback control
+
+:::: {.columns}
+
+:::{.column width=60%}
+
+- $y = g_p m + g_d d$
+
+- Error: $e = y_{sp} - y_m$
+
+- Control action: $c = g_c e = g_c(y_{sp} - y_m)$
+
+- Manipulated variable: $m = g_f c = g_c g_f (y_{sp} - y_m)$
+
+:::
+
+::: {.column width=40%}
+
+![](../../../assets/images/feedback-control-4.png){width=90%}
+
+:::
+
+::::
+
+- Controlled variable: $y = g_p m + g_d d = g_c g_f g_p (y_{sp} - y_m) + g_d d$
+
+- Closed loop transfer function
+  $$
+  y = \frac{g_p g_f g_c}{1 + g_p g_f g_c g_m} y_{sp} +
+      \frac{g_d}{1 + g_p g_f g_c g_m} d
+  $$
+
+## Introduction to feedback control
+
+  $$y = G_{sp} y_{sp} + G_d d$$
+
+:::{.smaller}
+
+- $G_{sp}$ embodies the dynamics of the setpoint response.  
+  How the process output will respond when the set-point is changed? 
+
+- $G_d(s)$ indicates how the process output will respond when a
+  disturbance enters the process. 
+
+- Denominators of the closed-loop transfer functions, $G_{sp}$ and $G_{d}$, are the
+  same, indicating that they share the same stability characteristics.
+
+- In a more general setting, the closed-loop transfer function for general
+  block diagram is represented as
+
+  $$
+  \frac{r(s)}{r_i(s)} = \frac{G_1(s)}{1 + G_2(s)}
+  $$
+  
+  In this expression, $r$ is an output variable or any internal variable within
+  the control loop and $r_i$ represents an input variable such as $y_{sp}$ or $d$. 
+
+  The transfer function $G_1$ is the product of the transfer functions in the
+  forward path that connects an input $r_i$ to an output $r$. 
+
+  $G_2$ is the transfer function composed of all transfer functions in the feedback loop.
+:::
 
 ## Introduction to feedback control
 
@@ -1226,7 +1344,56 @@ plt.show()
 ![](../../../assets/images/heat-exchanger-feedback-control-schematic.png){.absolute top=150 right=50 width=90%}
 
 
-## Proportional, integral, and derivative control actions
+## Control law
+
+::: {.fragment}
+- The control signal c(t) is calculated, given the value of the error e(t),
+  through a predefined functional relationship
+  $$c(t) = C \left[e(t)\right]$$
+:::
+
+::: {.fragment}
+- The function $C[\cdot]$ constitutes teh control law.
+:::
+
+::: {.fragment}
+- Establishes the manner with which the error information is processed by the controller. 
+:::
+
+::: {.fragment}
+- The most common functional form is the three-mode proportional–integral–
+derivative (PID) control law
+$$ \frac{\bar{c}(s)}{\bar{e}(s)} = g_c(s) = k_c \left(1 + \frac{1}{\tau_I s} +\tau_D s \right)$$
+:::
+
+
+## Proportional mode
+
+:::{.fragment}
+- This mode produces a control signal that is proportional to the error:
+  $$c(t) = k_c e(t) + c_b$$
+:::
+
+:::{.fragment}
+- $k_c$ represents the proportional gain of the controller:
+  Defines how sensitive the controller is to errors present in the system. 
+:::
+
+:::{.fragment}
+- $c_b$ is a bias signal that corresponds to the value of the control signal when the error is zero. 
+  The bias signal is the steady-state value of the control signal. 
+:::
+
+:::{.fragment}
+- Define - deviation variable $\bar{c}(t) = c(t) - c_b$; also $\bar{e}(t) = e(t)$
+:::
+
+:::{.fragment}
+- Transfer function:
+  $$ \frac{\bar{c}(s)}{\bar{e}(s)} = g_c(s) = k_c $$
+:::
+
+## Proportional mode
 
 ```{python}
 
@@ -1265,20 +1432,54 @@ t_cl_1, y_setpoint_1 = ctrl.step_response(closed_loop_sys_1, t)
 t_cl_4, y_setpoint_4 = ctrl.step_response(closed_loop_sys_4, t)
 
 # Plot the responses
-plt.figure()
-plt.plot(t_ol, y_open_loop, label="Open Loop Response")
-plt.plot(t_cl_p5, y_setpoint_p5, label="$K_p = 0.5$")
-plt.plot(t_cl_1, y_setpoint_1, label="$K_p = 1$")
-plt.plot(t_cl_4, y_setpoint_4, label="$K_p = 4$")
+plt.plot(t_ol,y_open_loop, color='#65489d')
+plt.plot(t_cl_p5,y_setpoint_p5, color='#388ecc')
+plt.plot(t_cl_1,y_setpoint_1, color='#0d5e5e')
+plt.plot(t_cl_4,y_setpoint_4, color='#9f1d54')
+
 plt.xlabel('Time')
 plt.ylabel('$y(t)$')
-plt.legend()
+plt.xlim([0, 30])
+plt.ylim([0, 1])
+
+plt.text(31, 1-0.01, 'Open loop response')
+plt.text(31, 0.5-0.01, '$K_p = 0.5$')
+plt.text(31, 0.33-0.01,'$K_p = 1$')
+plt.text(31, 0.1-0.01, '$K_p = 4$')
+
 plt.show()
 
 ```
 
+## Integral mode
 
-## Proportional, integral, and derivative control actions
+::: {.fragment}
+- The control signal for this mode is produced by the integral equation:
+  $$ c(t) = \frac{k_c}{\tau_I}\int{e(t)dt} + c_b$$
+:::
+
+::: {.fragment}
+- The new parameter $\tau_I$ represents the integral time constant or the reset time. 
+:::
+
+::: {.fragment}
+- With this mode, the controller responds effectively to errors that build up over time.
+
+  :::{.smaller}
+  This is a very important feature because even if the error is small, as long as it
+  persists, a large control signal may be calculated, thus helping to eliminate the
+  error quickly
+  :::
+:::
+
+
+::: {.fragment}
+- The transfer function of a controller with only the integral mode is
+  $$ \frac{\bar{c}(s)}{\bar{e}(s)} = g_c(s) = k_c \left(\frac{1}{\tau_I s}  \right)$$
+:::
+
+## Integral mode
+
 
 ```{python}
 
@@ -1319,18 +1520,55 @@ t_sp_10, y_setpoint_10 = ctrl.step_response(setpoint_tf_10, t)
 t_sp_30, y_setpoint_30 = ctrl.step_response(setpoint_tf_30, t)
 
 # Plot the responses
-plt.figure()
-plt.plot(t_sp_2, y_setpoint_2, label="$\\tau_I = 2$")
-plt.plot(t_sp_10, y_setpoint_10, label="$\\tau_I = 10$")
-plt.plot(t_sp_30, y_setpoint_30, label="$\\tau_I = 30$")
+plt.plot(t_sp_2,y_setpoint_2, color='#65489d')
+plt.plot(t_sp_10,y_setpoint_10, color='#388ecc')
+plt.plot(t_sp_30, y_setpoint_30, color='#0d5e5e')
+
+
+# Plot the responses
+# plt.plot(t_sp_2, y_setpoint_2, label="$\\tau_I = 2$")
+# plt.plot(t_sp_10, y_setpoint_10, label="$\\tau_I = 10$")
+# plt.plot(t_sp_30, y_setpoint_30, label="$\\tau_I = 30$")
+
 plt.xlabel('Time')
 plt.ylabel('$y(t)$')
-plt.legend()
+plt.xlim([0, 60])
+plt.ylim([0, 1.8])
+
+plt.text(4, 1.67, "$\\tau_I = 2$")
+plt.text(10, 1.37, "$\\tau_I = 10$")
+plt.text(20, 1.15,"$\\tau_I = 30$")
+
 plt.show()
 
 ```
+## Derivative mode
 
-## Proportional, integral, and derivative control actions
+::: {.fragment}
+- In this mode, the control signal responds to the rate of change of the error signal:
+  $$c(t)= k_c \tau_D \frac{\mathrm{d}e(t)}{\mathrm{d}t} + c_b$$
+:::
+
+::: {.fragment}
+- A new parameter $\tau_D$ is introduced as the derivative time constant. 
+::: 
+
+::: {.fragment}
+- The role of this mode is to judge the change in the error. 
+
+  :::{.smaller}
+  For instance, if the error is still present but not increasing as fast, the
+  controller may use this information to decrease the control signal, thus
+  possibly avoiding overly aggressive control actions. 
+  :::
+:::
+
+:::{.fragment}
+- The transfer function for a controller with derivative mode only is given by
+  $$ \frac{\bar{c}(s)}{\bar{e}(s)} = g_c(s) = k_c \left(\tau_D s  \right)$$
+:::
+
+## Derivative mode
 
 
 ```{python}
@@ -1377,30 +1615,198 @@ t_cl_d10, y_d10 = ctrl.step_response(closed_loop_sys_d10, t)
 t_cl_d30, y_d30 = ctrl.step_response(closed_loop_sys_d30, t)
 
 # Plot the responses
-plt.figure()
-plt.plot(t_cl_d2, y_d2, label="$\\tau_d = 2$")
-plt.plot(t_cl_d10, y_d10, label="$\\tau_d = 10$")
-plt.plot(t_cl_d30, y_d30, label="$\\tau_d = 30$")
+plt.plot(t_cl_d2,y_d2, color='#65489d')
+plt.plot(t_cl_d10,y_d10, color='#388ecc')
+plt.plot(t_cl_d30, y_d30, color='#0d5e5e')
+
 plt.xlabel('Time')
 plt.ylabel('$y(t)$')
+plt.xlim([0, 300])
+plt.ylim([-0.04, 0.14])
+
+plt.text(10, 0.125, "$\\tau_d = 2$")
+plt.text(20, 0.085, "$\\tau_d = 10$")
+plt.text(30, 0.06,"$\\tau_d = 30$")
+
+plt.show()
+
+
+# # Plot the responses
+# plt.plot(t_cl_d2, y_d2, label="$\\tau_d = 2$")
+# plt.plot(t_cl_d10, y_d10, label="$\\tau_d = 10$")
+# plt.plot(t_cl_d30, y_d30, label="$\\tau_d = 30$")
+# plt.xlabel('Time')
+# plt.ylabel('$y(t)$')
+# plt.legend()
+# plt.show()
+#
+```
+
+## Mixing tank
+
+::::{.columns}
+
+:::{.column width=50%}
+
+- The manipulated variable is the flow rate of stream 2, $F_2$, to control the
+  outlet mass fraction, $x$.
+
+- The disturbance is the flow rate of stream 1, $F_1$.
+
+- The feed mass fractions are assumed constant.
+  
+- There is a P controller, $g_c(s) = k_c$.
+
+- The dynamics of the actuators and the sensors are accounted for by pure
+  dead-time elements, resulting in the transfer functions 
+
+  $$
+  \bar{x}(s) = \frac{-0.1 e^{-s}}{2.5s + 1} \bar{F}_1(s) +
+               \frac{ 0.1 e^{-s}}{2.5s + 1} \bar{F}_2(s)
+  $$
+
+:::
+
+::: {.column width=50%}
+
+![](../../../assets/images/mixing-tank-feedback-control.png){width=90%}
+
+:::
+
+::::
+
+
+
+
+## Mixing tank: setpoint change
+
+
+```{python}
+
+# P controller
+Kp = 20 
+
+controller_p = ctrl.TransferFunction([Kp],[1])
+
+# PI controller
+tau_i = 0.5
+Ki = Kp/tau_i  # integral gain
+
+controller_pi = ctrl.TransferFunction([Kp, Ki],[1,0])
+
+# PID controller
+tau_d= 0.5
+Kd = Kp*tau_d
+
+controller_pid = ctrl.TransferFunction([Kd, Kp, Ki], [1, 0])
+
+# Define the plant
+plant = fopdt(0.1,2.5,1)
+
+# Define the disturbance
+disturbance = fopdt(-0.1,2.5,1)
+
+# Define the closed loop system for disturbance rejection
+closed_loop_sp_p = plant*controller_p/(1 + plant*controller_p) 
+closed_loop_sp_pi = plant*controller_pi/(1 + plant*controller_pi) 
+closed_loop_sp_pid = plant*controller_pid/(1 + plant*controller_pid) 
+
+# Define time array
+t = np.linspace(0, 40, 400)
+t_sp = np.heaviside(t - 4, 1)  # Unit step at t = 4s
+
+_, y_p = ctrl.forced_response(closed_loop_sp_p, t, t_sp)
+_, y_pi = ctrl.forced_response(closed_loop_sp_pi, t, t_sp)
+_, y_pid = ctrl.forced_response(closed_loop_sp_pid, t, t_sp)
+
+# Plot the responses
+plt.plot(t,y_p, color='#65489d', label='P')
+plt.plot(t,y_pi, color='#388ecc', label='PI')
+plt.plot(t, y_pid, color='#0d5e5e', label='PID')
+
+plt.xlabel('Time')
+plt.ylabel('$y(t)$')
+plt.xlim([0, 40])
+plt.ylim([0.0, 1.4])
+plt.legend()
+plt.show()
+
+
+```
+
+## Mixing tank: disturbance rejection
+
+
+```{python}
+
+# P controller
+Kp = 20 
+
+controller_p = ctrl.TransferFunction([Kp],[1])
+
+# PI controller
+tau_i = 0.5
+Ki = Kp/tau_i  # integral gain
+
+controller_pi = ctrl.TransferFunction([Kp, Ki],[1,0])
+
+# PID controller
+tau_d= 0.5
+Kd = Kp*tau_d
+
+controller_pid = ctrl.TransferFunction([Kd, Kp, Ki], [1, 0])
+
+# Define the plant
+plant = fopdt(0.1,2.5,1)
+
+# Define the disturbance
+disturbance = fopdt(-0.1,2.5,1)
+
+# Define the closed loop system for disturbance rejection
+closed_loop_dr_p = disturbance/(1 + plant*controller_p) 
+closed_loop_dr_pi = disturbance/(1 + plant*controller_pi) 
+closed_loop_dr_pid = disturbance/(1 + plant*controller_pid) 
+
+# Define time array
+t = np.linspace(0, 40, 400)
+t_disturbance = np.heaviside(t - 4, 1)  # Unit step at t = 4s
+
+# Calculate the step response for the setpoint change and disturbance
+
+# do_p = ctrl.feedback(controller_p*plant,1)
+# do_pi = ctrl.feedback(controller_pi*plant,1)
+# do_pid = ctrl.feedback(controller_pid*plant,1)
+
+# _, y_p = ctrl.forced_response(do_p, t, t_disturbance)
+# _, y_pi = ctrl.forced_response(do_pi, t, t_disturbance)
+# _, y_pid = ctrl.forced_response(do_pid, t, t_disturbance)
+
+
+_, y_p = ctrl.forced_response(closed_loop_dr_p, t, t_disturbance)
+_, y_pi = ctrl.forced_response(closed_loop_dr_pi, t, t_disturbance)
+_, y_pid = ctrl.forced_response(closed_loop_dr_pid, t, t_disturbance)
+
+# Plot the responses
+plt.plot(t,y_p, color='#65489d', label='P')
+plt.plot(t,y_pi, color='#388ecc', label='PI')
+plt.plot(t, y_pid, color='#0d5e5e', label='PID')
+
+plt.xlabel('Time')
+plt.ylabel('$y(t)$')
+plt.xlim([0, 40])
+plt.ylim([-0.04, 0.005])
 plt.legend()
 plt.show()
 
 ```
 
+## Further topics
 
+- Model liniarization
+  
+- Controller design and tuning methods
 
+- Frequency response analysis
 
-
-## PID control and tuning methods
-
-
-## Stability analysis
-
-## Frequency response analysis
-
-
-## Bode plots and Nyquist plots
-
-
+- Bode plots and Nyquist plots
 
