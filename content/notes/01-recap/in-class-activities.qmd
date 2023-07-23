@@ -111,7 +111,20 @@ format:
 
 20. Have fun with `zp2tf`, `tf2zp`, and `tf` commands
 
-21. Solve differential equations using Simulink
+21. Response of first order system: Compute and plot step response of following
+    first order systems
+
+    $$y(s) = \frac{1}{5s + 1}$${#eq-p21-1}
+    $$y(s) = \frac{5e^{-10s}}{2.5s + 1}$${#eq-p21-2}
+
+22. Response of second order system: Compute and plot step response of following
+    second order system. Show effect of ξ on response.
+  
+    $$ G_p(s) = \frac{Y(s)}{U(s)} = \frac{K_p e^{-\theta s}}{\tau^2 s^2 + 2 \xi \tau s + 1}$${#eq-p22}
+
+    $K_p = 1$; $\tau = 1$; $\theta = 10$
+
+23. Solve differential equations using Simulink
 
 a)  An object falling under gravity
 

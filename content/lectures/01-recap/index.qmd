@@ -64,4 +64,17 @@ the link.
 
 ## In-Class Resources
 
+The in-class activities/ tasks for this lecture are at:
+
+:::{.grid}
+::: {.g-col-5}
+
+[in-class activities](../../notes/01-recap/in-class-activities.qmd){.btn .btn-success .btn-lg role="button"}
+
+:::
+:::
+
+
+
+
 
