@@ -39,3 +39,5 @@ README.html
 
 /.luarc.json
 
+# draw.io
+*.bkp

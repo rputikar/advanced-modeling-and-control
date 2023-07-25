@@ -1,14 +1,84 @@
 ---
 title: 
-  PID Enhancement Techniques
-subtitle: 
-  Ratio and Feedforward Control
+  Feedforward and ratio control
+date: 2023/07/27
+format: html
 ---
 
-## Readings
+## Pre Class Activities
+
+- Go through the slides and lecture video below. 
+
+- Play with builtin MATLAB example: Type `heatex` at MATLAB command prompt
+
+- Videos to watch
+
+  https://www.youtube.com/watch?v=FW_ay7K4jPE
+
+  https://www.youtube.com/watch?v=vXNd1ZqpYb0
+
+  https://www.youtube.com/watch?v=OZsIXaSaW7g
 
 ## Slides
 
+The slides for this lecture are provided as interactive document online. Click
+on the button below to view them in fullscreen (The link will open in a new tab
+or window). You can also view them as pdf for printing, or later viewing.  
+
+:::{.grid}
+::: {.g-col-1}
+[Slides](../../slides/02-ratio_and_feedforward_control/index.qmd){target="_blank" .btn .btn-success .btn-lg role="button"}
+
+:::
+
+::: {.g-col-1}
+[PDF](../../slides/02-ratio_and_feedforward_control/02-ratio_and_feedforward_control.pdf){target="_blank" .btn .btn-info .btn-lg role="button"}
+
+:::
+:::
+
+The slides are also placed below for your reference. Use your keypad's
+{{< fa arrow-left >}} and {{< fa arrow-right >}} to navigate the slides.
+
+::: {.container style="position: relative;overflow: hidden;width:
+100%;min-height:600px;"}
+<iframe src="../../slides/01-recap/"
+style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width:
+100%;min-height:600px;"></iframe>
+:::
+
+<!--
 ## Videos
 
+## Lecture notes
+
+Detailed lcture notes are available for this lecture. 
+You can browse them by
+clicking on the link below. 
+You can also download them in various formats from
+the link. 
+
+:::{.grid}
+::: {.g-col-3}
+[Lecture Notes](../../notes/01-recap/index.qmd){.btn .btn-success .btn-lg role="button"}
+
+:::
+:::
+-->
+
 ## In-Class Resources
+
+The in-class activities/ tasks for this lecture are at:
+
+:::{.grid}
+::: {.g-col-5}
+
+[in-class activities](../../notes/01-recap/in-class-activities.qmd){.btn .btn-success .btn-lg role="button"}
+
+:::
+:::
+
+
+
+
+

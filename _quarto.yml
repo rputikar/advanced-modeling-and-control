@@ -92,7 +92,7 @@ website:
         id: lectures
         contents:
           - file: ./content/lectures/01-recap/index.qmd
-          # - file: ./content/lectures/02-ratio_and_feedforward_control/index.qmd
+          - file: ./content/lectures/02-ratio_and_feedforward_control/index.qmd
           # - file: ./content/lectures/03-override_control/index.qmd
           # - file: ./content/lectures/04-other_advanced_control_techniques/index.qmd
           # - file: ./content/lectures/05-time_series_modelling_and_analysis/index.qmd
@@ -103,33 +103,33 @@ website:
           # - file: ./content/lectures/10-pattern_recognition_and_machine_learning/index.qmd
           # - file: ./content/lectures/11-model_based_optimization/index.qmd
           #
-  #    - section: "Workshops"
-  #      id: workshops
-  #      contents:
-  #        - file: ./content/workshops/workshop-01/index.qmd
-  #          text: Workshop 01
-  #        - file: ./content/workshops/workshop-02/index.qmd
-  #          text: Workshop 02
-  #        - file: ./content/workshops/workshop-03/index.qmd
-  #          text: Workshop 03
-  #        - file: ./content/workshops/workshop-04/index.qmd
-  #          text: Workshop 04
-  #        - file: ./content/workshops/workshop-05/index.qmd
-  #          text: Workshop 05
-  #        - file: ./content/workshops/workshop-06/index.qmd
-  #          text: Workshop 06
-  #        - file: ./content/workshops/workshop-07/index.qmd
-  #          text: Workshop 07
-  #        - file: ./content/workshops/workshop-08/index.qmd
-  #          text: Workshop 08
-  #        - file: ./content/workshops/workshop-09/index.qmd
-  #          text: Workshop 09
-  #
-  #    - section: "Computer Labs"
-  #      id: computer-labs
-  #      contents:
-  #        - file: ./content/labs/lab-01/index.qmd
-  #          text: Lab 01
+      #    - section: "Workshops"
+      #      id: workshops
+      #      contents:
+      #        - file: ./content/workshops/workshop-01/index.qmd
+      #          text: Workshop 01
+      #        - file: ./content/workshops/workshop-02/index.qmd
+      #          text: Workshop 02
+      #        - file: ./content/workshops/workshop-03/index.qmd
+      #          text: Workshop 03
+      #        - file: ./content/workshops/workshop-04/index.qmd
+      #          text: Workshop 04
+      #        - file: ./content/workshops/workshop-05/index.qmd
+      #          text: Workshop 05
+      #        - file: ./content/workshops/workshop-06/index.qmd
+      #          text: Workshop 06
+      #        - file: ./content/workshops/workshop-07/index.qmd
+      #          text: Workshop 07
+      #        - file: ./content/workshops/workshop-08/index.qmd
+      #          text: Workshop 08
+      #        - file: ./content/workshops/workshop-09/index.qmd
+      #          text: Workshop 09
+      #
+      - section: "Computer Labs"
+        id: computer-labs
+        contents:
+          - file: ./content/labs/lab-01/index.qmd
+            text: Lab 01
   #        - file: ./content/labs/lab-02/index.qmd
   #          text: Lab 02
   #        - file: ./content/labs/lab-03/index.qmd

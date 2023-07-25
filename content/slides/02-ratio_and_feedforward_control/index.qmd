@@ -1,0 +1,106 @@
+---
+title: "Feedforward and ratio control"
+format: revealjs
+---
+
+```{python}
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import control as ctrl
+import scipy as sp
+from scipy.optimize import minimize
+from scipy import signal
+from IPython.display import display, Markdown
+plt.style.use('../../../assets/templates/present.mpstyle')
+```
+
+## Feedback control advantages
+
+![](../../../assets/images/simple-feedback.png){width=90%}
+
+:::{.fragment}
+- Corrective action occurs as soon as the controlled variable deviates from the
+  set point, regardless of the source and type of disturbance.
+:::
+
+:::{.fragment}
+- Feedback control requires minimal knowledge about the process to be
+  controlled; in particular, a mathematical model of the process is not
+  required, although it can be very useful for control system design.
+:::
+
+:::{.fragment}
+- The ubiquitous PID controller is both versatile and robust. If process
+  conditions change, re-tuning the controller usually produces satisfactory
+  control
+:::
+
+## Feedback control disadvantages
+
+:::{.fragment}
+- No corrective action is taken until after a deviation in the controlled
+  variable occurs. Thus, perfect control, where the controlled variable does
+  not deviate from the set point during disturbance or set-point changes, is
+  theoretically impossible.
+:::
+
+:::{.fragment}
+- It does not provide predictive control action to compensate for the effects
+  of known or measurable disturbances.
+:::
+
+:::{.fragment}
+- It may not be satisfactory for processes with large time constants and/or
+  long time delays. If large and frequent disturbances occur, the process may
+  operate continuously in a transient state and never attain the desired steady
+  state.
+:::
+
+:::{.fragment}
+- In some situations, the controlled variable cannot be measured on-line, so
+  feedback control is not feasible.
+:::
+
+::::{.fragment}
+:::{.callout-note appearance='simple'}
+For situations in which feedback control by itself is not satisfactory,
+significant improvement can be achieved by adding feedforward control. But
+feedforward control requires that the disturbances be measured (or estimated)
+on-line. 
+:::
+::::
+
+## Introduction to feedforward control
+
+- The basic concept of feedforward control is to measure important disturbance
+  variables and take corrective action before they upset the process. 
+
+- In contrast, a feedback controller does not take corrective action until
+  after the disturbance has upset the process and generated a nonzero error
+  signal.
+
+
+![](../../../assets/images/simple-feedforward.png){width=90%}
+
+::::{.columns}
+:::{.column width=50%}
+:::
+
+:::{.column width=50%}
+:::
+::::
+
+
+## Ratio control
+
+## Feedforward controller design
+
+## Steady state method
+
+## Dynamic model method
+
+## Configurations for <br>feedforward-feedback control
+
+## Tuning feedforward controllers
+
