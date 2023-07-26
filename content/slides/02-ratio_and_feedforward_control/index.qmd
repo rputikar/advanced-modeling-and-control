@@ -83,24 +83,244 @@ on-line.
 
 ![](../../../assets/images/simple-feedforward.png){width=90%}
 
+## Comparison between <br>feedforward and feedback control
+
 ::::{.columns}
 :::{.column width=50%}
+
+### Feedforward control
+
+
+:::{.smaller}
+*Advantages* 
+
+- Acts before the disturbance reaches the process 
+- Cannot cause instability 
+- Good for slow process dynamics
+:::
+
+
+:::{.smaller}
+*Disadvantages*
+
+- Must identify and measure all disturbances 
+- Fails for unmeasured disturbances 
+- Relies on availability of process models 
+- No indication of control quality
+:::
+
 :::
 
 :::{.column width=50%}
+
+### Feedback control
+
+
+:::{.smaller}
+*Advantages*
+
+- No disturbance measurements needed
+- No process model necessary
+- Can cope with changes within process
+:::
+
+
+:::{.smaller}
+*Disadvantages*
+
+- Will always have some transient error
+- Poor for slow dynamics and interactions
+- Instability is possible
+:::
+
 :::
 ::::
 
 
+## Feedforward control configuration
+
+![](../../../assets/images/feedforward-control-configuration.png){width=90%}
+
+## Feedforward control configuration
+
+::::{.columns}
+
+:::{.column}
+![](../../../assets/images/feedforward-control-configuration.png)
+:::
+
+:::{.column}
+- Transfer functions
+$$G^1_{ff} = \frac{G_{md}}{G_d};  G^2_{ff}=-\frac{G_d}{G_p G_f G_{md}}$$
+
+- Neglecting dynamics of final control element and sensor
+
+$$G^1_{ff} = \frac{1}{G_d};  G^2_{ff}=-\frac{G_d}{G_p}$$
+:::
+::::
+
+
+:::{.callout-note appearance='simple'}
+Sometimes idealized feedforward controller cannot be realized physically due to non-causal system
+:::
+
+
+## Non-causal idealized feedforward controller
+
+::::{.columns}
+
+:::{.column}
+Consider
+
+$$
+G_d = \frac{2 e^{-3s}}{5s + 1}
+$$
+
+$$
+G_p = \frac{e^{-5s}}{2s + 1}
+$$
+
+Idealized feedforward controller
+
+$$
+G_ff = -\frac{G_d}{G_p}
+     = -\frac{2(2s+1)e^{2s}}{5s+1}
+$$
+
+Not realizable due to the predictive term $e^{2s}$
+:::
+
+:::{.column}
+Consider
+
+$$
+G_d = \frac{e^{-2s}}{s + 1}
+$$
+
+$$
+G_p = \frac{e^{-s}}{s^2 + 2s + 1}
+$$
+
+Idealized feedforward controller
+
+$$
+G_ff = -\frac{G_d}{G_p}
+     = -\frac{(s^2 + 2s + 1) e^{-s} }{s+1}
+$$
+
+Not realizable because the numerator order is higher than the denominator
+
+:::
+::::
+
+
+## Feedforward-Feedback control configuration
+
+![](../../../assets/images/feedback-feedforward-control-configuration.png){width=90%}
+
+## Feedforward-Feedback control configuration
+
+::::{.columns}
+
+:::{.column}
+![](../../../assets/images/feedback-feedforward-control-configuration.png)
+:::
+
+:::{.column}
+- Closed loop transfer function
+
+$$
+\begin{split}
+y(s) = & \frac{G_p G_f [G^2_{ff} G^1_{ff} + G_c]}{1 + G_p G_f G_c G_m} y_{sp}(s) \\[1ex]
+       & + \frac{G_d - G_p G_f G^2_{ff} G_{md}}{1 + G_p G_f G_c G_m} d(s)
+\end{split}
+$$
+
+- Characteristic equation for this closed-loop system
+
+$$
+1 + G_p G_f G_c G_m = 0
+$$
+:::
+::::
+
 ## Ratio control
 
-## Feedforward controller design
+Ratio control is a special type of feedforward control
+that has had widespread application in the process
+industries. Its objective is to maintain the ratio of two
+process variables at a specified value. The two variables
+are usually flow rates, a manipulated variable u and a
+disturbance variable d. Thus, the ratio u/d is controlled rather than
+individual variables.
 
-## Steady state method
+$$R := \frac{u}{d}$$ 
 
-## Dynamic model method
 
-## Configurations for <br>feedforward-feedback control
+Typical applications 
+
+(1) specifying the relative amounts of components in blending operations. 
+
+(2) maintaining a stoichiometric ratio of reactants to a reactor. 
+
+(3) keeping a specified reflux ratio for a distillation column.
+
+(4) holding the fuel-air ratio to a furnace at the optimum value.
+
+
+##  Ratio control schemes
+
+::::{.columns}
+
+:::{.column width=50%}
+
+![](../../../assets/images/ratio-control-method-1.png){width=90%}
+
+[Method 1]{.center}
+
+:::
+
+:::{.column width=50%}
+
+![](../../../assets/images/ratio-control-method-2.png){width=90%}
+
+[Method 2]{.center}
+:::
+
+::::
+
+## Stability
+
+- While feedback control is inherently stable due to its self-correcting
+  nature, feedforward control requires careful consideration of system
+  stability.
+
+- Unstable behavior can arise in feedforward control systems due to modeling
+  errors or incorrect estimation of disturbance effects.
+
+- When combined with feedback control, the feedback loop can often correct
+  these stability issues. However, if the feedforward control is dominant, it
+  might destabilize the system.
+
+- In the design phase, engineers should thoroughly test the system response to
+  various disturbances to ensure stability.
 
 ## Tuning feedforward controllers
+
+- Tuning a feedforward controller involves adjusting the gain and two time
+  constants: lead and lag.
+
+- The lead time constant helps the controller anticipate rapid changes, and the
+  lag time constant allows it to respond to slow disturbances. Proper tuning
+  ensures a balance between fast response and system stability.
+
+- Tuning is often achieved through simulation or experimental methods.
+
+- Gain scheduling can be used to adjust controller parameters based on system
+  conditions.
+
+- When combined with feedback control in a two-degree-of-freedom control
+  structure, the feedback controller compensates for the feedforward
+  controller's imperfections, ensuring overall system stability.
+
 

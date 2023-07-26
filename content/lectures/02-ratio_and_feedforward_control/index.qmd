@@ -11,14 +11,6 @@ format: html
 
 - Play with builtin MATLAB example: Type `heatex` at MATLAB command prompt
 
-- Videos to watch
-
-  https://www.youtube.com/watch?v=FW_ay7K4jPE
-
-  https://www.youtube.com/watch?v=vXNd1ZqpYb0
-
-  https://www.youtube.com/watch?v=OZsIXaSaW7g
-
 ## Slides
 
 The slides for this lecture are provided as interactive document online. Click
@@ -42,13 +34,26 @@ The slides are also placed below for your reference. Use your keypad's
 
 ::: {.container style="position: relative;overflow: hidden;width:
 100%;min-height:600px;"}
-<iframe src="../../slides/01-recap/"
+<iframe src="../../slides/02-ratio_and_feedforward_control/"
 style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width:
 100%;min-height:600px;"></iframe>
 :::
 
-<!--
 ## Videos
+
+::: {.panel-tabset}
+## What Is Feedforward Control?
+{{< video https://www.youtube.com/embed/FW_ay7K4jPE >}}
+
+## Introduction to Feedforward Control
+{{< video https://www.youtube.com/watch?v=OZsIXaSaW7g >}}
+
+
+## Lecture: Feedforward Control
+{{< video https://www.youtube.com/watch?v=vXNd1ZqpYb0 >}}
+:::
+
+<!--
 
 ## Lecture notes
 
@@ -64,7 +69,6 @@ the link.
 
 :::
 :::
--->
 
 ## In-Class Resources
 
@@ -79,6 +83,7 @@ The in-class activities/ tasks for this lecture are at:
 :::
 
 
+-->
 
 
 

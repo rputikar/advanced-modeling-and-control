@@ -174,3 +174,16 @@ h1.title {
   transition: all 0s !important;
   # display: none !important;
 }
+
+.center {
+  display: block;
+  width: 100%;  /* This ensures the child div spans the whole width of the parent */
+  text-align: center;  /* This centers the text within the child div */
+}
+
+//
+// .center,
+// .center p,
+// .columns .column .center p{
+//   text-align: center;  /* This centers the text within the child div */
+// }
