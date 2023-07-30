@@ -6,7 +6,7 @@ date: 2023-07-26
 ## Example 15.1 from [@seborg2016]
 
 A ratio control scheme is to be used to maintain a stoichiometric ratio of
-H~2~ and N~2~ as the feed to an ammonia synthesis reactor. Individual
+H~2~ and N~2~ as the feed to an ammonia synthesis reactor [@fig-nh3-synthesis]. Individual
 flow controllers will be used for both the H~2~ and N~2~ streams.
 Using the information given below,
 
@@ -25,5 +25,19 @@ psi/mA.
 
 iv. The ratio station is an electronic instrument with 4–20 mA input and output
 signals.
+
+
+::: {.content-visible when-format="html"}
+
+![Ammonia synthesis reactor](../../../assets/images/feedforward-and-ratio-control-NH3-synthesis-reactor.png){#fig-nh3-synthesis width=60%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Ammonia synthesis reactor](../../../assets/images/feedforward-and-ratio-control-NH3-synthesis-reactor.png){#fig-nh3-synthesis}
+
+:::
+
 
 ### References

@@ -129,7 +129,7 @@ website:
         id: computer-labs
         contents:
           - file: ./content/labs/lab-01/index.qmd
-            text: Lab 01
+  #          text: "Lab 01: Feedforward control"
   #        - file: ./content/labs/lab-02/index.qmd
   #          text: Lab 02
   #        - file: ./content/labs/lab-03/index.qmd

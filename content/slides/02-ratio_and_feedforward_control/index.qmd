@@ -183,7 +183,7 @@ $$
 Idealized feedforward controller
 
 $$
-G_ff = -\frac{G_d}{G_p}
+G_{ff} = -\frac{G_d}{G_p}
      = -\frac{2(2s+1)e^{2s}}{5s+1}
 $$
 
@@ -204,7 +204,7 @@ $$
 Idealized feedforward controller
 
 $$
-G_ff = -\frac{G_d}{G_p}
+G_{ff} = -\frac{G_d}{G_p}
      = -\frac{(s^2 + 2s + 1) e^{-s} }{s+1}
 $$
 

@@ -70,6 +70,8 @@ the link.
 :::
 :::
 
+-->
+
 ## In-Class Resources
 
 The in-class activities/ tasks for this lecture are at:
@@ -77,13 +79,12 @@ The in-class activities/ tasks for this lecture are at:
 :::{.grid}
 ::: {.g-col-5}
 
-[in-class activities](../../notes/01-recap/in-class-activities.qmd){.btn .btn-success .btn-lg role="button"}
+[in-class activities](../../notes/02-ratio_and_feedforward_control/in-class-activities.qmd){.btn .btn-success .btn-lg role="button"}
 
 :::
 :::
 
 
--->
 
 
 
