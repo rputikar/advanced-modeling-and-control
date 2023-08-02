@@ -49,7 +49,7 @@ style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width:
 
 ::: {.panel-tabset}
 ## Introduction to Cascade Control
-{{< video https://youtube.com/embed/EPaQWBWp064 >}}
+{{< video https://www.youtube.com/embed/EPaQWBWp064 >}}
 
 ## Cascade control
 {{< video https://www.youtube.com/embed/ykGU-673Olw >}}
