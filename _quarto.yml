@@ -93,7 +93,7 @@ website:
         contents:
           - file: ./content/lectures/01-recap/index.qmd
           - file: ./content/lectures/02-ratio_and_feedforward_control/index.qmd
-          # - file: ./content/lectures/03-override_control/index.qmd
+          - file: ./content/lectures/03-cascade_control/index.qmd
           # - file: ./content/lectures/04-other_advanced_control_techniques/index.qmd
           # - file: ./content/lectures/05-time_series_modelling_and_analysis/index.qmd
           # - file: ./content/lectures/06-principal_component_analysis/index.qmd
