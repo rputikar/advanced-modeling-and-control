@@ -17,6 +17,7 @@ format:
     shift-heading-level-by: -1
     reference-doc: ../../assets/templates/reference-odt.odt
   pdf:
+    number-sections: true
     citeproc: true
     pdf-engine: lualatex
     latex-auto-install: true

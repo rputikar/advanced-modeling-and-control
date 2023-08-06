@@ -181,6 +181,12 @@ h1.title {
   text-align: center;  /* This centers the text within the child div */
 }
 
+.text-box{
+  display: block;
+  border: 2px solid #000;
+  padding: 10px;
+}
+
 //
 // .center,
 // .center p,

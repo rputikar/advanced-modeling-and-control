@@ -1,0 +1,148 @@
+---
+title: "Cascade control"
+subtitle: In class activities
+date: 2023-08-06
+format:
+  pdf
+---
+
+## Activities
+
+1. Consider a boiler drum as shown in the figure below
+
+::: {.content-visible when-format="html"}
+
+![Boiler drum](../../../assets/images/feedforward-and-ratio-control-boiler-drum.png){#fig-boiler-drum width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Boiler drum](../../../assets/images/feedforward-and-ratio-control-boiler-drum.png){#fig-boiler-drum}
+
+:::
+
+   a. Identify controlled variable, manipulated variable and disturbance
+
+   b. Draw a conventional feedback control to maintain liquid level in the
+   boiler.
+
+   c. What are the drawbacks of this system?
+
+2. Consider the operation of heat exchanger to demonstrate the application of
+   feedforward control strategy. Identify all disturbances and the target
+   disturbance to be remove using the feedforward control strategy 
+
+
+::: {.content-visible when-format="html"}
+
+![Heat exchanger](../../../assets/images/heat-exchanger-with-reactor.png){#fig-hx-reactor width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Heat exchanger](../../../assets/images/heat-exchanger-with-reactor.png){#fig-hx-reactor}
+
+:::
+
+
+3. For the blending system shown in [@fig-blend-system]
+ 
+::: {.content-visible when-format="html"}
+
+![Blending system](../../../assets/images/blending-schematic.png){#fig-blend-system width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Blending system](../../../assets/images/blending-schematic.png){#fig-blend-system}
+
+:::
+
+  a. Identify controlled variable
+
+  b. Manipulated variable
+
+  c. Disturbance
+
+  d. Propose a feedforward strategy to control outlet composition
+
+  e. Propose a strategy to control composition when inlet flowrate $w_2$ is fluctuating 
+
+  f. propose a feedforward feedback control strategy
+
+
+4. The process, and disturbance transfer functions for problem 1 are given by
+
+   $$G_p(s)= \frac{0.1 e^{-s}}{2.5s + 1}$${#eq-2-gp} 
+   $$G_d(s)=\frac{0.5 e^{-s}}{2.5s + 1}$${#eq-2-gd}
+
+   use PID tuner app to tune a PID controller for this process.
+
+5. Propose a feedforward control system for [@fig-boiler-drum].
+   Explain how a feedforward control can improve disturbance rejection or
+   regulatory control performance.
+
+6. Calculate ideal feedforward compensator for Problem 2 and implement pure
+   feedforward control scheme in simulink.
+
+7. Draw a combined feedforward-feedback PID for [@fig-boiler-drum]. Implement
+   feedforward-feedback system in simulink. 
+
+8. Consider the following process and disturbance transfer functions:
+
+   $$ \text { Process: } G_p(s)=\frac{2 \exp (-4 s)}{15 s+1} $${#eq-7-gp}
+
+   $$ \text{Disturbance: }G_d(s)=\frac{5 \exp (-2 s)}{30 s+1} $${#eq-7-gd}
+
+   Do the following: 
+
+   i.	For the process given above, can an idealized feedforward controller be
+   used to reject the disturbance. 
+
+   ii.	Obtain a feedforward controller and PID controller for the process
+   above using the unified feedforward-feedback control method.
+
+9. [Ratio control for ammonia synthesis reactor](./ammonia_synthesis_reactor.qmd).  
+
+10. Furnace ratio control [@fig-furnace]
+
+    Draw the schematic of a ratio control strategy. What is the target
+    disturbance? What is the manipulated variable? What is the controlled
+    variable?
+ 
+::: {.content-visible when-format="html"}
+
+![Furnace](../../../assets/images/furnace-ratio-control.png){#fig-furnace width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Furnace](../../../assets/images/furnace-ratio-control.png){#fig-furnace}
+
+:::
+
+11. Wastewater pH neutralization [@fig-wastewater]
+
+    Devise a ratio control strategy to provide desired flow rate of NaOH
+    solution to maintain the pH of the effluent. 
+
+::: {.content-visible when-format="html"}
+
+![Wastewater treatment tank](../../../assets/images/wastewater-ph-neutralization-schematic.png){#fig-wastewater width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Wastewater treatment tank](../../../assets/images/wastewater-ph-neutralization-schematic.png){#fig-wastewater}
+
+:::
+
+
+
+
+
