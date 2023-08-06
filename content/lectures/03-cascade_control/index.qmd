@@ -40,7 +40,7 @@ The slides are also placed below for your reference. Use your keypad's
 
 ::: {.container style="position: relative;overflow: hidden;width:
 100%;min-height:600px;"}
-<iframe src="../../slides/02-ratio_and_feedforward_control/"
+<iframe src="../../slides/03-cascade_control/"
 style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width:
 100%;min-height:600px;"></iframe>
 :::
@@ -76,6 +76,7 @@ the link.
 :::
 :::
 
+-->
 
 ## In-Class Resources
 
@@ -84,11 +85,10 @@ The in-class activities/ tasks for this lecture are at:
 :::{.grid}
 ::: {.g-col-5}
 
-[in-class activities](../../notes/02-ratio_and_feedforward_control/in-class-activities.qmd){.btn .btn-success .btn-lg role="button"}
+[in-class activities](../../notes/03-cascade_control/in-class-activities.qmd){.btn .btn-success .btn-lg role="button"}
 
 :::
 :::
 
--->
 
 

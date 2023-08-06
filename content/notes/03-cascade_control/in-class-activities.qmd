@@ -8,141 +8,160 @@ format:
 
 ## Activities
 
-1. Consider a boiler drum as shown in the figure below
+1. Furnace temperature control: 
+
+   Draw a single loop feedback, and possible cascade control configuration for the furnace. 
+   Name the disturbances which can be handled by such cascade control configuration.
+   Name the disturbances which cannot be removed by the cascade control configuration.
 
 ::: {.content-visible when-format="html"}
 
-![Boiler drum](../../../assets/images/feedforward-and-ratio-control-boiler-drum.png){#fig-boiler-drum width=70%}
+![Furnace](../../../assets/images/cascade-control-in-class-furnace-temperature-control.png){#fig-furnace width=70%}
 
 :::
 
 ::: {.content-visible unless-format="html"}
 
-![Boiler drum](../../../assets/images/feedforward-and-ratio-control-boiler-drum.png){#fig-boiler-drum}
+![Furnace](../../../assets/images/cascade-control-in-class-furnace-temperature-control.png){#fig-furnace}
 
 :::
 
-   a. Identify controlled variable, manipulated variable and disturbance
 
-   b. Draw a conventional feedback control to maintain liquid level in the
-   boiler.
+2. Ammonia reactor
 
-   c. What are the drawbacks of this system?
-
-2. Consider the operation of heat exchanger to demonstrate the application of
-   feedforward control strategy. Identify all disturbances and the target
-   disturbance to be remove using the feedforward control strategy 
-
+   Consider that you have been appointed by the plant manager to design a
+   cascade control strategy for the Haber process that produces ammonia (NH3)
+   for fertilizer production. The Haber process is conducted in a multi-tubular
+   catalytic reactor where reaction occurs in the tubes while cooling medium
+   flowing in the shell outside the tubes. The reactor has a length of 10
+   meters and shell dimeter of 2.5 meters.
+   
+   Propose a cascade control strategy for this reactor. Give comments why you
+   propose such a cascade control strategy
 
 ::: {.content-visible when-format="html"}
 
-![Heat exchanger](../../../assets/images/heat-exchanger-with-reactor.png){#fig-hx-reactor width=70%}
+![Ammonia reactor](../../../assets/images/cascade-control-in-class-ammonia-reactor.png){width=70%}
 
 :::
 
 ::: {.content-visible unless-format="html"}
 
-![Heat exchanger](../../../assets/images/heat-exchanger-with-reactor.png){#fig-hx-reactor}
+![Ammonia reactor](../../../assets/images/cascade-control-in-class-ammonia-reactor.png)
+
+:::
+
+3. Level control
+
+   Draw a feedback system to control liquid level by using w1 as manipulated
+   variable.
+
+   Is it possible to improve the performance of the feedback system in the
+   presence of disturbances in w1?
+
+
+::: {.content-visible when-format="html"}
+
+![Level control](../../../assets/images/cascade-control-in-class-feedback-level-control.png){width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Level control](../../../assets/images/cascade-control-in-class-feedback-level-control.png)
+
+:::
+
+4. Exothermic reactor
+
+   Consider a stirred chemical reactor where cooling water flows through the
+   reactor jacket to regulate the reactor temperature. 
+
+   Draw a cascade control to regulate reactor temperature. What is the
+   manipulate variable, what is the disturbance that is addressed by the
+   cascade control?
+
+
+::: {.content-visible when-format="html"}
+
+![Exothermic reactor](../../../assets/images/cascade-control-in-class-exothermic-reactor.png){width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Exothermic reactor](../../../assets/images/cascade-control-in-class-exothermic-reactor.png)
 
 :::
 
 
-3. For the blending system shown in [@fig-blend-system]
+5. For the processes and controllers below, analyze the stability of cascade
+   control system
+   
+   $$
+   \begin{aligned}
+   \text { Primary Process: } G_{p 1} &= \frac{1.0 \exp (-4 s)}{(10 s+1)} \\
+   \\[1em]
+   \text { Secondary Process: } G_{p 2} &= \frac{5 \exp (- s)}{2 s+1}
+   \end{aligned}
+   $${#eq-p5-process}
  
-::: {.content-visible when-format="html"}
+   $$
+   \begin{aligned}
+   \text { Primary Controller: } G_{c 1} &= 2.5 \left( 1 + \frac{1.0}{5 s} \right)\\
+   \\[1em]
+   \text { Secondary Controller: } G_{c 2} &= 0.1 
+   \end{aligned}
+   $${#eq-p5-controller}
 
-![Blending system](../../../assets/images/blending-schematic.png){#fig-blend-system width=70%}
+6. Simulate the system in 5 using simulink
 
-:::
-
-::: {.content-visible unless-format="html"}
-
-![Blending system](../../../assets/images/blending-schematic.png){#fig-blend-system}
-
-:::
-
-  a. Identify controlled variable
-
-  b. Manipulated variable
-
-  c. Disturbance
-
-  d. Propose a feedforward strategy to control outlet composition
-
-  e. Propose a strategy to control composition when inlet flowrate $w_2$ is fluctuating 
-
-  f. propose a feedforward feedback control strategy
-
-
-4. The process, and disturbance transfer functions for problem 1 are given by
-
-   $$G_p(s)= \frac{0.1 e^{-s}}{2.5s + 1}$${#eq-2-gp} 
-   $$G_d(s)=\frac{0.5 e^{-s}}{2.5s + 1}$${#eq-2-gd}
-
-   use PID tuner app to tune a PID controller for this process.
-
-5. Propose a feedforward control system for [@fig-boiler-drum].
-   Explain how a feedforward control can improve disturbance rejection or
-   regulatory control performance.
-
-6. Calculate ideal feedforward compensator for Problem 2 and implement pure
-   feedforward control scheme in simulink.
-
-7. Draw a combined feedforward-feedback PID for [@fig-boiler-drum]. Implement
-   feedforward-feedback system in simulink. 
-
-8. Consider the following process and disturbance transfer functions:
-
-   $$ \text { Process: } G_p(s)=\frac{2 \exp (-4 s)}{15 s+1} $${#eq-7-gp}
-
-   $$ \text{Disturbance: }G_d(s)=\frac{5 \exp (-2 s)}{30 s+1} $${#eq-7-gd}
-
-   Do the following: 
-
-   i.	For the process given above, can an idealized feedforward controller be
-   used to reject the disturbance. 
-
-   ii.	Obtain a feedforward controller and PID controller for the process
-   above using the unified feedforward-feedback control method.
-
-9. [Ratio control for ammonia synthesis reactor](./ammonia_synthesis_reactor.qmd).  
-
-10. Furnace ratio control [@fig-furnace]
-
-    Draw the schematic of a ratio control strategy. What is the target
-    disturbance? What is the manipulated variable? What is the controlled
-    variable?
+7. For the processes and controllers below, analyze the stability of cascade
+   control system
+   
+   $$
+   \begin{aligned}
+   \text { Primary Process: } G_{p 1} &= \frac{\exp (-2 s)}{(10 s+1)} \\
+   \\[1em]
+   \text { Secondary Process: } G_{p 2} &= \frac{\exp (- s)}{5 s+1}
+   \end{aligned}
+   $${#eq-p6-process}
  
+   $$
+   \begin{aligned}
+   \text { Primary Controller: } G_{c 1} &= 3 \\
+   \\[1em]
+   \text { Secondary Controller: } G_{c 2} &= 1 
+   \end{aligned}
+   $${#eq-p6-process}
+
+8. Simulate the system in 7 using simulink. 
+
+9. Distillation column Control Problems:
+
+   a) Feed and composition temperature constantly change
+
+   b) Reflux drum level constantly changes
+   
+   c) Vapor flow in the column constantly changes
+
+   d) Distillate downstream pressure constantly changes
+
+   e) Column pressure frequently fluctuates
+
+   Suggest a suitable cascade control configuration to address the above mentioned issues.
+
+
 ::: {.content-visible when-format="html"}
 
-![Furnace](../../../assets/images/furnace-ratio-control.png){#fig-furnace width=70%}
+![Distillation column top](../../../assets/images/cascade-control-in-class-distillation-column.png){width=70%}
 
 :::
 
 ::: {.content-visible unless-format="html"}
 
-![Furnace](../../../assets/images/furnace-ratio-control.png){#fig-furnace}
+![Distillation column top](../../../assets/images/cascade-control-in-class-distillation-column.png)
 
 :::
-
-11. Wastewater pH neutralization [@fig-wastewater]
-
-    Devise a ratio control strategy to provide desired flow rate of NaOH
-    solution to maintain the pH of the effluent. 
-
-::: {.content-visible when-format="html"}
-
-![Wastewater treatment tank](../../../assets/images/wastewater-ph-neutralization-schematic.png){#fig-wastewater width=70%}
-
-:::
-
-::: {.content-visible unless-format="html"}
-
-![Wastewater treatment tank](../../../assets/images/wastewater-ph-neutralization-schematic.png){#fig-wastewater}
-
-:::
-
-
-
 
 
