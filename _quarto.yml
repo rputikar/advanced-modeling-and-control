@@ -94,8 +94,8 @@ website:
           - file: ./content/lectures/01-recap/index.qmd
           - file: ./content/lectures/02-ratio_and_feedforward_control/index.qmd
           - file: ./content/lectures/03-cascade_control/index.qmd
-          # - file: ./content/lectures/04-other_advanced_control_techniques/index.qmd
-          # - file: ./content/lectures/05-time_series_modelling_and_analysis/index.qmd
+          - file: ./content/lectures/04-pid_enhancements/index.qmd
+          - file: ./content/lectures/05-time_series_modelling_and_analysis/index.qmd
           # - file: ./content/lectures/06-principal_component_analysis/index.qmd
           # - file: ./content/lectures/07-decentralized_control/index.qmd
           # - file: ./content/lectures/08-model_predictive_control/index.qmd
@@ -130,10 +130,8 @@ website:
         contents:
           - file: ./content/labs/lab-01/index.qmd
           - file: ./content/labs/lab-02/index.qmd
-  #          text: Lab 02
-  #        - file: ./content/labs/lab-03/index.qmd
-  #          text: Lab 03
-  #        - file: ./content/labs/lab-04/index.qmd
+          - file: ./content/labs/lab-03/index.qmd
+          - file: ./content/labs/lab-04/index.qmd
   #          text: Lab 04
   #        - file: ./content/labs/lab-05/index.qmd
   #          text: Lab 05

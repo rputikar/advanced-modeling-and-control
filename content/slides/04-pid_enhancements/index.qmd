@@ -1,0 +1,8 @@
+---
+title: "Other advanced control techniques"
+format: revealjs
+resources:
+  - "./04-pid_enhancements.pdf"
+---
+
+

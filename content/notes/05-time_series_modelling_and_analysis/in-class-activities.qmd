@@ -1,0 +1,45 @@
+---
+title: "Time series modelling and analysis"
+subtitle: In class activities
+date: 2023-08-20
+format:
+  pdf
+resources:
+  - "heat_exchanger.xlsx"
+  - "Australia_covid_cases.xlsx"
+  - "iron_ore.xlsx"
+---
+
+## Activities
+
+1. Estimating Transfer Function Models for a Heat Exchanger
+
+   In this example we estimate the transfer function for a heat exchanger. The heat exchanger consists of a coolant temperature, product temperature, and disturbance ambient temperature. We will estimate the coolant to product temperature transfer function.
+
+   The measured data is stored in an excel file [heat_exchanger.xlsx](heat_exchanger.xlsx) and includes measurements of changes in coolant temperature around a nominal and changes in product temperature around a nominal. Estimate a transfer function for the heat exchanger. 
+
+   1. From the physics of the problem we know that the heat exchanger can be described by a first order system with delay. Use the `tfest` command specifying one pole, no zeroes, and an unknown input/output delay to estimate a transfer function.
+   
+   2. The `compare` and `resid` commands allow us to investigate how well the estimated model matches the measured data.
+      
+   Detailed instructions are given [here](https://au.mathworks.com/help/ident/ug/estimating-transfer-function-models-for-a-heat-exchanger.html). 
+   
+2. **AR model**: Australia COVID-19 Infection
+
+   The cumulative daily data for COVID-19 infections is given in [Australia_covid_cases.xlsx](Australia_covid_cases.xlsx). Fit an autoregression model to the data. 
+
+3. For the transfer function below, develop an ARX model for the above system, with 1 unit step change in input and sampling time Ts = 1 unit. 
+   
+   $$
+   G_p = \frac{ 2 exp (-s)}{(10s + 1)}
+   $${#eq-p3}
+
+4. **Iron ore prices**: The price history for iron ore spot prices is given in [iron_ore.xlsx](iron_ore.xlsx). 
+
+   Use the following Matlab functions
+   1. `arima(p,d,q)` => to build ARIMA model
+   2. `estimate(Mdl,X)` => to estimate the ARMA model parameters
+   3. `simulate(EstMdl,t)` => to simulate the ARMA model
+   4. `plot(tx,X,tx,y)` = > to compare the data and model estimation
+
+5. Follow the [Building and Estimating Process Models Using System Identification Toolbox](https://au.mathworks.com/help/ident/ug/building-and-estimating-process-models-using-system-identification-toolbox.html) example from Matlab documentation. 
