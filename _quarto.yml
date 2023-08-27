@@ -96,7 +96,7 @@ website:
           - file: ./content/lectures/03-cascade_control/index.qmd
           - file: ./content/lectures/04-pid_enhancements/index.qmd
           - file: ./content/lectures/05-time_series_modelling_and_analysis/index.qmd
-          # - file: ./content/lectures/06-principal_component_analysis/index.qmd
+          - file: ./content/lectures/06-principal_component_analysis/index.qmd
           # - file: ./content/lectures/07-decentralized_control/index.qmd
           # - file: ./content/lectures/08-model_predictive_control/index.qmd
           # - file: ./content/lectures/09-ANN_modelling/index.qmd

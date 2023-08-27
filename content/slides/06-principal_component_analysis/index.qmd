@@ -1,0 +1,8 @@
+---
+title: "Principal Component Analysis"
+format: revealjs
+resources:
+  - "./06-principal_component_analysis.pdf"
+---
+
+

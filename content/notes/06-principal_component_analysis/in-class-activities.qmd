@@ -1,0 +1,18 @@
+---
+title: "Principal component analysis"
+subtitle: In class activities
+date: 2023-08-20
+format:
+  pdf
+resources:
+  - "./MSPC.1.7.zip"
+---
+
+## Activities
+
+1. Explore multivariate analysis for process monitoring using the MSPC app (GIEM, 2023). 
+
+
+### Reference
+
+GIEM (2023). A benchmark software for MSPC (https://www.mathworks.com/matlabcentral/fileexchange/47169-a-benchmark-software-for-mspc), MATLAB Central File Exchange. Retrieved August 27, 2023.
