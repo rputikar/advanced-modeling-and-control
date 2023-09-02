@@ -1,0 +1,87 @@
+---
+title: "Neural Network-Based Modeling of Reversible Fuel Cells for Hydrogen Production"
+subtitle: CHEN4011 Final Project - Semester 2, 2023
+author: ""
+date: 2023-08-31
+format:
+  pdf
+---
+
+## Introduction 
+
+Globally, the primary contributors to greenhouse gas emissions are sectors like transportation, electricity production, and industrial activities. Green hydrogen, generated through water electrolysis using renewable energy, is increasingly seen as a viable option to reduce carbon emissions in high-energy-demand sectors such as aviation and industrial manufacturing. While the majority of hydrogen is currently derived from natural gas reforming, a process that emits greenhouse gases, the focus is shifting towards the scalable and cost-effective production of green hydrogen. One of the critical challenges is balancing the inconsistent availability of renewable energy with the ongoing electrical needs of the grid.
+
+## Problem description
+
+In this project, you will develop a neural network-based model to simulate a reversible fuel cell that can function both as an electricity generator and as an electrolyzer. Such a model could be integrated into a simulated renewable energy microgrid to explore different operational profiles and configurations. 
+
+The ultimate aims are 
+a) to evaluate energy needs and sizing requirements for achieving specific hydrogen production goals. 
+b) propose control strategies for effective control of the fuel cell.
+
+The insights derived from the model will be used to make data-driven recommendations about promising configurations and supportive technologies.
+
+## Suggested steps
+
+1. Review existing renewable energy and fuel cell models. Prepare a brief literature review summarizing your findings. 
+
+2. Use the simscape model available at [https://au.mathworks.com/help/simscape/ug/pem-electrolysis-system.html](https://au.mathworks.com/help/simscape/ug/pem-electrolysis-system.html) as a foundational resource to generate required data for the neural network model. 
+
+3. Develop a neural network-based model for the reversible fuel cell. This model should be capable of simulating both electrolysis and electricity generation processes.
+
+4. Identify control, manipulated, and disturbance variables. Propose and evaluate appropriate control strategies. 
+
+## Report
+
+Prepare a report consisting of the following:
+
+1. Predictive modeling of PEM electrolyzer (20 marks): 
+   Present a comprehensive note (5 – 6 pages) on the state of the art of use of data driven modeling for design, control, and optimization of PEM electrolyzer for hydrogen production.
+2. ANN model for a PEM electrolyzer (NF/RO) plant (40 marks): 
+2. Control strategy for PEM electrolyzer (20 marks)
+3. Critical review (10 marks)
+   Present a critical review of your modeling and control activity.
+   Some key guiding questions (not limited to) are: 
+   Why should we believe your simulations?
+   What worked, What did not work?
+   How to improve the simulations?
+
+
+## Marking
+
+The report will be marked as follows:
+
+| Description                                                                    | Marks |
+| ------------------------------------------------------------------------------ | ----- |
+| Part 1: | 20 |
+| Short note: Predictive modeling of PEM electrolyzer ||
+| ||
+| Part 2: ANN Model for PEM electrolyzer |40|
+|||
+| Part 3: Control of PEM electrolyzer |20|
+|||
+| Critical Review |10 |
+|||
+| Report Presentation                                                            | 10     |
+|                                                                                |       |
+| _Total_                                                                        | 100    |
+
+## Submission
+
+1. The project is conducted in a group of five.
+2. You are free to choose your group.
+3. Please notify the instructors of your groups as soon as you form them.
+4. If you cannot find a group, please get in touch with your instructor at the earliest.
+5. You will need to submit all the files created electronically on blackboard.
+6. There should be one submission per group. 
+7. Please follow the instructions given below carefully for preparing the files for submission. Failure to follow these instructions may result in us not being able to assess the files.
+
+	You will be uploading two files.
+
+	1.  Report (pdf file containing the report).
+		You need to name the file as STUDENTID_CHEN4011_project_report.pdf (Replace STUDENTID with your Student ID).
+		You need to make only one submission per group.
+
+	2.  Create a zip file named STUDENTID_CHEN4011_project_Supporting_files.zip.
+		The zip file should contain a) All supporting files for modeling, simulation, and control activities (matlab, simulink) b) the PDF report file.
+		You may upload the supporting file to a cloud storage of your preference and share a link.
