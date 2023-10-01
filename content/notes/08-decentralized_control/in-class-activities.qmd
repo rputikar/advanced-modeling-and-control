@@ -1,0 +1,90 @@
+---
+title: "MIMO Systems: Decentralized Control"
+subtitle: In class activities
+date: 2023-09-17
+format:
+  pdf
+---
+
+## Activities
+
+1. Explain what is controller pairings in a decentralized control strategy.
+
+2. Describe the factors that affect the controller pairings.
+
+3. Explain how decoupling control work and its advantages and limitations.
+
+4. Consider the multivariable processes below and suggest suitable controller pairings based on steady-state RGA and dynamic RGA (DRGA) for each of the process.
+
+i. 2x2 MIMO
+
+$$
+G=\left[\begin{array}{cc}
+\frac{1.7 e^{-2 s}}{10 s+1} & \frac{1.1 e^{-3 s}}{15 s+1} \\
+\frac{-1.2 e^{-2.5 s}}{11 s+1} & \frac{1.4 e^{-s}}{8 s+1}
+\end{array}\right]
+$${#eq-1.1}
+
+ii. 2x2 MIMO
+
+$$
+G(s)=\left[\begin{array}{cc}
+\frac{5 e^{-3 s}}{4 s+1} & \frac{2.5 e^{-5 s}}{15 s+1} \\
+\frac{-4 e^{-6 s}}{20 s+1} & \frac{e^{-s}}{5 s+1}
+\end{array}\right]
+$${#eq-1}
+
+RGA is given by
+
+$$
+\lambda_{11}=\frac{k_{11}}{k_{11}-\frac{k_{12} k_{21}}{k_{22}}}=\frac{1}{1-\frac{k_{12} k_{21}}{k_{11} k_{22}}}
+$${#eq-rga}
+
+iii.  Steady-state gain matrix
+
+$$
+K=\left[\begin{array}{ccc}
+0.7 & 0.3 & -0.4 \\
+1.1 & -0.6 & -0.2 \\
+0.2 & 0.5 & -0.9
+\end{array}\right]
+$${#eq-2}
+
+iv. 3x3 MIMO
+
+$$
+G(s)=\left[\begin{array}{ccc}
+\frac{119 e^{-5 s}}{21.7 s+1} & \frac{153 e^{-5 s}}{337 s+1} & \frac{-2.1 e^{-5 s}}{10 s+1} \\
+\frac{37 e^{-5 s}}{500 s+1} & \frac{76.7 e^{-5 s}}{28 s+1} & \frac{-5 e^{-5 s}}{10 s+1} \\
+\frac{93 e^{-5 s}}{500 s+1} & \frac{-66.7 e^{-5 s}}{166 s+1} & \frac{-103.3 e^{-5 s}}{23 s+1}
+\end{array}\right]
+$${#eq-3}
+
+v. 2x2 MIMO
+
+$$
+\begin{array}{ll}
+\mathbf{G}_{11}(\mathbf{s})=\frac{1.0}{100 \mathbf{s}+1} & \mathbf{G}_{12}(\mathbf{s})=\frac{0.3}{10 \mathbf{s}+1} \\
+\mathbf{G}_{21}(\mathbf{s})=\frac{-0.4}{10 \mathbf{s}+1} & \mathbf{G}_{22}(\mathbf{s})=\frac{2.0}{100 \mathbf{s}+1}
+\end{array}
+$$
+
+5. Consider the process given by
+
+$$
+G(s)=\left[\begin{array}{cc}
+\frac{2 \exp (-7 s)}{10 s+1} & \frac{0.5 \exp (-4 s)}{19 s+1} \\
+\frac{\exp (-2 s)}{20 s+1} & \frac{1.5 \exp (-3 s)}{15 s+1}
+\end{array}\right]
+$${#eq-4}
+
+Design the decouplers $D_{12}$ and $D_{21}$ and comment whether the systems are physically realizable or not.
+
+6. Wood Berry Column controller design
+
+$$
+G=\left[\begin{array}{cc}
+\frac{12.8 \exp (-s)}{16.7 s+1} & \frac{-18.9 \exp (-3 s)}{21 s+1} \\
+\frac{6.6 \exp (-7 s)}{10.9 s+1} & \frac{-19.4 \exp (-3 s)}{14.4 s+1}
+\end{array}\right]
+$${#eq-5}

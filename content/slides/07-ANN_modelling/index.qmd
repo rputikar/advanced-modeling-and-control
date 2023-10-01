@@ -1,0 +1,8 @@
+---
+title: "Artificial Neural Networks"
+format: revealjs
+resources:
+  - "./07-ANN_modelling.pdf"
+---
+
+

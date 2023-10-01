@@ -1,0 +1,61 @@
+---
+title: "Artificial Neural Networks"
+subtitle: In class activities
+date: 2023-09-10
+format:
+  pdf
+---
+
+## Activities
+
+1. ANN modeling of Crystallization
+
+Average crystal size is one of the important parameters to be controlled in a crystallization process. The average crystal size is affected by two measured variables:
+
+1. Mother liquor temperature 𝑇
+2. Mother liquor density 𝜌
+
+Note that average crystal size cannot be measured directly and has to be measured offline in a laboratory. This can introduce significant delays for control of the crystallizer. 
+
+Build a model to predict the size using Temperature (𝑇) and density (𝜌) measurements
+
+The temperature and density depend on feed flow rate and stirrer speed. 
+
+Use following modelling information: 
+
+1. Input transfer functions
+
+	a. Feed flow rate (U~1~)
+	
+		$$
+		U_1(s) = \frac{1}{s + 1}
+		$${#eq-1}
+	
+	b. Stirrer Speed (U~2~)
+		
+		$$
+		U_2(s) = \frac{1}{2 s + 1}
+		$${#eq-2}
+		
+2. Process Transfer functions
+
+	a. Temperature (X~1~) (based on U~1~)
+	
+		$$
+		X_1(s) = \left(
+			    \frac{2}{ 3 s + 1} + 
+			    \frac{ - 0.2 }{ 2 s^2 + 1.1 s + 1}
+			   \right) e^{-s}
+		$${#eq-3}
+		
+	b. Density (X~2~) (based on U~2~)
+		
+		$$
+		X_2(s) = \frac{ e^{-s}}{ 4 s^2 + 3 s + 1}
+		$${#eq-4}
+		
+3. Dependency of average crystal size d~avg~ (Y) on temperature and density
+
+	$$
+	d_{avg} = 0.8 T + 1.3 \rho + 1.1 T^2 - 1.9 \rho^2 + 0.6 T \rho
+	$${#eq-5}

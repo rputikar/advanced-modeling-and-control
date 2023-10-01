@@ -1,0 +1,8 @@
+---
+title: "Multivariable Centralized Control and MPC"
+format: revealjs
+resources:
+  - "./09-Multivariable_Centralized_Control_and_MPC.pdf"
+---
+
+

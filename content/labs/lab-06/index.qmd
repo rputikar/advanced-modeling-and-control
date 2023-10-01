@@ -1,0 +1,41 @@
+---
+title: "Lab 06: Multi-loop PID Control Simulation"
+date: 2023-09-17
+format:
+  pdf
+resources:
+  - ./abx_process.slx
+---
+
+## Objectives
+
+1.	To develop a MATLAB Simulink model for multi-loop PID control simulation
+2.	To apply controller tuning methods.
+
+## Problem Statement {#sec-process-information}
+
+Consider a 2x2 MIMO process given as follows:
+
+$$
+G(s)=\left[\begin{array}{ll}
+\frac{22.89 e^{-0.2 s}}{4.572 s+1} & \frac{-11.64 e^{-0.4 s}}{1.807 s+1} \\
+\frac{4.689 e^{-0.2 s}}{2.174 s+1} & \frac{5.80 e^{-0.4 s}}{1.801 s+1}
+\end{array}\right]
+$${#eq-1}
+
+## Tasks
+1. Determine suitable controller pairings for the MIMO process given above. Based on the results of the controller pairing analysis, next reduce the decentralized system above to a diagonal form with two effective open-loop transfer functions (EOTF). [2.5 marks]
+
+2. Complete the multi-loop PI controller tuning using the aforementioned 2 different tuning methods stated in the objectives. Then, evaluate the multi-loop PI controller performances for sequential setpoint tracking to 1 unit step change in the setpoints of y_1 and y_2. Analysis the simulation results and identify which of the 2 tuning methods gives the best performance for this particular MIMO process. [2.5 marks]
+
+3. Next, evaluate the multi-loop PI controller performance for disturbance rejection: consider 1 unit step changes in the output disturbances to y_1 and y_2. Again, based on your analysis of the simulation results identify the best multi-loop PI control system. [2.5 marks]
+
+4. Suppose that there are modelling errors in the process model where the gain errors are 10% and deadtime errors are 20%. Under these modelling errors, run the simulation of the multi-loop PI control systems involved. Analyze the simulation results and summarize 2 key findings from the simulation. [2.5 marks]
+
+
+## Notes
+
+-	Show the Simulink model in the report
+-	Provide a few figures or plots to show your control system responses
+-	Use tables to summarize your results
+-	Maximum report is 5 pages excluding the cover page

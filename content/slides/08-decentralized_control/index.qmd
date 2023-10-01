@@ -1,0 +1,8 @@
+---
+title: "MIMO Systems: Decentralized control"
+format: revealjs
+resources:
+  - "./08-decentralized_control.pdf"
+---
+
+

@@ -1,0 +1,51 @@
+---
+title: "Multivariable Centralized Control and MPC"
+subtitle: In class activities
+date: 2023-10-02
+format:
+  pdf
+---
+
+## Activities
+
+1. Explain the advantages and limitations of Model Predictive Control compared to the conventional decentralized PID control system.
+
+2. Consider the process given by
+
+$$
+G(s)=\left[\begin{array}{ll}
+\frac{2 \exp (-7 s)}{10 s+1} & \frac{0.5 \exp (-4 s)}{19 s+1} \\
+\frac{\exp (-2 s)}{20 s+1} & \frac{1.5 \exp (-3 s)}{15 s+1}
+\end{array}\right]
+$${#eq-1}
+
+Design the decouplers $D_{12}$ and $D_{21}$ and comment whether the systems are physically realizable or not.
+
+3. The discrete-time step response model of a process is given in @tbl-1.
+
+| t | i | $\Delta u$ | y(t) | a~i~ |
+| - | - | - | - | -                |
+| 0 | 0 | 1 | 0 | 0                |
+| 1 | 1 | 0 | 0.3 | 0.3            |
+| 2 | 2 | 0 | 0.6 | 0.6            |
+| 3 | 3 | 0 | 0.7 | 0.7            |
+| 4 | 4 | 0 | 0.8 | 0.8            |
+| 5 | 5 | 0 | 0.86 | 0.86          |
+| 6 | 6 | 0 | 0.88 | 0.88          |
+| 7 | 7 | 0 | 0.89 | 0.89          |
+
+:Discrete-time step response model {#tbl-1}
+
+Suppose that the process is subjected to a consecutive step changes in the input: $\Delta u=1$ at t=0, $\Delta u=1$ at t=2 and $\Delta u=-1$ at t=4, determine the values of y~5~ and y~9~.
+
+3. Consider the transfer function below
+$$
+G(s) = \frac{18}{(s + 5) (s + 3)}
+$${#eq-2}
+
+The zero hold transfer function is given by 
+$$
+G_{ZOH} = \frac{1 - e^{-sT_s}}{s}
+$${#eq-3}
+
+determine the discrete transfer function using `c2d` command for different T~s~. Plot the responses.

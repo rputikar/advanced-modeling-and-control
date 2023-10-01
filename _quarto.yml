@@ -97,9 +97,9 @@ website:
           - file: ./content/lectures/04-pid_enhancements/index.qmd
           - file: ./content/lectures/05-time_series_modelling_and_analysis/index.qmd
           - file: ./content/lectures/06-principal_component_analysis/index.qmd
-          # - file: ./content/lectures/07-decentralized_control/index.qmd
-          # - file: ./content/lectures/08-model_predictive_control/index.qmd
-          # - file: ./content/lectures/09-ANN_modelling/index.qmd
+          - file: ./content/lectures/07-ANN_modelling/index.qmd
+          - file: ./content/lectures/08-decentralized_control/index.qmd
+          - file: ./content/lectures/09-Multivariable_Centralized_Control_and_MPC/index.qmd
           # - file: ./content/lectures/10-pattern_recognition_and_machine_learning/index.qmd
           # - file: ./content/lectures/11-model_based_optimization/index.qmd
           #
@@ -132,12 +132,9 @@ website:
           - file: ./content/labs/lab-02/index.qmd
           - file: ./content/labs/lab-03/index.qmd
           - file: ./content/labs/lab-04/index.qmd
-  #          text: Lab 04
-  #        - file: ./content/labs/lab-05/index.qmd
-  #          text: Lab 05
-  #        - file: ./content/labs/lab-06/index.qmd
-  #          text: Lab 06
-  #        - file: ./content/labs/lab-07/index.qmd
+          - file: ./content/labs/lab-05/index.qmd
+          - file: ./content/labs/lab-06/index.qmd
+          - file: ./content/labs/lab-07/index.qmd
   #          text: Lab 07
   #        - file: ./content/labs/lab-08/index.qmd
   #          text: Lab 08
