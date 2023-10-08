@@ -1,0 +1,8 @@
+---
+title: "Introduction to digital control"
+format: revealjs
+resources:
+  - "./10-digital_control.pdf"
+---
+
+

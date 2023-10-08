@@ -1,0 +1,48 @@
+---
+title: "Introduction to digital control"
+subtitle: In class activities
+date: 2023-10-08
+format:
+  pdf
+---
+
+## Activities
+
+1. Consider a continuous process$$
+
+$$
+G(s) = \frac{2 (1-s) }{(3s + 1)(s+1)}
+$${#eq-1}
+
+convert G(s) to discrete transfer function and plot the step response. Try different hold functions. 
+
+2. For the transfer function
+
+$$
+G(s) = \frac{1}{s + 1}
+$${#eq-3}
+
+plot the effect of sample time on response. 
+
+3. Design a feedback control system around the first-order plant 
+
+$$
+G(s) = \frac{1}{0.2s + 1}
+$${#eq-2}
+
+with the requirements that 
+i. the steady-state error is less than 2% for a ramp input and 
+ii. the phase margin is greater than 48 degrees. 
+
+Use controller transfer function and check phase margin.
+$$
+G(s) = \frac{500s + 50}{100 s^2 + s}
+$${#eq-1-1}
+
+4. Convert the controller from @eq-1-1 to discrete form using different sample times. Plot the Bode plot for the continuous and discrete controller and discuss the differences. 
+
+5.  Design and compare continous and digital controller for the following transfer function
+
+$$
+G(s) = \frac{2 exp(-s)}{4s + 1}
+$${#eq-4}
