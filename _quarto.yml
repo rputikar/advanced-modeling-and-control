@@ -100,7 +100,7 @@ website:
           - file: ./content/lectures/07-ANN_modelling/index.qmd
           - file: ./content/lectures/08-decentralized_control/index.qmd
           - file: ./content/lectures/09-Multivariable_Centralized_Control_and_MPC/index.qmd
-          # - file: ./content/lectures/10-pattern_recognition_and_machine_learning/index.qmd
+          - file: ./content/lectures/10-digital_control/index.qmd
           # - file: ./content/lectures/11-model_based_optimization/index.qmd
           #
       #    - section: "Workshops"
@@ -135,8 +135,7 @@ website:
           - file: ./content/labs/lab-05/index.qmd
           - file: ./content/labs/lab-06/index.qmd
           - file: ./content/labs/lab-07/index.qmd
-  #          text: Lab 07
-  #        - file: ./content/labs/lab-08/index.qmd
+          - file: ./content/labs/lab-08/index.qmd
   #          text: Lab 08
   #        - file: ./content/labs/lab-09/index.qmd
   #          text: Lab 09

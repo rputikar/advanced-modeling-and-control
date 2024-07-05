@@ -3,7 +3,6 @@ title: "Lab 08: Digital control"
 date: 2023-10-08
 format:
   pdf
-resources:
 ---
 
 ## Objectives
