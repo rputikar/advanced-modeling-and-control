@@ -48,9 +48,9 @@ coordinator:
   photo: ./assets/images/RanjeetUtikar.jpg
 
 admin:
-  id: rl
-  name: Ms. Ruby Lo
-  name_no_title: Ruby Lo
+  id: ch
+  name: Ms. Cherie Ha
+  name_no_title: Cherie Ha
   email: TeachingSupport-WASM-MECE@curtin.edu.au
   url: "https://staffportal.curtin.edu.au/staff/profile/view/ruby-lo-fc65c900/"
   office: Faculty of Science and Engineering <br>
