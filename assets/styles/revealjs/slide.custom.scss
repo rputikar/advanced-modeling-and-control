@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono|JetBrains+Mono&display=swap");
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 //@import "_carbon_colors";
 
 $black: #000000 !default;
@@ -92,6 +93,14 @@ h1.title {
   // margin-left: 15px;
 }
 
+.reveal .subtitle {
+  text-align: left;
+}
+
+.reveal h2 {
+  margin-bottom: 40px;
+}
+
 .reveal h3 {
   color: $magenta;
 }
@@ -102,10 +111,14 @@ h1.title {
   font-size: $h2-font-size;
 }
 
-.reveal .quarto-title-author {
-  text-align: left;
+.reveal .quarto-title-authors {
   font-size: $h2-font-size;
 }
+
+.reveal .date {
+  font-size: $h2-font-size;
+}
+
 
 .reveal .footer {
   // border-top: 2px solid $blue;
@@ -148,7 +161,21 @@ h1.title {
 }
 
 .reveal .highlight {
+  // padding: 1px;
+  padding: 0.1em;
   background-color: $yellow;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.reveal .magenta{
+  color: $magenta;
+}
+
+.reveal .box {
+  border: 2px solid $magenta;
+  padding: 0.1em;
+  display: inline-block;
 }
 
 .reveal .smaller {
@@ -162,6 +189,11 @@ h1.title {
   width: 90%;
 }
 
+.reveal .img-height-300 {
+  height: 300px; /* Adjust this value as needed */
+  object-fit: contain; /* Keeps the aspect ratio */
+}
+
 .reveal table {
   font-size: 70%;
 }
@@ -170,9 +202,91 @@ h1.title {
   border: none;
 }
 
+.reveal .pad li:not(:last-child) {
+  margin-bottom: 30px !important;
+}
+
+.reveal .pad50 {
+  margin-bottom: 50px !important;
+}
+
+.reveal .pad100 {
+  margin-bottom: 100px !important;
+}
+
+.reveal .center-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+.reveal .center-xy {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateY(-50%), translateX(-50%);
+  transform: translateY(-50%), translateX(-50%);
+}
+
+
+//
+// .center,
+// .center p,
+// .columns .column .center p{
+//   text-align: center;  /* This centers the text within the child div */
+// }
+
+// tables
+
+.reveal table {
+  // height: auto; /* Adjust table width to fit content up to the available slide space */
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.8em;
+}
+
+.reveal table th,
+.reveal table td {
+  border: none; /* Remove internal row lines */
+  padding: .23em; /* Adjust padding as needed */
+  text-align: left; /* Adjust text alignment as needed */
+  font-weight: lighter; /* Lighter font weight for main table text */
+}
+
+/* Adds a bottom border to the table header row for distinction */
+.reveal table thead th,
+// .reveal .slides table tr:last-child td,
+.reveal .slides table {
+  border-bottom: 2px solid $gray; /* Dark grey color for the bottom border */
+  border-top: 2px solid $gray; /* Dark grey color for the top border */
+}
+
+/* Make column headers bold */
+.reveal table thead th {
+  font-weight: bold;
+}
+
+/* Styling table captions */
+.reveal table caption {
+  color: $magenta; /* Dark grey color for the caption */
+  font-variant: small-caps; /* Use small caps for the caption text */
+}
+
 .fragment.hide {
   transition: all 0s !important;
   # display: none !important;
+}
+
+.reveal .center-xy {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateY(-50%), translateX(-50%);
+  transform: translateY(-50%), translateX(-50%);
 }
 
 .center {
@@ -187,9 +301,23 @@ h1.title {
   padding: 10px;
 }
 
-//
-// .center,
-// .center p,
-// .columns .column .center p{
-//   text-align: center;  /* This centers the text within the child div */
+
+.bottom{
+  position: absolute; 
+  bottom: 0; 
+  width: 100%;
+}
+
+// .reveal .katex .mathnormal, .mathit, .mathrm, .text, .textit, .textup, .rm, .textrm, .mathtt, .tt, .textmd, .textnormal {
+//   font-family: Noto Sans;
+//   font-size: 1em;
 // }
+
+katex-inline.keepfont {
+    .katex, .mathnormal, .mathit, .mathrm {
+        font-family: inherit;
+    }
+    .katex {
+        font-size: 1em;
+    }
+}
