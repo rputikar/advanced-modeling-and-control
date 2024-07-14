@@ -1,6 +1,7 @@
 ---
 title: Syllabus
 ---
+date-modified: 2024-07-14
 
 ## Topics covered
 
@@ -69,5 +70,7 @@ MATLAB.
 
 Please refer to the unit outline posted on blackboard for assessment policies,
 assessments, grades, and pass requirements. 
+
+
 
 
