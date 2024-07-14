@@ -9,7 +9,7 @@ title: Getting Ready
 
 ### MATLAB
 
-Please follow the links below for getting started with/ refreshing use of matlab and simulink. 
+Please follow the links below for getting started with/ refreshing use of MATLAB and Simulink. 
 
 [MATLAB Fundamentals | Self-Paced Online Courses - MATLAB & Simulink (mathworks.com)](https://matlabacademy.mathworks.com/details/matlab-fundamentals/mlbe)
 
@@ -37,6 +37,6 @@ need to apply for extension and complete the lab work in your own time later.
 That said, I am here to support you in your learning. If by any chance you are
 going through any issues that may have an impact on your participation in the
 unit (e.g. attending a session, sitting for test, completing project etc.),
-inform me at the earliest and I will do my best to accomodate your
+inform me at the earliest and I will do my best to accommodate your
 requirements.
 

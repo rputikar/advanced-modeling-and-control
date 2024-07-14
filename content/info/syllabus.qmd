@@ -15,11 +15,11 @@ We will cover a broad range of topics including:
   control loop pairings; decoupling control systems; multivariable control.
 - Digital Control Systems: Z transforms; discrete time models; dynamic
   response; discrete time control algorithms; closed loop analysis; digital
-  control system implementation. Review of process modelling and simulation
-  techniques. Modelling for Fault Diagnosis: prediction-based and
-  identification-based diagnosis. Empirical Modelling: linear and non-linear
+  control system implementation. Review of process modeling and simulation
+  techniques. Modeling for Fault Diagnosis: prediction-based and
+  identification-based diagnosis. Empirical Modeling: linear and non-linear
   models; artificial neural networks; ARMAX models. 
-- Modelling Hybrid (Discrete- Continuous) Systems: representation and solution. 
+- Modeling Hybrid (Discrete- Continuous) Systems: representation and solution. 
 - Case Studies and Applications in Process Engineering.
 
 ## Course materials
@@ -27,8 +27,8 @@ We will cover a broad range of topics including:
 ### Books
 
 The books listed in [the course reading
-list](https://curtin.alma.exlibrisgroup.com/leganto/readinglist/lists/14056101590001951)
-will be very userful reference material for topics covered in the course.   
+list](https://curtin.alma.exlibrisgroup.com/leganto/readinglist/lists/16653102120001951)
+will be very useful reference material for topics covered in the course.   
 
 The content is mainly based on following books. 
 
@@ -47,23 +47,23 @@ Besides these books the following online books are useful as well.
 - Process control - Analysis, Design, and Assessment course from IIT Madras by
   [Prof. Raghunathan
   Rengaswamy](https://rbcdsai.iitm.ac.in/people/raghunathan-rengaswamy/). The
-  youtube play list is
+  YouTube play list is
   [here](https://www.youtube.com/playlist?list=PLyqSpQzTE6M-OjiNwE2GQzXmZ6NaVWUnf).
 - [Process Dynamics and
   Control](https://apmonitor.com/che436/index.php/Main/HomePage) course from
   BYU by [Prof. John D.
   Hedengren](https://apm.byu.edu/prism/index.php/Members/JohnHedengren). 
-- Prof. Douglas Cooper's [Contol Guru](https://controlguru.com/table-of-contents/) website.
+- Prof. Douglas Cooper's [Control Guru](https://controlguru.com/table-of-contents/) website.
 
 ### MATLAB
 
 We will use [MATLAB](https://au.mathworks.com/products/matlab.html)
-extensively. The mathworks website has tons of resources to help you learn
+extensively. The MathWorks website has tons of resources to help you learn
 MATLAB.
 
 ## Course structure
 
-![Program calender 2023, Semester 2](../../assets/images/program_calender_2023_s2.png)
+![Program calendar 2024, Semester 2](../../assets/images/program_calender_2024_s2.png)
 
 ## Course policies
 

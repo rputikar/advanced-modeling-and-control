@@ -756,8 +756,9 @@ def fopdt(Kp, tau, theta):
     denominator = [tau, 1]
     
     # Use zero-order Pade approximation for time delay
-    delay = ctrl.pade(theta, 0)[0]
-    
+    num,den = ctrl.pade(theta, 0)
+    delay = ctrl.tf(num, den)
+
     # Combine the process and delay into a single transfer function
     fopdt_process = ctrl.series(delay, ctrl.tf(numerator, denominator))
     
@@ -1207,7 +1208,15 @@ den = [1, 1, 0]  # Coefficients of the characteristic equation
 sys = ctrl.TransferFunction(num, den)
 
 # Calculate and plot the root locus
-rlist, klist = ctrl.root_locus(sys)
+# rlist, klist = ctrl.root_locus(sys)
+
+# In newer versions, the control.root_locus function returns a single value, a
+# tuple containing the root locations and gain values, instead of two separate
+# values.
+root_locus_data = ctrl.root_locus(sys)
+rlist = root_locus_data[0,0]
+klist = root_locus_data[0,1]
+
 
 plt.xlabel('Re')
 plt.ylabel('Im')

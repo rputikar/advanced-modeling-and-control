@@ -1321,7 +1321,14 @@ den = [1, 1, 0]  # Coefficients of the characteristic equation
 sys = control.TransferFunction(num, den)
 
 # Calculate and plot the root locus
-rlist, klist = control.root_locus(sys)
+# rlist, klist = control.root_locus(sys)
+
+# In newer versions, the control.root_locus function returns a single value, a
+# tuple containing the root locations and gain values, instead of two separate
+# values.
+root_locus_data = control.root_locus(sys)
+rlist = root_locus_data[0,0]
+klist = root_locus_data[0,1]
 
 plt.xlabel('Re')
 plt.ylabel('Im')
