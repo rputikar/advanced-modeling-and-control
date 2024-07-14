@@ -8,7 +8,7 @@ subtitle:
   modelling, and process design to optimize the performance and efficiency of
   process equipment."
 details: 
-  "CHEN4011, Semester 2, 2023 <br>
+  "CHEN4011, Semester 2, 2024 <br>
    West Australian School of Mines: Minerals, Energy, and Chemical Engineering <br>
    Curtin University"
 editor: source
@@ -19,6 +19,7 @@ format:
     - ./assets/partials/home/title-block.html
 metadata-files:
   - metadata.yml
+date-modified: 2024-07-14
 ---
 
 ## Course Overview
