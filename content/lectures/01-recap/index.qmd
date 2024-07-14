@@ -18,8 +18,8 @@ format: html
 ## Slides
 
 The slides for this lecture are provided as interactive document online. Click
-on the button below to view them in fullscreen (The link will open in a new tab
-or window). You can also view them as pdf for printing, or later viewing.  
+on the button below to view them in full screen (The link will open in a new tab
+or window). You can also view them as PDF for printing, or later viewing.  
 
 :::{.grid}
 ::: {.g-col-1}
@@ -48,7 +48,7 @@ style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width:
 
 ## Lecture notes
 
-Detailed lcture notes are available for this lecture. 
+Detailed lecture notes are available for this lecture. 
 You can browse them by
 clicking on the link below. 
 You can also download them in various formats from
