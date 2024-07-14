@@ -79,89 +79,118 @@ optimize process performance.
 - Demonstrate the effective use of software, such as MATLAB for process
   modeling and for control system design.
 
+
 ## Teaching Staff
 
 ::: {.panel-tabset}
 ## Course Coordinator
 
-<!-- Grid person --> 
+<!-- Grid person -->
 ::: {.grid .person}
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
-<!-- ### photo -->
-![]({{< meta coordinator.photo >}})
+![](./assets/images/RanjeetUtikar.jpg)
 :::
-
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
 <!-- ### info -->
-#### {{< fa user >}} &nbsp; [{{< meta coordinator.name >}}]({{< meta coordinator.url >}})
-
-- {{< fa university >}} &nbsp; {{< meta coordinator.office >}}
-- {{< fa envelope >}} &nbsp; <a href="mailto:{{< meta coordinator.email >}}">{{< meta coordinator.email >}}</a>
-- {{< fa phone >}} &nbsp; {{< meta coordinator.phone >}}
-- {{< fa calendar-check >}} &nbsp; [Schedule an appointment]({{< meta coordinator.appointment_url >}})
+#### <i class="fa fa-user"></i> &nbsp; [A/Prof. Ranjeet Utikar](https://www.utikar.com)
+- <i class="fa fa-university"></i> &nbsp; Building 204, Room 432 <br> Bentley Campus
+- <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:r.utikar@curtin.edu.au">r.utikar@curtin.edu.au</a>
+- <i class="fa fa-phone"></i> &nbsp; +61 0892669837
+- <i class="fa fa-calendar-check"></i> &nbsp; [Schedule an appointment](https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/)
 :::
-
 ::: {.g-col-12 .g-col-md-4 .contact-policy}
 <!-- ### contact-policy -->
 #### Contacting me
-{{< meta coordinator.contact_policy >}}
+Best way to contact is via email. I hope to respond within 24-36 hours. If you would like to see me, please book an appointment.
 :::
-::: 
-<!-- Grid person --> 
-
+<!-- Grid person -->
+:::
 
 ## Teaching Staff
 
-<!-- Grid person --> 
+<!-- Grid person -->
 ::: {.grid .person}
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
-<!-- ### photo -->
-![]({{< meta coordinator.photo >}})
+<img src="./assets/images/RanjeetUtikar.jpg" style="width: 250px; height: 250px;" />
 :::
-
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
 <!-- ### info -->
-#### {{< fa user >}} &nbsp; [{{< meta coordinator.name >}}]({{< meta coordinator.url >}})
-
-- {{< fa university >}} &nbsp; {{< meta coordinator.office >}}
-- {{< fa envelope >}} &nbsp; <a href="mailto:{{< meta coordinator.email >}}">{{< meta coordinator.email >}}</a>
-- {{< fa phone >}} &nbsp; {{< meta coordinator.phone >}}
-- {{< fa calendar-check >}} &nbsp; [Schedule an appointment]({{< meta coordinator.appointment_url >}})
+#### <i class="fa fa-user"></i> &nbsp; [A/Prof. Ranjeet Utikar](https://www.utikar.com)
+- <i class="fa fa-university"></i> &nbsp; Building 204, Room 432 <br> Bentley Campus
+- <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:r.utikar@curtin.edu.au">r.utikar@curtin.edu.au</a>
+- <i class="fa fa-phone"></i> &nbsp; +61 0892669837
+- <i class="fa fa-calendar-check"></i> &nbsp; [Schedule an appointment](https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/)
 :::
-
 ::: {.g-col-12 .g-col-md-4 .contact-policy}
 <!-- ### contact-policy -->
 #### Contacting me
-{{< meta coordinator.contact_policy >}}
+Best way to contact is via email. I hope to respond within 24-36 hours. If you would like to see me, please book an appointment.
 :::
-::: 
-<!-- Grid person --> 
+:::
+<!-- Grid person -->
 
+
+<!-- Grid person -->
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<img src="./assets/images/JobrunNandong.jpg" style="width: 250px; height: 250px;" />
+:::
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+#### <i class="fa fa-user"></i> &nbsp; [A/Prof. Jobrun Nandong](https://engsci.curtin.edu.my/departments/chemical-energy-engineering/people/jobrun-nandong/)
+- <i class="fa fa-university"></i> &nbsp;  Skylark 3 Room 322 <br> Miri Campus
+- <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:jobrun.n@curtin.edu.my">jobrun.n@curtin.edu.my</a>
+- <i class="fa fa-phone"></i> &nbsp; +60 85 630 100 Ext: 2412
+:::
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+Best way to contact is via email. I hope to respond within 24-36 hours. If you would like to see me, please book an appointment.
+:::
+:::
+<!-- Grid person -->
 
 ## Administrative Staff
 
-<!-- Grid person --> 
+<!-- Grid person -->
 ::: {.grid .person}
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
-<!-- ### photo -->
-![]({{< meta admin.photo >}})
+<img src="./assets/images/scientist_woman.jpeg" style="width: 250px; height: 250px;" />
 :::
-
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
 <!-- ### info -->
-#### {{< fa user >}} &nbsp; [{{< meta admin.name >}}]({{< meta admin.url >}})
-
-- {{< fa university >}} &nbsp; {{< meta admin.office >}}
-- {{< fa envelope >}} &nbsp; <a href="mailto:{{< meta admin.email >}}">{{< meta admin.email >}}</a>
+#### <i class="fa fa-user"></i> &nbsp; [Ms. Cherie Ha](https://staffportal.curtin.edu.au/staff/profile/view/cherie-ha-46dfe4cd/)
+- <i class="fa fa-university"></i> &nbsp; Faculty of Science and Engineering <br> Bentley Campus
+- <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:TeachingSupport-WASM-MECE@curtin.edu.au">TeachingSupport-WASM-MECE@curtin.edu.au</a>
 :::
-
 ::: {.g-col-12 .g-col-md-4 .contact-policy}
 <!-- ### contact-policy -->
 #### Contacting me
-{{< meta admin.contact_policy >}}
+Best way to contact is via email. I hope to respond within 24-36 hours. If you would like to see me, please book an appointment.
 :::
-::: 
-<!-- Grid person --> 
+:::
+<!-- Grid person -->
+
+
+<!-- Grid person -->
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<img src="./assets/images/scientist_woman.jpeg" style="width: 250px; height: 250px;" />
+:::
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+- <i class="fa fa-university"></i> &nbsp; Skylark 3 - Room 402  <br> Miri Campus
+- <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:dora.indin@curtin.edu.my">dora.indin@curtin.edu.my</a>
+- <i class="fa fa-phone"></i> &nbsp; +60 85 630100 Ext:2531
+:::
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+Best way to contact is via email. I hope to respond within 24-36 hours. If you would like to see me, please book an appointment.
+:::
+:::
+<!-- Grid person -->
 
 :::
+
 
