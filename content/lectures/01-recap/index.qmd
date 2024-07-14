@@ -3,8 +3,8 @@ title:
   Recap of basics of process control and modelling
 date: 2023/07/24
 format: html
----
 date-modified: 2024-07-14
+---
 
 ## Pre Class Activities
 
@@ -74,7 +74,4 @@ The in-class activities/ tasks for this lecture are at:
 
 :::
 :::
-
-
-
 
