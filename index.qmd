@@ -179,6 +179,7 @@ Best way to contact is via email. I hope to respond within 24-36 hours. If you w
 :::
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
 <!-- ### info -->
+#### <i class="fa fa-user"></i> &nbsp; [Ms. Dora Indin](https://staffportal.curtin.edu.au/staff/profile/view/dora-indin-bd45af18/)
 - <i class="fa fa-university"></i> &nbsp; Skylark 3 - Room 402  <br> Miri Campus
 - <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:dora.indin@curtin.edu.my">dora.indin@curtin.edu.my</a>
 - <i class="fa fa-phone"></i> &nbsp; +60 85 630100 Ext:2531
