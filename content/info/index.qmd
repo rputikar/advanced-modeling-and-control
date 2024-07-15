@@ -1,5 +1,6 @@
 ---
 title: Getting Ready
+date-modified: 2024-07-15
 ---
 
 ## Pre-requisites
@@ -9,7 +10,10 @@ title: Getting Ready
 
 ### MATLAB
 
-Please follow the links below for getting started with/ refreshing use of MATLAB and Simulink. 
+{{< video https://www.youtube.com/embed/0tkABVrpsWE >}}
+
+Once you have installed MATLAB, follow the links below for getting started
+with/ refreshing use of MATLAB and Simulink. 
 
 [MATLAB Fundamentals | Self-Paced Online Courses - MATLAB & Simulink (mathworks.com)](https://matlabacademy.mathworks.com/details/matlab-fundamentals/mlbe)
 
