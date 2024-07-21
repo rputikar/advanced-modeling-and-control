@@ -613,7 +613,7 @@ $$
 - **Transfer Function:** An essential tool in control system design and
   analysis, representing linear control theory.
 
-![](../../../assets/images/Laplace-transform-concept.png){#fig-Laplace-transform}
+![](../../../assets/images/Laplace-transform-concept.png) 
 
 
 ## Empirical models
@@ -689,7 +689,7 @@ A transfer function is a mathematical formula that describes how a system respon
 
 ## Input types
 
-![](../../../assets/images/Input-types.png){#fig-input-types}
+![](../../../assets/images/Input-types.png)
 
 ## Response of first-order systems
 
