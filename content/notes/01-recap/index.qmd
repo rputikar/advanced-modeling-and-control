@@ -664,24 +664,26 @@ width=60%}
 
 - Overall mass balance 
 
-  $$ \left\{\begin{array}{c} \text {rate of accumulation} \\ \text {of mass in
-  the tank} \end{array}\right\} = \left\{\begin{array}{c} \text {rate of} \\
-  \text {mass in} \end{array}\right\}
+  $$ 
+    \left\{\begin{array}{c} 
+    \text {rate of accumulation} \\ 
+    \text {of mass in the tank} 
+    \end{array}\right\} = 
+    \left\{\begin{array}{c} \text {rate of} \\
+    \text {mass in} \end{array}\right\}
   - \left\{\begin{array}{c}
-    \text {rate of} \\ \text {mass out} \end{array}\right\} $$
-    {#eq-blend_mass_bal_verbose}
+    \text {rate of} \\ \text {mass out} \end{array}\right\} 
+  $$ {#eq-blend_mass_bal_verbose}
 
   $$ \frac{d(V \rho)}{dt} = w_1 + w_2 - w $$ {#eq-blend_mass_bal}
 
 - Component balance
 
-  $$ \frac{d(V \rho x)}{dt} = w_1 x_1 + w_2 x_2 - w x $$
-  {#eq-blend_component_bal}
+  $$ \frac{d(V \rho x)}{dt} = w_1 x_1 + w_2 x_2 - w x $$ {#eq-blend_component_bal}
 
 It is possible to further simplify the system of two differential equations to 
 
-$$ \frac{dV}{dt} = \frac{1}{\rho}\left(w_1 x_1 + w_2 x_2 - w x\right) $$
-{#eq-blend_1}
+$$ \frac{dV}{dt} = \frac{1}{\rho}\left(w_1 + w_2 - w \right) $$ {#eq-blend_1}
 
 $$ \frac{dx}{dt} = \frac{w_1}{V \rho} \left(x_1 - x\right)+ \frac{w_2}{V \rho}
 \left(x_2 - x\right) $$ {#eq-blend_2}
@@ -730,8 +732,8 @@ according to the following categories:
 ### DOF for the blending problem
 
 - Parameters (2): $V, \rho$
-- Variables ($N_V = 4): $x, x_1, x_2, w_1, w_1$
-- equation ($N_E = 1$): @eq-blend_mass_bal
+- Variables ($N_V$ = 4): $x, x_1, x_2, w_1, w_1$
+- equation ($N_E$ = 1): @eq-blend_mass_bal
 
 The degrees of freedom are calculated as $N_F = 4 − 1 = 3$. Thus, we must
 identify three input variables that can be specified as known functions of time
