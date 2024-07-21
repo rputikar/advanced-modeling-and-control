@@ -3,10 +3,11 @@ title: "Session 1. Getting started with MATLAB/ Simulink"
 date: 2023-07-08
 format:
   pdf
+date-modified: 2024-07-21
 ---
 
-|||
-|-|-|
+| ||
+| -|-|
 | **General functions**: ||
 | `cd`| Change subdirectory |
 | `demo`|  Launch the demo (introduction)|
@@ -41,7 +42,7 @@ format:
 | `pole` | Find the poles of a transfer function |
 | `zpk` | Create a transfer function in pole-zero-gain form |
 
-: Useful functions{#tbl-useful-functions}
+: Useful functions {#tbl-useful-functions}
 
 
 ## Activities
@@ -58,7 +59,7 @@ format:
 
 5. Create a 3 x 3 matrix.
 
-6. print the size of the matrix and lengths of vectors defined so far. 
+6. Print the size of the matrix and lengths of vectors defined so far. 
 
 7. Define 3 polynomials 
 
@@ -89,11 +90,11 @@ format:
 
     `y = [ 1 7 23 109 307 1231];`
 
-    Fit a third-order polynomial. plot the results
+    Fit a third-order polynomial. Plot the results
 
-14. Explore MATLAB plotting capabiities. 
+14. Explore MATLAB plotting capabilities 
 
-15. Create a matlab script, save, and load it to plot data in item 13. 
+15. Create a MATLAB script, save, and load it to plot data in item 13. 
 
 16. Find roots of polynomial defined by `p = [1 5 4]`
 
@@ -118,7 +119,7 @@ format:
     $$y(s) = \frac{5e^{-10s}}{2.5s + 1}$${#eq-p21-2}
 
 22. Response of second order system: Compute and plot step response of following
-    second order system. Show effect of ξ on response.
+    second order system. Show effect of $\xi$ on response.
   
     $$ G_p(s) = \frac{Y(s)}{U(s)} = \frac{K_p e^{-\theta s}}{\tau^2 s^2 + 2 \xi \tau s + 1}$${#eq-p22}
 

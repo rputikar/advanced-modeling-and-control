@@ -1,0 +1,45 @@
+---
+title: Peer groups
+subtitle: "CHEN4011: Advanced modeling and control S2 2024"
+format:
+   docx: default
+   pdf: default
+date: 2024-07-21
+date-modified: 2024-07-21
+---
+
+For this unit, you will be working in pairs (peer pair) or in groups of four
+(two companion pairs). You will work with your pair buddy/ group member for
+lectures, workshops, and labs. However, you would be free to choose your
+project partners (project is supposed to be done in a group of 4. 
+
+I have tried to use the information you have provided to create pairs. You
+might be paired with someone whom you already know or someone who you will work
+with for the first time.  If you have any legitimate concerns/ issues with the
+pair/ group please get in touch with me. 
+
+The peer groups for semester 2, 2024 are as follows: 
+
+| Group ID | Partner group | Members | 
+|- |- |- | 
+| 1 | 2 | Amanda, Sherie | 
+| 2 | 1 | Ben, Ross | 
+| 3 | 4 | Bryce, Jake | 
+| 4 | 3 | Eric, Tara|
+| 5 | 6 | Gianluca, Lin | 
+| 6 | 5 | Hedy, Jye | 
+| 7 | 8 | Leila, Owen | 
+| 8 | 7 | Max, Zhi Qian | 
+| 9 | 10 | Mitchell, Pri |
+| 10 | 9 | Paul, Tom | 
+
+Some considerations: 
+
+1. If your pair buddy is present, join them for the lecture, workshop, lab.
+2. if your pair buddy is absent, join your companion pair for lecture,
+   workshop, lab.
+3. If your pair/ companion pair buddies are absent, you are free to regroup
+   with others. 
+4. Make sure that your companion pair and you sit at adjacent computers. 
+
+
