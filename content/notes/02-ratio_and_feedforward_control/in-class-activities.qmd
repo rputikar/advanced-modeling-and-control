@@ -4,6 +4,7 @@ subtitle: In class activities
 date: 2023-07-30
 format:
   pdf
+date-modified: 2024-07-28
 ---
 
 ## Activities
@@ -29,6 +30,8 @@ format:
 
    c. What are the drawbacks of this system?
 
+{{< pagebreak >}}
+
 2. Consider the operation of heat exchanger to demonstrate the application of
    feedforward control strategy. Identify all disturbances and the target
    disturbance to be remove using the feedforward control strategy 
@@ -46,6 +49,8 @@ format:
 
 :::
 
+
+{{< pagebreak >}}
 
 3. For the blending system shown in [@fig-blend-system]
  
@@ -73,6 +78,8 @@ format:
 
   f. propose a feedforward feedback control strategy
 
+
+{{< pagebreak >}}
 
 4. The process, and disturbance transfer functions for problem 1 are given by
 
@@ -107,6 +114,8 @@ format:
 
 9. [Ratio control for ammonia synthesis reactor](./ammonia_synthesis_reactor.qmd).  
 
+{{< pagebreak >}}
+
 10. Furnace ratio control [@fig-furnace]
 
     Draw the schematic of a ratio control strategy. What is the target
@@ -124,6 +133,8 @@ format:
 ![Furnace](../../../assets/images/furnace-ratio-control.png){#fig-furnace}
 
 :::
+
+{{< pagebreak >}}
 
 11. Wastewater pH neutralization [@fig-wastewater]
 

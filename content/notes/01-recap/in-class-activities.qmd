@@ -3,7 +3,7 @@ title: "Session 1. Getting started with MATLAB/ Simulink"
 date: 2023-07-08
 format:
   pdf
-date-modified: 2024-07-21
+date-modified: 2024-07-26
 ---
 
 | ||
@@ -129,9 +129,9 @@ date-modified: 2024-07-21
 
 a)  An object falling under gravity
 
-    $$\frac{d^3 y}{dt^2}=-g$${#eq-7}
+    $$\frac{d^2 y}{dt^2}=-g$${#eq-7}
 
-    Compare the result with analytical solution $y = -gt^3/2$
+    Compare the result with analytical solution $y = -gt^2/2$
 
 b)  Systems of ODEs
 
@@ -149,6 +149,7 @@ b)  Systems of ODEs
        1  \\
        0 
       \end{bmatrix}
+      +
       \begin{bmatrix} 
        -2 & -5  \\
         1 &  0 
