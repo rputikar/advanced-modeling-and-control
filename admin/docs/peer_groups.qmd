@@ -5,7 +5,7 @@ format:
    docx: default
    pdf: default
 date: 2024-07-21
-date-modified: 2024-07-21
+date-modified: 2024-08-01
 ---
 
 For this unit, you will be working in pairs (peer pair) or in groups of four
@@ -22,13 +22,13 @@ The peer groups for semester 2, 2024 are as follows:
 
 | Group ID | Partner group | Members | 
 |- |- |- | 
-| 1 | 2 | Amanda, Sherie | 
+| **1**| 2 | **Owen, Sherie** | 
 | 2 | 1 | Ben, Ross | 
 | 3 | 4 | Bryce, Jake | 
 | 4 | 3 | Eric, Tara|
 | 5 | 6 | Gianluca, Lin | 
 | 6 | 5 | Hedy, Jye | 
-| 7 | 8 | Leila, Owen | 
+| **7** | 8 | **Lucille, Mihir** | 
 | 8 | 7 | Max, Zhi Qian | 
 | 9 | 10 | Mitchell, Pri |
 | 10 | 9 | Paul, Tom | 

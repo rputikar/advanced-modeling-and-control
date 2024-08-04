@@ -1,6 +1,7 @@
 ---
 title: "Cascade control"
 format: revealjs
+date-modified: 2024-08-01
 ---
 
 ## Cascade control
@@ -116,13 +117,13 @@ In cascade control, we have **one** manipulated variable and more than one measu
 
 ### Process models
 - Open loop stable
-  $$G_p = \frac{K_p exp(-\theta s)}{\tau s + 1}$$
+  $$G_p = \frac{K_p e^{-\theta s}}{\tau s + 1}$$
 
 - Integrating
-  $$G_p = \frac{K_p exp(-\theta s)}{s}$$
+  $$G_p = \frac{K_p e^{-\theta s}}{s}$$
 
 - Open loop unstable
-  $$G_p = \frac{K_p exp(-\theta s)}{\tau s - 1}$$
+  $$G_p = \frac{K_p e^{-\theta s}}{\tau s - 1}$$
 
 :::
 :::{.column width=50%}
@@ -148,10 +149,10 @@ In cascade control, we have **one** manipulated variable and more than one measu
 :::{.column width=50%}
 
 - Primary process
-  $$G_{p1} = \frac{K_{p1} exp(-\theta_1 s)}{\tau_1 s + 1}$$
+  $$G_{p1} = \frac{K_{p1} e^{-\theta_1 s}}{\tau_1 s + 1}$$
 
 - Secondary process
-  $$G_{p2} = \frac{K_{p2} exp(-\theta_2 s)}{\tau_2 s + 1}$$
+  $$G_{p2} = \frac{K_{p2} e^{-\theta_2 s}}{\tau_2 s + 1}$$
 
 :::
 :::{.column width=50%}
@@ -179,13 +180,13 @@ In cascade control, we have **one** manipulated variable and more than one measu
 - Characteristic equation
   $$1 + G_{C2} G_{P2}  = 0$$
 
-  $$ 1 + \frac{K_{C2} K_{P2} exp(-\theta_2 s)}{\tau_2 s + 1} = 0 $$
+  $$ 1 + \frac{K_{C2} K_{P2} e^{-\theta_2 s}}{\tau_2 s + 1} = 0 $$
 :::
 
 :::{.column width=50%}
 - Let Loop gain $K_{L2} = K_{C2} K_{P2}$
 
-- Delay:  $exp(-\theta_2 s) \approxeq 1 - \theta_2 s$
+- Delay:  $e^{-\theta_2 s} \approxeq 1 - \theta_2 s$
 
 - Characteristic Polynomial
   $$ \tau_2 s + 1 + K_{L2}(1 - \theta_2 s) = 0 $$
@@ -280,7 +281,7 @@ $$
 
   $$
   1 + G_{c1} H_{r2} G_{p1} = 0;  
-  1 + \frac{K_{c1} K_0 K_{p1} (\tau_I s + 1) exp(-\theta_t s)}
+  1 + \frac{K_{c1} K_0 K_{p1} (\tau_I s + 1) e^{-\theta_t s}}
            { \tau_I s (\tau_1 s + 1)} = 0
   $$
 
@@ -288,7 +289,7 @@ $$
 
 ## Primary loop analysis
 
-- Let loop gain $K_{L1} = K_{C1} K_0 K_{p1}$ and $exp(-\theta_t s) \approxeq 1 - \theta_t s$
+- Let loop gain $K_{L1} = K_{C1} K_0 K_{p1}$ and $e^{-\theta_t s} \approxeq 1 - \theta_t s$
 
 - Simplifying CE to polynomial
 
@@ -302,7 +303,7 @@ $$
   +\underbrace{K_{L 1}}_{a_0}=0
   $$
 
-- Necessary stability criterion requires $a_2 > 0, a_1 > 0 and a_0 > 0$
+- Necessary stability criterion requires $a_2 > 0, a_1 > 0$, and $a_0 > 0$
 
 - These provide the limits for loop gain $K_{L1}$
 
