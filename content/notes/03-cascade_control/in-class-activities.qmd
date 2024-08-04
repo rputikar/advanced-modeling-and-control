@@ -34,7 +34,7 @@ date-modified: 2024-08-04
 2. Ammonia reactor
 
    Consider that you have been appointed by the plant manager to design a
-   cascade control strategy for the Haber process that produces ammonia (NH3)
+   cascade control strategy for the Haber process that produces ammonia ($\ce{NH3}$)
    for fertilizer production. The Haber process is conducted in a multi-tubular
    catalytic reactor where reaction occurs in the tubes while cooling medium
    flowing in the shell outside the tubes. The reactor has a length of 10
