@@ -3,6 +3,656 @@ title: "Other advanced control techniques"
 format: revealjs
 resources:
   - "./04-pid_enhancements.pdf"
+date-modified: 2024-08-11
 ---
 
+## Outline
 
+* Objectives of Plant Control
+* Process Control Roles and Plant Objectives
+* Process Constraints – why important?
+* PID Control Enhancement Strategies
+
+  1. Override Control
+  2. Inferential Control
+  3. Scheduling Controller Tuning
+  4. Computed Manipulated Variable
+
+## Objectives of plant control
+
+* Safety
+
+* Equipment Protection
+
+* Environmental Protection
+
+* Smooth Operation
+
+* Profit
+
+::::{.fragment}
+:::{.callout-note appearance='simple'}
+
+These objectives are interrelated.
+
+:::
+::::
+
+## Process safety
+
+:::{.incremental}
+
+* Accidents occur due to unsafe conditions and unsafe acts resulting from
+  improper control.
+
+  ![](../../../assets/images/process_safety_conditions_acts-unsafe.png){width=90%}
+
+* Proper process control ensures safer conditions and along with safer acts,
+  leads to safe and profitable operations.
+
+  ![](../../../assets/images/process_safety_conditions_acts-safe.png){width=90%}
+
+:::
+
+
+## Process safety
+
+
+::::{.columns}
+:::{.column width=65%}
+
+* Safety: Ensuring operations are free of any accidents.
+* Causes of Accidents:
+  - Unsafe Conditions
+  - Unsafe Acts
+
+* Addressing These Factors:
+  - Implementing Advanced Control Systems: Automated shutdown systems,
+    Real-time data monitoring Predictive maintenance tools
+  - Enhancing Safety Training: Regular safety drills, Clear communication of
+    safety procedures, Continuous education on best practices and new
+    technologies
+  - Enforcing Safety Protocols: Strict adherence to safety guidelines, Use of
+    personal protective equipment (PPE), Encouraging a culture of safety and
+    accountability
+
+:::
+:::{.column width=35%}
+
+* Mitigation through Proper Control Systems:
+  - Unsafe Conditions:
+    + Implement automated monitoring and control systems.
+    + Use sensors and alarms to detect and address hazardous conditions.
+    + Ensure regular maintenance and inspections to keep equipment in optimal condition.
+
+:::
+::::
+
+## Unsafe conditions
+
+ 
+::::{.columns}
+:::{.column width=50%}
+
+A feed stream containing acidic and toxic solution is fed into a tank. A pump
+is placed underneath the tank.
+
+Describe how an unsafe condition can arise from the operation.
+
+What kind of accidents that can be triggered by the unsafe condition?
+
+:::
+:::{.column width=50%}
+
+![](../../../assets/images/tank_with_pump.png){width=90%}
+
+
+:::
+::::
+
+
+## Prevention of unsafe conditions
+
+::::{.columns}
+:::{.column width=50%}
+
+![](../../../assets/images/tank_with_pump_level_control.png){width=90%}
+
+:::
+:::{.column width=50%}
+
+* Applying Control to Liquid Levels:
+
+  - Ensures liquid spillover prevention.
+
+* Liquid Level Control:
+
+  - Prevents Liquid Spillover
+  - Achieves Control Objectives
+  - Enhances Safety
+  - Both safety and equipment protection are interrelated.
+
+* Additional Benefits of Liquid Control:
+  - Improves Pump Operations: Ensures consistent liquid levels, preventing pump
+    cavitation and prolonging pump lifespan. Reduces maintenance costs and
+    downtime.
+
+
+:::
+::::
+
+## Environmental protection
+
+::::{.columns}
+:::{.column width=50%}
+
+* Flash Tank Feed containing 20% water and 80% $\ce{H2SO4}$. Product must be at least
+  99% pure $\ce{H2SO4}$ 
+
+* Vent discharge should not be more than 1% $\ce{H2SO4}$, otherwise violates an
+  environmental regulation. 
+
+* Describe how can the vent discharge exceed 1% limit? 
+
+* What damages can arise if the limit discharge is exceeded?
+
+* What is the implication of this violation on sustainability?
+
+
+:::
+:::{.column width=50%}
+
+![](../../../assets/images/vapor_liquid_separator.png){width=90%}
+:::
+::::
+
+## Environmental protection
+
+::::{.columns}
+:::{.column width=50%}
+
+
+* By controlling the $\ce{H2SO4}$ mass fraction in the vapor using steam flow rate,
+  it can ensure that the limit will not be violated during operation.
+
+* The question becomes, is this control strategy sufficient?
+
+* Do we need to address safety and equipment Protection issues?
+
+:::
+:::{.column width=50%}
+
+![](../../../assets/images/vapor_liquid_separator_at_control.png){width=90%}
+:::
+::::
+
+## Environmental protection
+
+![](../../../assets/images/vapor_liquid_separator_complete_control.png){width=60%}
+
+
+## Smooth operations: distillation column
+
+::::{.columns}
+:::{.column .pad width=50%}
+
+* Distillation Column is an important unit in many chemical plants.
+
+* **Objective**: To separate components based on differences in volatility,
+   ensuring the desired purity of products.
+
+* **Key Variables**: Temperature, pressure, reflux ratio, and feed composition.
+
+* The column has several control objectives.
+
+* Can you identify which control loop is related to smooth operation?
+
+:::
+:::{.column width=50%}
+
+![](../../../assets/images/distillation_column.png){width=90%}
+
+:::
+::::
+
+## Operating constraints
+
+::::{.columns}
+:::{.column .pad width=50%}
+
+* Soft constraints
+  - Can be violated during operation without compromising safety.
+* Hard constraints
+  - Physical limitations, such as maximum flow rates determined by valve sizes.
+  - Constraints directly related to safety, which must never be violated.
+
+* **Dealing with Process Constraints** is important to prevent accidents,
+  unnecessary process disruptions, and loss in profit.
+
+* **Conventional PID controllers** are NOT able to handle constraints.
+
+* **Override Control Strategies** are used to deal with constraints.
+
+:::
+:::{.column width=50%}
+
+![](../../../assets/images/tank_with_pump_level_control.png){width=90%}
+
+::: {.callout-note appearance='simple'}
+  - Which are hard constraints?
+  - Which are soft constraints?
+:::
+
+:::
+::::
+
+## Operating constraints
+
+![](../../../assets/images/vapor_liquid_separator_complete_control.png){width=50%}
+
+- Which are hard constraints?
+- Which are soft constraints?
+
+
+## Limitations of conventional PID controllers
+
+* **Measurement Deadtime:**
+   - Delay between the process variable's actual change and the time it is measured.
+   - Delayed corrective actions, leading to poor control and potential process upsets.
+
+* **Process Nonlinearity:**
+   - PID controllers are designed for linear systems, but many real-world processes exhibit nonlinearity.
+   - Degraded control performance, oscillations, or instability in nonlinear processes.
+
+* **Process Constraints:**
+   - Physical or safety-related constraints that PID controllers are not inherently equipped to manage.
+   - Risk of constraint violations, which can lead to safety hazards or equipment damage.
+
+## Effect of Deadtime on Control Performance
+
+![](../../../assets/images/effect_of_deadtime_on_control_performance.png){width=90%}
+
+## Smith predictor
+
+:::{.pad100}
+:::
+
+![](../../../assets/images/smith_predictor.png){width=90%}
+
+:::{.pad100}
+:::
+
+
+## Inferential control
+
+* A control strategy that estimates (infers) unmeasured process variables based
+  on other easily measurable variables and uses these estimates to maintain
+  control of the process.
+
+* Some critical variables are difficult or expensive to measure directly (e.g.,
+  product composition, purity).
+
+* Uses Easily Measured Process Variables (e.g., Temperature, Pressure, Flow Rate)
+  - Mathematical models to more difficult-to-measure quantities such as
+    compositions and molecular weight.
+
+* Advantages
+
+  - Reduces Analyzer Delay: Provides faster estimations, improving process
+    responsiveness.
+  - Cost-Effective: Significantly lowers both capital and operating costs
+    compared to direct measurement systems.
+  - Unique Measurements: Offers insights into variables that may be difficult
+    or impossible to measure directly.
+
+
+::: {.callout-note appearance='simple'}
+* **Key Requirement**: The inferential measurement must correlate strongly with
+  the controlled variable of interest to ensure accurate and reliable control.
+:::
+
+## Inferential temperature control for distillation columns
+
+![](../../../assets/images/inferential_control_distillation_column.png){width=90%}
+
+## Choosing a proper tray temperature location
+
+::::{.columns}
+:::{.column width=60%}
+
+
+![](../../../assets/images/tray_temp_location.png){width=90%}
+
+:::
+:::{.column .pad width=40%}
+
+* A tray temperature used for inferential control should show strong sensitivity.
+
+* Tray 10 is more sensitive $\Rightarrow$ change in % mol of propane clearly
+  represented by T
+
+* Tray 18 is not sensitive to change in % mol of propane $\Rightarrow$ change
+  from 3.5% to 4% only leads to very small error signal in temperature
+
+* Larger error signal generated in temperature $\Rightarrow$ more effective
+  inferential T control of %mol of propane
+
+:::
+::::
+
+## Composition/Temperature correlation
+
+::::{.columns}
+:::{.column width=60%}
+
+
+![](../../../assets/images/comp_temp_correlation.png){width=90%}
+
+:::
+:::{.column .pad width=40%}
+
+* Tray temperature for multicomponent distillation column as a function of the
+  light key in the bottoms product for different ratios of heavy non-key to light
+  non-key
+
+* Feed composition affects the composition-temperature correlation.
+
+* Tray temperature cannot represent the bottom composition well enough when
+  feed composition heavily fluctuates
+
+:::
+::::
+
+## Feedback correction: feed composition changes
+
+:::{.pad100}
+:::
+
+:::{.pad100}
+![](../../../assets/images/feedback_correction_for_feed_comp_changes.png){width=90%}
+:::
+
+* The inferential T controller is now a slave to the composition controller
+
+* Advantages: remove extra disturbances, e.g., feed flow rate and temperature
+  disturbances
+
+## Inferential Reactor Conversion Control
+
+::::{.columns}
+:::{.column width=50%}
+
+
+![](../../../assets/images/packed_bed_reactor.png){width=40%}
+
+:::
+:::{.column .pad width=50%}
+
+### Macroscopic energy balance
+
+$$
+X_A C_{A_{in}} (-\Delta H_{rxn}) = \rho C_p (T_{out} - T_{in})
+$$
+
+$$
+X_A = \frac{ \rho C_p }{ C_{A_{in}} (-\Delta H_{rxn}) } (T_{out} - T_{in})
+$$
+
+* Develop linear relationship based on plant data
+
+$$
+X_A = a (T_{out} - T_{in}) + b
+$$
+
+* Temperature difference across the reactor must be large enough;
+  - noise on the temperature measurement has a minimum effect on $X_A$
+* Inlet composition and physical properties are constants, or do not change
+  significantly.
+
+:::
+::::
+
+
+## Molecular Weight of a Polymer
+
+:::{.pad100}
+:::
+
+:::{.pad100}
+![](../../../assets/images/polymer_mwd.png){width=90%}
+:::
+
+:::{.pad}
+* Without inferential, samples requires about 10 hrs test in the lab.
+* Long deadtime will seriously reduce the control performance
+* Deadtime imposes an upper limit on the control performance
+:::
+
+## Gain scheduling
+
+::::{.columns}
+:::{.column .pad width=50%}
+
+* Equipment response is nonlinear to input changes
+  - Heat exchangers are nonlinear with respect of flow rate changes
+
+* Can be effective When either a measured disturbance or, The controlled
+  variable correlates with Nonlinear process changes
+
+* Tune the controller at different levels, scheduling parameters; and combine
+  the results so that the controller tuning parameters vary over the full
+  operating range.
+
+:::
+:::{.column width=50%}
+
+![](../../../assets/images/heat_exchanger_control.png){width=90%}
+
+
+![Open-Loop response for a heat exchanger for different feed
+rates.](../../../assets/images/heat_exchanger_open_loop_response.png){width=90%}
+
+:::
+::::
+
+
+## Effect of scheduling controller tuning
+
+![](../../../assets/images/heat_exchanger_control_response.png){width=90%}
+
+A nonscheduled controller that was tuned for v = 7 ft/sec after the feed rate is
+changed to v = 4 ft/sec and a scheduled controller for the same upset.
+
+
+## Override/select controls
+
+::::{.columns}
+:::{.column .pad width=40%}
+
+* Process are many times operated at the safety or equipment limits in order to
+  maximize process throughput
+
+* During upset periods, it is essential that safety limits are enforced
+
+* Override/Select control uses LS and HS action to change which controller is
+  applied to the manipulated variable.
+
+* Override/Select control uses selected action to switch between manipulated
+  variables using the same control objective.
+
+:::
+:::{.column width=60%}
+
+![](../../../assets/images/furnace_tube_temp_control.png){width=90%}
+
+* Furnace tube temperature constraint control
+  - Two T controls: Tube T; Process fluid T
+
+* 𝑄 = 𝐴𝑈 ∆𝑇
+  - Increase Fp (process flow) will increase Q
+  
+    ∆𝑇 = 𝑇~tube~ − 𝑇~p~
+
+  - Tube temperature increase, it may violate maximum value, i.e. 500 C
+
+
+:::
+::::
+
+## Tube temperature constraint controller
+
+::::{.columns}
+:::{.column .pad width=40%}
+
+* Under normal operation,
+  - Controller adjusts the furnace firing rate to maintain process stream at
+    the setpoint temperature.
+  - Process fluid outlet temperature control is selected
+
+* At higher feed rates
+  - Excessive tube temperatures can result in greatly reducing the useful life
+    of the furnace tubes.
+  - Tube temperature control selected
+
+* The LS controller reduces the firing rate to ensure that the furnace tubes
+  are not damaged.
+
+:::
+:::{.column width=60%}
+
+
+:::{.pad100}
+:::
+![](../../../assets/images/furnace_tube_temp_control.png){width=90%}
+
+:::
+::::
+
+
+## Column flooding constraint control
+
+![Controllers - AC: bottom purity;  DPC: vapor
+flow](../../../assets/images/column_flooding_constraint_control.png){width=90%
+.pad}
+
+* ΔP proportional to vapor flow. Higher ΔP means higher vapor flow across the
+  trays. Too high vapor flow leads to column flooding – non smooth operation
+  occur. To avoid flooding, implement DPC with LS controller.
+
+* Under abnormal situation, e.g., sudden increase in feed rate, more steam is
+  required. This can dramatically increase the vapor flow leading to flooding.
+  DPC will prevent this from happening
+
+## Analysis of override/select control – distillation column
+
+::::{.columns}
+:::{.column width=60%}
+![Controllers - AC: bottom purity;  DPC: vapor
+flow](../../../assets/images/column_flooding_constraint_control.png){width=90%
+.pad}
+
+
+:::
+
+:::{.column .pad width=40%}
+
+* When pressure drop across the column reaches an upper operational limit
+  - Reboiler duty is switched from controlling; bottom product composition to
+  maintaining operation at maximum pressure drop
+* When the composition of the impurity in bottom product becomes less than
+  setpoint (over purified),
+  - Reboiler duty is switched from controlling at maximum pressure drop to
+    maintaining composition of bottom product
+
+
+:::
+::::
+
+
+## Controlling multiple constraints
+
+![Controllers - AC: bottom purity;  TC: bottom temperature; DPC: vapor
+flow](../../../assets/images/controlling_multiple_constraints.png){width=90%}
+
+* DPC will be active if excessive vapor flow occurs under sudden increase in
+  feed flow.
+
+* TC is used to protect the reboiler from excessively high temperature. Under
+  abnormal situation, e.g., sudden drop in feed temperature, a lot of steam is
+  required to maintain the bottom purity. This may lead to violation of maximum
+  tube temperature. TC is used to prevent this from happening.
+
+
+## Hot spot temperature control
+
+![](../../../assets/images/hotspot_temp_control.png){width=90% .pad}
+
+* Can be used to control the maximum temperature in a fixed-bed reactor
+* Maximum reactor temperature occurs at different locations in the reactor
+
+## Cross-limiting firing controls
+
+![](../../../assets/images/cross_limit_firing_control.png){width=90% .pad}
+
+
+## Firing rate increase
+
+![](../../../assets/images/cross_limit_firing_control_rate_increase.png){width=90% .pad}
+
+* HS ensures setpoint for air flow controller increases immediately.
+* Then LS sends signal to fuel controller as its setpoint.
+
+
+## Firing rate decrease
+
+![](../../../assets/images/cross_limit_firing_control_rate_decrease.png){width=90% .pad}
+
+* LS ensures setpoint for fuel controller decreases immediately.
+* Then HS sends the signal to air flow controller as its setpoint.
+
+
+## Analysis of cross-limiting firing controls
+
+::::{.columns}
+:::{.column width=60%}
+![](../../../assets/images/cross_limit_firing_control.png){width=90% .pad}
+
+:::
+
+:::{.column .pad width=40%}
+
+* It is critical that excess oxygen is maintained during firing rate increases
+  or decreases or CO will form.
+
+* When the firing rate is increased, the air flow rate will lead
+  the fuel flow rate.
+
+* When the firing rate is decreased, the fuel flow rate will
+  lead the air flow rate.
+
+* Air flow rate controller is based on equivalent fuel flow rate (fuel/air
+  ratio).
+
+:::
+::::
+
+
+## Override control
+
+![](../../../assets/images/override_control.png){width=90% .pad}
+
+* Select control to maintain bottom product purity when a maximum reboiler
+  constraint is encountered.
+* S selects the most critical stream in a cascade control loop.
+
+## Summary
+
+* Ensuring safe, smooth and profitable operation requires adequate control
+  system in place.
+* Where applicable, inferential control reduces deadtime at a
+  very effective price.
+* When process nonlinearity is serious, consider the
+  scheduling controller tuning.
+* Use override/select controls to satisfy safety and operational constraints. 
+  - Control system must be able to deal with multiple constraints to ensure
+    safe, smooth and profitable operation.

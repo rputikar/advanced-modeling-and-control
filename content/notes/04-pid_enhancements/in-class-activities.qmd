@@ -7,6 +7,7 @@ format:
 resources:
    - "./PI_without_gain_scheduler.slx"
    - "./PI_with_gain_scheduler.slx"
+date-modified: 2024-08-11
 ---
 
 ## Activities
@@ -28,7 +29,19 @@ resources:
 
 2. Design a Smith predictor for problem 1. 
 
-3. Consider two inferential model for the prediction of distillation top
+3. It is desired to control the size distribution of crystals produced in
+   vacuum continuous crystallizer, but it’s very difficult to measure i.e.
+   requires lengthy lab test. Some experiment suggest that crystal size
+   distribution are strongly related to the (1) stirrer speed q, (2) magma
+   temperature T, (3) degree of supersaturation C-Cs, and (4) mother liquor
+   density r. C is concentration of the solute and Cs is the solubility of the
+   solute.
+   
+   1. Suggest an inferential control technique for crystal size distribution
+   2. Show the schematic of the control strategy. Comment on the effectiveness
+      of the strategy.
+
+4. Consider two inferential model for the prediction of distillation top
    impurity fraction xD and a tray temperature T as follows: Reduction in the
    heavy key fraction in the feed by 10%:
 
@@ -44,7 +57,7 @@ resources:
 
 
 
-4. **Gain Scheduling**: 
+5. **Gain Scheduling**: 
    For the furnace shown in @fig-furnace, show a schematic control strategy
    with gain scheduling. What variable can you use for gain scheduling? Give your reasons.
 
@@ -60,7 +73,7 @@ resources:
 
 :::
 
-5. A cold process fluid is heated up in a shell-and-tube heat exchanger using
+6. A cold process fluid is heated up in a shell-and-tube heat exchanger using
    steam. At the nominal process feed flow rate, the transfer function of the
    exit temperature of the process fluid is given as follows:
 
@@ -115,7 +128,7 @@ resources:
    Evaluate the controller performance. Simulink file for problem
    implementation without gain scheduling is given [here](./PI_without_gain_scheduler.slx).
 
-6. **Reactor-Furnace-Distillation System**:
+7. **Reactor-Furnace-Distillation System**:
 
    For RFD system shown in @fig-rfd, draw the schematic of LS control strategy
    for the reactor system, where it is desired to control the component A (CA),
