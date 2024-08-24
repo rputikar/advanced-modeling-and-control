@@ -6,11 +6,18 @@ format:
   pdf
 resources:
   - "./MSPC.1.7.zip"
+  - "./lda_qda.mlx"
+  - "./pca.mlx"
+date-modified: 2024-08-25
 ---
 
 ## Activities
 
-1. Explore multivariate analysis for process monitoring using the MSPC app (GIEM, 2023). 
+1. Explore discriminant analysis by following steps given in [lda_qda.mlx](./lda_qda.mlx). 
+
+2. Explore pca analysis by following steps given in [pca.mlx](./pca.mlx). 
+
+3. Explore multivariate analysis for process monitoring using the MSPC app (GIEM, 2023). 
 
 
 ### Reference

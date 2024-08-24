@@ -4,7 +4,7 @@ subtitle: "CHEN4011 - Advanced Modelling and Control"
 format:
   pdf:
     output-ext: "pdf"
-date-modified: 2024-08-21
+date-modified: 2024-08-24
 ---
 
 ::: {.content-visible when-format="pdf"}
@@ -226,18 +226,31 @@ Populate @tbl-q4b.
 
 ## Question 5 \hfill (10 Marks)
 
-Load `iddata2` in Matlab command line using command `load iddata2`. This will
-load data `z2` in workspace. 
+In a hair dryer, air is fanned through a tube where it gets heated by applying
+voltage to a heating element. 
+The input is the voltage applied to the heater. 
+The output is the temperature at the outlet of the tube. 
+Experiments are conducted to measure outlet temperature by varying the voltage.  
+The resulting time series is shown in @fig-q5.
+
+![Temperature and voltage data](../../../assets/images/dry2.png){#fig-q5
+width=65% fig-align=center}
+
+Load `dry2` data in Matlab by using command `load dry2`. This will
+load data `dry2` in workspace. 
 
 Fit transfer function models, ARX models, and ARMAX model as given in @tbl-q5
 to the data. You may use built in Matlab functions `tfest`, `arx`, and `armax`
 instead of the system identification toolbox. 
 
-Use first 200 points of `z2`(`z2(1:200)`) for model estimation and last 200
-points of `z2` (`z2(201:400)`) for model prediction (testing).  
+Use first 500 points of `dry2`(`dry2(1:500)`) for model estimation and last 500
+points of `dry2` (`dry2(501:1000)`) for model prediction (testing).  
 
 Compare the models against test data (use `compare` command) and report fit to
 prediction data. Populate @tbl-q5. Comment on your results. 
+Do your results show better fit with a more complex model? If not why?
+
+{{< pagebreak >}}
 
 | Model | Fit to prediction data | 
 |-|-|-|
@@ -253,10 +266,10 @@ prediction data. Populate @tbl-q5. Comment on your results.
 | ARMAX model with na=2, nb=2, nc=2, nk=1 ||
 |||
 
-: Model fit {#tbl-q5}
-
+: Question 5 model fit {#tbl-q5}
 
 {{< pagebreak >}}
+
 
 ## Formula sheet
 

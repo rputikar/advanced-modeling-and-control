@@ -3,6 +3,345 @@ title: "Principal Component Analysis"
 format: revealjs
 resources:
   - "./06-principal_component_analysis.pdf"
+date-modified: 2024-08-25
 ---
 
+<!-- ## Industry 4.0 -->
+<!---->
+<!--   ![](../../../assets/images/industry4.0.png){width=90%} -->
+<!---->
+## Univariate vs multivariate analysis
+
+* Univariate statistical analysis – 1 input variable and 1 response variable
+  - E.g., input variable = reactor temperature; response variable = reactor
+    conversion
+* Multivariate statistical analysis – multiple variables and multiple responses
+  - E.g., input variables = reactor temperature, feed concentration; response
+    variables = reactor conversion and product yield
+* Multivariate analysis attempts to reveal the key information from the
+  correlated variables
+* Widely used in the science and engineering applications – data analysis
+
+## Multivariate analysis
+* Goal of many multivariate approaches is simplification – from large dimension
+  to smaller or reduced dimension of datasets
+* Such approaches are exploratory, e.g., generate hypotheses rather than for
+  testing them
+* Some approaches:
+  i. Discriminant Analysis – identifying the relative contribution of 𝑝
+     variables to separation of the groups
+  ii. Principal Component Analysis (PCA) – reduces large dimension of a data
+      set to smaller dimension
+  iii. Multivariate regression, e.g., partial least square (PLS) regression
+
+
+## Discriminant analysis
+
+* Discriminant analysis (DA) is a supervised learning technique primarily used for classification
+  tasks. It seeks to find the combination of features that best separates or
+  discriminates between two or more predefined classes.
+
+* Objective is to find a linear combination of features that best separates two
+  or more classes.
+
+* Discriminant Function: A function created from the linear combination of
+  predictor variables that best separates the classes.
+
+* Decision Boundary: The line or surface that separates different classes in
+  the feature space.
+
+* Advantages
+  - Simple and easy to understand.
+  - Effective when data meets the assumptions of normality and equal covariance
+    matrices.
+
+* Disadvantages
+  - Assumes linear class boundaries, which may not perform well with non-linear
+  separations. 
+  - Sensitive to outliers, which can significantly impact results.
+
+## Applications of discriminant analysis
+
+:::{.pad}
+* **Fault Detection and Diagnosis**  
+
+  DA can be used to distinguish between normal reactor operation and issues
+  like overheating, catalyst deactivation, or abnormal pressure drops by
+  analyzing sensor data.
+
+* **Quality Control**  
+
+  In polymer production, DA can help in assessing product quality through
+  variables such as molecular weight, viscosity, and tensile strength.
+
+* **Predictive Maintenance**  
+
+  For heat exchangers, DA can identify operational states, ranging from
+  "normal" to "early fouling" or "severe fouling," allowing for timely
+  maintenance.
+
+* **Safety and Risk Management**  
+
+  DA can be used to provide early warnings by classifying real-time plant
+  conditions as safe or potentially hazardous, enabling preventive actions.
+:::
+
+
+## Principal component analysis
+
+* An exploratory technique used to reduce the dimensionality of the data set to
+  2D or 3D 
+
+* Can be used to:
+
+  - Reduce number of dimensions in data: Minimizes the number of variables in a
+    dataset, helping in data simplification
+
+  - Identify outliers
+
+  - Find patterns in high-dimensional data: Identifies underlying patterns in
+    high-dimensional data, making it easier to analyze.
+
+  - Visualize data of high dimensionality: Facilitates the visualization of
+    complex, high-dimensional datasets by projecting them into lower dimensions.
+  
+  - Example applications:
+    * Process monitoring, quality control
+    * Environmental analysis
+    * Face recognition, image compression
+    * Gene expression analysis
+
+## What are Principal Components?
+
+* Suppose you have a dataset with many variables (features), say 10, 50, or
+  even 100 dimensions. 
+
+  - Each data point in this high-dimensional space is an observation or a
+    sample, characterized by these variables.
+
+* PCA transforms this high-dimensional data into a new set of axes called
+  principal components. 
+
+* These are linear combinations of the original variables. 
+
+* The principal components are ordered by the amount of variance they explain:
+
+  - First Principal Component (PC1): The direction in the data that captures the
+    most variance (i.e., the greatest spread of the data).
+
+  - Second Principal Component (PC2): The direction orthogonal (at a right
+    angle) to PC1 that captures the next highest amount of variance.
+
+
+## PCA analysis
+
+* PCA decomposes a data set $\bf{X}$[matrix (m observations, n variables)] into
+
+  $$
+  \bf{X} = \bf{TP^T} + \bf{E}
+  $$
+
+  - $k$ is the number of principal components (typically $k \le n$)
+
+  - $\bf{T}$ is the scores matrix (order $m \times k$).
+
+    :::{.smaller}
+    Scores are the projections of the original data onto the principal
+    components. Each row represents an observation's coordinates in the reduced
+    k-dimensional space.
+    :::
+
+  - $\bf{P}$ is the loading matrix (order $n \times k$).
+
+    :::{.smaller}
+    These are the coefficients that define each principal component as a linear
+    combination of the original variables. Each column represents a principal
+    component, and each row corresponds to a variable.
+    :::
+    
+  - $\bf{E}$ is the residual or error matrix (order $m \times n$).
+
+    :::{.smaller}
+    Ideally, if all principal components are retained, $\bf{E}$ would be a zero
+    matrix. In practice, it captures the noise or less important variations in
+    the data that are not accounted for by the principal components.
+    :::
+
+* Principal components are orthogonal to each other, i.e., they are
+  uncorrelated
+
+* $\bf{P}$ can be obtained using the singular value decomposition (SVD) or ALS
+  (alternate least square). 
+
+## PCA analysis
+
+::::{.columns}
+
+:::{.column width=50%}
+
+:::{.pad50}
+:::
+
+![](../../../assets/images/pca_illustration.png){width=90%}
+
+
+:::
+:::{.column width=50%}
+
+:::{.pad}
+* Principal components show directions of the data that explain a maximal
+  amount of variance
+
+* The larger the variance carried by a line, the larger the dispersion of the
+  data points along it
+
+* Original data on the left with original coordinate $x_1$ and $x_2$
+
+* Variance of each variable graphically represented
+
+* Direction of the maximum variance i.e., principal component PC1 and PC2
+:::
+
+:::
+::::
+
+
+## Process modeling using PCA
+
+### Distillation column example
+
+::::{.columns}
+
+:::{.column width=50%}
+
+![](../../../assets/images/mspc_distillation_column.png){width=90%}
+
+* Separating a Methanol — Ethanol mixture
+
+* CVs: $Y_D, X_B$; MVs: $D, B, L, V$; DVs: $F_T z$
+
+* SISO control
+
+:::
+:::{.column width=50%}
+
+![](../../../assets/images/mspc_distillation_column_simulink_model.png){width=90%}
+
+* Model and data set incorporated in app
+
+* Workflow
+  - Phase I: Model steady state with PCA
+  - Phase II: Project new observations on model and detect deviation
+
+:::
+::::
+
+##  Phase I: Model steady state with PCA
+
+* Phase I: Model building to capture normal operating conditions
+* No plant data $\rightarrow$ use Simulink model to generate process data
+
+![](../../../assets/images/mspc_normal_operation.png){width=90%}
+
+
+##  Phase I: Model steady state with PCA
+
+* Reduce size of data set
+  - Higher observations means better model but increases computing requirement
+
+* Derive PCA model based on smallest data set that represents information in
+  entire data set 
+  - Select random subset
+  - Fit PCA model
+  - Compute percentage of out-of-control points
+  - If below threshold (5%), stop or else repeat above steps by increasing size
+    of random subset
+
+::::{.columns}
+
+:::{.column width=50%}
+
+![](../../../assets/images/mspc_automodel_selection.png){width=90%}
+
+:::
+:::{.column width=50%}
+
+![](../../../assets/images/mspc_statistics_by_model_size.png){width=90%}
+
+:::
+::::
+
+
+##  Phase I: Model steady state with PCA
+
+![](../../../assets/images/mspc_variance_explained.png){width=90%}
+
+##  Phase I: Model steady state with PCA
+
+::::{.columns}
+
+:::{.column width=50%}
+
+### SPE control chart 
+
+* Measures the distance to the model
+
+![](../../../assets/images/mspc_spe_chart.png){width=90%}
+
+:::
+:::{.column width=50%}
+
+### Hotelling's $T^2$ control chart 
+
+* Measures if the projected observations are in NOC zone
+
+![](../../../assets/images/mspc_t2_chart.png){width=90%}
+
+:::
+::::
+
+* Solid red line indicates 90% confidence interval; dashed red line indicates
+  95% confidence interval.
+
+## Phase II: Model exploitation
+
+* New 'faulty' data is pre-processed and projected onto the PCA model
+
+* If process is below control limits in both charts Process under control
+
+* If point is outside limits
+  - Check SPE chart and look at corresponding contribution plots
+  - Check T2 chart and look at corresponding contribution plots
+
+* Faults
+  - Pl loop failure
+  - Operating mode change
+
+  - 3 types of process disturbance: spike, ramp, pulse
+
+    ![](../../../assets/images/mspc_process_disturbance.png){width=90%}
+
+## Contribution chart
+
+* Shows how each original variable contributes to a particular principal component
+
+* Helps to identify which variables are most responsible for the
+  patterns or outliers
+
+* Variables with higher contributions are those that have a stronger influence
+  on the differentiation of the observations.
+
+![](../../../assets/images/mspc_contribution_chart.png){width=90%}
+
+## Scores 
+
+* Score plot typically represents the data points projected onto the first
+  two principal components.
+
+* Each point represents an observation (e.g., a sample or an experiment) in the
+  reduced dimensionality space.
+
+* The score plot is used to identify patterns, groupings, or outliers in the data.
+
+![](../../../assets/images/mspc_score_scattered.png){width=60%}
 
