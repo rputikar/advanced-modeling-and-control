@@ -1,8 +1,6 @@
 ---
 title: "Principal Component Analysis"
 format: revealjs
-resources:
-  - "./06-principal_component_analysis.pdf"
 date-modified: 2024-08-25
 ---
 
