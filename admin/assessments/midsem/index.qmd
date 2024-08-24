@@ -1,0 +1,293 @@
+---
+title: Mid semester class test 
+subtitle: "CHEN4011 - Advanced Modelling and Control"
+format:
+  pdf:
+    output-ext: "pdf"
+date-modified: 2024-08-21
+---
+
+::: {.content-visible when-format="pdf"}
+
+|                             |                                      |
+| -                           | -                                    |
+| **Date**:                   | 2024-08-26                        |
+| **Time**:                   | 11:00 - 13:00                        |
+| **Assessment duration**:    | 90 minutes + 10 minutes reading time |
+| **Total marks**: | 50                                   |
+
+## Name: 
+
+## Student ID: 
+
+## Instructions to students
+
+- **THIS IS A OPEN BOOK INVIGILATED IN CLASS TEST.**
+
+- **_Mobile phones_** or any other devices capable of communicating information
+  are **prohibited** from use during examinations. **You can use your laptops**. 
+
+- You can use Matlab documentation, the resources provided during class/
+  workshop etc. to answer the questions. 
+
+-	If required, assume necessary data. Provide justification for your
+  assumptions.
+
+- You are expected to write your answers on to the printed question paper
+  provided. **This is what gets marked.**
+
+-	**Syllabus**: Feedforward and ratio control, cascade control, other advanced
+  control techniques, time series modeling and analysis. 
+
+-	**Question types**: Theory questions, problems, and Matlab/ Simulink based
+  questions
+
+- You are required to upload the Matlab/Simulink file on to blackboard: 
+  - Rename the file as STUDENTID_midsem_test.(m/slx)
+  - Upload it using assessment submission link on blackboard. 
+
+- Any breaches of policy will be considered cheating and appropriate actions
+  will be taken as per university policy.
+
+- **YOU ARE REQUIRED TO ANSWER ALL QUESTIONS**
+
+{{< pagebreak >}}
+
+:::
+
+## Question 1 \hfill (10 Marks)
+
+A stream of light hydrocarbons (Containing $\ce{C1}$ to $\ce{C5}$) is heated.
+The pressure of the stream is lowered, and the liquid and vapor phases are
+separated in a drum. We would like to control the $\ce{C2}$ concentration in
+the liquid stream at 10%. However, an analyzer is not available, perhaps
+because of cost.
+
+From the mole balance (@eq-1), we expect that the temperature of the drum and
+the compositions will be related. 
+
+$$
+\begin{aligned}
+FM_F &= FM_L + FM_V \\
+FM_F Z_i &= FM_L X_i + FM_V Y_i \\
+Y_i &= K_i X_i \\
+K_i &= f(P, T)
+\end{aligned}
+$${#eq-1}
+
+Since the feed has six components, the pressure and temperature do not exactly
+define the compositions in the two phases. An analysis is performed to
+establish whether the relationship between the temperature and the liquid
+ethane concentration. The results of the analysis are given in @fig-q1.
+
+![The relationship between the flash temperature and the concentration of
+ethane in the liquid](../../../assets/images/flash_temp_ethane_conc.png){#fig-q1 width=50% fig-align=center}
+
+For inferential control identify the following
+
+
+\vspace{1cm}
+
+True variable:  
+
+\vspace{1cm}
+
+Inferential variable: 
+
+\vspace{1cm}
+
+Manipulated variable:
+
+\vspace{1cm}
+
+Inferential relationship:
+
+\vspace{1cm}
+
+Disturbances: 
+
+\vspace{2cm}
+
+
+Regulatory control (What variables need to be controlled for safe operations?):
+
+\vspace{5cm}
+
+
+What are some of the drawbacks of this control strategy? 
+
+{{< pagebreak >}}
+
+
+
+Show the schematic of the control strategy; indicate the sensors, controllers,
+and actuators.  
+
+\vspace{3cm}
+
+![](../../../assets/images/flash_drum.png){fig-align=center}
+
+{{< pagebreak >}}
+
+## Question 2 \hfill (10 Marks)
+
+Consider the following transfer functions of the process and disturbance
+associated with two systems. Derive an idealized feedforward controller
+corresponding to each system. Comment on the idealized feedforward controller,
+e.g., its feasibility and effectiveness.
+
+**System 1**  \hfill (5 Marks)
+
+$$
+G_D = \frac{-5 e^{-3s}}{8s + 1} \qquad ; \qquad
+G_P = \frac{10 e^{-s}}{5s + 1} 
+$$
+
+{{< pagebreak >}}
+
+**System 2** \hfill (5 Marks)
+
+$$
+G_D = \frac{2 e^{-2s}}{s^2 + s + 1} \qquad ; \qquad
+G_P = \frac{10 (1-s) e^{-s}}{s^2 + 3s + 1} 
+$$
+
+{{< pagebreak >}}
+
+## Question 3 \hfill (10 Marks)
+
+Consider a long multi-tubular reactor in which an exothermic reaction occurs. A
+cooling medium flows in the shell side to remove the heat generated. @fig-q3a
+shows the reactor temperature profile along its length. The hotspot (peak
+temperature) varies with the inlet feed temperature, i.e., the higher the feed
+temperature ($T_1 < T_2 < T_3$), the higher the hotspot and the further away it
+is from the reactor entrance. It is crucial to keep the hotspot below a
+critical value by adjusting the cooling water flow rate. Propose a control
+strategy to control the hotspot. Show the schematic of the control strategy;
+indicate the sensors, controller and actuator. Explain how the control strategy
+work to remove the effect of feed temperature disturbance.
+
+![Reactor temperature profiles at different feed temperatures](../../../assets/images/exothermic_reactor_temp.png){#fig-q3a}
+
+{{< pagebreak >}}
+
+![](../../../assets/images/exothermic_reactor.png){width=50% fig-align=center}
+
+{{< pagebreak >}}
+
+## Question 4 \hfill (10 Marks)
+
+Consider the following transfer functions of the primary process and secondary
+process associated with the mixing process. 
+
+Develop a Simulink models for the feedback control using primary loop only and
+cascade control strategy. 
+
+$$
+G_{primary} = \frac{10 e^{-3s}}{8s + 1} \qquad ; \qquad
+G_{secondary} = \frac{-5 e^{-s}}{5s + 1}
+$$
+
+Use the following conditions while developing the simulation.
+
+- Total simulation time: 150s
+- Nominal set point 0 (No feed step input)
+- Input disturbance: 1 unit at t = 0
+- Use PI controller settings as given in @tbl-q4a.
+
+|Configuration| $1/K_c$| $\tau_I$ |
+|-|-|-|
+| Primary loop only | -100 | 8 |
+| Cascade inner loop | -5 | 5 |
+| Cascade outer loop | 20 | 8 | 
+
+: Controller settings {#tbl-q4a}
+
+Upload the developed SIMULINK model to the submission link on blackboard. 
+
+Populate @tbl-q4b.
+
+| Parameter | Primary loop only | Cascade strategy | 
+|-|-|-|
+||||
+| Settling time | ||
+| (within 2% of nominal value) |||
+||||
+| Overshoot |||
+||||
+| Undershoot |||
+||||
+| ISE |||
+||||
+
+: Simulation results {#tbl-q4b tbl-colwidth=[100,100,100]}
+
+{{< pagebreak >}}
+
+## Question 5 \hfill (10 Marks)
+
+Load `iddata2` in Matlab command line using command `load iddata2`. This will
+load data `z2` in workspace. 
+
+Fit transfer function models, ARX models, and ARMAX model as given in @tbl-q5
+to the data. You may use built in Matlab functions `tfest`, `arx`, and `armax`
+instead of the system identification toolbox. 
+
+Use first 200 points of `z2`(`z2(1:200)`) for model estimation and last 200
+points of `z2` (`z2(201:400)`) for model prediction (testing).  
+
+Compare the models against test data (use `compare` command) and report fit to
+prediction data. Populate @tbl-q5. Comment on your results. 
+
+| Model | Fit to prediction data | 
+|-|-|-|
+||||
+| Transfer function with one pole | |
+| | |
+| Transfer function with two poles ||
+|||
+| ARX model with na=2, nb=2, nk=1 ||
+|||
+| ARX model with na=4, nb=4, nk=1 ||
+|||
+| ARMAX model with na=2, nb=2, nc=2, nk=1 ||
+|||
+
+: Model fit {#tbl-q5}
+
+
+{{< pagebreak >}}
+
+## Formula sheet
+
+**Ideal PI Controller Tuning**
+
+$$
+G_c = K_c \left(  1 + \frac{1}{\tau_I s} \right)
+$$
+
+$K_c = \frac{1}{K_P \tau_{ratio}}$. Typically $1 < \tau_{ratio} < 5$;  $\tau_I
+= \tau_P$. 
+Matlab controller parameters: $P = K_c$ ; $I = 1/\tau_I$. 
+
+**First-Order plus Deadtime (FOPDT) model**
+
+$$
+G(s) = \frac{K_p e^{-\theta s}}{\tau_p s + 1}
+$$
+
+**Idealized Feedforward Controller**
+
+$$
+G_{FF} = - \frac{G_D}{G_P}
+$$
+
+**Simple feedback loop with output disturbance**
+
+![](../../../assets/images/feedback-control-4.png){width=50% fig-align=center}
+
+**Cursor measurements**
+
+Useful information about the time series can be obtained using cursor measurements. 
+
+![](../../../assets/images/cursor_measurements.png){width=60% fig-align=center}
