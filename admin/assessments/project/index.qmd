@@ -16,7 +16,7 @@ resources:
 |                             |                                      |
 | -                           | -                                    |
 | **Due Date**:                   | 2024-10-24                        |
-| **Time**:                   | 11:00 - 13:00                        |
+| **Time**:                   | midnight                        |
 | **Number of group members**:    | 4 |
 | **Total marks**: | 100                                   |
 

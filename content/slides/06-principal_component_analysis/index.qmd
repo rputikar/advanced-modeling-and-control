@@ -1,7 +1,7 @@
 ---
 title: "Principal Component Analysis"
 format: revealjs
-date-modified: 2024-08-25
+date-modified: 2024-09-03
 ---
 
 <!-- ## Industry 4.0 -->
@@ -342,4 +342,297 @@ date-modified: 2024-08-25
 * The score plot is used to identify patterns, groupings, or outliers in the data.
 
 ![](../../../assets/images/mspc_score_scattered.png){width=60%}
+
+
+## Partial least square (PLS) regression
+
+### PCR
+* Unsupervised learning: PCR finds new directions (PCs) that best summarize the
+features (variables) $X_1, \ldots, X_M$ 
+
+* The PCs that best explain the features might not be the best for
+predicting the response.
+
+* Not considering the response $Y$ may lead to PCs that don't help in
+predicting $Y$.
+
+* The directions that best describe the features might not be the best for
+prediction.
+
+### PLS
+* Supervised learning: PLS reduces dimensions but does so by considering the
+response $Y$ while finding new directions $Z_1, \ldots, Z_M$ 
+
+* $Z_1, \ldots, Z_M$ are the linear combinations of original features. 
+
+* This means the new features are not only good approximations of the original
+ones but are also related to the response.
+
+## pls model
+
+* Multivariate model
+
+  $$X = T P^T + E_X, \qquad Y = U Q^T + E_Y$$
+
+
+  - $X \in \mathbb{R}^{n \times m}$ matrix of predictors, $T \in \mathbb{R}^{n
+  \times l}$ matrix of projections of $X$ (scores)
+
+  - $P \in \mathbb{R}^{m \times l}$ orthogonal loading matrix, $E_X \in
+  \mathbb{R}^{n \times m}$ error matrix
+
+  - $Y \in \mathbb{R}^{n \times p}$ matrix of responses, $U \in \mathbb{R}^{n
+  \times l}$ matrix of projections of $Y$ (scores)
+
+  - $Q \in \mathbb{R}^{m \times l}$ orthogonal loading matrix, $E_Y \in
+  \mathbb{R}^{n \times p}$ error matrix
+
+  - Notation $\mathbb{R}^{n \times p}$ denotes a matrix with $n$ number of
+  rows (observations) and $p$ number of columns (responses).
+
+  - $m$: The number of predictors (independent variables) in the matrix $X$
+
+  - $l$: The number of latent variables or components extracted by the PLS
+  model. 
+
+## PLS model 
+
+:::{.pad}
+* $T$ (the score matrix for $X$) and $U$ (the score matrix for $Y$) are
+calculated by projecting the original matrices $X$ and $Y$ onto latent
+variables. These latent variables are found by maximizing the covariance
+between the projections of $X$ and $Y$.
+
+* $P$ (the loading matrix for $X$) and $Q$ (the loading matrix for $Y$) are
+determined by regressing the original matrices $X$ and $Y$ onto the score
+matrices $T$ and $U$, respectively. The loading matrices capture the
+relationships between the original variables and the latent variables (scores).
+
+* $E_X$ and $E_Y$ represent the residual matrices for $X$ and $Y$,
+respectively. They capture the variation in the original matrices $X$ and $Y$
+that is not explained by the model. These matrices are determined by
+subtracting the product of the score and loading matrices from the original
+matrices: $E_X = X - TP^T$ and $E_Y = Y - UQ^T$.
+
+* The iterative process continues until a satisfactory number of latent
+variables (components) have been extracted, providing a balance between model
+accuracy and complexity.
+:::
+
+## Satisfactory number of latent variables
+
+:::{.pad}
+* **Cross-Validation**: 
+Split the data into training and validation sets. Increase the number of
+components until the prediction error on the validation set stops improving.
+The optimal number of components is where the validation error is minimized.
+
+* **Explained Variance**:
+Choose the number of components that achieve a significant portion of explained
+variance (e.g., 90-95%), adding more only if necessary.
+
+* **Model Stability**:
+Monitor model parameters (e.g., loadings and scores) as components are added. A
+satisfactory number is reached when these parameters stabilize, indicating no
+overfitting.
+
+* **Interpretability**:
+Choose the fewest components that offer meaningful and distinct interpretations
+in the context of the problem. Avoid adding components that don't improve
+interpretability.
+
+* **External Validation**:
+Validate the model on independent data, selecting the fewest components that
+ensure good predictive performance and generalization.
+
+* Typically, cross-validation combined with explained variance is used to
+determine the optimal number of components, balancing model complexity,
+accuracy, and interpretability.
+
+:::
+
+## Biplot
+
+::::{.columns}
+:::{.column width=50%}
+
+:::{.pad}
+
+* The points in the biplot represent the samples projected onto the principal
+components (in PCA) or latent variables (in PLS).
+
+* The position of each point reflects how the sample is related to the
+components.
+
+* The vectors or arrows represent the original variables. The direction and
+length of each vector indicate the contribution of the variable to the
+components. Longer arrows suggest a stronger influence on
+the corresponding component. Variables that are closer to the origin have less
+influence on the components
+
+* Smaller angles between vectors suggest higher positive correlation, whereas
+angles close to 180° suggest a negative correlation.
+
+:::
+
+:::
+
+:::{.column width=50%}
+
+:::{.pad100}
+:::
+
+![](../../../assets/images/pls_biplot.png){width=90%}
+
+
+:::
+::::
+
+## Variable importance in projection (VIP) score
+
+::::{.columns}
+:::{.column width=50%}
+
+:::{.pad}
+
+* Identifying the most influential variables in the model
+
+* Shows the VIP scores, which are metrics that quantify the contribution of
+each variable to the model across all components
+
+* A common threshold is a VIP score of 1. Variables with VIP scores greater
+than 1 are generally considered significant contributors to the model, while
+those with scores below 1 may be considered less important.
+
+* Variables with high VIP scores are essential in explaining the variation in
+the dependent variable. They have a strong influence on the model's
+predictions.
+
+:::
+
+:::
+
+:::{.column width=50%}
+
+:::{.pad100}
+:::
+
+![](../../../assets/images/pls_vip_score.png){width=90%}
+
+:::
+::::
+
+:::{.callout-note .bottom appearance='simple'}
+
+The VIP score plot can guide the selection of variables when refining a model,
+helping to focus on the most informative predictors.
+
+:::
+
+## Pareto plot
+
+::::{.columns}
+:::{.column width=50%}
+
+:::{.pad}
+
+* **Pareto principle (80/20 Rule)**:
+  roughly 80% of the effects come from 20% of the causes.
+
+* The x-axis lists the different categories, arranged in descending order of
+their impact or frequency. Left y-axis shows the frequency, right y-axis shows
+the cumulative percentage.
+
+* Bars (Frequency/Impact): The bars represent the individual factors or categories. 
+
+  - Ordered from the most significant (highest frequency or impact) to the
+  least significant.
+
+* Cumulative Line: cumulative percentage of the total impact or frequency
+
+:::
+
+:::
+
+:::{.column width=50%}
+
+:::{.pad100}
+:::
+
+![](../../../assets/images/pls_pareto_plot.png){width=90%}
+
+:::
+::::
+
+## PLS in Matlab
+
+* MATLAB function called `plsregress`
+* `[XL,YL,XS,YS,BETA,PCTVAR,MSE,stats] = plsregress(X,Y,ncomp)` returns 
+
+  - The predictor and response loadings XL and YL
+
+  - The predictor scores XS. Predictor scores are PLS components that are
+  linear combinations of the variables in X.
+
+  - The response scores YS. Response scores are linear combinations of the
+  responses with which the PLS components XS have maximum covariance.
+
+  - The matrix BETA of coefficient estimates for the PLS regression model.
+
+  - The percentage of variance PCTVAR explained by the regression model.
+
+  - The estimated mean squared errors MSE for PLS models with ncomp components.
+
+  - A structure stats that contains the PLS weights, $T^2$ statistic, and
+  predictor and response residuals.
+
+
+## Data quality
+
+* Data quality is crucial for developing accurate and reliable data-driven
+models like ANN, PLS, and others.
+
+* The quality of data is influenced by factors such as how it is generated, the
+sampling period, the number of observations, and the presence of missing data.
+
+* A large sampling period can lead to a significant loss of information,
+negatively impacting the model's performance.
+
+* A short sampling period captures more detailed information, increasing the
+number of data points, which can strain storage and processing capacity but
+doesn’t necessarily increase the dimensionality of the feature space.
+
+* Missing data and inconsistencies can skew model training, leading to
+unreliable predictions and conclusions.
+
+* In practice, a balance must be struck between preserving information and
+managing storage and processing capacity to ensure both model performance and
+efficiency.
+
+## Summary
+
+:::{.pad}
+* Process plant monitoring is essential for safe and profitable operations.
+
+* Early detection of faulty sensors or process abnormalities enhances safety
+and profitability.
+
+* Technological advances have increased data acquisition, leading to large
+datasets.
+
+* Large datasets often include irrelevant information; effective data modeling
+can help isolate the key variables and enhance predictions.
+
+* Effective data modeling with techniques like PCA and PLS helps identify key
+variables, predict important outcomes, and improve system interpretation.
+
+
+* Principal Component Analysis (PCA): Reduces dataset dimensionality by
+projecting data onto principal component space (latent variables). Widely used
+in the process industry.
+
+* Partial Least Squares (PLS): Aligns predictor and response variables in
+latent space, maximizing the correlation between them to improve model accuracy
+and system interpretation.
+:::
 
