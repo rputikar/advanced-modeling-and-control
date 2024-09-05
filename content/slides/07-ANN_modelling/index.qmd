@@ -1,9 +1,11 @@
 ---
 title: "Artificial Neural Networks"
 format: revealjs
+revealjs-plugins:
+- attribution
 resources:
   - "./07-ANN_modelling.pdf"
-date-modified: 2024-09-04
+date-modified: 2024-09-06
 ---
 
 ## Introduction
@@ -281,22 +283,213 @@ Squared Error (MSE) for regression, Cross-Entropy Loss for classification.
 
 ## Training an ANN: Forward and Backpropagation
 
-## Gradient Descent Variants: Stochastic, Mini-batch, and Full-batch
+:::{.pad}
+* Training
+  - The model learns the relationship between input and output data (supervisory learning)
+  - Weights and biases are fine-tuned during training. The goal is to minimize
+  the error between predicted and actual outputs.
 
-## Regularization Techniques: L1, L2, and Dropout
+* Forward Propagation
 
-## Overfitting: Causes and Mitigation Strategies
+  Passing input data through the network to produce an output, utilizing
+  weights, biases, and activation functions.
 
-## Hyperparameter Tuning: Finding the Optimal Settings
+* Backpropagation
 
-## Network Architectures: Feedforward, Convolutional, Recurrent
+  The process of refining the network by adjusting weights and biases based on
+  the error, enabling the model to learn and improve over time (iterations).
 
-## Convolutional Neural Networks (CNNs): Structure and Applications
+* Adjusting weights and biases
 
-## Recurrent Neural Networks (RNNs) and LSTMs: Capturing Temporal Patterns
+  Move in the negative direction of the error (cost) function's slope until a
+  minimum error value is reached
 
-## Transfer Learning: Leveraging Pre-trained Models
+  [$\Rightarrow$ Gradient descent]{.magenta} 
 
+:::
+
+## Gradient Descent
+
+* Optimization algorithm used to minimize the cost function in machine learning
+
+* Cost function (loss function or objective function)
+
+  - Measures the difference between the predicted outputs and the actual target
+  values.
+  - Mean Squared Error (MSE): Common for regression tasks
+  - Cross-Entropy Loss: Often used in classification tasks, it measures the
+  difference between two probability distributions – the predicted
+  probabilities and the actual labels
+
+* Calculate the gradient (partial derivatives) of the cost function with
+respect to each parameter
+
+* Adjust the parameters in the opposite direction of the gradient to decrease
+the cost function. Iterate until the cost function reaches a minimum
+
+* Variants
+  - Stochastic Gradient Descent (SGD): Uses a random subset of data per
+  iteration to speed up computation.
+  - Adaptive Gradient Descent: Adjusts step size for different data components
+  (useful for text, image data). 
+  - Momentum Gradient Descent: Uses previous gradients to build momentum,
+  accelerating convergence.
+
+## Overfitting
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+:::{.pad}
+* Overfitting occurs when a machine learning model learns not only the
+underlying patterns in the training data but also the noise and random
+fluctuations.
+
+* The model fits the training data too closely, capturing even the minor
+details and noise.
+
+* The model performs very well on the training data but poorly on new, unseen
+data
+
+:::
+
+:::
+
+::: {.column width=50%}
+
+![](../../../assets/images/ann_overfitting.png){width=90% .pad50}
+:::
+::::
+
+* Causes
+
+  - Too Complex Model: Using a model with too many parameters or features
+  relative to the amount of training data.
+
+  - Insufficient Training Data: When there isn't enough data to represent the
+  true underlying patterns, the model may learn noise as if it were a pattern.
+
+  - Too Long Training: Training the model for too many iterations, allowing it
+  to adjust to even the smallest noise in the data.
+
+
+## Overfitting mitigation strategies
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+* Simplifying the Model: Reducing the number of features or parameters in the model.
+
+* Cross-Validation: ensure the model generalizes well to unseen data.
+  
+  k-fold: 
+
+  :::{.smaller}
+  - divide the data into k subset
+  - Train the model k times. Each time one subset is used for validation and
+  the rest are used for training
+  - Average the results 
+  :::
+
+* Regularization: Adding a penalty to the cost function for large coefficients
+
+  :::{.smaller}
+
+  - L1: Helps the model focus on the most important features by setting some
+  weights to zero.
+  - L2: Keeps all features but reduces the impact of any single feature by
+  making all weights smaller.
+
+  :::
+
+* Early Stopping: Halting the training process when performance on a validation
+set starts to degrade, even if the training performance is still improving.
+
+
+:::
+
+::: {.column width=50%}
+
+![](../../../assets/images/ann_loss.png){width=90% .pad50}
+
+:::
+::::
+
+## Network Architectures 
+
+:::: {.columns}
+
+::: {.column width=65% .pad}
+
+* Perceptron & Feed-Forward Networks (FFN)
+
+  Basic prediction tasks, such as property estimation, reaction rate
+predictions, and process optimization.
+
+* Recurrent Neural Networks (RNN) & Long Short-Term Memory (LSTM)
+
+  Modeling dynamic systems, time-series data, and sequential processes, such as
+reactor dynamics and control systems.
+
+* Convolutional Neural Networks (CNN)
+
+  Primarily in image analysis related to process monitoring (e.g., analyzing
+  images from reactors, identifying patterns in images of materials).
+
+* Autoencoders & Variational Autoencoders (VAE)
+
+  Dimensionality reduction, feature extraction, fault detection, and process
+  monitoring.
+
+* Generative Adversarial Networks (GAN)
+  
+  Generating synthetic data for simulations, improving the robustness of
+  models, and process optimization.
+
+:::
+
+::: {.column width=35%}
+
+![](../../../assets/images/NeuralNetworkZoo20042019.png){width=98%}
+
+:::{.attribution}
+[The neural network zoo](https://www.asimovinstitute.org/neural-network-zoo/)
+:::
+
+
+:::
+::::
+
+## Summary
+
+:::{.pad}
+
+* ANNs are powerful tools for modeling complex, non-linear relationships in
+data.
+
+* ANNs are applied to a wide range of chemical engineering problems, from
+static predictions to dynamic process control.
+
+* Key Concepts:
+  - Activation Functions: Introduce non-linearity to capture complex patterns
+  (e.g., Sigmoid, ReLU, Tanh).
+  - Training: Involves forward propagation (prediction) and backpropagation
+  (learning from errors). 
+  - Optimization with Gradient Descent: Minimizes the error between predictions
+  and actual values through iterative updates.
+
+* Overfitting can be prevented by simplifying the model, using
+cross-validation, applying regularization, and early stopping to prevent overtraining
+
+* Several network architectures exist
+
+  [$\Rightarrow$]{.magenta} Successfully designing, training, and deploying ANNs
+  often requires deep domain knowledge and experience in machine learning.
+
+
+:::
 
 <!---->
 <!-- ## Common models of neurons -->
