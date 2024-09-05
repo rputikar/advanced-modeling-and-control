@@ -3,6 +3,312 @@ title: "Artificial Neural Networks"
 format: revealjs
 resources:
   - "./07-ANN_modelling.pdf"
+date-modified: 2024-09-04
 ---
 
+## Introduction
 
+* Artificial Intelligence (AI): systems capable of performing tasks that
+typically require human intelligence 
+
+  - Typical tasks: learning from experience, understanding natural language,
+  recognizing patterns, solving problems, and making decisions 
+
+  - Encompasses techniques like machine learning, neural networks, natural
+  language processing, and robotics
+
+* Machine Learning (ML): A subset of artificial intelligence that involves
+training algorithms to make predictions or decisions based on data
+
+  - Regression, Artificial Neural Networks (ANN), decision trees, and clustering
+
+* Deep Learning (DL): A specialized subset of ML focused on neural networks
+with many layers ("deep") 
+
+  - Excels at processing unstructured data like images, text, and audio
+  
+ 
+* Artificial Neural Networks (ANN): A specific model within ML, inspired by the
+human brain's structure
+  - Consists of layers of interconnected "neurons." 
+  - Basic building block used in both traditional ML and deep learning
+  
+## Introduction
+
+:::{.pad}
+* ANNs are a class of machine learning models inspired by the human brain's
+structure and function. They consist of interconnected units called neurons,
+organized in layers
+
+* Brains and computers operate fundamentally differently from each other
+
+  - **Brains**: No CPU, lots of slightly smart memory cells
+    - Recognizing faces, retrieving information based on partial descriptions,
+    organizing information: The more info available, the better the brain
+    operates
+  
+  - **Computers**: One very smart CPU, lots of extremely dumb memory cells
+    - Arithmetic, deductive logic (e.g., $\frac{p \rightarrow q, \; p}{\therefore
+  q}$), retrieving information based on arbitrary features
+
+* The brain is composed of neurons
+  - Neurons convey and transform information through electrical signals
+  - Information in neurons is represented by "activation" (a scalar value)
+
+* ANNs are constructed and implemented to model the human brain
+
+:::
+
+## Biological Neuron
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+![](../../../assets/images/neuron.png){width=90% .pad50}
+
+* Dendrite
+  - Receives and integrates synaptic signals from other neurons
+
+* Cell Body
+  - Makes decisions based on integrated signals
+
+* Axon
+  - Passes signals to other neurons
+  - Includes axon hillock (decision point) and axon collaterals (branches to
+  nearby cells)
+
+
+:::
+
+::: {.column width=50%}
+
+* Many neuron types exist.
+* Interactions can be electrical or chemical.
+* Different types of neuron connections (e.g., axodendritic, dendrodendritic).
+
+* Key Characteristics of Neuronal Processing: 
+
+  - Slow signal propagation.
+  - Large number of neurons ($10^{10}$ – $10^{11}$).
+  - No central controller (CPU).
+  - High connectivity ($10^{4}$ connections per neuron).
+  - Information conveyed by neuron firing rates (activation).
+:::
+::::
+
+## ANN basics: modeling single neuron
+
+::::{.columns}
+::: {.column width=50%}
+
+![](../../../assets/images/modeling_single_neuron.png){width=90% .pad50}
+
+:::{.callout-note .smaller}
+## Universal Approximation Theorem
+
+Any continuous function $h(x)$ can be approximated by an ANN with one hidden
+layer, given appropriate non-linearity and sufficient neurons. Thus ANNs can
+model any complex, continuous function.
+
+:::
+
+:::
+
+::: {.column .pad width=50%}
+
+* Neurons receive multiple inputs.
+
+* Inputs are modified by weights.
+
+* Neurons sum weighted inputs.
+
+* Neurons transmit output signals.
+
+* Outputs connect to other neurons.
+
+* Local Processing: Information is processed locally within the neuron.
+
+* Distributed Memory: Short-term = signals; Long-term = weights.
+
+* Learning: Weights adjust through experience.
+
+* Flexibility: Neurons can generalize and are fault-tolerant.
+
+:::
+::::
+
+
+## Elements of neural networks
+
+![](../../../assets/images/elements_of_neural_network.png){width=90% .pad50}
+
+* ANNs consist of hidden layers with neurons (i.e., computational units)
+
+* A single neuron maps a set of inputs into an output number, or $f:R^K \rightarrow R$
+
+$$
+z = a_1 w_1 + a_2 w_2 + \ldots + a_k w_k + b; \qquad a = \sigma(z)
+$$
+
+## Elements of neural networks
+
+:::: {.columns}
+
+::: {.column width=60%}
+
+:::{.pad100}
+:::
+
+![ANN with one hidden layer and one output
+layer](../../../assets/images/neural_network_structure.png){width=90%}
+
+:::
+
+::: {.column width=40%}
+
+* Hidden layer
+
+  $$
+  h = \sigma (w_1 x + b_1)
+  $$
+
+* Output layer
+
+  $$
+  y = \sigma(w_2 h + b_2)
+  $$
+
+* Neurons: 6
+  - Hidden layer: 4
+  - output layer: 2
+
+* Weights: 20
+  - Hidden layer: 3 x 4
+  - Output layer: 4 x 2
+
+* Biases: 6
+  - Hidden layer: 4
+  - Output layer: 2
+
+* Total 26 learning parameters
+
+:::
+::::
+
+## Activation function
+
+* Mathematical function in neural networks determining the output of a neuron.
+* Introduces non-linearity to model complex patterns.
+*  Without it, neural networks would only perform linear transformations.
+
+* Common Activation Functions
+
+  - Sigmoid: Outputs: 0 to 1, used in binary classification.
+
+    $$ \sigma(x) = \frac{1}{1 + e^{-x}} $$
+  
+  - ReLU (Rectified Linear Unit): Outputs: Input if positive; otherwise 0.
+  Common in deep networks.
+
+    $$ f(x) = \text{max}(0, x) $$
+
+  - Tanh (Hyperbolic Tangent): Outputs: -1 to 1, centers data around zero.
+
+    $$ \text{tanh}(x) = \frac{2}{1 + e^{-2x}} - 1 $$
+
+## Important terminologies of ANNs
+
+* Weights
+
+  - Parameters that transform input data in the network; each connection has an
+  associated weight.
+
+  - Weights determine the influence of each input on the output; higher weights
+  mean stronger influence.
+
+:::{.pad}
+:::
+
+* Bias
+
+  - An additional parameter that shifts the activation function, helping the
+  model fit the data better.
+
+  - Similar to the y-intercept in a linear equation, it allows the function to
+  adjust left or right.
+
+:::{.pad}
+:::
+
+
+* Threshold
+
+  - The value at which a neuron's activation function decides whether to fire
+  (produce an output).
+
+  - In binary threshold functions, if the weighted sum exceeds the threshold,
+  the neuron activates (outputs 1); otherwise, it doesn’t (outputs 0).
+
+
+## Important terminologies of ANNs
+
+* Learning Rate
+
+  - Controls how much weights are adjusted in response to errors during training.
+  - Determines step size in gradient descent; smaller values mean more precise
+adjustments but slower convergence.
+
+:::{.pad} 
+:::
+
+* Momentum Factor
+
+  - Added to the weight update formula to accelerate gradient descent and reduce
+oscillations.
+  - Incorporates previous updates to smooth the optimization path, speeding up
+convergence and avoiding local minima.
+
+:::{.pad} 
+:::
+
+* Loss function
+
+  - Measures the difference between predictions and actual values.
+  - Training aims to minimize this loss for better accuracy. Common types: Mean
+Squared Error (MSE) for regression, Cross-Entropy Loss for classification.
+
+
+## Training an ANN: Forward and Backpropagation
+
+## Gradient Descent Variants: Stochastic, Mini-batch, and Full-batch
+
+## Regularization Techniques: L1, L2, and Dropout
+
+## Overfitting: Causes and Mitigation Strategies
+
+## Hyperparameter Tuning: Finding the Optimal Settings
+
+## Network Architectures: Feedforward, Convolutional, Recurrent
+
+## Convolutional Neural Networks (CNNs): Structure and Applications
+
+## Recurrent Neural Networks (RNNs) and LSTMs: Capturing Temporal Patterns
+
+## Transfer Learning: Leveraging Pre-trained Models
+
+
+<!---->
+<!-- ## Common models of neurons -->
+<!---->
+<!-- ## Feedforward network -->
+<!---->
+<!-- ## Feedback network -->
+<!---->
+<!-- ## Recurrent network -->
+<!---->
+<!-- ## Learning -->
+<!---->
+<!-- ## Training -->
+<!---->
+<!---->
