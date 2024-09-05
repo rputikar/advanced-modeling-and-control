@@ -3,8 +3,6 @@ title: "Artificial Neural Networks"
 format: revealjs
 revealjs-plugins:
 - attribution
-resources:
-  - "./07-ANN_modelling.pdf"
 date-modified: 2024-09-06
 ---
 
