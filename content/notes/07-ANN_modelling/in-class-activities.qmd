@@ -4,7 +4,7 @@ subtitle: In class activities
 date: 2023-09-10
 format:
   pdf
-date-modified: 2024-09-05
+date-modified: 2024-09-09
 resources:
   - ./ann_single_layer_perceptron.mlx
   - ./ann_crystallizer_model_for_training.slx
@@ -44,7 +44,7 @@ decision-making process based on the input parameters.
 ::: {.callout-tip collapse="true"}
 ## Solution
 
-The code for single layer perceptron is in [single_layer_perceptron.mlx](./single_layer_perceptron.mlx).
+The code for single layer perceptron is in [ann_single_layer_perceptron.mlx](./ann_single_layer_perceptron.mlx).
 
 :::
 
