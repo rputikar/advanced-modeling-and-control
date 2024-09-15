@@ -145,6 +145,57 @@ $${#eq-4}
 
 Design the decouplers $D_{12}$ and $D_{21}$ and comment whether the systems are physically realizable or not.
 
+::: {.callout-tip collapse="true"}
+## Solution
+
+### Decoupler $D_{12}$ design
+
+$$
+D_{12} = - \frac{g_{12}}{g_{11}}
+$$
+
+$$
+D_{12} = - \frac{\frac{0.5 e^{-4s}}{19s + 1}}{\frac{2 e^{-7s}}{10s + 1}}
+$$
+
+$$
+D_{12} = - \frac{0.5 e^{-4s}}{19s + 1} \times \frac{10s + 1}{2 e^{-7s}}
+$$
+
+$$
+D_{12} = - \frac{0.5(10s + 1)}{2(19s + 1)} \times e^{3s}
+$$
+
+$$
+D_{12} = - \frac{0.25(10s + 1) e^{3s}}{19s + 1}
+$$
+
+The presence of $e^{+3s}$ indicates that the decoupler has a predictive
+capability – it can predict the future input change that affects the current
+output, i.e., the output change first before the input change (this can’t
+happen in our physical world). Therefore, the decoupler is considered a
+non-causal system, thus cannot be realized physically.
+
+### Decoupler $D_{21}$ design
+
+$$
+D_{21} = - \frac{g_{21}}{g_{22}}
+$$
+
+$$
+D_{21} = - \frac{\frac{e^{(-2s)}}{20s + 1}}{\frac{1.5 e^{(-3s)}}{15s + 1}}
+$$
+
+$$
+D_{21} = - \frac{0.67(15s + 1) e^{-s}}{20s + 1}
+$$
+
+The decoupler is physically realizable, i.e., order of numerator is not higher
+than the order of denominator, and also there is no predictive term, only a
+delay term in the decoupler. 
+
+:::
+
 6. Wood Berry Column controller design
 
 $$
