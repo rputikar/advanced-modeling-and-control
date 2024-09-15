@@ -3,6 +3,124 @@ title: "MIMO Systems: Decentralized control"
 format: revealjs
 resources:
   - "./08-decentralized_control.pdf"
+date-modified: 2024-09-12
 ---
 
+## Multivariable process plants
 
+  
+## Methods of controlling process plant
+## Decentralized Control vs. Centralized Control Systems
+## Issues in decentralized control system
+## Decentralized PID Control Design Methods
+## Decoupling controllers
+
+
+## Plantwide Control Hierarchy
+
+## Plantwide Control Design Flowchart
+
+## Plantwide Control Design Tasks
+
+## Operating Objectives
+
+## 2x2 MIMO Process System
+
+## 2x2 real process example – distillation column
+
+## Controller Pairings
+
+## Multi‐Loop Controllers (Decentralized Control)
+
+## Multi‐Loop Controllers – Distillation Column
+
+## Coupling Effect of Loop 2 on $y_1$
+
+## Multi‐Loop Controllers – Distillation Column
+
+## Stead‐State Coupling – Relative Gain Array (RGA)
+
+## Relative Gain Array – Coupling Effect
+
+## RGA Calculation
+
+## Example of RGA calculation and pairings – 2x2 MIMO
+
+## Example of RGA calculation and pairing – 3x3 MIMO
+
+## RGA Analysis
+
+## Example of Impact of Different Dynamic Behaviors
+
+## Direct Pairing (Thin Line) and Reverse Pairing (Thick Line)
+
+## Dynamic RGA
+
+## Pairing Considerations
+
+## Sensitivity to Disturbances
+
+## Example ‐ Configuration Selection for a C3 Splitter
+
+## (L,V) Configuration Applied to the C3 Splitter
+
+## Reflux Ratio Applied to the Overhead of the C3 Splitter
+
+## Other Configurations
+
+## Configuration Selection of C3 splitter
+
+## Control Performance
+
+## Analysis of Configuration Selection Example
+
+## One‐Way Decoupler
+
+## Multi‐Loop (Decentralized) PID Controller Design
+
+## Detuning Method
+
+## Example 2x2 MIMO – Wood and Berry (WB) Column
+
+## Multi ‐loop PID Controllers for WB Column – Detuning Method
+
+## Detuning method example
+
+## Sequential Loop Closing
+
+## Multi‐loop PID Controllers for WB Column – Sequential Loop Closing Method
+
+
+## Sequential Loop Closing example
+
+## Sequential Loop Closing (SQL) example… 
+
+## Independent Tuning Method
+
+## Multi ‐loop PID Controllers for WB Column – Independent Tuning Method
+
+## Independent Tuning Method example
+
+## Simultaneous Dimensionless Parameter (SDP) Tuning
+
+## SDP Tuning Example – WB Column
+
+## Decoupling Control: One‐Way Decoupling
+
+## Decoupler Design
+
+## Two‐Way Decoupling System
+
+## Examples of Decoupling Control
+
+## Simulation Example
+
+## Simulation Example 
+
+## Simulation Example: 1‐way decoupler $D_{12}$
+
+## Simulation Example: 1‐way decoupler $D_{21}$
+
+## Simulation Example: 2‐way decoupling control ($D_{12}$ and $D_{21}$)
+
+## Summary

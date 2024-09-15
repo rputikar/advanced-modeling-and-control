@@ -4,6 +4,19 @@ subtitle: In class activities
 date: 2023-09-17
 format:
   pdf
+resources:
+  - ./relative_gain_array_example_i.m
+  - ./relative_gain_array_example_i.mlx
+  - ./relative_gain_array_example_ii.m
+  - ./relative_gain_array_example_ii.mlx
+  - ./relative_gain_array_example_iii.m
+  - ./relative_gain_array_example_iii.mlx
+  - ./relative_gain_array_example_iv.m
+  - ./relative_gain_array_example_iv.mlx
+  - ./relative_gain_array_example_v.m
+  - ./relative_gain_array_example_v.mlx
+  - ./relative_gain_array_example_lti_system.slx
+date-modified: 2024-09-16
 ---
 
 ## Activities
@@ -19,15 +32,6 @@ format:
 i. 2x2 MIMO
 
 $$
-G=\left[\begin{array}{cc}
-\frac{1.7 e^{-2 s}}{10 s+1} & \frac{1.1 e^{-3 s}}{15 s+1} \\
-\frac{-1.2 e^{-2.5 s}}{11 s+1} & \frac{1.4 e^{-s}}{8 s+1}
-\end{array}\right]
-$${#eq-1.1}
-
-ii. 2x2 MIMO
-
-$$
 G(s)=\left[\begin{array}{cc}
 \frac{5 e^{-3 s}}{4 s+1} & \frac{2.5 e^{-5 s}}{15 s+1} \\
 \frac{-4 e^{-6 s}}{20 s+1} & \frac{e^{-s}}{5 s+1}
@@ -40,6 +44,38 @@ $$
 \lambda_{11}=\frac{k_{11}}{k_{11}-\frac{k_{12} k_{21}}{k_{22}}}=\frac{1}{1-\frac{k_{12} k_{21}}{k_{11} k_{22}}}
 $${#eq-rga}
 
+::: {.callout-tip collapse="true"}
+## Solution
+
+The code for calculating RGA is given in [matlat
+file](./relative_gain_array_example_i.m)/ [mlx
+file](./relative_gain_array_example_i.mlx). 
+
+A simulink implementation using `lti system` block is in
+[relative_gain_array_example_lti_system.slx](./relative_gain_array_example_lti_system.slx).
+:::
+
+
+ii. 2x2 MIMO
+
+$$
+G=\left[\begin{array}{cc}
+\frac{1.7 e^{-2 s}}{10 s+1} & \frac{1.1 e^{-3 s}}{15 s+1} \\
+\frac{-1.2 e^{-2.5 s}}{11 s+1} & \frac{1.4 e^{-s}}{8 s+1}
+\end{array}\right]
+$${#eq-1.1}
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+The code for calculating RGA is given in [matlat
+file](./relative_gain_array_example_ii.m)/ [mlx
+file](./relative_gain_array_example_ii.mlx). 
+
+:::
+
+
+
 iii.  Steady-state gain matrix
 
 $$
@@ -49,6 +85,16 @@ K=\left[\begin{array}{ccc}
 0.2 & 0.5 & -0.9
 \end{array}\right]
 $${#eq-2}
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+The code for calculating RGA is given in [matlat
+file](./relative_gain_array_example_iii.m)/ [mlx
+file](./relative_gain_array_example_iii.mlx). 
+
+:::
+
 
 iv. 3x3 MIMO
 
@@ -60,6 +106,16 @@ G(s)=\left[\begin{array}{ccc}
 \end{array}\right]
 $${#eq-3}
 
+::: {.callout-tip collapse="true"}
+## Solution
+
+The code for calculating RGA is given in [matlat
+file](./relative_gain_array_example_iv.m)/ [mlx
+file](./relative_gain_array_example_iv.mlx). 
+
+:::
+
+
 v. 2x2 MIMO
 
 $$
@@ -68,6 +124,15 @@ $$
 \mathbf{G}_{21}(\mathbf{s})=\frac{-0.4}{10 \mathbf{s}+1} & \mathbf{G}_{22}(\mathbf{s})=\frac{2.0}{100 \mathbf{s}+1}
 \end{array}
 $$
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+The code for calculating RGA is given in [matlat
+file](./relative_gain_array_example_v.m)/ [mlx
+file](./relative_gain_array_example_v.mlx). 
+
+:::
 
 5. Consider the process given by
 
