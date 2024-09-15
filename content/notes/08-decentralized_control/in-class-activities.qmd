@@ -16,6 +16,9 @@ resources:
   - ./relative_gain_array_example_v.m
   - ./relative_gain_array_example_v.mlx
   - ./relative_gain_array_example_lti_system.slx
+  - ./wood_barry.m
+  - ./wood_barry.mlx
+  - ./wood_barry.slx
 date-modified: 2024-09-16
 ---
 
@@ -47,7 +50,7 @@ $${#eq-rga}
 ::: {.callout-tip collapse="true"}
 ## Solution
 
-The code for calculating RGA is given in [matlat
+The code for calculating RGA is given in [Matlab
 file](./relative_gain_array_example_i.m)/ [mlx
 file](./relative_gain_array_example_i.mlx). 
 
@@ -68,7 +71,7 @@ $${#eq-1.1}
 ::: {.callout-tip collapse="true"}
 ## Solution
 
-The code for calculating RGA is given in [matlat
+The code for calculating RGA is given in [Matlab
 file](./relative_gain_array_example_ii.m)/ [mlx
 file](./relative_gain_array_example_ii.mlx). 
 
@@ -89,7 +92,7 @@ $${#eq-2}
 ::: {.callout-tip collapse="true"}
 ## Solution
 
-The code for calculating RGA is given in [matlat
+The code for calculating RGA is given in [Matlab
 file](./relative_gain_array_example_iii.m)/ [mlx
 file](./relative_gain_array_example_iii.mlx). 
 
@@ -109,7 +112,7 @@ $${#eq-3}
 ::: {.callout-tip collapse="true"}
 ## Solution
 
-The code for calculating RGA is given in [matlat
+The code for calculating RGA is given in [Matlab
 file](./relative_gain_array_example_iv.m)/ [mlx
 file](./relative_gain_array_example_iv.mlx). 
 
@@ -128,7 +131,7 @@ $$
 ::: {.callout-tip collapse="true"}
 ## Solution
 
-The code for calculating RGA is given in [matlat
+The code for calculating RGA is given in [Matlab
 file](./relative_gain_array_example_v.m)/ [mlx
 file](./relative_gain_array_example_v.mlx). 
 
@@ -198,9 +201,32 @@ delay term in the decoupler.
 
 6. Wood Berry Column controller design
 
+The control objective in the WB distillation column is to maintain the desired
+compositions in both the overhead (distillate) and bottom products by
+manipulating the reflux flow rate and steam flow rate. However, since both
+inputs affect both outputs, decoupling and interaction management are often
+required to ensure efficient and stable control of the system. 
+
+This model is
+widely used in process control to study interactions in distillation columns,
+and it simplifies the control of more complex chemical processes.
+
 $$
 G=\left[\begin{array}{cc}
 \frac{12.8 \exp (-s)}{16.7 s+1} & \frac{-18.9 \exp (-3 s)}{21 s+1} \\
 \frac{6.6 \exp (-7 s)}{10.9 s+1} & \frac{-19.4 \exp (-3 s)}{14.4 s+1}
 \end{array}\right]
 $${#eq-5}
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+The code for calculating RGA and controller pairing is given in [Matlab
+file](./wood_barry.m)/ [mlx
+file](./wood_barry.mlx). 
+
+A simulink implementation using `lti system` block is in
+[wood_barry.slx](./wood_barry.slx).
+:::
+
+
