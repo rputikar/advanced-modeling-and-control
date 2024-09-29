@@ -4,6 +4,18 @@ subtitle: In class activities
 date: 2023-10-02
 format:
   pdf
+resources:
+  - ./decoupler_for_multivariable_system.m
+  - ./decoupler_for_multivariable_system.mlx
+  - ./discrete_time_response.csv
+  - ./dtsrm_from_fopdt.m
+  - ./dtsrm_from_fopdt.mlx
+  - ./dtsrm_from_sopdt.m
+  - ./dtsrm_from_sopdt.mlx
+  - ./discrete_timestep_response_model.mlx
+  - ./discrete_timestep_response_model.m
+
+date-modified: 2024-09-30
 ---
 
 ## Activities
@@ -15,11 +27,21 @@ format:
 $$
 G(s)=\left[\begin{array}{ll}
 \frac{2 \exp (-7 s)}{10 s+1} & \frac{0.5 \exp (-4 s)}{19 s+1} \\
-\frac{\exp (-2 s)}{20 s+1} & \frac{1.5 \exp (-3 s)}{15 s+1}
+\frac{\exp (-3 s)}{20 s+1} & \frac{1.5 \exp (-2 s)}{15 s+1}
 \end{array}\right]
 $${#eq-1}
 
 Design the decouplers $D_{12}$ and $D_{21}$ and comment whether the systems are physically realizable or not.
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+The code for calculating decoupler transfer function is given in [Matlab
+file](./decoupler_for_multivariable_system.m)/ [mlx
+file](./decoupler_for_multivariable_system.mlx). 
+
+:::
+
 
 3. The discrete-time step response model of a process is given in @tbl-1.
 
@@ -36,16 +58,107 @@ Design the decouplers $D_{12}$ and $D_{21}$ and comment whether the systems are 
 
 :Discrete-time step response model {#tbl-1}
 
-Suppose that the process is subjected to a consecutive step changes in the input: $\Delta u=1$ at t=0, $\Delta u=1$ at t=2 and $\Delta u=-1$ at t=4, determine the values of y~5~ and y~9~.
+Suppose that the process is subjected to a consecutive step changes in the
+input: $\Delta u=1$ at t=0, $\Delta u=1$ at t=2 and $\Delta u=-1$ at t=4,
+determine the values of y~5~ and y~9~.
 
-3. Consider the transfer function below
+::: {.callout-tip collapse="true"}
+## Solution
+
+The code for calculating decoupler transfer function is given in [Matlab
+file](./discrete_timestep_response_model.m)/ [mlx
+file](./discrete_timestep_response_model.mlx). The data in @tbl-1 can be
+downloaded from [discrete_time_response.csv](./discrete_time_response.csv).
+
+:::
+
+4. Develop a DTSRM for the following transfer function
+
 $$
-G(s) = \frac{18}{(s + 5) (s + 3)}
-$${#eq-2}
+G_p(s) = \frac{ 2 e^{-2s} } { 5s + 1 }
+$$ {#eq-p4}
 
-The zero hold transfer function is given by 
+:::{.callout-tip collapse="true"}
+
+## Solution
+
+For the given transfer cunction, 
+- $K$ = 2
+- $\tau$ = 5
+- $\theta$ = 2 seconds
+
+### Apply a Unit Step Input
+
+To develop the step response model, apply a unit step change in the input $u(t)$:
 $$
-G_{ZOH} = \frac{1 - e^{-sT_s}}{s}
-$${#eq-3}
+\Delta u(t) = 1, \text{ for } t \geq 0
+$$
 
-determine the discrete transfer function using `c2d` command for different T~s~. Plot the responses.
+Let's use $T_s$ = 1 second. 
+
+### Calculate the Step Response Coefficients $a_i$
+
+The step response coefficients $a_i$ represent the fraction of the process
+response that occurs in each discrete time interval. The response of the system
+is delayed by $\theta$ seconds, so no change is observed in the output until
+after $\theta$.
+
+The response $y(t)$ to the step input for a FOPDT system is:
+$$
+y(t) = K \left(1 - e^{-\frac{t - \theta}{\tau}}\right), \quad t \geq \theta
+$$
+
+The discrete response coefficients $a_i$ are then calculated as:
+
+$$
+a_i = y(i) - y(0)
+$$
+
+first few coefficients:
+
+| $i$ | Time (s) | $y(i T_s)$ | $a_i$ |
+|-------|----------|--------------|---------|
+| 0     | 0        | 0            | 0       |
+| 1     | 1        | 0            | 0       |
+| 2     | 2        | 0            | 0       |
+| 3     | 3        | $2 \left(1 - e^{-\frac{1}{5}}\right)$ | 0.3625|
+| 4     | 4        | $2 \left(1 - e^{-\frac{2}{5}}\right)$ | 0.6594|
+| 5     | 5        | $2 \left(1 - e^{-\frac{3}{5}}\right)$ | 0.9024|
+| 6     | 6        | $2 \left(1 - e^{-\frac{4}{5}}\right)$ | 1.1013|
+
+### Construct the DTSRM
+
+The DTSRM uses the coefficients $a_i$ to predict future outputs based on past
+input changes:
+
+$$
+y_n = y_0 + \sum_{i=1}^{n} a_i \Delta u(t_{n-i})
+$$
+
+For example,
+$$
+y(3) = y_0 + a_3 \Delta u(0) + a_2 \Delta u(1) + a_1 \Delta u(3)
+$$
+
+The code for calculating $a_i$ is given in [Matlab
+file](./dtsrm_from_fopdt.m)/ [mlx file](./dtsrm_from_fopdt.mlx). 
+:::
+
+5. Second-Order Plus Dead-Time (SOPDT) Model to DTSRM
+
+For the following transfer function 
+
+$$
+G_p(s) = \frac{K}{\tau_1 s + 1} \cdot \frac{1}{\tau_2 s + 1} e^{-\theta s}
+$$
+
+develop DTSRM. 
+
+
+:::{.callout-tip collapse="true"}
+The code for calculating $a_i$ is given in [Matlab
+file](./dtsrm_from_sopdt.m)/ [mlx file](./dtsrm_from_sopdt.mlx). 
+:::
+
+
+

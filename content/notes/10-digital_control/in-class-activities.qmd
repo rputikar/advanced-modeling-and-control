@@ -4,11 +4,25 @@ subtitle: In class activities
 date: 2023-10-08
 format:
   pdf
+date-modified: 2024-09-30
 ---
 
 ## Activities
 
-1. Consider a continuous process$$
+
+1. Consider the transfer function below
+$$
+G(s) = \frac{18}{(s + 5) (s + 3)}
+$${#eq-2}
+
+The zero hold transfer function is given by 
+$$
+G_{ZOH} = \frac{1 - e^{-sT_s}}{s}
+$${#eq-3}
+
+determine the discrete transfer function using `c2d` command for different T~s~. Plot the responses.
+
+2. Consider a continuous process
 
 $$
 G(s) = \frac{2 (1-s) }{(3s + 1)(s+1)}
@@ -16,7 +30,7 @@ $${#eq-1}
 
 convert G(s) to discrete transfer function and plot the step response. Try different hold functions. 
 
-2. For the transfer function
+3. For the transfer function
 
 $$
 G(s) = \frac{1}{s + 1}
@@ -24,7 +38,7 @@ $${#eq-3}
 
 plot the effect of sample time on response. 
 
-3. Design a feedback control system around the first-order plant 
+4. Design a feedback control system around the first-order plant 
 
 $$
 G(s) = \frac{1}{0.2s + 1}
@@ -39,9 +53,9 @@ $$
 G(s) = \frac{500s + 50}{100 s^2 + s}
 $${#eq-1-1}
 
-4. Convert the controller from @eq-1-1 to discrete form using different sample times. Plot the Bode plot for the continuous and discrete controller and discuss the differences. 
+5. Convert the controller from @eq-1-1 to discrete form using different sample times. Plot the Bode plot for the continuous and discrete controller and discuss the differences. 
 
-5.  Design and compare continous and digital controller for the following transfer function
+6.  Design and compare continous and digital controller for the following transfer function
 
 $$
 G(s) = \frac{2 exp(-s)}{4s + 1}
