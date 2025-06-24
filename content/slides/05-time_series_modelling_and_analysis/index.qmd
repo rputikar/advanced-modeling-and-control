@@ -1,8 +1,0 @@
----
-title: "Time series Modelling and analysis"
-format: revealjs
-resources:
-  - "./05-time_series_modelling_and_analysis.pdf"
----
-
-
