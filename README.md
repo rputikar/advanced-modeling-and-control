@@ -108,16 +108,25 @@ The following Quarto extensions are used in this project:
 | `schochastics/academicons`      | 0.2.2   | Academic icon shortcodes     |
 | `schochastics/social-share`     | 0.1.0   | Social sharing filters       |
 
-## 📁 Project Structure (simplified)
+## 📁 Project Structure
 
 ```
 advanced-modeling-and-control/
 │
-├── pyproject.toml       # Python environment config
-├── maskfile.md          # Task automation (Mask runner)
-├── README.md            # This file
-├── *.qmd                # Quarto markdown notebooks
-└── .venv/                # Virtual environment (ignored)
+├── pyproject.toml        # Python environment config
+├── maskfile.md           # Task automation (Mask runner)
+├── README.md             # Project documentation
+├── \*.qmd                # Quarto markdown notebooks
+├── .venv/                # Python virtual environment (ignored)
+│
+├── data/                 # Misc data files
+├── \_extensions/         # Quarto extensions
+├── bibliography/         # Reference files and citations
+├── \_freeze/             # Cache from Quarto builds
+├── content/              # Notes, lectures, slides, labs, etc.
+├── assets/               # Fonts, images, styles, templates
+├── \_site/               # Rendered Quarto website
+
 ```
 
 ---
