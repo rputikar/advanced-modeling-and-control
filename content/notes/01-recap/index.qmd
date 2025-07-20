@@ -13,13 +13,13 @@ from scipy import signal
 plt.style.use('../../../assets/templates/publish.mplstyle')
 ```
 
-:::{.content-visible when-format="html"}
- :::{.grid} 
-  :::{.g-col-5} 
-  [Lecture resources](../../lectures/01-recap/index.qmd){.btn .btn-success .btn-lg role="button"} 
-  ::: 
- :::
+::::{.content-visible when-format="html"}
+:::{.grid} 
+:::{.g-col-5} 
+[Lecture resources](../../lectures/01-recap/index.qmd){.btn .btn-success .btn-lg role="button"} 
+::: 
 :::
+::::
 
 ## Importance of process analysis and control
 
