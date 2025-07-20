@@ -1,6 +1,6 @@
 ---
 title: Getting Ready
-date-modified: 2024-07-15
+date-modified: 2025-07-21
 ---
 
 ## Pre-requisites
@@ -8,7 +8,14 @@ date-modified: 2024-07-15
 - CHEN2004 (v.0) Process Simulation or any previous version
 - CHEN3005 (v.0) Process Instrumentation and Control or any previous version
 
-### MATLAB
+### MATLAB Setup
+
+Please install MATLAB R2024a (not R2025a).
+
+Although MATLAB R2025a is now available, please install R2024a for this course. All lab computers use older version of MATLAB, and maintaining version compatibility is important to ensure that assignments, tutorials, and troubleshooting go smoothly. R2025a may include features or changes that are not compatible with our teaching material or scripts. If you’ve already installed R2025a, we recommend uninstalling it and reinstalling R2024a via the MathWorks portal.
+
+R2025a introduces MATLAB Copilot, a generative AI tool embedded in the MATLAB environment. While such tools can be useful, they are not permitted for this course, especially during labs or assessments. This unit is designed to help you develop your own coding intuition and computational thinking skills. It’s important that you write your own code and understand the problem-solving process. Later in the course, we will explore appropriate and productive ways to use AI tools, but for now, please avoid using them.
+
 
 {{< video https://www.youtube.com/embed/0tkABVrpsWE >}}
 
