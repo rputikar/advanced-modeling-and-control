@@ -6,16 +6,16 @@ author:
 format:
   html:
     fig-cap-location: bottom
-  docx:
-    number-sections: true
-    number-depth: 3
-    shift-heading-level-by: -1
-    reference-doc: ../../assets/templates/reference-doc.docx
-  odt:
-    number-sections: true
-    number-depth: 3
-    shift-heading-level-by: -1
-    reference-doc: ../../assets/templates/reference-odt.odt
+  # docx:
+  #   number-sections: true
+  #   number-depth: 3
+  #   shift-heading-level-by: -1
+  #   reference-doc: ../../assets/templates/reference-doc.docx
+  # odt:
+  #   number-sections: true
+  #   number-depth: 3
+  #   shift-heading-level-by: -1
+  #   reference-doc: ../../assets/templates/reference-odt.odt
   pdf:
     number-sections: true
     citeproc: true

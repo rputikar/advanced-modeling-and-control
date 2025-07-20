@@ -1,7 +1,7 @@
 ---
 title: "Recap: Basics of Process Control and Modelling"
 format: revealjs
-date-modified: 2024-07-21
+date-modified: 2025-07-21
 ---
 
 ```{python}
@@ -1363,7 +1363,7 @@ plt.show()
 :::
 
 ::: {.fragment}
-- The function $C[\cdot]$ constitutes teh control law.
+- The function $C[\cdot]$ constitutes the control law.
 :::
 
 ::: {.fragment}
