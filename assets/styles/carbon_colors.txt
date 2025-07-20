@@ -1,0 +1,55 @@
+
+8a3800
+14. Purple 50
+a56eff# 5 color light
+Purple 70 #6929c4
+Cyan 50 #1192e8
+Teal 70 #005d5d
+Magenta 70 #9f1853
+Red 90 #570408
+
+# 5 color dark
+
+Purple 60 #8a3ffc
+Teal 40 #08bdba
+Cyan 20 #bae6ff
+Blue 50 #4589ff
+Magenta 40 #ff7eb6
+
+
+# Categorical light palette
+
+01. Purple 70 #6929c4
+02. Cyan 50 #1192e8
+03. Teal 70 #005d5d
+04. Magenta 70 #9f1853
+05. Red 50 #fa4d56
+06. Red 90 #570408
+07. Green 60 #198038
+08. Blue 80 #002d9c
+09. Magenta 50 #ee538b
+10. Yellow 50 #b28600
+11. Teal 50 #009d9a
+12. Cyan 90 #012749
+13. Orange 70 #8a3800
+14. Purple 50 #
+ba4e00
+14. Purple 30
+d4bbffa56eff
+
+# Categorical dark palette
+
+01. Purple 60 #8a3ffc
+02. Cyan 40 #33b1ff
+03. Teal 60 #007d79
+04. Magenta 40 #ff7eb6
+05. Red 50 #fa4d56
+06. Red 10 #fff1f1
+07. Green 30 #6fdc8c
+08. Blue 50 #4589ff
+09. Magenta 60 #d12771
+10. Yellow 40 #d2a106
+11. Teal 40 #08bdba
+12. Cyan 20 #bae6ff
+13. Orange 60 #ba4e00
+14. Purple 30 #d4bbff

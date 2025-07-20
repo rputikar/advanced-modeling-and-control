@@ -1,0 +1,46 @@
+---
+title: Getting Ready
+date-modified: 2024-07-15
+---
+
+## Pre-requisites
+
+- CHEN2004 (v.0) Process Simulation or any previous version
+- CHEN3005 (v.0) Process Instrumentation and Control or any previous version
+
+### MATLAB
+
+{{< video https://www.youtube.com/embed/0tkABVrpsWE >}}
+
+Once you have installed MATLAB, follow the links below for getting started
+with/ refreshing use of MATLAB and Simulink. 
+
+[MATLAB Fundamentals | Self-Paced Online Courses - MATLAB & Simulink (mathworks.com)](https://matlabacademy.mathworks.com/details/matlab-fundamentals/mlbe)
+
+[MATLAB Onramp - MATLAB & Simulink Tutorial (mathworks.com)](https://au.mathworks.com/learn/tutorials/matlab-onramp.html)
+
+[Simulink Onramp - MATLAB & Simulink Tutorial (mathworks.com)](https://au.mathworks.com/learn/tutorials/simulink-onramp.html)
+
+
+## Attendance and participation
+
+It is essential to complete the required pre class activities for each class
+session **prior to** watching the lecture.
+
+Your active participation and preparedness in class, is essential before you
+come to the class on Monday. **This includes having read the material and watched
+the videos**. This will enable you to engage in discussions and collaborate with
+your peers.
+
+Attendance and participation will play a vital role in your success in this
+course. Unfortunately, our labs do not have online collaboration capabilities.
+Therefore, all the in class activities, workshops, and labs will be in person
+and will not be recorded. If you anticipate missing a lab session, you will
+need to apply for extension and complete the lab work in your own time later. 
+
+That said, I am here to support you in your learning. If by any chance you are
+going through any issues that may have an impact on your participation in the
+unit (e.g. attending a session, sitting for test, completing project etc.),
+inform me at the earliest and I will do my best to accommodate your
+requirements.
+

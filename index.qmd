@@ -1,0 +1,197 @@
+---
+title: Advanced Modeling and Control
+subtitle: 
+  "Explore cutting-edge techniques in advanced control, including the design and
+  implementation of advanced process control methods in dynamic and
+  multivariable industrial processes using MATLAB's Simulink tool. Dive into the
+  world of advanced modelling, discovering tools for data analysis, empirical
+  modelling, and process design to optimize the performance and efficiency of
+  process equipment."
+details: 
+  "CHEN4011, Semester 2, 2025 <br>
+   Chemical Engineering <br>
+   Curtin University"
+editor: source
+course-logo: ./assets/images/amc-course-hero.jpeg
+format:
+  html:
+    template-partials:
+    - ./assets/partials/home/title-block.html
+metadata-files:
+  - metadata.yml
+date-modified: 2025-07-20
+---
+
+## Course Overview
+
+This course builds upon introductory process control course (CHEN3005: Process
+Instrumentation and Control). It introduces advanced modeling and control
+techniques. The course aims to provide broad overview of various topics and
+provide foundational knowledge for further exploration of the subject. 
+While not comprehensive, it covers essential material, and current trends.
+
+Most of the material is designed to be easily understood by undergraduate 
+chemical engineering student. However, some background in mathematics,
+including differential equations, as well as a solid understanding of material
+and energy balance concepts and unit operations.
+
+The unit is divided into two parts: advanced control, and advanced modeling. In
+the advanced control section, we delve into the complexities of industrial
+processes, which are dynamic and often multivariable. To effectively control
+such processes, advanced techniques beyond simple feedback loops studied in the
+Process Instrumentation and Control unit are required. The key focus of this
+section is on the design and implementation of advanced process control methods
+in process plants. Additionally, we will explore the utilization of Simulink, a
+MATLAB tool, for controller design and simulation.
+
+In advanced modeling section, we will address the crucial role of
+mathematical modeling in the design and optimization of process equipment. This
+section equips students with modeling tools for data analysis, empirical
+modeling, and process design. These tools are essential for understanding and
+representing the behavior of complex processes, aiding in optimization efforts
+and decision-making. This year, we will focus on data driven models and also
+explore some aspects of machine learning and its applications to statistical
+process control. 
+
+By combining the two components, students will gain the necessary skills to
+tackle the challenges of dynamic and multivariable industrial processes,
+enabling them to understand, and design effective control strategies and
+optimize process performance.
+
+## What do process control engineers do?
+
+::: {.panel-tabset}
+## Day in the Life: process control engineer
+{{< video https://www.youtube.com/embed/kK_8gvijNPI >}}
+
+## Water Works Wednesday - Process Control Systems Engineer
+{{< video https://www.youtube.com/watch?v=fsWU13R3azU >}}
+:::
+
+## Learning Outcomes
+
+- Apply a range of advanced control techniques to chemical, mineral and
+  petrochemical processes.
+- Explain multi-loop control design, including pairing and decoupling of
+  chemical processes.
+- Apply a range of advanced model formulation and solution techniques to
+  chemical processes.
+- Demonstrate the effective use of software, such as MATLAB for process
+  modeling and for control system design.
+
+
+## Teaching Staff
+
+::: {.panel-tabset}
+## Course Coordinator
+
+<!-- Grid person -->
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+![](./assets/images/RanjeetUtikar.jpg)
+:::
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+#### <i class="fa fa-user"></i> &nbsp; [A/Prof. Ranjeet Utikar](https://www.utikar.com)
+- <i class="fa fa-university"></i> &nbsp; Building 204, Room 432 <br> Bentley Campus
+- <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:r.utikar@curtin.edu.au">r.utikar@curtin.edu.au</a>
+- <i class="fa fa-phone"></i> &nbsp; +61 0892669837
+- <i class="fa fa-calendar-check"></i> &nbsp; [Schedule an appointment](https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/)
+:::
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+Best way to contact is via email. I hope to respond within 24-36 hours. If you would like to see me, please book an appointment.
+:::
+<!-- Grid person -->
+:::
+
+## Teaching Staff
+
+<!-- Grid person -->
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<img src="./assets/images/RanjeetUtikar.jpg" style="width: 250px; height: 250px;" />
+:::
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+#### <i class="fa fa-user"></i> &nbsp; [A/Prof. Ranjeet Utikar](https://www.utikar.com)
+- <i class="fa fa-university"></i> &nbsp; Building 204, Room 432 <br> Bentley Campus
+- <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:r.utikar@curtin.edu.au">r.utikar@curtin.edu.au</a>
+- <i class="fa fa-phone"></i> &nbsp; +61 0892669837
+- <i class="fa fa-calendar-check"></i> &nbsp; [Schedule an appointment](https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/)
+:::
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+Best way to contact is via email. I hope to respond within 24-36 hours. If you would like to see me, please book an appointment.
+:::
+:::
+<!-- Grid person -->
+
+
+<!-- Grid person -->
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<img src="./assets/images/JobrunNandong.jpg" style="width: 250px; height: 250px;" />
+:::
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+#### <i class="fa fa-user"></i> &nbsp; [A/Prof. Jobrun Nandong](https://engsci.curtin.edu.my/departments/chemical-energy-engineering/people/jobrun-nandong/)
+- <i class="fa fa-university"></i> &nbsp;  Skylark 3 Room 322 <br> Miri Campus
+- <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:jobrun.n@curtin.edu.my">jobrun.n@curtin.edu.my</a>
+- <i class="fa fa-phone"></i> &nbsp; +60 85 630 100 Ext: 2412
+:::
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+Best way to contact is via email. I hope to respond within 24-36 hours. If you would like to see me, please book an appointment.
+:::
+:::
+<!-- Grid person -->
+
+## Administrative Staff
+
+<!-- Grid person -->
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<img src="./assets/images/scientist_woman.jpeg" style="width: 250px; height: 250px;" />
+:::
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+#### <i class="fa fa-user"></i> &nbsp; [Ms. Cherie Ha](https://staffportal.curtin.edu.au/staff/profile/view/cherie-ha-46dfe4cd/)
+- <i class="fa fa-university"></i> &nbsp; Faculty of Science and Engineering <br> Bentley Campus
+- <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:TeachingSupport-WASM-MECE@curtin.edu.au">TeachingSupport-WASM-MECE@curtin.edu.au</a>
+:::
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+Best way to contact is via email. I hope to respond within 24-36 hours. If you would like to see me, please book an appointment.
+:::
+:::
+<!-- Grid person -->
+
+
+<!-- Grid person -->
+::: {.grid .person}
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<img src="./assets/images/scientist_woman.jpeg" style="width: 250px; height: 250px;" />
+:::
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+<!-- ### info -->
+#### <i class="fa fa-user"></i> &nbsp; [Ms. Dora Indin](https://staffportal.curtin.edu.au/staff/profile/view/dora-indin-bd45af18/)
+- <i class="fa fa-university"></i> &nbsp; Skylark 3 - Room 402  <br> Miri Campus
+- <i class="fa fa-envelope"></i> &nbsp; <a href="mailto:dora.indin@curtin.edu.my">dora.indin@curtin.edu.my</a>
+- <i class="fa fa-phone"></i> &nbsp; +60 85 630100 Ext:2531
+:::
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+<!-- ### contact-policy -->
+#### Contacting me
+Best way to contact is via email. I hope to respond within 24-36 hours. If you would like to see me, please book an appointment.
+:::
+:::
+<!-- Grid person -->
+
+:::
+
+

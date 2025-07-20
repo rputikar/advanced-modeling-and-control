@@ -1,0 +1,1822 @@
+---
+title: "Recap: Basics of Process Control and Modelling"
+format: revealjs
+date-modified: 2024-07-21
+---
+
+```{python}
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import control as ctrl
+import scipy as sp
+from scipy.optimize import minimize
+from scipy import signal
+from IPython.display import display, Markdown
+plt.style.use('../../../assets/templates/present.mpstyle')
+```
+
+# Why process control 
+
+* Importance of process analysis and control
+* Process control objectives
+* Hirarchy of process control activities
+* Overview of control system design
+
+## Importance of process analysis and control
+
+::: {.r-stack}
+
+![](./chemical-processes-01.png){.fragment width=90%}
+
+![](./chemical-processes-02.png){.fragment width=90%}
+
+:::
+
+::: {.fragment}
+
+* Optimal process operations require [efficient and effective
+  control]{.highlight}
+* Control systems and advanced algorithms are deployed to monitor, regulate,
+  and
+  optimize the process variables.  
+
+:::
+
+## Process System, Input and Output
+
+
+::: {.r-stack}
+
+![](./process-system-nomenclature-01.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-02.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-03.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-04.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-05.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-06.png){.fragment .absolute top=150 right=50 width=90%}
+
+![](./process-system-nomenclature-07.png){.fragment .absolute top=150 right=50 width=90%}
+
+:::
+
+::: {.fragment .absolute top=450}
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+![](../../../assets/images/liquid-level-tank-example.png){width=70%}
+
+:::
+::: {.column .smaller width=50%}
+
+- Manipulated Variable (MV): The flow rate of the liquid into or out of the
+  tank. 
+
+- Controlled Variable (CV): Level of the liquid in the tank
+
+- Disturbances: Changes in inlet flow rate, changes in outlet flow rate,
+  temperature variations, pressure fluctuations
+
+- Unmeasured Output: The temperature of the liquid in the tank
+
+:::
+::::
+:::
+
+## Control objectives
+
+:::: {.columns}
+
+::: {.column .fragment width=45%}
+
+### Explicit control objectives (ECOs)
+
+- Clearly defined and typically quantifiable goals for the performance of a
+  control system. 
+
+- These objectives are explicitly stated
+
+- Form the basis of the formal design and analysis of control systems
+
+- [Examples]{.highlight}:
+
+  ::: {.smaller}
+  Setpoint Tracking, Disturbance Rejection, Stability, Speed of Response,
+  Overshoot Minimization, Regulatory Compliance 
+  :::
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column .fragment width=45%}
+
+### Implicit control objectives (ICOs)
+
+- Not explicitly stated or quantified
+
+- Often evaluated qualitatively
+
+- Have a significant long-term impact
+
+- Play a crucial role in the successful implementation
+
+- [Examples]{.highlight}:
+
+  :::{.smaller}
+  Simplicity, Reliability, Cost-effectiveness, Safety, Flexibility, Scalability 
+  :::
+  
+:::
+
+::::
+
+:::{.fragment}
+:::{.callout-note appearance="simple"}
+
+Control System Design should link the two types of control objectives.
+
+Real plants can have similar ICOs but different ECOs
+
+:::
+:::
+
+
+## Implicit control objectives
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+::: {.fragment}
+
+### Safety First
+
+- People
+- Environment
+- Equipment
+
+### Profit
+
+- meeting final product specifications
+- minimizing waste production
+- minimizing environmental impact
+- minimizing energy use
+- maximizing overall production rate
+
+:::
+
+:::
+
+
+::: {.column width=50%}
+
+::: {.fragment}
+
+### Reducing variability
+
+- Poor control requires set point far from constraint
+
+  ![](../../../assets/images/01-recap-fig1-pv_poorly_controlled.png){width="50%"}
+
+:::
+
+:::{.fragment}
+
+- Good control permits set point near constraint 
+    
+  ![](../../../assets/images/01-recap-fig2-pv_tightly_controlled.png){width="50%"}
+
+:::
+
+:::
+
+::::
+
+  <!-- right: 800px !important; -->
+  <!---->
+
+## Optimal plant operations
+
+::: {.r-stack}
+
+![](./01-recap-fig3-optimal-plant-operations-01.png){.fragment  .absolute top=100 right=50 width=80%}
+
+![](./01-recap-fig3-optimal-plant-operations-02.png){.fragment  .absolute top=100 right=50 width=80%}
+
+![](./01-recap-fig3-optimal-plant-operations-03.png){.fragment  .absolute top=100 right=50 width=80%}
+
+![](./01-recap-fig3-optimal-plant-operations-04.png){.fragment  .absolute top=100 right=50 width=80%}
+
+![](./01-recap-fig3-optimal-plant-operations-05.png){.fragment  .absolute top=100 right=50 width=80%}
+
+![](./01-recap-fig3-optimal-plant-operations-06.png){.fragment .absolute top=100 right=50 width=80%}
+
+
+::: 
+
+## Hirarchy of process control activities
+
+::: {.r-stack}
+
+![](./01-recap-time-scales-of-process-control-activities-01.png){.fragment  .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-02.png){.fragment  .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-03.png){.fragment  .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-04.png){.fragment  .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-05.png){.fragment  .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-06.png){.fragment  .absolute top=150 right=50}
+
+![](./01-recap-time-scales-of-process-control-activities-07.png){.fragment .absolute top=150 right=50}
+
+:::
+
+## Overview of control system design
+
+![](../../../assets/images/major-steps-control-system-developement.png)
+
+<!-- :::: {.columns} -->
+<!---->
+<!-- ::: {.column width=50%} -->
+<!-- ![](../../../assets/images/major-steps-control-system-developement.png) -->
+<!-- ::: -->
+<!---->
+<!-- ::: {.column width=50%} -->
+<!---->
+<!-- ::: -->
+<!---->
+<!-- :::: -->
+<!---->
+
+# Fundamentals of process modeling
+
+* Why process modeling?
+* Types of process models
+* Basic principles of mass and energy balances
+* Process control terminology
+
+## Why process modeling?
+
+::: {.incremental}
+- Enhancing Process Understanding
+  
+  :::{.smaller}
+  Enable study of transient behavior without disruption
+
+  Provide valuable insights into dynamic and steady-state process behavior
+
+  Useful even before plant construction
+  :::
+
+- Process Simulators for Training
+
+  ::: {.smaller}
+  Essential for training plant operators in complex units and emergencies
+
+  Create a realistic training environment when connected to process control equipment
+  :::
+
+- Facilitating Evaluation of Control Strategies
+
+  ::: {.smaller}
+  Assist in identifying variables to be controlled and manipulated
+  
+  Aid in preliminary controller tuning
+
+  Play an explicit role in model-based control strategies
+  :::
+
+- Optimization of Operating Conditions
+
+  ::: {.smaller}
+  Recalculation of optimum conditions maximizes profit or minimizes costs
+
+  Utilize steady-state process model and economic data
+
+  Allow for continuous enhancement of process performance
+  :::
+
+::: 
+
+## Types of process models
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+- Theoretical models 
+  
+  ::: {.smaller}
+  Developed using the principles of chemistry, physics,
+  and biology.
+
+  First principles models
+
+  Mass, momentum, and heat balances
+
+  :::
+- Empirical models 
+
+  ::: {.smaller}
+
+  Obtained by fitting experimental data.
+
+  Statistical models
+
+  Correlations
+
+  data driven models
+
+  :::
+  
+- Semi-empirical/ hybrid models 
+
+  ::: {.smaller}
+  A combination of the theoretical and empirical models
+
+  The numerical values of one or more of the parameters in a theoretical model
+  are calculated from experimental data.
+
+  :::
+
+:::
+
+::: {.column width=50%}
+
+![](../../../assets/images/hybrid_models.png)
+
+:::
+
+::::
+
+## Basic principles of mass and energy balances
+
+::: {.incremental}
+
+- In general
+
+  $$
+  \text{accumulation} = \text{in} - \text{out} - \text{reaction} - \text{tranfer}
+  $$
+
+- Mass balance (without reaction and transfer)
+
+  $$
+  \left\{\begin{array}{c}
+  \text {rate of mass} \\
+  \text {accumulation}
+  \end{array}\right\} 
+  = \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {mass in}
+    \end{array}\right\}
+  - \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {mass out}
+    \end{array}\right\}
+  $$
+
+
+- For component _i_ (with reaction term included) 
+
+  ::: {.smaller}
+
+  $$
+    \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {component i} \\
+    \text {accumulation}
+    \end{array}\right\} 
+    = \left\{\begin{array}{c}
+      \text {rate of} \\
+      \text {component i} \\
+      \text {in}
+      \end{array}\right\}
+    - \left\{\begin{array}{c}
+      \text {rate of} \\
+      \text {componenti } \\
+      \text {out}
+      \end{array}\right\}
+    + \left\{\begin{array}{c}
+      \text {rate of} \\
+      \text {component i} \\
+      \text {produced}
+      \end{array}\right\}
+  $$
+  
+  :::
+
+:::
+
+## Basic principles of mass and energy balances
+
+- Energy balance
+
+$$
+\begin{aligned}
+\left\{\begin{array}{c}
+\text { rate of energy } \\
+\text { accumulation }
+\end{array}\right\} &= \left\{\begin{array}{c}
+\text { rate of energy in } \\
+\text { by convection }
+\end{array}\right\} \\
+& -\left\{\begin{array}{c}
+\text { rate of energy out } \\
+\text { by convection }
+\end{array}\right\} \\
+& +\left\{\begin{array}{c}
+\text { net rate of heat addition } \\
+\text { to the system from } \\
+\text { the surroundings }
+\end{array}\right\} \\
+& +\left\{\begin{array}{c}
+\text { net rate of work } \\
+\text { performed on the system } \\
+\text { by the surroundings }
+\end{array}\right\}
+\end{aligned}
+$$
+
+## Blending of two components
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+![](../../../assets/images/blending-example.png)
+
+:::
+
+::: {.column width=50%}
+
+::: {.incremental}
+
+- Overall mass balance 
+
+  ::: {.smaller}
+
+  $$
+  \left\{\begin{array}{c}
+  \text {rate of accumulation} \\
+  \text {of mass in the tank}
+  \end{array}\right\} 
+  = \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {mass in}
+    \end{array}\right\}
+  - \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {mass out}
+    \end{array}\right\}
+  $$
+  ::: 
+
+  $$
+  \frac{d(V \rho)}{dt} = w_1 + w_2 - w
+  $$
+
+- Component balance
+
+  $$
+  \frac{d(V \rho x)}{dt} = w_1 x_1 + w_2 x_2 - w x
+  $$
+
+:::
+
+:::
+
+::::
+
+
+## Blending of two components {visibility="uncounted"}
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+![](../../../assets/images/blending-example.png)
+
+:::
+
+::: {.column width=50%}
+
+- Overall mass balance 
+
+  ::: {.smaller}
+
+  $$
+  \left\{\begin{array}{c}
+  \text {rate of accumulation} \\
+  \text {of mass in the tank}
+  \end{array}\right\} 
+  = \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {mass in}
+    \end{array}\right\}
+  - \left\{\begin{array}{c}
+    \text {rate of} \\
+    \text {mass out}
+    \end{array}\right\}
+  $$
+  ::: 
+
+  $$
+  \frac{d(V \rho)}{dt} = w_1 + w_2 - w
+  $$
+
+- Component balance
+
+  $$
+  \frac{d(V \rho x)}{dt} = w_1 x_1 + w_2 x_2 - w x
+  $$
+
+:::
+
+::::
+
+
+::: {.callout-tip appearance="simple"}
+It is possible to further simplify the system of two differential equations to 
+
+:::{.smaller}
+$$
+  \frac{dV}{dt} = \frac{1}{\rho}\left(w_1 + w_2 - w \right)
+$$
+
+$$
+  \frac{dx}{dt} = \frac{w_1}{V \rho} \left(x_1 - x\right)+ \frac{w_2}{V \rho} \left(x_2 - x\right)
+$$
+:::
+:::
+
+## Degrees of freedom analysis 
+
+::: {.fragment}
+- To simulate a process, it’s crucial to confirm that the model equations, both
+  differential and algebraic, form a set of relations that can be solved.
+:::
+
+::: {.fragment}
+- For the model to have a unique solution, the number of unknown variables
+  should match the number of independent model equations.
+:::
+
+:::: {.fragment}
+- $N_F = N_V - N_E$
+
+  ::: {.smaller}
+  ::: {.fragment}
+  1. $N_F = 0$: The process model is exactly specified. If $NF = 0$, then the
+     number of equations is equal to the number of process variables and the
+     set of equations has a solution. (However, the solution may not be unique
+     for a set of nonlinear equations.)
+  :::
+
+  ::: {.fragment}
+  2. $N_F > 0$: The process is underspecified. If $N_F > 0$, then $N_V > N_E$,
+     so there are more process variables than equations. Consequently, the
+     $N_E$ equations have an infinite number of solutions, because NF process
+     variables can be specified arbitrarily.
+  :::
+
+  ::: {.fragment}
+  3. $N_F < 0$: The process model is overspecified. For $N_F < 0$, there are
+     fewer process variables than equations, and consequently the set of
+     equations has no solution.
+  :::
+  :::
+::::
+
+
+## Solution of model equations
+
+- **Nonlinear Chemical Processes:** These result in complex ordinary
+  differential equations when modeled.
+   
+- **Linear System Controls:** These tools are well-established and provide
+  valuable insights when processes operate near a specific point.
+
+- **Laplace Transform:** This simplifies creation of input-output models by
+  converting differential equations to algebraic ones.
+
+- **Transfer Function:** An essential tool in control system design and
+  analysis, representing linear control theory.
+
+![](../../../assets/images/Laplace-transform-concept.png) 
+
+
+## Empirical models
+
+- We can construct an empirical model using plant data
+
+- Assume a certain idealized model structure
+
+- First-order plus deadtime (FOPDT) model
+ 
+  Time domain form
+  $$\tau_p \frac{dy(t)}{dt} + y(t) = K_p u(t - \theta_p)$$
+
+  Frequency domain form (transfer function)
+  $$ G_p(s) = \frac{K_p e^{-\theta_p s}}{\tau_p s + 1}$$
+
+- $K_p$: Process gain; $\tau_p$: time constant; $\theta_p$: deadtime
+
+:::{.callout-note appearance="simple"}
+FOPDT model is often used in controller tuning.
+A transfer function is a mathematical formula that describes how a system responds to different inputs over time.
+:::
+
+## Second-Order plus Deadtime (SOPDT) Model
+
+- Time domain
+
+  $$ \tau^2 \frac{ d^2 y(t)}{dt^2} + 2 \xi \tau \frac{d y(t)}{dt} + y(t) = K_p u(t - \theta)$$
+
+- Frequency domain
+
+  $$ G_p(s) = \frac{Y(s)}{U(s)} = \frac{K_p e^{-\theta s}}{\tau^2 s^2 + 2 \xi \tau s + 1}$$
+
+
+- $K_p$: Process gain; $\tau$: time constant; θ: dead time; $\xi$: damping factor or coefficient
+
+- Behavior: 
+  
+  :::: {.columns .smaller}
+
+  ::: {.column width=40%}
+   
+   $\xi > 1$: Overdamped 
+
+   $0 < \xi < 1$:  Underdamped
+
+  :::
+
+  ::: {.column width=40%}
+   
+   $\xi = 1$: Critically damped 
+
+   $\xi = 0$: Sustained oscillations
+
+  :::
+
+  ::: {.column width=20%}
+   
+   $\xi < 0$: Unstable
+
+  :::
+
+
+  ::::
+
+# Dynamic Behavior of Processes
+
+* Input types
+* Response of first-order systems
+* Response of second-order systems
+* Properties of transfer functions
+* Stability of linear systems
+
+## Input types
+
+![](../../../assets/images/Input-types.png)
+
+## Response of first-order systems
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+![](../../../assets/images/liquid-level-tank-example.png)
+
+- Overall mass balance
+
+  $$A \frac{dh}{dt} = F_{in} - F_{out}$$
+
+- Outlet flow rate, F~out~ has a square-root dependence on liquid level
+  $F_{out} = \beta \sqrt{h}$
+
+
+:::
+::: {.column width=50%}
+
+- Resulting nonlinear equation
+
+  $$A \frac{dh}{dt} = F_{in} - \beta \sqrt{h}$$
+
+  :::{.smaller}
+  $$
+  \tau \frac{d \bar{h}}{dt} + \bar{h} = kF_{in} ; \, 
+  \tau = \frac{2A\sqrt{h}}{\beta} ; \, 
+  k = \frac{2 \sqrt{h}}{\beta}
+  $$
+  :::
+
+- Transfer function
+
+  :::{.smaller}
+  $$
+  \frac{\bar{h}(s)}{\bar{F_in}(s)} = g(s) = \frac{k}{\tau s + 1}
+  $$
+  :::
+
+- **Process gain (k)**:  Ultimate value of the response (new steady-state)
+for a unit-step change in the input. 
+
+- **Time constant (τ)**:  Time necessary for the process to adjust to a
+change in the input. 
+
+:::
+::::
+
+
+## Response of first-order systems
+
+:::: {.columns}
+
+::: {.column}
+
+```{python}
+
+# FOPDT system
+# G(s) = K_p / (τs + 1) * e^(-θs)
+
+def fopdt(Kp, tau, theta):
+    # Create a transfer function for the FOPDT process
+    numerator = [Kp]
+    denominator = [tau, 1]
+    
+    # Use zero-order Pade approximation for time delay
+    num,den = ctrl.pade(theta, 0)
+    delay = ctrl.tf(num, den)
+
+    # Combine the process and delay into a single transfer function
+    fopdt_process = ctrl.series(delay, ctrl.tf(numerator, denominator))
+    
+    return fopdt_process
+```
+
+```{python}
+K_p = 1
+tau = 10
+theta = 0
+
+fopdt_process = fopdt(K_p, tau, theta)
+
+t = np.linspace(0,80,200)
+_,y = ctrl.step_response(fopdt_process,t)
+
+t_by_tau = t/tau
+
+y_632 = np.max(y) * 0.632 
+t_632 = t_by_tau[np.where(y >= y_632)[0][0]]
+
+t_by_tau_5 = 5
+y_t_by_tau_5 = y[np.where(t_by_tau >= t_by_tau_5)[0][0]]
+
+plt.plot(t_by_tau,y, color='#65489d')
+
+plt.plot([0, t_632], [y_632, y_632], color='#0d5e5e', linestyle='--')
+plt.plot([t_632, t_632], [0, y_632], color='#0d5e5e', linestyle='--')
+
+plt.plot([0, t_by_tau_5], [y_t_by_tau_5, y_t_by_tau_5], color='#0d5e5e', linestyle='--')
+plt.plot([t_by_tau_5, t_by_tau_5], [0, y_t_by_tau_5], color='#0d5e5e', linestyle='--')
+
+plt.xlabel('$\\frac{t}{\\tau}$')
+plt.ylabel('Normalized Response $\\left[\\frac{h(t)}{h(\\infty)}\\right]$')
+plt.xlim([0, 8])
+plt.ylim([0, 1.2])
+
+plt.text(1.1, 0.632, '0.632')
+
+plt.show()
+```
+:::
+
+::: {.column}
+
+- The ultimate (steady-state) value of the response, $\bar{h} (t \to \infty)$, is
+  equal to k for a unit-step change.
+
+- When the elapsed time is equal to the process time constant $t = \tau$, the
+  system reaches 63.2% of its final response.
+
+- After approximately 5τ, the transient response can be considered as having
+  reached steady-state.
+
+- For a given t / τ, the output reaches the same fraction of the ultimate
+  output response value.
+
+:::
+
+::::
+
+:::{.callout-note .smaller .smaller appearance='simple'}
+
+In a tank process, a rise in the inlet flow rate elevates the liquid level,
+which in turn increases the hydrostatic pressure and subsequently the outlet
+flow rate. The system eventually reaches a new steady state. This feature is
+termed 'self-regulation'. 
+
+:::
+
+## Response of first-order systems
+
+```{python}
+
+tau = 10
+theta = 10
+
+t = np.linspace(0,80,200)
+s1 = fopdt(1, tau, theta)
+s2 = fopdt(4, tau, theta)
+s3 = fopdt(2.5, tau, theta)
+s4 = fopdt(2.5, tau*2, theta)
+
+
+T, y1 = ctrl.step_response(s1,t) 
+T, y2 = ctrl.step_response(s2,t) 
+T, y3 = ctrl.step_response(s3,t) 
+T, y4 = ctrl.step_response(s4,t) 
+
+t_by_tau = T/tau
+
+# While the Pade approximation helps to make delay a part of the transfer
+# function that can be used in standard control analysis and design methods,
+# it's not perfect and does not represent a "true" delay.
+
+# Introduce delay
+delay_samples = int(theta / (T[1] - T[0]))  # Calculate the number of samples to shift
+
+# Start with zeros and then append the delayed response
+yd1 = np.concatenate((np.zeros(delay_samples), y1[:len(y1) - delay_samples]))
+yd2 = np.concatenate((np.zeros(delay_samples), y2[:len(y2) - delay_samples]))
+yd3 = np.concatenate((np.zeros(delay_samples), y3[:len(y3) - delay_samples]))
+yd4 = np.concatenate((np.zeros(delay_samples), y4[:len(y4) - delay_samples]))
+
+plt.xlabel('$\\frac{t}{\\tau}$')
+plt.ylabel('Normalized Response $\\left[\\frac{h(t)}{h(\\infty)}\\right]$')
+plt.xlim([0, 8])
+plt.ylim([0, 4.2])
+
+plt.plot(t_by_tau,yd1, color='#65489d')
+plt.plot(t_by_tau,yd2, color='#388ecc')
+plt.plot(t_by_tau,yd3, color='#0d5e5e')
+plt.plot(t_by_tau,yd4, color='#9f1d54')
+
+# plt.text(1.1, 0.632, '0.632')
+
+plt.text(1.4, 0.2, '$\\tau_d = \\tau$')
+plt.arrow(1.4, 0.2, -0.3, -0.15, color='black', width=0.01, length_includes_head=True)
+
+plt.text(8.2, 1, '$k = 1$')
+plt.text(8.2, 2.4, '$k = 2.5$')
+plt.text(8.2, 4, '$k = 4$')
+
+plt.text(6.9, 3.8, '$\\tau = 1$')
+plt.text(6.9, 1.05, '$\\tau = 1$')
+plt.text(6.9, 2.55, '$\\tau = 2$')
+plt.text(6.9, 2.25, '$\\tau = 1$')
+
+plt.show()
+```
+
+## Response of second-order systems
+
+::::{.columns}
+
+:::{.column width=50%}
+
+![](../../../assets/images/Performance-characteristics-underdamped-system.png)
+
+:::
+
+:::{.column width=50%}
+
+- Rise time ($t_r$): time required for y(t) to first cross its new steady state
+  value
+
+- Overshoot (a/b):  The maximum amount by which the response exceeds the new
+  steady state value
+
+- Decay ratio (c/a): Ratio of the height of successive peaks in the response
+
+- Period of oscillation (P): time for a complete cycle
+
+- Response/ settling time ($t_s$): time required for the response to remain
+  within a ± 5% band based upon steady state value.
+
+:::
+
+::::
+
+:::{.callout-note appearance="simple"}
+
+Decay ratio, overshoot, response time, and damping factor (ξ) can be used as a
+basis for tuning.
+
+:::
+
+## Response of second-order systems
+
+::::{.columns}
+
+:::{.column width=50%}
+
+### Critically damped (ξ = 1)
+
+```{python}
+# Response of second order system
+# G_p(s) = Y(s) / U(s) = K_p / (τ^2 s^2 + 2ζτ s + 1)
+# K_p is the gain of the system, τ is the time constant, and ζ is the
+# damping ratio. The time constant τ of the system is related to the natural
+# frequency ω_n and damping ratio as follows: τ = 1 / (ζω_n)
+
+# Define the system parameters
+
+K_p = 1.0  # gain
+tau5 = 5.0  # time constant
+tau10 = 10.0  # time constant
+tau20 = 20.0  # time constant
+zeta = 1  # damping ratio
+
+# Define the system
+num = [K_p]
+den5 = [tau5**2, 2*zeta*tau5, 1]
+den10 = [tau10**2, 2*zeta*tau10, 1]
+den20 = [tau20**2, 2*zeta*tau20, 1]
+
+system5 = signal.TransferFunction(num, den5)
+system10 = signal.TransferFunction(num, den10)
+system20 = signal.TransferFunction(num, den20)
+
+# Define the time array
+t = np.linspace(0, 120, 1000)
+
+# Simulate the step response
+t, y5 = signal.step(system5, T=t)
+t, y10 = signal.step(system10, T=t)
+t, y20 = signal.step(system20, T=t)
+
+# Plot the response
+
+plt.plot(t,y5, color='#65489d', label ='$\\tau = 5$')
+plt.plot(t,y10, color='#388ecc', label ='$\\tau = 10$')
+plt.plot(t,y20, color='#0d5e5e', label ='$\\tau = 20$')
+
+plt.axhline(1.0, color='#535353', linestyle='--')
+
+plt.xlabel('Time')
+plt.ylabel('y(t)')
+plt.legend(loc='lower right')
+
+plt.xlim([0, 120])
+plt.ylim([0, 1.2])
+
+# plt.text(22, 0.9, '$\\tau = 5$')
+# plt.text(45, 0.9, '$\\tau = 10$')
+# plt.text(88, 0.9, '$\\tau =20$')
+
+plt.show()
+```
+::: {.smaller}
+
+- Output response becomes more sluggish as τ increases.
+
+- The responses are qualitatively similar. 
+
+:::
+
+:::
+
+::: {.column .fragment width=50%}
+
+### Effect of ξ
+
+```{python}
+# Response of second order system
+# G_p(s) = Y(s) / U(s) = K_p / (τ^2 s^2 + 2ζτ s + 1)
+# K_p is the gain of the system, τ is the time constant, and ζ is the
+# damping ratio. The time constant τ of the system is related to the natural
+# frequency ω_n and damping ratio as follows: τ = 1 / (ζω_n)
+
+# Define the system parameters
+
+K_p = 1.0  # gain
+tau = 10.0  # time constant
+
+zeta = 1.0
+zeta2 = 2.0  # damping ratio
+zeta_p5 = 0.5
+zeta_p25 = 0.25
+
+# Define the system
+num = [K_p]
+den_z = [tau**2, 2*zeta*tau, 1]
+den_z2 = [tau**2, 2*zeta2*tau, 1]
+den_zp5 = [tau**2, 2*zeta_p5*tau, 1]
+den_zp25 = [tau**2, 2*zeta_p25*tau, 1]
+
+system_z = signal.TransferFunction(num, den_z)
+system_z2 = signal.TransferFunction(num, den_z2)
+system_zp5 = signal.TransferFunction(num, den_zp5)
+system_zp25 = signal.TransferFunction(num, den_zp25)
+
+# Define the time array
+t = np.linspace(0, 120, 1000)
+
+# Simulate the step response
+t, y_z = signal.step(system_z, T=t)
+t, y_z2 = signal.step(system_z2, T=t)
+t, y_zp5 = signal.step(system_zp5, T=t)
+t, y_zp25 = signal.step(system_zp25, T=t)
+
+# Plot the response
+
+plt.plot(t,y_z2, color='#65489d', label='$\\xi = 2$')
+plt.plot(t,y_z, color='#388ecc', label='$\\xi = 1$')
+plt.plot(t,y_zp5, color='#0d5e5e', label='$\\xi = 0.5$')
+plt.plot(t,y_zp25, color='#9f1d54', label='$\\xi = 0.25$')
+# plt.plot(t,y_zm1, color='#4d1013', label='$\\xi = -0.1$')
+
+plt.axhline(1.0, color='#535353', linestyle='--')
+
+plt.xlabel('Time')
+plt.ylabel('y(t)')
+plt.legend(loc='lower right')
+
+plt.xlim([0, 120])
+plt.ylim([0, 1.5])
+
+plt.show()
+```
+
+::: {.smaller}
+
+- ξ < 1: Oscillation and overshoot
+
+- ξ > 1: Sluggish response, no oscillations; no overshoot
+
+- ξ = 1: Fastest response, no oscillations; no overshoot
+
+:::
+
+:::
+
+::::
+
+## Properties of transfer functions 
+
+- For transfer function
+
+  $$g(s)= \frac{y(s)}{u(s)} = 
+  \frac{b_0 s^m + \ldots + b_m}{a_0 s^n + \ldots + a_n} = 
+  \frac{z(s)}{p(s)}
+  $$
+
+- The roots of the polynomial z(s) are the **zeros** of the transfer function or
+  the zeros of the process.
+
+- The roots of the polynomial p(s) are the **poles** of the transfer function or
+  the poles of the process.
+
+- A physical system needs to be *proper* ($n \geq m$), and *casual* (output
+  depends only on past inputs)
+
+- Characteristic equation
+
+  The denominator polynomial p(s) when equated to zero is called the
+  characteristic equation:
+
+  $p(s) = a_0 s^n + \ldots + a_n = 0$
+
+## Stability of linear systems {auto-animate=true}
+
+::::{.columns}
+
+:::{.column width=60%}
+
+:::{.fragment index=1}
+
+- The location of the poles of a transfer function determines the bounded
+  input–bounded output (BIBO) stability of a process.
+
+:::
+
+:::{.fragment index=2}
+
+- If the transfer function of a dynamic process has a pole with a positive real
+  part, the process is unstable. If the real part is zero, then the process is
+  critically stable
+
+:::
+
+:::{.fragment index=4}
+
+- We need to be cautious when we derive a transfer function model from a
+  statespace model, because a zero (or zeros) may cancel a pole (or poles).
+  This becomes especially important if the canceled pole is unstable, which
+  means that those modes of the process would be hidden from us.
+
+:::
+
+:::
+
+::: {.column width=40%}
+
+![](../../../assets/images/regions-of-stability-s-plane.png)
+
+:::
+
+::::
+
+## Routh's Stability Criterion
+
+Routh's Criterion is a mathematical test that is used to determine whether a
+linear system is stable or unstable. It does not require explicit calculation
+of the roots of the characteristic equation.
+
+::::{.columns}
+
+:::{.column width=60%}
+
+- The first step in Routh's Criterion is to set up the Routh array.
+
+- Then, we examine the first column of the array. If there are no sign changes
+  in the first column, the system is stable.
+
+- If there are sign changes in the first column, the system is unstable. The
+  number of sign changes corresponds to the number of roots with positive real
+  parts.
+  
+:::
+
+:::{.column width=40%}
+
+![](../../../assets/images/routh-array.png)
+
+:::
+
+::::
+
+:::{.callout-note appearance='simple'}
+
+Routh's Criterion can also be used to determine relative stability and system type.
+
+:::
+
+## Root locus method
+
+:::: {.columns}
+
+:::{.column width=60%}
+
+Root Locus is a graphical method used in control systems to examine how the
+system stability changes with varying gain. 
+
+- It shows possible pole locations as system gain varies from zero to infinity.
+
+- The method provides insights into stability and transient response.
+
+- Root locus begins at open-loop poles and ends at open-loop zeros.
+
+- The plot exists on parts of the complex plane where the number of open-loop
+  poles and zeros to the right is odd.
+
+- Consider the characteristic equation
+  $$p(s,k)= s^2 + s + k =0$$
+
+
+:::
+
+::: {.column width=40%}
+
+```{python}
+
+# Define the system
+num = [1]
+den = [1, 1, 0]  # Coefficients of the characteristic equation
+sys = ctrl.TransferFunction(num, den)
+
+# Calculate and plot the root locus
+# rlist, klist = ctrl.root_locus(sys)
+
+# In newer versions, the control.root_locus function returns a single value, a
+# tuple containing the root locations and gain values, instead of two separate
+# values.
+root_locus_data = ctrl.root_locus(sys)
+rlist = root_locus_data[0,0]
+klist = root_locus_data[0,1]
+
+
+plt.xlabel('Re')
+plt.ylabel('Im')
+
+plt.xlim([-1, 0])
+plt.ylim([-1, 1])
+
+# plt.arrow(-0.8, 0, 0.3, 0, color='black', width=0.01, length_includes_head=True)
+
+plt.show()
+
+# # Define the system
+# num = [1]
+# den = [1, 1, 0]  # Coefficients of the characteristic equation
+# sys = ctrl.TransferFunction(num, den)
+#
+# # Calculate the root locus
+# rlist, klist = ctrl.root_locus(sys)
+#
+# # Create the plot
+# plt.figure()
+# for i in range(rlist.shape[1]):
+#     # plot a line for this branch
+#     branch = rlist[:, i]
+#     plt.plot(branch.real, branch.imag)
+#
+#     # plot an arrow at 25% and 75% along the line
+#     for loc in [0.25, 0.75]:
+#         s = int(np.round(loc * len(branch)))
+#         plt.arrow(branch[s-1].real, branch[s-1].imag,
+#                   branch[s].real - branch[s-1].real,
+#                   branch[s].imag - branch[s-1].imag,
+#                   shape='full', lw=0, length_includes_head=True, head_width=.03)
+#
+# plt.title('Root Locus for the System s^2 + s + k')
+# plt.xlabel('Re')
+# plt.ylabel('Im')
+# plt.grid(True)
+# plt.show()
+#
+```
+:::
+
+::::
+
+
+# Feedback Control Systems
+* Introduction to feedback control
+* Control law
+* Proportional, integral, and derivative control actions
+* Further topics
+
+## Introduction to feedback control
+
+
+::: {.r-stack}
+
+![](../../../assets/images/feedback-control-1.png){.fragment .absolute top=150 right=50 width=90%}
+![](../../../assets/images/feedback-control-2.png){.fragment .absolute top=150 right=50 width=90%}
+![](../../../assets/images/feedback-control-3.png){.fragment .absolute top=150 right=50 width=90%}
+![](../../../assets/images/feedback-control-4.png){.fragment .absolute top=150 right=50 width=90%}
+
+:::
+
+## Introduction to feedback control
+
+:::: {.columns}
+
+:::{.column width=60%}
+
+- $y = g_p m + g_d d$
+
+- Error: $e = y_{sp} - y_m$
+
+- Control action: $c = g_c e = g_c(y_{sp} - y_m)$
+
+- Manipulated variable: $m = g_f c = g_c g_f (y_{sp} - y_m)$
+
+:::
+
+::: {.column width=40%}
+
+![](../../../assets/images/feedback-control-4.png){width=90%}
+
+:::
+
+::::
+
+- Controlled variable: $y = g_p m + g_d d = g_c g_f g_p (y_{sp} - y_m) + g_d d$
+
+- Closed loop transfer function
+  $$
+  y = \frac{g_p g_f g_c}{1 + g_p g_f g_c g_m} y_{sp} +
+      \frac{g_d}{1 + g_p g_f g_c g_m} d
+  $$
+
+## Introduction to feedback control
+
+  $$y = G_{sp} y_{sp} + G_d d$$
+
+:::{.smaller}
+
+- $G_{sp}$ embodies the dynamics of the setpoint response.  
+  How the process output will respond when the set-point is changed? 
+
+- $G_d(s)$ indicates how the process output will respond when a
+  disturbance enters the process. 
+
+- Denominators of the closed-loop transfer functions, $G_{sp}$ and $G_{d}$, are the
+  same, indicating that they share the same stability characteristics.
+
+- In a more general setting, the closed-loop transfer function for general
+  block diagram is represented as
+
+  $$
+  \frac{r(s)}{r_i(s)} = \frac{G_1(s)}{1 + G_2(s)}
+  $$
+  
+  In this expression, $r$ is an output variable or any internal variable within
+  the control loop and $r_i$ represents an input variable such as $y_{sp}$ or $d$. 
+
+  The transfer function $G_1$ is the product of the transfer functions in the
+  forward path that connects an input $r_i$ to an output $r$. 
+
+  $G_2$ is the transfer function composed of all transfer functions in the feedback loop.
+:::
+
+## Introduction to feedback control
+
+![](../../../assets/images/heat-exchanger-feedback-control.png){.absolute top=150 right=50 width=90%}
+
+## Introduction to feedback control
+
+![](../../../assets/images/heat-exchanger-feedback-control-schematic.png){.absolute top=150 right=50 width=90%}
+
+
+## Control law
+
+::: {.fragment}
+- The control signal c(t) is calculated, given the value of the error e(t),
+  through a predefined functional relationship
+  $$c(t) = C \left[e(t)\right]$$
+:::
+
+::: {.fragment}
+- The function $C[\cdot]$ constitutes teh control law.
+:::
+
+::: {.fragment}
+- Establishes the manner with which the error information is processed by the controller. 
+:::
+
+::: {.fragment}
+- The most common functional form is the three-mode proportional–integral–
+derivative (PID) control law
+$$ \frac{\bar{c}(s)}{\bar{e}(s)} = g_c(s) = k_c \left(1 + \frac{1}{\tau_I s} +\tau_D s \right)$$
+:::
+
+
+## Proportional mode
+
+:::{.fragment}
+- This mode produces a control signal that is proportional to the error:
+  $$c(t) = k_c e(t) + c_b$$
+:::
+
+:::{.fragment}
+- $k_c$ represents the proportional gain of the controller:
+  Defines how sensitive the controller is to errors present in the system. 
+:::
+
+:::{.fragment}
+- $c_b$ is a bias signal that corresponds to the value of the control signal when the error is zero. 
+  The bias signal is the steady-state value of the control signal. 
+:::
+
+:::{.fragment}
+- Define - deviation variable $\bar{c}(t) = c(t) - c_b$; also $\bar{e}(t) = e(t)$
+:::
+
+:::{.fragment}
+- Transfer function:
+  $$ \frac{\bar{c}(s)}{\bar{e}(s)} = g_c(s) = k_c $$
+:::
+
+## Proportional mode
+
+```{python}
+
+# Define system parameters
+Kp_p5 = 0.5  # Proportional gain
+Kp_1 = 1  # Proportional gain
+Kp_4 = 4  # Proportional gain
+
+# Define the P controller
+# C(s) = K_p 
+p_controller_p5 = ctrl.TransferFunction([Kp_p5], [1])
+p_controller_1 = ctrl.TransferFunction([Kp_1], [1])
+p_controller_4 = ctrl.TransferFunction([Kp_4], [1])
+
+# Define the plant
+plant = ctrl.TransferFunction([2], [5, 1])
+
+# Define the disturbance
+disturbance = ctrl.TransferFunction([1], [5, 1])
+
+# Define the open loop system for disturbance rejection
+open_loop_sys = disturbance 
+
+# Define the closed loop system for disturbance rejection
+closed_loop_sys_p5 = disturbance/(1 + plant*p_controller_p5) 
+closed_loop_sys_1 = disturbance/(1 + plant*p_controller_1) 
+closed_loop_sys_4 = disturbance/(1 + plant*p_controller_4) 
+
+# Define time array
+t = np.linspace(0, 30, 3000)
+
+# Calculate the step response for the setpoint change and disturbance
+t_ol, y_open_loop = ctrl.step_response(open_loop_sys, t)
+t_cl_p5, y_setpoint_p5 = ctrl.step_response(closed_loop_sys_p5, t)
+t_cl_1, y_setpoint_1 = ctrl.step_response(closed_loop_sys_1, t)
+t_cl_4, y_setpoint_4 = ctrl.step_response(closed_loop_sys_4, t)
+
+# Plot the responses
+plt.plot(t_ol,y_open_loop, color='#65489d')
+plt.plot(t_cl_p5,y_setpoint_p5, color='#388ecc')
+plt.plot(t_cl_1,y_setpoint_1, color='#0d5e5e')
+plt.plot(t_cl_4,y_setpoint_4, color='#9f1d54')
+
+plt.xlabel('Time')
+plt.ylabel('$y(t)$')
+plt.xlim([0, 30])
+plt.ylim([0, 1])
+
+plt.text(31, 1-0.01, 'Open loop response')
+plt.text(31, 0.5-0.01, '$K_p = 0.5$')
+plt.text(31, 0.33-0.01,'$K_p = 1$')
+plt.text(31, 0.1-0.01, '$K_p = 4$')
+
+plt.show()
+
+```
+
+## Integral mode
+
+::: {.fragment}
+- The control signal for this mode is produced by the integral equation:
+  $$ c(t) = \frac{k_c}{\tau_I}\int{e(t)dt} + c_b$$
+:::
+
+::: {.fragment}
+- The new parameter $\tau_I$ represents the integral time constant or the reset time. 
+:::
+
+::: {.fragment}
+- With this mode, the controller responds effectively to errors that build up over time.
+
+  :::{.smaller}
+  This is a very important feature because even if the error is small, as long as it
+  persists, a large control signal may be calculated, thus helping to eliminate the
+  error quickly
+  :::
+:::
+
+
+::: {.fragment}
+- The transfer function of a controller with only the integral mode is
+  $$ \frac{\bar{c}(s)}{\bar{e}(s)} = g_c(s) = k_c \left(\frac{1}{\tau_I s}  \right)$$
+:::
+
+## Integral mode
+
+
+```{python}
+
+# Define system parameters
+Kp = 2.5  # Proportional gain
+
+Tau_I_2 = 2 # integral time const
+Tau_I_10 = 10 # integral time const
+Tau_I_30 = 30 # integral time const
+
+Ki_2 = Kp/Tau_I_2 # integral gain
+Ki_10 = Kp/Tau_I_10 # integral gain
+Ki_30 = Kp/Tau_I_30 # integral gain
+
+# Define the PI controller
+# C(s) = K_p + K_i/s
+pi_controller_2 = ctrl.TransferFunction([Ki_2], [1, 0])
+pi_controller_10 = ctrl.TransferFunction([Ki_10], [1, 0])
+pi_controller_30 = ctrl.TransferFunction([Ki_30], [1, 0])
+
+# Define the plant
+plant = ctrl.TransferFunction([2], [5, 1])
+
+# define set point
+setpoint = ctrl.TransferFunction([1], [1])
+
+# for setpoint tracking
+setpoint_tf_2 = (plant*pi_controller_2*setpoint)/(1+plant*pi_controller_2)
+setpoint_tf_10 = (plant*pi_controller_10*setpoint)/(1+plant*pi_controller_10)
+setpoint_tf_30 = (plant*pi_controller_30*setpoint)/(1+plant*pi_controller_30)
+
+# Define time array
+t = np.linspace(0, 60, 3000)
+
+# Calculate the step response for the setpoint change and disturbance
+t_sp_2, y_setpoint_2 = ctrl.step_response(setpoint_tf_2, t)
+t_sp_10, y_setpoint_10 = ctrl.step_response(setpoint_tf_10, t)
+t_sp_30, y_setpoint_30 = ctrl.step_response(setpoint_tf_30, t)
+
+# Plot the responses
+plt.plot(t_sp_2,y_setpoint_2, color='#65489d')
+plt.plot(t_sp_10,y_setpoint_10, color='#388ecc')
+plt.plot(t_sp_30, y_setpoint_30, color='#0d5e5e')
+
+
+# Plot the responses
+# plt.plot(t_sp_2, y_setpoint_2, label="$\\tau_I = 2$")
+# plt.plot(t_sp_10, y_setpoint_10, label="$\\tau_I = 10$")
+# plt.plot(t_sp_30, y_setpoint_30, label="$\\tau_I = 30$")
+
+plt.xlabel('Time')
+plt.ylabel('$y(t)$')
+plt.xlim([0, 60])
+plt.ylim([0, 1.8])
+
+plt.text(4, 1.67, "$\\tau_I = 2$")
+plt.text(10, 1.37, "$\\tau_I = 10$")
+plt.text(20, 1.15,"$\\tau_I = 30$")
+
+plt.show()
+
+```
+## Derivative mode
+
+::: {.fragment}
+- In this mode, the control signal responds to the rate of change of the error signal:
+  $$c(t)= k_c \tau_D \frac{\mathrm{d}e(t)}{\mathrm{d}t} + c_b$$
+:::
+
+::: {.fragment}
+- A new parameter $\tau_D$ is introduced as the derivative time constant. 
+::: 
+
+::: {.fragment}
+- The role of this mode is to judge the change in the error. 
+
+  :::{.smaller}
+  For instance, if the error is still present but not increasing as fast, the
+  controller may use this information to decrease the control signal, thus
+  possibly avoiding overly aggressive control actions. 
+  :::
+:::
+
+:::{.fragment}
+- The transfer function for a controller with derivative mode only is given by
+  $$ \frac{\bar{c}(s)}{\bar{e}(s)} = g_c(s) = k_c \left(\tau_D s  \right)$$
+:::
+
+## Derivative mode
+
+
+```{python}
+
+# Define system parameters
+Kp = 2  # Proportional gain
+tau_i = 5
+Ki = Kp/tau_i  # integral gain
+
+tau_d_2 = 2  # derivative time const
+tau_d_10 = 10  
+tau_d_30 = 30 
+
+Kd_2 = Kp*tau_d_2
+Kd_10 = Kp*tau_d_10
+Kd_30 = Kp*tau_d_30
+
+# Define the PID controller
+# C(s) = K_p  + K_i/s + K_d s
+controller_d2 = ctrl.TransferFunction([Kd_2, Kp, Ki], [1, 0])
+controller_d10 = ctrl.TransferFunction([Kd_10, Kp, Ki], [1, 0])
+controller_d30 = ctrl.TransferFunction([Kd_30, Kp, Ki], [1, 0])
+
+# Define the plant
+plant = ctrl.TransferFunction([2], [5, 1])
+
+# Define the disturbance
+disturbance = ctrl.TransferFunction([1], [5, 1])
+
+# Define the open loop system for disturbance rejection
+open_loop_sys = disturbance 
+
+# Define the closed loop system for disturbance rejection
+closed_loop_sys_d2 = disturbance/(1 + plant*controller_d2) 
+closed_loop_sys_d10 = disturbance/(1 + plant*controller_d10) 
+closed_loop_sys_d30 = disturbance/(1 + plant*controller_d30) 
+
+# Define time array
+t = np.linspace(0, 300, 3000)
+
+# Calculate the step response for the setpoint change and disturbance
+t_cl_d2, y_d2 = ctrl.step_response(closed_loop_sys_d2, t)
+t_cl_d10, y_d10 = ctrl.step_response(closed_loop_sys_d10, t)
+t_cl_d30, y_d30 = ctrl.step_response(closed_loop_sys_d30, t)
+
+# Plot the responses
+plt.plot(t_cl_d2,y_d2, color='#65489d')
+plt.plot(t_cl_d10,y_d10, color='#388ecc')
+plt.plot(t_cl_d30, y_d30, color='#0d5e5e')
+
+plt.xlabel('Time')
+plt.ylabel('$y(t)$')
+plt.xlim([0, 300])
+plt.ylim([-0.04, 0.14])
+
+plt.text(10, 0.125, "$\\tau_d = 2$")
+plt.text(20, 0.085, "$\\tau_d = 10$")
+plt.text(30, 0.06,"$\\tau_d = 30$")
+
+plt.show()
+
+
+# # Plot the responses
+# plt.plot(t_cl_d2, y_d2, label="$\\tau_d = 2$")
+# plt.plot(t_cl_d10, y_d10, label="$\\tau_d = 10$")
+# plt.plot(t_cl_d30, y_d30, label="$\\tau_d = 30$")
+# plt.xlabel('Time')
+# plt.ylabel('$y(t)$')
+# plt.legend()
+# plt.show()
+#
+```
+
+## Mixing tank
+
+::::{.columns}
+
+:::{.column width=50%}
+
+- The manipulated variable is the flow rate of stream 2, $F_2$, to control the
+  outlet mass fraction, $x$.
+
+- The disturbance is the flow rate of stream 1, $F_1$.
+
+- The feed mass fractions are assumed constant.
+  
+- There is a P controller, $g_c(s) = k_c$.
+
+- The dynamics of the actuators and the sensors are accounted for by pure
+  dead-time elements, resulting in the transfer functions 
+
+  $$
+  \bar{x}(s) = \frac{-0.1 e^{-s}}{2.5s + 1} \bar{F}_1(s) +
+               \frac{ 0.1 e^{-s}}{2.5s + 1} \bar{F}_2(s)
+  $$
+
+:::
+
+::: {.column width=50%}
+
+![](../../../assets/images/mixing-tank-feedback-control.png){width=90%}
+
+:::
+
+::::
+
+
+
+
+## Mixing tank: setpoint change
+
+
+```{python}
+
+# P controller
+Kp = 20 
+
+controller_p = ctrl.TransferFunction([Kp],[1])
+
+# PI controller
+tau_i = 0.5
+Ki = Kp/tau_i  # integral gain
+
+controller_pi = ctrl.TransferFunction([Kp, Ki],[1,0])
+
+# PID controller
+tau_d= 0.5
+Kd = Kp*tau_d
+
+controller_pid = ctrl.TransferFunction([Kd, Kp, Ki], [1, 0])
+
+# Define the plant
+plant = fopdt(0.1,2.5,1)
+
+# Define the disturbance
+disturbance = fopdt(-0.1,2.5,1)
+
+# Define the closed loop system for disturbance rejection
+closed_loop_sp_p = plant*controller_p/(1 + plant*controller_p) 
+closed_loop_sp_pi = plant*controller_pi/(1 + plant*controller_pi) 
+closed_loop_sp_pid = plant*controller_pid/(1 + plant*controller_pid) 
+
+# Define time array
+t = np.linspace(0, 40, 400)
+t_sp = np.heaviside(t - 4, 1)  # Unit step at t = 4s
+
+_, y_p = ctrl.forced_response(closed_loop_sp_p, t, t_sp)
+_, y_pi = ctrl.forced_response(closed_loop_sp_pi, t, t_sp)
+_, y_pid = ctrl.forced_response(closed_loop_sp_pid, t, t_sp)
+
+# Plot the responses
+plt.plot(t,y_p, color='#65489d', label='P')
+plt.plot(t,y_pi, color='#388ecc', label='PI')
+plt.plot(t, y_pid, color='#0d5e5e', label='PID')
+
+plt.xlabel('Time')
+plt.ylabel('$y(t)$')
+plt.xlim([0, 40])
+plt.ylim([0.0, 1.4])
+plt.legend()
+plt.show()
+
+
+```
+
+## Mixing tank: disturbance rejection
+
+
+```{python}
+
+# P controller
+Kp = 20 
+
+controller_p = ctrl.TransferFunction([Kp],[1])
+
+# PI controller
+tau_i = 0.5
+Ki = Kp/tau_i  # integral gain
+
+controller_pi = ctrl.TransferFunction([Kp, Ki],[1,0])
+
+# PID controller
+tau_d= 0.5
+Kd = Kp*tau_d
+
+controller_pid = ctrl.TransferFunction([Kd, Kp, Ki], [1, 0])
+
+# Define the plant
+plant = fopdt(0.1,2.5,1)
+
+# Define the disturbance
+disturbance = fopdt(-0.1,2.5,1)
+
+# Define the closed loop system for disturbance rejection
+closed_loop_dr_p = disturbance/(1 + plant*controller_p) 
+closed_loop_dr_pi = disturbance/(1 + plant*controller_pi) 
+closed_loop_dr_pid = disturbance/(1 + plant*controller_pid) 
+
+# Define time array
+t = np.linspace(0, 40, 400)
+t_disturbance = np.heaviside(t - 4, 1)  # Unit step at t = 4s
+
+# Calculate the step response for the setpoint change and disturbance
+
+# do_p = ctrl.feedback(controller_p*plant,1)
+# do_pi = ctrl.feedback(controller_pi*plant,1)
+# do_pid = ctrl.feedback(controller_pid*plant,1)
+
+# _, y_p = ctrl.forced_response(do_p, t, t_disturbance)
+# _, y_pi = ctrl.forced_response(do_pi, t, t_disturbance)
+# _, y_pid = ctrl.forced_response(do_pid, t, t_disturbance)
+
+
+_, y_p = ctrl.forced_response(closed_loop_dr_p, t, t_disturbance)
+_, y_pi = ctrl.forced_response(closed_loop_dr_pi, t, t_disturbance)
+_, y_pid = ctrl.forced_response(closed_loop_dr_pid, t, t_disturbance)
+
+# Plot the responses
+plt.plot(t,y_p, color='#65489d', label='P')
+plt.plot(t,y_pi, color='#388ecc', label='PI')
+plt.plot(t, y_pid, color='#0d5e5e', label='PID')
+
+plt.xlabel('Time')
+plt.ylabel('$y(t)$')
+plt.xlim([0, 40])
+plt.ylim([-0.04, 0.005])
+plt.legend()
+plt.show()
+
+```
+
+## Further topics
+
+- Model liniarization
+  
+- Controller design and tuning methods
+
+- Frequency response analysis
+
+- Bode plots and Nyquist plots
+

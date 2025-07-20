@@ -1,0 +1,138 @@
+project:
+  type: "website"
+  title: "AMC | Advanced Modeling and Control"
+  output-dir: _site
+  render:
+    - "*.qmd"
+    - "*.md"
+    - "!README.md"
+    - "!LICENSE.md"
+    - "!ideas/"
+    - "!_env/"
+    - "!renv/"
+    - "!certificate*"
+  resources:
+    - "resources/"
+  preview:
+    port: 4200
+    browser: true
+
+description-meta: "An undergraduate course on advanced modeling and control."
+
+# Course library
+bibliography: ./bibliography/library.bib
+csl: ./bibliography/chicago-author-date.csl
+link-citations: true
+link-bibliography: true
+
+execute:
+  warning: true
+  echo: false
+  freeze: auto
+  enabled: true
+  execute-dir: project
+
+website:
+  title: "AMC | Advanced Modeling and Control"
+  site-url: https://amc.smilelab.dev/
+  page-navigation: true
+  open-graph: true
+  # cookie-consent: true
+  favicon: ./assets/images/logo/favicon.png
+  search:
+    type:
+      overlay
+      # location: navbar
+      # type: textbox
+  navbar:
+    background: primary
+    logo: ./assets/images/logo/smile-lab-logo-dark-bg.png
+    logo-alt: "Smile lab logo."
+    title: false
+    left:
+      # - text: Research
+      #   href: https://smilelab.dev/research/
+      - text: Publications
+        href: https://smilelab.dev/publications/
+      - text: Teaching
+        href: https://smilelab.dev/teaching/
+      - text: People
+        href: https://smilelab.dev/people/
+      - text: Blog
+        href: https://smilelab.dev/blog/
+  page-footer:
+    border: false
+    background: "#535353"
+    left: |
+      Copyright 2023 &copy; [SMILE Lab](https://www.smilelab.dev) <br>
+    right: |
+      {{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}}
+      {{< fa brands creative-commons-sa >}} Except where otherwise noted,
+      content on this site <br>is licensed under a [Creative Commons CC BY-NC
+      4.0)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+  sidebar:
+    style: docked
+    collapse-level: 2
+    background: "#f4f4f4"
+    contents:
+      - file: index.qmd
+        text: "{{< fa house >}} Home"
+      - section: "Overview"
+        contents:
+          - file: content/info/index.qmd
+          - file: content/info/syllabus.qmd
+            text: Syllabus
+
+      # - section: "Lectures"
+      #   id: lectures
+      #   content: content/lectures/*/*.qmd
+
+      - section: "Lectures"
+        id: lectures
+        contents:
+          - file: ./content/lectures/01-recap/index.qmd
+          - file: ./content/lectures/02-ratio_and_feedforward_control/index.qmd
+          - file: ./content/lectures/03-cascade_control/index.qmd
+          - file: ./content/lectures/04-pid_enhancements/index.qmd
+          - file: ./content/lectures/05-time_series_modelling_and_analysis/index.qmd
+          - file: ./content/lectures/06-principal_component_analysis/index.qmd
+          - file: ./content/lectures/07-ANN_modelling/index.qmd
+          - file: ./content/lectures/08-decentralized_control/index.qmd
+          - file: ./content/lectures/09-Multivariable_Centralized_Control_and_MPC/index.qmd
+          - file: ./content/lectures/10-digital_control/index.qmd
+          # - file: ./content/lectures/11-model_based_optimization/index.qmd
+          #
+      - section: "Computer Labs"
+        id: computer-labs
+        contents:
+          - file: ./content/labs/lab-01/index.qmd
+          - file: ./content/labs/lab-02/index.qmd
+          - file: ./content/labs/lab-03/index.qmd
+          - file: ./content/labs/lab-04/index.qmd
+          - file: ./content/labs/lab-05/index.qmd
+          - file: ./content/labs/lab-06/index.qmd
+          - file: ./content/labs/lab-07/index.qmd
+          - file: ./content/labs/lab-08/index.qmd
+  #          text: Lab 08
+  #        - file: ./content/labs/lab-09/index.qmd
+  #          text: Lab 09
+  #
+format:
+  html:
+    theme:
+      light:
+        - ./assets/styles/carbon_light.scss
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+    grid:
+      sidebar-width: 250px
+      body-width: 900px
+      margin-width: 300px
+    email-obfuscation: javascript
+    link-external-newwindow: true
+    link-external-icon: true
+    # link-external-filter: ^(?:http:|https:)\/\/(amc\.utikar\.com\|localhost)
+    link-external-filter: ^(?:http:|https:)\/\/(?:[a-zA-Z0-9-]+\.)?smilelab\.dev\/|localhost
+    include-after-body: ./assets/helpers/goatcounter.html

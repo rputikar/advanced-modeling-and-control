@@ -1,0 +1,87 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.5 Chrome/126.0.6478.183 Electron/31.3.0 Safari/537.36" version="24.7.5">
+  <diagram name="Page-1" id="mZOD_tnza1Ey7wqmkClK">
+    <mxGraphModel dx="1265" dy="1106" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZpsFax3At80h3cH-HfD2-26" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="90" y="270" width="550" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-24" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="110" y="300" width="550" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-17" value="" style="verticalLabelPosition=bottom;outlineConnect=0;align=center;dashed=0;html=1;verticalAlign=top;shape=mxgraph.pid2misc.column;columnType=common;strokeWidth=5;fillColor=#388ECC;strokeColor=none;" vertex="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry x="190" y="200" width="119.37" height="239" as="geometry" />
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-18" value="" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=0;strokeWidth=5;fillColor=#388ECC;strokeColor=none;" vertex="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry x="190" y="190" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-1" value="" style="verticalLabelPosition=bottom;outlineConnect=0;align=center;dashed=0;html=1;verticalAlign=top;shape=mxgraph.pid2misc.column;columnType=common;strokeWidth=5;fillColor=none;" vertex="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry x="190" y="30" width="119.37" height="409" as="geometry" />
+        </mxCell>
+        <mxCell id="mlmWYDQaAf5w4Bjc56NV-6" value="" style="endArrow=blockThin;html=1;rounded=0;endFill=1;strokeWidth=5;exitX=0.998;exitY=0.16;exitDx=0;exitDy=0;exitPerimeter=0;" parent="ZpsFax3At80h3cH-HfD2-24" edge="1" source="ZpsFax3At80h3cH-HfD2-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="435.29999999999995" y="483.97799999999984" as="sourcePoint" />
+            <mxPoint x="450" y="485" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-3" value="" style="shape=mxgraph.pid.heat_exchangers.heat_exchanger_(straight_tubes);html=1;pointerEvents=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;dashed=0;strokeWidth=5;rotation=90;" vertex="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry x="199.44" y="270.45000000000005" width="100.75" height="119.37" as="geometry" />
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-4" value="" style="shape=mxgraph.pid.pumps.centrifugal_pump_1;html=1;pointerEvents=1;align=center;verticalLabelPosition=bottom;verticalAlign=top;dashed=0;strokeWidth=5;" vertex="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry x="285" y="475" width="70" height="67" as="geometry" />
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-6" value="" style="endArrow=blockThin;html=1;rounded=0;endFill=1;strokeWidth=5;entryX=0.07;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=elbowEdgeStyle;" edge="1" parent="ZpsFax3At80h3cH-HfD2-24" target="ZpsFax3At80h3cH-HfD2-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="287" as="sourcePoint" />
+            <mxPoint x="313" y="244.72000000000003" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-7" value="" style="endArrow=blockThin;html=1;rounded=0;endFill=1;strokeWidth=5;" edge="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="309.37" y="370" as="sourcePoint" />
+            <mxPoint x="450" y="370" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-8" value="" style="endArrow=blockThin;html=1;rounded=0;endFill=1;strokeWidth=5;entryX=-0.006;entryY=0.45;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="ZpsFax3At80h3cH-HfD2-24" source="ZpsFax3At80h3cH-HfD2-1" target="ZpsFax3At80h3cH-HfD2-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="248" y="448.9999999999999" as="sourcePoint" />
+            <mxPoint x="279.3118599999998" y="504.75800000000015" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="248.5" y="505.07000000000005" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-10" value="" style="endArrow=blockThin;html=1;rounded=0;endFill=1;strokeWidth=5;" edge="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="30" as="sourcePoint" />
+            <mxPoint x="450" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-19" value="" style="endArrow=blockThin;html=1;rounded=0;endFill=1;strokeWidth=5;edgeStyle=elbowEdgeStyle;" edge="1" parent="ZpsFax3At80h3cH-HfD2-24" target="ZpsFax3At80h3cH-HfD2-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="235" as="sourcePoint" />
+            <mxPoint y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-20" value="Feed&lt;div&gt;20% H&lt;sub&gt;2&lt;/sub&gt;O&lt;/div&gt;&lt;div&gt;80%&amp;nbsp; H&lt;sub&gt;2&lt;/sub&gt;SO&lt;sub&gt;4&lt;/sub&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex sans;fontSize=24;fontStyle=1" vertex="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry y="130" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-21" value="Vent&lt;div&gt;99% H&lt;sub&gt;2&lt;/sub&gt;O&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex sans;fontSize=24;fontStyle=1" vertex="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry x="370" y="10" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-22" value="Product&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;99%&amp;nbsp; H&lt;/span&gt;&lt;sub style=&quot;background-color: initial;&quot;&gt;2&lt;/sub&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;SO&lt;/span&gt;&lt;sub style=&quot;background-color: initial;&quot;&gt;4&lt;/sub&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex sans;fontSize=24;fontStyle=1" vertex="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry x="370" y="500" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZpsFax3At80h3cH-HfD2-23" value="Steam" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex sans;fontSize=24;fontStyle=1" vertex="1" parent="ZpsFax3At80h3cH-HfD2-24">
+          <mxGeometry x="370" y="240" width="180" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,268 @@
+---
+title: "Introduction to digital control"
+subtitle: In class activities
+date: 2023-10-08
+format:
+  pdf
+resources:
+  - ./example_2_discrete_control.mlx
+  - ./example_3_hold_functions.mlx
+  - ./example_4_discrete_control.mlx
+  - ./example_5_discrete_control_P_only.mlx
+  - ./example_5_discrete_control.mlx
+date-modified: 2024-10-07
+---
+
+## Activities
+
+1. Given Transform  :
+   $$
+   F(s) = \frac{1}{s(s + a)}, \quad a > 0
+   $$
+
+   find  $\lim_{n \to \infty} F(nT)$. 
+
+
+:::{.callout-tip collapse=true}
+## Solution
+
+First find the time domain function $f(t)$.  
+
+1. Inverse Laplace Transform  :
+
+   The inverse Laplace transform of $F(s)$ will give the time-domain function
+   $f(t)$. We can use partial fraction decomposition to find it:
+
+   $$
+   F(s) = \frac{1}{s(s + a)} = \frac{A}{s} + \frac{B}{s + a}
+   $$
+
+   Solving for $A$ and $B$:
+
+   $$
+   \frac{1}{s(s + a)} = \frac{A(s + a) + Bs}{s(s + a)}
+   $$
+
+   $$
+   1 = A(s + a) + Bs
+   $$
+
+   Setting $s = 0$:
+
+   $$
+   1 = Aa \implies A = \frac{1}{a}
+   $$
+
+   Setting $s = -a$:
+
+   $$
+   1 = B(-a) \implies B = -\frac{1}{a}
+   $$
+
+   Therefore,
+   
+   $$
+   F(s) = \frac{1}{a} \left( \frac{1}{s} - \frac{1}{s + a} \right)
+   $$
+
+3.   Inverse Laplace Transform in Time-Domain  :
+
+   Using standard Laplace transform pairs:
+
+   $$
+   f(t) = \frac{1}{a} \left( 1 - e^{-at} \right)
+   $$
+
+4.   Sampling the Function  :
+
+   We are interested in finding $\lim_{n \to \infty} F(nT)$, which implies
+   evaluating the limit of $f(t)$ at discrete points $t = nT$:
+
+   $$
+   F(nT) = \frac{1}{a} \left( 1 - e^{-anT} \right)
+   $$
+
+5.   Taking the Limit  :
+
+   $$
+   \lim_{n \to \infty} F(nT) = \frac{1}{a} \left( 1 - \lim_{n \to \infty} e^{-anT} \right)
+   $$
+
+   Since $a > 0$, as $n \to \infty$, $e^{-anT} \to 0$.
+
+   Therefore, the limit becomes:
+
+   $$
+   \lim_{n \to \infty} F(nT) = \frac{1}{a} (1 - 0) = \frac{1}{a}
+   $$
+
+6. z-transform: 
+   
+   Sample $f(t)$ at intervals of $T$. 
+
+$$
+f(nT) = \frac{1}{a} \left( 1 - e^{-anT} \right)
+$$
+
+The z-transform of a discrete-time sequence $f(nT)$ is given by:
+
+$$
+F(z) = \sum_{n=0}^{\infty} f(nT) z^{-n}
+$$
+
+Substitute the expression for $f(nT)$:
+
+$$
+F(z) = \sum_{n=0}^{\infty} \frac{1}{a} \left( 1 - e^{-anT} \right) z^{-n}
+$$
+
+Separate the summation:
+
+$$
+F(z) = \frac{1}{a} \left( \sum_{n=0}^{\infty} z^{-n} - e^{-aT}
+\sum_{n=0}^{\infty} \left( e^{-aT} z^{-1} \right)^n \right) 
+$$
+
+Each summation is a geometric series:
+
+- For the first summation:
+
+$$
+\sum_{n=0}^{\infty} z^{-n} = \frac{1}{1 - z^{-1}}
+$$
+
+- For the second summation:
+
+$$
+\sum_{n=0}^{\infty} \left( e^{-aT} z^{-1} \right)^n = \frac{1}{1 - e^{-aT} z^{-1}}
+$$
+
+$$
+\therefore F(z) = \frac{1}{a} \left( \frac{1}{1 - z^{-1}} - \frac{e^{-aT}}{1 - e^{-aT} z^{-1}} \right)
+$$
+
+
+:::
+
+2. Consider the transfer function below
+$$
+G(s) = \frac{18}{(s + 5) (s + 3)}
+$${#eq-2}
+
+The zero hold transfer function is given by 
+$$
+G_{ZOH} = \frac{1 - e^{-sT_s}}{s}
+$${#eq-3}
+
+determine the discrete transfer function using `c2d` command for different T~s~. Plot the responses.
+
+:::{.callout-tip collapse=true}
+## Solution
+
+
+The code is given in [mlx file](./example_2_discrete_control.mlx). 
+
+:::
+
+3. Consider a continuous process
+
+$$
+G(s) = \frac{2 (1-s) }{(3s + 1)(s+1)}
+$${#eq-1}
+
+convert G(s) to discrete transfer function and plot the step response. Try different hold functions. 
+
+:::{.callout-tip collapse=true}
+## Solution
+
+The code is given in [mlx file](./example_3_hold_functions.mlx). 
+:::
+
+4. For the transfer function
+
+$$
+G(s) = \frac{1}{s + 1}
+$${#eq-3}
+
+plot the effect of sample time on response. 
+
+:::{.callout-tip collapse=true}
+## Solution
+
+The code is given in [mlx file](./example_4_discrete_control.mlx).
+:::
+
+
+5. Design a feedback control system around the first-order plant 
+
+$$
+G(s) = \frac{1}{0.2s + 1}
+$${#eq-2}
+
+with the requirements that
+
+i.  the steady-state error is maximum 2% for a ramp input and 
+ii. the phase margin is greater than 48 degrees. 
+
+Use controller transfer function and check phase margin.
+$$
+G(s) = \frac{500s + 50}{100 s^2 + s}
+$${#eq-1-1}
+
+:::{.callout-tip collapse=true}
+## Solution
+To design a feedback control system for the first-order plant:
+
+* Steady-State Error for a Ramp Input
+
+The system's steady-state error for a ramp input is determined by the type and
+the system gain $K_v$. A unity feedback system with a proportional controller
+can be considered:
+
+The type of system is determined by the number of poles at the origin (s=0).
+This system is Type 0 because there is no pole at the origin in G(s).
+
+$K_v$, the velocity error constant is given by:
+
+$$
+K_v = \lim_{s \to 0} s G_{open}(s)
+$$
+
+The steady-state error for a ramp input is:
+
+$$
+e_{ss} = \frac{1}{K_v}
+$$
+
+To satisfy $e_{ss} < 0.02$, $K_v > 50$.
+
+Given $G(s) = \frac{1}{0.2s + 1}$, if we use a proportional controller with gain $K$:
+
+$$
+K_v = \lim_{s \to 0} s \cdot \frac{K}{0.2s + 1} = \frac{K}{0.2}
+$$
+
+To achieve $K_v > 50$:
+
+$$
+\frac{K}{0.2} > 50 \implies K > 10
+$$
+
+Hence, the proportional gain $K$ must be greater than 10.
+
+
+- P only controller [mlx file](./example_5_discrete_control_P_only.mlx).
+- PI controller [mlx file](./example_5_discrete_control.mlx).
+
+:::
+
+6. Convert the controller from @eq-1-1 to discrete form using different sample
+   times. Plot the Bode plot for the continuous and discrete controller and
+discuss the differences. 
+
+7.  Design and compare continous and digital controller for the following
+    transfer function
+
+  $$
+  G(s) = \frac{2 exp(-s)}{4s + 1}
+  $${#eq-4}

@@ -1,0 +1,186 @@
+---
+title: "Cascade control"
+subtitle: In class activities
+date: 2023-08-06
+format:
+  pdf
+date-modified: 2024-08-04
+---
+
+## Activities
+
+1. Furnace temperature control: 
+
+   Draw a single loop feedback, and possible cascade control configuration for the furnace. 
+   Name the disturbances which can be handled by such cascade control configuration.
+   Name the disturbances which cannot be removed by the cascade control configuration.
+
+::: {.content-visible when-format="html"}
+
+![Furnace](../../../assets/images/cascade-control-in-class-furnace-temperature-control.png){#fig-furnace width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Furnace](../../../assets/images/cascade-control-in-class-furnace-temperature-control.png){#fig-furnace}
+
+:::
+
+
+{{< pagebreak >}}
+
+
+2. Ammonia reactor
+
+   Consider that you have been appointed by the plant manager to design a
+   cascade control strategy for the Haber process that produces ammonia ($\ce{NH3}$)
+   for fertilizer production. The Haber process is conducted in a multi-tubular
+   catalytic reactor where reaction occurs in the tubes while cooling medium
+   flowing in the shell outside the tubes. The reactor has a length of 10
+   meters and shell dimeter of 2.5 meters.
+   
+   Propose a cascade control strategy for this reactor. Give comments why you
+   propose such a cascade control strategy
+
+::: {.content-visible when-format="html"}
+
+![Ammonia reactor](../../../assets/images/cascade-control-in-class-ammonia-reactor.png){width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Ammonia reactor](../../../assets/images/cascade-control-in-class-ammonia-reactor.png)
+
+:::
+
+
+{{< pagebreak >}}
+
+3. Level control
+
+   Draw a feedback system to control liquid level by using w1 as manipulated
+   variable.
+
+   Is it possible to improve the performance of the feedback system in the
+   presence of disturbances in w1?
+
+
+::: {.content-visible when-format="html"}
+
+![Level control](../../../assets/images/cascade-control-in-class-feedback-level-control.png){width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Level control](../../../assets/images/cascade-control-in-class-feedback-level-control.png)
+
+:::
+
+
+{{< pagebreak >}}
+
+4. Exothermic reactor
+
+   Consider a stirred chemical reactor where cooling water flows through the
+   reactor jacket to regulate the reactor temperature. 
+
+   Draw a cascade control to regulate reactor temperature. What is the
+   manipulate variable, what is the disturbance that is addressed by the
+   cascade control?
+
+
+::: {.content-visible when-format="html"}
+
+![Exothermic reactor](../../../assets/images/cascade-control-in-class-exothermic-reactor.png){width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Exothermic reactor](../../../assets/images/cascade-control-in-class-exothermic-reactor.png)
+
+:::
+
+
+{{< pagebreak >}}
+
+
+5. For the processes and controllers below, analyze the stability of cascade
+   control system
+   
+   $$
+   \begin{aligned}
+   \text { Primary Process: } G_{p 1} &= \frac{1.0 \exp (-4 s)}{(10 s+1)} \\
+   \\[1em]
+   \text { Secondary Process: } G_{p 2} &= \frac{5 \exp (- s)}{2 s+1}
+   \end{aligned}
+   $${#eq-p5-process}
+ 
+   $$
+   \begin{aligned}
+   \text { Primary Controller: } G_{c 1} &= 2.5 \left( 1 + \frac{1.0}{5 s} \right)\\
+   \\[1em]
+   \text { Secondary Controller: } G_{c 2} &= 0.1 
+   \end{aligned}
+   $${#eq-p5-controller}
+
+6. Simulate the system in 5 using simulink
+
+
+{{< pagebreak >}}
+
+7. For the processes and controllers below, analyze the stability of cascade
+   control system
+   
+   $$
+   \begin{aligned}
+   \text { Primary Process: } G_{p 1} &= \frac{\exp (-2 s)}{(10 s+1)} \\
+   \\[1em]
+   \text { Secondary Process: } G_{p 2} &= \frac{\exp (- s)}{5 s+1}
+   \end{aligned}
+   $${#eq-p6-process}
+ 
+   $$
+   \begin{aligned}
+   \text { Primary Controller: } G_{c 1} &= 3 \\
+   \\[1em]
+   \text { Secondary Controller: } G_{c 2} &= 1 
+   \end{aligned}
+   $${#eq-p6-process}
+
+8. Simulate the system in 7 using simulink. 
+
+
+{{< pagebreak >}}
+
+9. Distillation column Control Problems:
+
+   a) Feed and composition temperature constantly change
+
+   b) Reflux drum level constantly changes
+   
+   c) Vapor flow in the column constantly changes
+
+   d) Distillate downstream pressure constantly changes
+
+   e) Column pressure frequently fluctuates
+
+   Suggest a suitable cascade control configuration to address the above mentioned issues.
+
+
+::: {.content-visible when-format="html"}
+
+![Distillation column top](../../../assets/images/cascade-control-in-class-distillation-column.png){width=70%}
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Distillation column top](../../../assets/images/cascade-control-in-class-distillation-column.png)
+
+:::
+
+

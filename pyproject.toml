@@ -1,0 +1,10 @@
+[project]
+name = "amc"
+version = "0.1.0"
+description = "Python code environment for advanced modeling and control course"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "control>=0.10.1",
+    "jupyterlab>=4.4.3",
+]

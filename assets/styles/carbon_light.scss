@@ -1,0 +1,142 @@
+/*-- scss:defaults --*/
+$theme: "carbon-light" !default;
+
+//
+// Color system - Carbon Color system gray
+//
+
+$white:    #fff !default;
+$gray-100: #f4f4f4 !default;
+$gray-200: #e0e0e0 !default;
+$gray-300: #c6c6c6 !default;
+$gray-400: #a8a8a8 !default;
+$gray-500: #8d8d8d !default;
+$gray-600: #6f6f6f !default;
+$gray-700: #525252 !default;
+$gray-800: #393939 !default;
+$gray-900: #262626 !default;
+$black:    #000 !default;
+
+// Carbon color 60
+// yellow: alert 30
+//
+$blue:    #0f62fe !default;
+$indigo:  #0043ce !default;
+$purple:  #8a3ffc !default;
+$pink:    #d02670 !default;
+$red:     #da1e28 !default;
+$orange:  #ff832b !default;
+$yellow:  #f1c21b !default;
+$green:   #24a148 !default;
+$teal:    #007d79 !default;
+$cyan:    #0072c3 !default;
+$dark-blue: #0043ce !default; // blue 70
+
+$primary:       $blue !default;
+$secondary:     $gray-800 !default;
+$success:       $green !default;
+$info:          $dark-blue !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+
+$min-contrast-ratio:   2.6 !default;
+
+// Options
+
+$enable-rounded: false !default;
+
+:root {
+  color-scheme: only light;
+}
+
+// Body
+
+$body-color:    $gray-800 !default;
+
+// Body
+// $body-bg: $light !default;
+// $body-color: $dark !default;
+
+// Fonts
+
+/*
+ * Use IBM Plex font
+ * https://github.com/IBM/plex
+ */
+
+ $font-prefix: './assets/fonts/IBM-Plex/';
+ @import '../fonts/IBM-Plex/scss/ibm-plex.scss';
+ 
+ $font-family-sans-serif: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif !default;
+ $font-family-serif: 'IBM Plex Sans', 'Georgia', Times, serif;
+ $font-family-monospace: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono','Bitstream Vera Sans Mono', Courier, monospace;
+ $headings-font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif !default;
+ $headings-font-weight: 400 !default;
+ $font-size-base: 1rem !default;
+
+// Navbar
+
+$navbar-dark-hover-color:       $gray-100 !default;
+$navbar-light-hover-color:      $gray-800 !default;
+
+.navbar-brand > img {
+    max-height: 40px;
+}
+
+
+.left {
+    text-align: left;
+    padding-left: 1em;
+}
+  
+.right {
+    text-align: right;
+    padding-right: 1em;
+}
+
+.nav-footer {
+    background-color: $gray-100;
+    border-top: 1px solid $gray-300;
+}
+
+// Alerts
+
+$alert-border-width:            0 !default;
+
+// Progress bars
+
+$progress-height:               .5rem !default;
+
+
+/*-- scss:rules --*/
+
+
+// Variables
+
+// Typography
+
+body {
+    -webkit-font-smoothing: antialiased;
+  }
+
+// Indicators
+
+.badge {
+  &.bg-light {
+    color: $dark;
+  }
+}
+
+// Progress bars
+
+.progress {
+  @include box-shadow(none);
+
+  .progress-bar {
+    font-size: 8px;
+    line-height: 8px;
+  }
+}

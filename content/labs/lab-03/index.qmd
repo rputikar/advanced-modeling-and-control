@@ -1,0 +1,74 @@
+---
+title: "Lab 03: Override Control"
+date: 2023-08-13
+format:
+  pdf
+date-modified: 2024-07-05
+---
+
+## Objectives
+
+1. To demonstrate the application of a Low Select (LS) control strategy for
+   protecting heat exchanger tube from overheating due to excessive heating.
+
+2. To develop MATLAB Simulink model for the LS control strategy
+
+## Problem Statement {#sec-process-information}
+
+A process fluid is heated using steam in a heat exchanger. 
+
+If the process fluid flow rate is suddenly increased, there will
+be a large drop in the process fluid temperature T. To bring back the
+temperature to a setpoint, the heat transfer to the process fluid has to be
+increased. Since U and A are fixed, then the only way for Q to increase is that
+T~s~ (tube skin temperature) has to be increase. The danger is that increase in
+T~s~ beyond a maximum limit (depending on the tube material) will cause
+the tube be damage by overheating. Therefore, to prevent this situation, an
+override control is needed. 
+
+![Heat transfer in a heat exchanger](../../../assets/images/PID-enhancements-lab-1.png){#fig-1}
+
+Consider the following two transfer function below, which represent the process
+fluid and the heat exchanger tube temperatures. The LS control strategy is used
+to protect the heat exchanger tube from overheating in the face of an excessive
+flow rate of steam into the heat exchanger.
+
+Process fluid temperature transfer function
+
+$$
+G_p(s) = \frac{4 \exp (-2 s)}{(7 s+1)}
+$${#eq-process}
+
+Heat exchange tube temperature transfer function:
+
+$$
+G_e(s) = \frac{3 \exp (-1.5 s)}{(6 s+1)}
+$${#eq-process}
+
+Assume that at the steady-state condition, the nominal values for the process
+fluid and exchanger tube temperatures are 300°C and 350°C. The maximum
+allowable skin temperature is 400°C.
+
+## Report Format
+
+The report should be no more than 5 pages excluding the cover page.
+
+The report should cover the following:
+
+1. Provide the MATLAB Simulink model and a clear explanation about the model,
+   e.g., what factor/s can you simulate. [3 marks]
+
+2. Answer the following questions:
+
+	1. Explain under what (possible condition) the LS control will choose the
+	   command from the tube temperature controller? [2 marks]
+	   
+   2. Discuss what will happen if the process gain of the tube temperature
+      transfer function changes, e.g., increases by 10% or decreases by 10%?
+      [2.5 marks]
+
+   3. Discuss what will happen if the process time constant of the process
+      fluid temperature transfer function changes, e.g., increases by 10% or
+      decreases by 10%? [2.5 marks]
+
+

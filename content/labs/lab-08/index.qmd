@@ -1,0 +1,37 @@
+---
+title: "Lab 08: Digital control"
+date: 2023-10-08
+format:
+  pdf
+date-modified: 2024-07-05
+---
+
+## Objectives
+
+1. To develop MATLAB Simulink model of continuous and digital control systems.
+2. To simulate digital PI controller vs. continuous PI controller performance for different sampling periods T: 0.5, 1, 2.
+
+
+## Problem Statement {#sec-process-information}
+
+A continuous process is represented by the following transfer function:
+
+$$
+G_p (s) = \frac{5 exp(-2s)}{(7s+1)(s+1)}
+$${#eq-process}
+
+Also, an output disturbance transfer function is given by,
+
+$$
+G_d (s) = \frac{1.4 exp(-3s)}{( 10s+1)}
+$${#eq-disturbance}
+
+For the digital PI controller implementation, use zero-order hold and sampler where the sampling period can be varied as mentioned in the objectives.
+
+## Tasks
+
+i.	Develop a Simulink model that contains the continuous and digital control systems. Provide the screenshot of the Simulink model in the report. [2 marks]
+ii. Tune a PI controller for the continuous control system, e.g., using Control System Designer. [1 mark]
+iii. Apply the PI controller tuning in (b) to the continuous and digital systems. For the digital system, switch the continuous mode to the discrete mode. [2 marks]
+iv. Compare the performance of the digital PI controller for the 3 different sampling periods mentioned above with the continuous PI controller. Plot the responses and give comments on the results. [5 marks]
+

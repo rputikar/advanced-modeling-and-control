@@ -1,0 +1,70 @@
+staff:
+  - id: rpu
+    name: A/Prof. Ranjeet Utikar
+    name_no_title: Ranjeet Utikar
+    email: "r.utikar@curtin.edu.au"
+    phone: +61 0892669837
+    url: "https://www.utikar.com"
+    # mastodon: "@smilelab@mstdn.social"
+    github: "rputikar"
+    office: Building 204, Room 432 <br>
+      Bentley Campus
+    contact_policy: Best way to contact is via email.
+      I hope to respond within 24-36 hours.
+      If you would like to see me, please book an appointment.
+    appointment_url: "https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/"
+    photo: ./assets/images/RanjeetUtikar.jpg
+
+  - id: jn
+    name: A/Prof. Jobrun Nandong
+    name_no_title: Jobrun Nandong
+    email: jobrun.n@curtin.edu.my
+    phone: "+60 85 630 100 Ext: 2412"
+    url: "https://engsci.curtin.edu.my/departments/chemical-energy-engineering/people/jobrun-nandong/"
+    orcid: "0000-0001-7897-8306"
+    office: Skylark 3 Room 322 <br>
+      Miri Campus
+    contact_policy: Best way to contact is via email.
+      I hope to respond within 24-36 hours.
+      If you would like to see me, please book an appointment.
+    photo: ./assets/images/JobrunNandong.jpg
+
+coordinator:
+  id: rpu
+  name: A/Prof. Ranjeet Utikar
+  name_no_title: Ranjeet Utikar
+  email: "r.utikar@curtin.edu.au"
+  phone: +61 08 9266 9837
+  url: https://www.utikar.com
+  # mastodon: "@smilelab@mstdn.social"
+  github: rputikar
+  office: Building 204, Room 432 <br>
+    Bentley Campus
+  contact_policy: Best way to contact is via email.
+    I hope to respond within 24-36 hours.
+    If you would like to see me, please book an appointment using "_schedule an
+    appointment_" link on the left.
+  appointment_url: "https://outlook.office365.com/owa/calendar/RanjeetUtikar@curtin.onmicrosoft.com/bookings/"
+  photo: ./assets/images/RanjeetUtikar.jpg
+
+admin:
+  id: ch
+  name: Ms. Cherie Ha
+  name_no_title: Cherie Ha
+  email: TeachingSupport-WASM-MECE@curtin.edu.au
+  url: "https://staffportal.curtin.edu.au/staff/profile/view/ruby-lo-fc65c900/"
+  office: Faculty of Science and Engineering <br>
+    Bentley Campus
+  contact_policy: Best way to contact is via email.
+    I hope to respond within 24-36 hours.
+    If you would like to see me, please book an appointment.
+  photo: ./assets/images/scientist_woman.jpeg
+# teaching-staff:
+#   staff:
+#     - ref: rpu
+#     - ref: jd
+#
+# admin-staff:
+#   staff:
+#     - ref: rl
+#

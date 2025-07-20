@@ -1,0 +1,40 @@
+---
+title: "Lab 04: Time Series Analysis"
+date: 2023-08-13
+format:
+  pdf
+date-modified: 2024-07-05
+---
+
+## Objectives
+
+1. Demonstrate the use of system identification toolbox to generate time series models.
+
+2. Evaluate time series models. 
+
+## Problem Statement {#sec-process-information}
+
+A distillation column produces three products: bottom stream, side-stream and distillate. 
+The bottom product impurity must be kept less than 5%, otherwise, it is considered a reject product. The major disturbance acting on the bottom product quality is the feed composition fluctuations. Based on plant step test, you have established the following transfer function that relates the feed composition to the bottom impurity:
+
+$$
+G(s) = e^{-2s} \left( \frac{1}{(4 s^2 + s + 1)} + \frac{0.25}{(2 s+1)^2} \right)
+$${#eq-process}
+
+Generate a data set when the input is stepped up by 1 unit at t = 5 unit, and then stepped down by 2 units at t = 35 unit, and finally stepped up by 1 unit at t = 55 unit. Use the dataset up to t = 55 unit to develop 3 polynomial models (AR, ARX, ARMAX) and use the models to predict the data at future times: t = 52, 54 and 56. Compute the model errors, and identify the best model, i.e., the one that gives the highest forecasting accuracy.
+Assume sampling period is 1 unit.
+
+Next, apply a random input (to the distillation column. Use the previous models to forecast the future values of impurity at times, t = 10, 20 and 30 units. Explain your results of forecasting.
+
+**Note**: Use System Identification toolbox to develop the models required.
+
+## Report Format
+
+The report should be no more than 5 pages excluding the cover page.
+
+1. 	Build a MATLAB Simulink model to generate the data. Show the model screenshot (or snip) in the report. [3 marks]
+2. 	Develop several ARX models (different model orders) and show their prediction accuracy. [3 marks]
+3. 	Calculate the model forecasting accuracy for data at t = 56, 61, 66 and 71. Show your calculations and comments on the model accuracy. [3 marks]
+4. 	Give two comments on how to improve the model accuracy. [ 1marks]
+
+

@@ -1,0 +1,27 @@
+---
+title: "Principal component analysis"
+subtitle: In class activities
+date: 2023-08-20
+format:
+  pdf
+resources:
+  - "./MSPC.1.7.zip"
+  - "./lda_qda_example.mlx"
+  - "./pca_example.mlx"
+  - "./pls_example.mlx"
+date-modified: 2024-09-05
+---
+
+## Activities
+
+1. Explore discriminant analysis by following steps given in [lda_qda_example.mlx](./lda_qda_example.mlx). 
+
+2. Explore PCA analysis by following steps given in [pca_example.mlx](./pca_example.mlx). 
+
+3. Explore multivariate analysis for process monitoring using the MSPC app (GIEM, 2023). 
+
+4. Explore PLS modeling by following steps given in [pls_example.mlx](./pls_example.mlx). 
+ 
+### Reference
+
+GIEM (2023). A benchmark software for MSPC (https://www.mathworks.com/matlabcentral/fileexchange/47169-a-benchmark-software-for-mspc), MATLAB Central File Exchange. Retrieved August 27, 2023.

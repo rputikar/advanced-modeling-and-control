@@ -1,0 +1,139 @@
+---
+title: "Lab 02: Cascade control"
+date: 2023-08-07
+format:
+  pdf
+date-modified: 2024-07-05
+---
+
+## Objectives
+
+1. To learn how to tune a cascade control system for stable secondary and
+   primary processes
+
+2. To learn how to tune a cascade control system for stable secondary process
+   and integrating primary process.
+
+3. To develop Matlab Simulink model of cascade control for the process
+   simulation
+
+## Process information {#sec-process-information}
+
+### Case 1
+
+$$
+\begin{aligned}
+\text { Primary Process: } G_p(s) &= \frac{2.5 \exp (-4 s)}{(5 s+1)} \\
+\\[1em]
+\text { Secondary Process: } G_s(s) &= \frac{-1.6 \exp (-1.2 s)}{1.5 s+1}
+\end{aligned}
+$${#eq-case-1}
+
+### Case 2
+
+$$
+\begin{aligned}
+\text { Primary Process: } G_p(s) &= \frac{0.2 \exp (-5 s)}{s} \\
+\\[1em]
+\text { Secondary Process: } G_s(s) &= \frac{2 \exp (-0.8 s)}{2 s+1}
+\end{aligned}
+$${#eq-case-1}
+
+
+## Methodology
+
+For each case in [@sec-process-information]
+
+1. Tune a PI controller using a classical PID tuning formula.
+
+2. Develop the Simulink models for the feedback control using primary loop only and
+   cascade control strategy (with a tightly tuned inner loop). 
+
+Evaluate the control performance for:
+
+i. Setpoint tracking (Step input in setpoint)
+
+ii. Disturbance rejections for input disturbance.
+
+iii. Disturbance rejections for output disturbance.
+
+Here are some common error metrics used to evaluate the performance of
+controllers:
+
+1. **Integral of Time-weighted Absolute Error (ITAE):**
+   $$
+   ITAE = \int_0^T t \cdot |e(t)| \, dt
+   $$
+
+   ITAE penalizes large errors that persist for a long time.
+
+2. **Integral of Absolute Error (IAE):**
+   $$
+   IAE = \int_0^T |e(t)| \, dt
+   $$
+
+   IAE gives a measure of the total absolute error over time and is sensitive
+   to both the magnitude and duration of the error.
+
+3. **Integral of Squared Error (ISE):**
+   $$
+   ISE = \int_0^T e(t)^2 \, dt
+   $$
+   
+   ISE penalizes larger errors more heavily than smaller errors, making it
+   useful when minimizing large errors is particularly important.
+
+4. **Integral of Time-weighted Squared Error (ITSE):**
+   $$
+   ITSE = \int_0^T t \cdot e(t)^2 \, dt
+   $$
+
+   ITSE is similar to ISE but includes a time-weighting factor, penalizing
+   errors that persist for longer periods.
+
+5. **Peak Absolute Error (PAE):**
+
+   PAE is the maximum absolute error that occurs over the time period of
+   interest. It's a measure of the largest deviation from the desired output.
+
+6. **Settling Time:**
+
+   The settling time is the time required for the error to fall within a
+   specified percentage (e.g., 2% or 5%) of the final steady-state value and
+   stay within that range.
+
+7. **Rise Time:**
+
+   The rise time is the time required for the system response to rise from a
+   specified lower percentage to a specified higher percentage of its final
+   steady-state value.
+
+8. **Overshoot:**
+
+   Overshoot is the percentage by which the system's response exceeds its final
+   steady-state value. It gives an indication of the stability and damping of
+   the system.
+
+
+## Report Format
+
+
+1. Provide and describe the MATLAB Simulink model of your cascade control
+   system. (5 marks)
+
+2.  Answer the following questions (5 Marks) 
+
+   1. Can the cascade control provide improvement over the single-loop control
+      for the input or output disturbance? Show the plots of the closed-loop
+      responses of the primary and secondary variables to support your
+      argument. Use 
+
+   2. Can the cascade control provide improvement over the single-loop control
+      for the setpoint change? Show the closed-loop responses of the setpoint
+      tracking for the primary variable.
+
+   3. What happens if the system is subjected to modelling errors, e.g., 10%
+      errors in model parameters? Show the closed-loop responses to support
+      your discussion.
+
+

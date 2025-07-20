@@ -1,0 +1,15 @@
+# Fonts
+
+font.family: Gentium Plus
+mathtext.fontset: custom
+mathtext.rm: Gentium Plus
+mathtext.it: Gentium Plus:italic
+mathtext.bf: Gentium Plus:bold
+
+# Figure 
+figure.figsize: 4.5,4.5 
+figure.dpi: 300
+
+# Axes
+xtick.minor.visible: True
+ytick.minor.visible: True

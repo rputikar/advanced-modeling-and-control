@@ -1,0 +1,104 @@
+---
+title: 
+  Time series modelling and analysis 
+date: 2023/08/20
+format:
+  html
+date-modified: 2024-07-05
+---
+
+## Pre Class Activities
+
+- Go through the slides and lecture video below. 
+
+- Additional videos to watch
+
+  [What Is System Identification?](https://youtu.be/Z1QS6FsxrJI)
+  
+  [What Is System Identification Toolbox?](https://youtu.be/zwvQKd425dc)
+
+  [Introduction to System Identification](https://youtu.be/u7hJ1aF-JrU)
+
+  [Lennart Ljung's Advice for Beginners](https://youtu.be/XWXDDxqkoqI)
+  
+
+## Slides
+
+The slides for this lecture are provided as interactive document online. Click
+on the button below to view them in fullscreen (The link will open in a new tab
+or window). You can also view them as pdf for printing, or later viewing.  
+
+:::{.grid}
+
+<!--
+::: {.g-col-1}
+[Slides](../../slides/05-time_series_modelling_and_analysis/index.qmd){target="_blank" .btn .btn-success .btn-lg role="button"}
+
+:::
+-->
+
+::: {.g-col-1}
+[PDF](../../slides/05-time_series_modelling_and_analysis/05-time_series_modelling_and_analysis.pdf){target="_blank" .btn .btn-info .btn-lg role="button"}
+
+:::
+:::
+
+<!--
+
+The slides are also placed below for your reference. Use your keypad's
+{{< fa arrow-left >}} and {{< fa arrow-right >}} to navigate the slides.
+
+::: {.container style="position: relative;overflow: hidden;width:
+100%;min-height:600px;"}
+<iframe src="../../slides/05-time_series_modelling_and_analysis/"
+style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width:
+100%;min-height:600px;"></iframe>
+:::
+
+
+## Videos
+
+::: {.panel-tabset}
+## Introduction to Cascade Control
+{{< video https://www.youtube.com/embed/EPaQWBWp064 >}}
+
+## Cascade control
+{{< video https://www.youtube.com/embed/ykGU-673Olw >}}
+
+
+## Cascaded loops
+{{< video https://www.youtube.com/embed/tbgV6caAVcs >}}
+:::
+
+
+## Lecture notes
+
+Detailed lcture notes are available for this lecture. 
+You can browse them by
+clicking on the link below. 
+You can also download them in various formats from
+the link. 
+
+:::{.grid}
+::: {.g-col-3}
+[Lecture Notes](../../notes/01-recap/index.qmd){.btn .btn-success .btn-lg role="button"}
+
+:::
+:::
+
+-->
+
+## In-Class Resources
+
+The in-class activities/ tasks for this lecture are at:
+
+:::{.grid}
+::: {.g-col-5}
+
+[in-class activities](../../notes/05-time_series_modelling_and_analysis/in-class-activities.qmd){.btn .btn-success .btn-lg role="button"}
+
+:::
+:::
+
+
+

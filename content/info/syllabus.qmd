@@ -1,0 +1,92 @@
+---
+title: Syllabus
+date-modified: 2025-07-21
+---
+
+## Topics covered
+
+We will cover a broad range of topics including: 
+
+- Cascade, Ratio and Feedforward control. 
+- PID Enhancements: inferential, over-ride and selective control; scheduling
+  controller tuning; implementation 
+- Other Advanced Control Techniques: deadtime compensation; adaptive control
+  (programmed adaptation; self-tuning control; online parameter estimation). 
+- Multi-input Multi-output Systems: process and control loop interactions;
+  control loop pairings; decoupling control systems; multivariable control.
+- Digital Control Systems: Z transforms; discrete time models; dynamic
+  response; discrete time control algorithms; closed loop analysis; digital
+  control system implementation. Review of process modeling and simulation
+  techniques. Modeling for Fault Diagnosis: prediction-based and
+  identification-based diagnosis. Empirical Modeling: linear and non-linear
+  models; artificial neural networks; ARMAX models. 
+- Modeling Hybrid (Discrete- Continuous) Systems: representation and solution. 
+- Case Studies and Applications in Process Engineering.
+
+## Course materials
+
+### Books
+
+The books listed in [the course reading
+list](https://curtin.alma.exlibrisgroup.com/leganto/readinglist/lists/16653102120001951)
+will be very useful reference material for topics covered in the course.   
+
+The content is mainly based on following books. 
+
+- @riggs2007
+- @seborg2016
+- @romagnoli2020
+- @leblanc2009
+
+Besides these books the following online books are useful as well. 
+
+- @marlin1995
+- @peterwoolf
+
+### Other materials
+
+- Process control - Analysis, Design, and Assessment course from IIT Madras by
+  [Prof. Raghunathan
+  Rengaswamy](https://rbcdsai.iitm.ac.in/people/raghunathan-rengaswamy/). The
+  YouTube play list is
+  [here](https://www.youtube.com/playlist?list=PLyqSpQzTE6M-OjiNwE2GQzXmZ6NaVWUnf).
+- [Process Dynamics and
+  Control](https://apmonitor.com/che436/index.php/Main/HomePage) course from
+  BYU by [Prof. John D.
+  Hedengren](https://apm.byu.edu/prism/index.php/Members/JohnHedengren). 
+- Prof. Douglas Cooper's [Control Guru](https://controlguru.com/table-of-contents/) website.
+
+### MATLAB
+
+We will use [MATLAB](https://au.mathworks.com/products/matlab.html)
+extensively. The MathWorks website has tons of resources to help you learn
+MATLAB.
+
+## Course structure
+
+| Week| Begin Date| Lecture| Computer Lab|
+|-|-|-|-|
+| Orientation| 14 July|||
+| 1.| 21 July| Recap of basics of process control and modelling| Matlab revision (No lab report)|
+| 2.| 28 July| PID Enhancement Techniques: Ratio and Feedforward Control| Cascade Control Design Simulation|
+| 3.| 4 August| Override Control: Low Select, High Select and Select Control| Feedforward Control Design Simulation|
+| 4.| 11 August| Advanced Control Techniques: Gain Scheduling, Inferential Control and Smith Predictor| Advanced Control Techniques: Gain Scheduling, Inferential Control and Smith Predictor |
+| 5.| 18 August| Time Series Analysis and Modeling| ARX and ARIMA Modeling|
+| 6.| 25 August| Principal Component Analysis and PLS Modeling| Mid semester test|
+| 7.| 1 September|| Tuition Free Week|
+| 8.| 8 September| MIMO Systems: Decentralized Control| PCA and PLS Modeling|
+| 9.| 15 September| MIMO Systems: Model Predictive Control| Decentralized 2x2 Control Design Simulation|
+| 10.| 22 September| Artificial Neural Network and Other Models| MPC Design Simulation|
+| 11.| 29 September| No lecture| No lab|
+| 12.| 6 October| Pattern Recognition and Machine Learning| ANN Modeling|
+| 13.| 13 October| Model-based Optimization| Pattern Recognition and Machine Learning|
+| 14.| 20 October|| Study Week|
+| 15.| 27 October|| Examinations|
+| 16.| 3 November|| Examinations|
+
+: Program Calendar – Semester 2 2025
+
+## Course policies
+
+Please refer to the unit outline posted on blackboard for assessment policies,
+assessments, grades, and pass requirements. 
