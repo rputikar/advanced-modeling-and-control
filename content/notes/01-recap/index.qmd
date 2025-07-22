@@ -67,18 +67,14 @@ Manipulated Variables (MV), Controlled Variables (CV), disturbances, and
 unmeasured outputs.
 
 ::: {.content-visible when-format="html"}
-
 ![Process system
 nomenclature](../../../assets/images/process-system-nomenclature.png){#fig-process-system-nomenclature
 width=60%}
-
 :::
 
 ::: {.content-visible unless-format="html"}
-
 ![Process system
 nomenclature](../../../assets/images/process-system-nomenclature.png){#fig-process-system-nomenclature}
-
 :::
 
 
@@ -273,7 +269,8 @@ constraint](../../../assets/images/01-recap-fig1-pv_poorly_controlled.png){#fig-
 ![Good control permits set point near
 constraint](../../../assets/images/01-recap-fig2-pv_tightly_controlled.png){#fig-good-control}
 
-Process control plays a vital role in reducing variability :::
+Process control plays a vital role in reducing variability 
+:::
 
 ### Control and Optimization
 
@@ -426,15 +423,12 @@ The hierarchy of process control activities is shown in
   business forecasts.
 
 ::: {.content-visible when-format="html"}
-
 ![Hirarchy of process control
 activities](../../../assets/images/01-recap-time-scales-of-process-control-activities.png){#fig-control-activity-hirarchy
 width=60%}
-
 :::
 
 ::: {.content-visible unless-format="html"}
-
 ![Hirarchy of process control
 activities](../../../assets/images/01-recap-time-scales-of-process-control-activities.png){#fig-control-activity-hirarchy}
 
@@ -533,18 +527,14 @@ in the plant using the preliminary estimates from the design step as a starting
 point. Controller tuning usually involves trial-and-error procedures.
 
 ::: {.content-visible when-format="html"}
-
 ![Major steps in control system
 development.](../../../assets/images/major-steps-control-system-developement.png){#fig-major-steps
 width=60%}
-
 :::
 
 ::: {.content-visible unless-format="html"}
-
 ![Major steps in control system
 development.](../../../assets/images/major-steps-control-system-developement.png){#fig-major-steps}
-
 :::
 
 
@@ -779,16 +769,12 @@ control system design and analysis.
 
 
 ::: {.content-visible when-format="html"}
-
 ![Laplace transform concept](../../../assets/images/Laplace-transform-concept.png){#fig-Laplace-transform-concept
 width=60%}
-
 :::
 
 ::: {.content-visible unless-format="html"}
-
 ![Laplace transform concept](../../../assets/images/Laplace-transform-concept.png){#fig-Laplace-transform-concept}
-
 :::
 
 
@@ -828,32 +814,23 @@ A transfer function is a mathematical formula that describes how a system respon
 
 - Behavior: 
   
-  :::: {.columns .smaller}
-
-  ::: {.column width=40%}
-   
+:::: {.columns .smaller}
+::: {.column width=40%}
    $\xi > 1$: Overdamped 
 
    $0 < \xi < 1$:  Underdamped
+:::
 
-  :::
-
-  ::: {.column width=40%}
-   
+::: {.column width=40%}
    $\xi = 1$: Critically damped 
 
    $\xi = 0$: Sustained oscillations
+:::
 
-  :::
-
-  ::: {.column width=20%}
-   
+::: {.column width=20%}
    $\xi < 0$: Unstable
-
-  :::
-
-
-  ::::
+:::
+::::
 
 
 ## Dynamic Behavior of Processes

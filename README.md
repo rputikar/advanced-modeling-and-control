@@ -28,6 +28,18 @@ It uses Python, JupyterLab, and Quarto for interactive computation and publishin
 
 - [PowerShell 7+](https://learn.microsoft.com/en-us/powershell/)
 
+- [DeckTape](https://github.com/astefanutti/decktape)
+
+  Command-line tool to export Reveal.js presentations to PDF.
+
+  💡 Must be installed and accessible in your system PATH.
+
+  📦 Install on Windows:
+
+  ```powershell
+  npm install -g decktape
+  ```
+
 - (Optional) GitHub CLI: `winget install GitHub.cli` provides enhanced workflows for GitHub.
 
 - (Optional) [Mask](https://github.com/jacobdeichert/mask): Task runner using Markdown
@@ -92,7 +104,7 @@ mask ensure-quarto
 ### 5. Render all course materials
 
 ```powershell
-quarto render
+mask render
 ```
 
 ## 📦 Quarto Extensions Used

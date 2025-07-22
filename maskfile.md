@@ -2,7 +2,7 @@
 
 ## setup
 
-> Ensure Quarto, Python 3.12, and uv are installed. Set up `.venv` and install dependencies. Configure git hooks.
+> Ensure Quarto, Python 3.12, uv, Node.js, and DeckTape are installed. Set up `.venv` and install dependencies. Configure git hooks.
 
 ```powershell
 # Ensure Quarto
@@ -35,6 +35,23 @@ if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
 } else {
     $uvVersion = & uv --version
     Write-Host "✅ uv already installed: $uvVersion"
+}
+
+# Ensure Node.js (required for DeckTape)
+if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
+    Write-Host "🛠 Installing Node.js..."
+    winget install OpenJS.NodeJS.LTS -e --silent
+} else {
+    $nodeVersion = & node --version
+    Write-Host "✅ Node.js already installed: $nodeVersion"
+}
+
+# Ensure DeckTape
+if (-not (Get-Command decktape -ErrorAction SilentlyContinue)) {
+    Write-Host "🛠 Installing DeckTape..."
+    npm install -g decktape
+} else {
+    Write-Host "✅ DeckTape already installed"
 }
 
 # Set up .venv
@@ -148,3 +165,21 @@ if ($allFilesExist) {
     exit 1
 }
 ```
+
+## render
+
+> Render all Quarto documents and convert Reveal.js slides to PDF
+
+```powershell
+quarto render
+
+# Run slide-to-PDF converter using the .venv Python
+$pythonExe = ".venv\Scripts\python.exe"
+if (Test-Path $pythonExe) {
+    & $pythonExe convert_slides_to_pdf.py
+} else {
+    Write-Host "❌ Python environment not found. Please run 'mask setup' first."
+    exit 1
+}
+```
+

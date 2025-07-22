@@ -53,11 +53,13 @@ $dark: $gray-90 !default;
 
 $font-prefix: "./assets/fonts/IBM-Plex/";
 
-$font-family-sans-serif: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif !default;
+$font-family-sans-serif:
+  "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif !default;
 $font-family-serif: "IBM Plex Sans", "Georgia", Times, serif;
 // $font-family-monospace: "IBM Plex Mono", "Menlo", "DejaVu Sans Mono",
 //  "Bitstream Vera Sans Mono", Courier, monospace;
-$headings-font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif !default;
+$headings-font-family:
+  "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif !default;
 
 //
 // $font-family-sans-serif: "IBM Plex Sans", sans-serif !default;
@@ -119,7 +121,6 @@ h1.title {
   font-size: $h2-font-size;
 }
 
-
 .reveal .footer {
   // border-top: 2px solid $blue;
   margin-right: 30px !important;
@@ -168,7 +169,7 @@ h1.title {
   display: inline-block;
 }
 
-.reveal .magenta{
+.reveal .magenta {
   color: $magenta;
 }
 
@@ -230,7 +231,6 @@ h1.title {
   transform: translateY(-50%), translateX(-50%);
 }
 
-
 //
 // .center,
 // .center p,
@@ -251,7 +251,7 @@ h1.title {
 .reveal table th,
 .reveal table td {
   border: none; /* Remove internal row lines */
-  padding: .23em; /* Adjust padding as needed */
+  padding: 0.23em; /* Adjust padding as needed */
   text-align: left; /* Adjust text alignment as needed */
   font-weight: lighter; /* Lighter font weight for main table text */
 }
@@ -277,7 +277,7 @@ h1.title {
 
 .fragment.hide {
   transition: all 0s !important;
-  # display: none !important;
+  // display: none !important;
 }
 
 .reveal .center-xy {
@@ -291,20 +291,19 @@ h1.title {
 
 .center {
   display: block;
-  width: 100%;  /* This ensures the child div spans the whole width of the parent */
-  text-align: center;  /* This centers the text within the child div */
+  width: 100%; /* This ensures the child div spans the whole width of the parent */
+  text-align: center; /* This centers the text within the child div */
 }
 
-.text-box{
+.text-box {
   display: block;
   border: 2px solid #000;
   padding: 10px;
 }
 
-
-.bottom{
-  position: absolute; 
-  bottom: 0; 
+.bottom {
+  position: absolute;
+  bottom: 0;
   width: 100%;
 }
 
@@ -313,12 +312,14 @@ h1.title {
 //   font-size: 1em;
 // }
 
-
 katex-inline.keepfont {
-    .katex, .mathnormal, .mathit, .mathrm {
-        font-family: inherit;
-    }
-    .katex {
-        font-size: 1em;
-    }
+  .katex,
+  .mathnormal,
+  .mathit,
+  .mathrm {
+    font-family: inherit;
+  }
+  .katex {
+    font-size: 1em;
+  }
 }
