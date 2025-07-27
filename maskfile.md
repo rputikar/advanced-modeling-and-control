@@ -172,14 +172,28 @@ if ($allFilesExist) {
 
 ```powershell
 quarto render
+mask post-render
+```
 
-# Run slide-to-PDF converter using the .venv Python
-$pythonExe = ".venv\Scripts\python.exe"
+## post-render
+
+> Run post-processing after Quarto render (PDF export, file renaming)
+
+```powershell
+# Run post-render script using .venv Python
+$pythonExe = ".venv\\Scripts\\python.exe"
 if (Test-Path $pythonExe) {
-    & $pythonExe convert_slides_to_pdf.py
+    & $pythonExe post_render.py
 } else {
     Write-Host "❌ Python environment not found. Please run 'mask setup' first."
     exit 1
 }
 ```
 
+## publish
+
+> Publish the site to Quarto Pub without prompt, browser launch, or render
+
+```powershell
+quarto publish --no-prompt --no-browser --no-render
+```

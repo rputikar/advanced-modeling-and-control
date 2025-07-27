@@ -6,6 +6,7 @@ project:
     - "*.qmd"
     - "*.md"
     - "!README.md"
+    - "!maskfile.md"
     - "!LICENSE.md"
     - "!ideas/"
     - "!_env/"
