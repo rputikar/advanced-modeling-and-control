@@ -45,4 +45,5 @@ format:
         \usepackage{gensymb}
         \usepackage{unicode-math}
 filters:
+  - ../../assets/filters/custom-title.lua
   - latex-environment

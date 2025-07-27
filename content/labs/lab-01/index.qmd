@@ -51,15 +51,18 @@ where $\theta_e = \theta_p + \tau_2$, and $\tau_1 > \tau_2$.
 
 ## Report Format
 
-Your report should include the following:
+Your report (5 pages maximum) should include the following:
 
 0. Submission Details
 
    Include a brief table at the beginning of the report with the following information:
-   - Student name(s), Student ID(s)
-   - Lab number and title
-   - Course code (CHEN4011)
-   - Date of submission 
+
+   |||||
+   |-|-|-|-|
+   | Lab Title: | Lab 01 – Feedforward Control | Student Name | ID       |
+   | Unit:      | CHEN4011                     | Student 1    | 12345678 |
+   | Date:      | 12 August 2025               | Student 2    | 87654321 |
+
 
 1. Objective and Problem Statement
 
@@ -70,7 +73,7 @@ Your report should include the following:
 
    * Describe how each control strategy (feedback-only and feedforward-feedback) was implemented in MATLAB Simulink.
    * Include screenshots of the Simulink models with relevant annotations.
-   * Explain PID tuning and derivation of the feedforward controller (idealized method).
+   * Explain PID tuning and derivation of the feedforward controller.
 
 3. Results
 
@@ -82,12 +85,14 @@ Your report should include the following:
 
 4. Analysis and Discussion
 
-   * Compare and interpret the performance of the two strategies.
-   * Discuss:
+   * Compare and interpret the performance of the two control strategies:
+     feedback-only vs. combined feedforward-feedback.
 
-     * Improvement due to feedforward
-     * Impact of ±10% model mismatch
-     * Which feedforward design (idealized vs. unified) might perform better
+   * Address the following points:
+     - Does the addition of a feedforward controller improve setpoint tracking or disturbance rejection? Why?
+     - How does the control system respond under ±10% process model mismatch?
+     - Quantitatively assess and compare the performance (e.g., rise time,
+       overshoot, IAE) of Feedback-only control, and feedback with idealized feedforward control
 
 5. Conclusion
 
@@ -96,12 +101,12 @@ Your report should include the following:
 
 ## Assessment Rubric (20 Marks Total)
 
-|No | Section | Marks | Evaluation basis|
-|-|-|-|-|
-| 1.| Objectives & Problem| 2| Clarity of problem definition and articulation of objectives|
-| 2.| Methodology and Implementation | 4 | Correctness and clarity of Simulink models; explanation of PID and feedforward controller|
-| 3.| Results | 4| Quality, relevance, and labeling of plots; completeness of performance data|
-| 4.| Analysis and Discussion | 6| Insightful interpretation; answers to robustness, performance, and design method comparisons |
-| 5.| Conclusion and Presentation | 4| Coherent summary; quality of writing, formatting, and visual presentation |
+|No|Section|Marks|Evaluation basis|
+|-|---|-|-------|
+|1.|Objectives & Problem|2|Clarity of problem definition; articulation of objectives|
+|2.|Methodology and Implementation|4|Correctness and clarity of Simulink models; explanation of PID and feedforward controller|
+|3.|Results|4|Quality, relevance, and labeling of plots; completeness of performance data|
+|4.|Analysis and Discussion|6|Insightful interpretation; answers to robustness, performance, and design method comparisons|
+|5.|Conclusion and Presentation|4|Coherent summary; quality of writing, formatting, and visual presentation|
 
 ### References
