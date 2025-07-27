@@ -1,6 +1,6 @@
 ---
 title: Syllabus
-date-modified: 2025-07-21
+date-modified: 2025-07-27
 ---
 
 ## Topics covered
@@ -36,12 +36,12 @@ The content is mainly based on following books.
 - @riggs2007
 - @seborg2016
 - @romagnoli2020
-- @leblanc2009
+- @coughanowr1965
 
 Besides these books the following online books are useful as well. 
 
 - @marlin1995
-- @peterwoolf
+- @woolf2020el
 
 ### Other materials
 
