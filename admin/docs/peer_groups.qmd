@@ -2,10 +2,9 @@
 title: Peer groups
 subtitle: "CHEN4011: Advanced modeling and control S2 2025"
 format:
-   docx: default
    pdf: default
 date: 2025-07-27
-date-modified: 2025-07-27
+date-modified: 2025-07-28
 ---
 
 For this unit, you will be working in pairs (peer pair) or in groups of four

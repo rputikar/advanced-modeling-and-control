@@ -1,6 +1,6 @@
 ---
 title: Syllabus
-date-modified: 2025-07-27
+date-modified: 2025-07-28
 ---
 
 ## Topics covered
@@ -68,8 +68,8 @@ MATLAB.
 |-|-|-|-|
 | Orientation| 14 July|||
 | 1.| 21 July| Recap of basics of process control and modelling| Matlab revision (No lab report)|
-| 2.| 28 July| PID Enhancement Techniques: Ratio and Feedforward Control| Cascade Control Design Simulation|
-| 3.| 4 August| Override Control: Low Select, High Select and Select Control| Feedforward Control Design Simulation|
+| 2.| 28 July| PID Enhancement Techniques: Ratio and Feedforward Control| Feedforward Control Design Simulation|
+| 3.| 4 August| Override Control: Low Select, High Select and Select Control| Cascade Control Design Simulation|
 | 4.| 11 August| Advanced Control Techniques: Gain Scheduling, Inferential Control and Smith Predictor| Advanced Control Techniques: Gain Scheduling, Inferential Control and Smith Predictor |
 | 5.| 18 August| Time Series Analysis and Modeling| ARX and ARIMA Modeling|
 | 6.| 25 August| Principal Component Analysis and PLS Modeling| Mid semester test|

@@ -1,12 +1,11 @@
 ---
 title: Advanced Modeling and Control
 subtitle: 
-  "Explore cutting-edge techniques in advanced control, including the design and
-  implementation of advanced process control methods in dynamic and
-  multivariable industrial processes using MATLAB's Simulink tool. Dive into the
-  world of advanced modelling, discovering tools for data analysis, empirical
-  modelling, and process design to optimize the performance and efficiency of
-  process equipment."
+  "Explore powerful techniques in advanced process control and modelling. Learn
+  how to design and implement control strategies for dynamic, multivariable
+  industrial systems using MATLAB’s Simulink. You'll also get hands-on with tools
+  for data analysis, empirical modelling, and process optimization to improve
+  equipment performance and efficiency."
 details: 
   "CHEN4011, Semester 2, 2025 <br>
    Chemical Engineering <br>
@@ -19,7 +18,7 @@ format:
     - ./assets/partials/home/title-block.html
 metadata-files:
   - metadata.yml
-date-modified: 2025-07-20
+date-modified: 2025-07-27
 ---
 
 ## Course Overview

@@ -3,22 +3,24 @@ title: "Lab 01: Feedforward control"
 date: 2023-07-30
 format:
   pdf
-date-modified: 2024-07-05
+date-modified: 2025-07-28
 ---
 
 ## Objectives
 
-i. To design a feedforward controller in combination with a feedback controller
+* Design a feedforward controller integrated with a feedback (PID) controller
+for a dynamic process.
 
-ii. To evaluate the performances with and without feedforward controller in the
-cases of setpoint tracking and disturbance rejection. 
+* Evaluate and compare the performance of feedback-only vs. combined
+feedforward-feedback control strategies for setpoint tracking and disturbance
+rejection.
 
-iii. To develop Matlab Simulink model for the combined feedforward-feedback
-control strategy
+* Implement the control strategies in MATLAB Simulink using the PID Tuner and
+the idealized feedforward design method.
 
 ## Process information
 
-The transfer functions for the process and disturbance are
+The process and disturbance dynamics are described by the following transfer functions:
 
 $$
 \begin{aligned}
@@ -27,50 +29,79 @@ $$
 \end{aligned}
 $${#eq-tf}
 
-## Simulation
-
-
-Develop the Simulink models for the feedback control only and
-feedforward-feedback control strategies. Design the feedback (PID) controller
-using the PID tuner app. Also, design the feedforward controller using the
-idealized method. 
-
-Evaluate the control performance for:
-
-i. Setpoint tracking
-
-ii. Disturbance rejections for both input and output disturbances
-
-A second-order model can be reduced using the Skogestad’s half rule [@skogestad2003jopc] given
-by [@eq-skogestad-half].
+To simplify controller design, the process second order model can be
+approximated using Skogestad’s half-rule [@skogestad2003jopc]:
 
 $$
-G(s)=\frac{K_p e^{-\theta_p s}}{\left(\tau_1 s+1\right)\left(\tau_2 s+1\right)} \cong \frac{K_p e^{-\theta_e s}}{\tau_1 s+1} \text { where } \tau_1>\tau_2 \text { and } \theta_e=\theta_p+\tau_2
+G(s)=\frac{K_p e^{-\theta_p s}}{\left(\tau_1 s+1\right)\left(\tau_2 s+1\right)} 
+\cong \frac{K_p e^{-\theta_e s}}{\tau_1 s+1} 
 $${#eq-skogestad-half}
+
+where $\theta_e = \theta_p + \tau_2$, and $\tau_1 > \tau_2$.
+
+## Simulation Tasks
+
+* Develop Simulink models for:
+  - Feedback-only control using a tuned PID controller.
+  - Combined feedforward-feedback control using the idealized feedforward design.
+* Evaluate both configurations for:
+  - Setpoint tracking
+  - Rejection of both input and output disturbances
 
 
 ## Report Format
 
-1) Show the MATLAB Simulink Model of the combined feedforward-feedback control
-strategy. Briefly explain the model. [2 marks]
+Your report should include the following:
 
-2) Show the PID controller and feedforward controllers (using idealized
-method). [2 marks]
+0. Submission Details
 
-3) Compare and comment on the control performances (setpoint tracking and
-disturbance rejection) of the two control strategies: (1) feedback control only,
-and (2) combined feedbackfeedforward control (idealized method). Show the plots
-of the controlled variable under the two different control strategies. [6
-marks]
+   Include a brief table at the beginning of the report with the following information:
+   - Student name(s), Student ID(s)
+   - Lab number and title
+   - Course code (CHEN4011)
+   - Date of submission 
 
-i. Does the implementation of the feedforward controller improve the setpoint
-or disturbance rejection performance?
+1. Objective and Problem Statement
 
-ii. Will the control system remain stable when subjected to the 10% modelling
-errors?
+   * Clearly describe the purpose of combining feedforward and feedback control.
+   * Briefly outline the process being controlled and its disturbance characteristics.
 
-iii. Which feedforward controller that gives the best result, based on the
-unified or idealized method?
+2. Methodology and Implementation
 
+   * Describe how each control strategy (feedback-only and feedforward-feedback) was implemented in MATLAB Simulink.
+   * Include screenshots of the Simulink models with relevant annotations.
+   * Explain PID tuning and derivation of the feedforward controller (idealized method).
+
+3. Results
+
+   * Show the system response for both control strategies under:
+
+     * Setpoint tracking
+     * Input and output disturbance rejection
+   * Include well-labeled plots and relevant performance data.
+
+4. Analysis and Discussion
+
+   * Compare and interpret the performance of the two strategies.
+   * Discuss:
+
+     * Improvement due to feedforward
+     * Impact of ±10% model mismatch
+     * Which feedforward design (idealized vs. unified) might perform better
+
+5. Conclusion
+
+   * Summarize your key findings.
+   * Reflect on the practical implications of your results.
+
+## Assessment Rubric (20 Marks Total)
+
+|No | Section | Marks | Evaluation basis|
+|-|-|-|-|
+| 1.| Objectives & Problem| 2| Clarity of problem definition and articulation of objectives|
+| 2.| Methodology and Implementation | 4 | Correctness and clarity of Simulink models; explanation of PID and feedforward controller|
+| 3.| Results | 4| Quality, relevance, and labeling of plots; completeness of performance data|
+| 4.| Analysis and Discussion | 6| Insightful interpretation; answers to robustness, performance, and design method comparisons |
+| 5.| Conclusion and Presentation | 4| Coherent summary; quality of writing, formatting, and visual presentation |
 
 ### References
