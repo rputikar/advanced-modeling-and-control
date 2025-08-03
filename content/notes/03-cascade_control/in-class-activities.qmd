@@ -4,7 +4,7 @@ subtitle: In class activities
 date: 2023-08-06
 format:
   pdf
-date-modified: 2024-08-04
+date-modified: 2025-08-03
 ---
 
 ## Activities
@@ -26,6 +26,38 @@ date-modified: 2024-08-04
 ![Furnace](../../../assets/images/cascade-control-in-class-furnace-temperature-control.png){#fig-furnace}
 
 :::
+
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+### Single loop feedback
+
+* Controlled Variable (CV): Outlet temperature of the process fluid.
+* Manipulated Variable (MV): Fuel valve position.
+* Controller: Temperature controller adjusts the fuel flow to maintain setpoint.
+
+![Furnace simple feedback control](../../../assets/images/03-cascade-control-furnace-temperature-control.svg){#fig-furnace-feedback}
+
+### Disturbances
+- Fuel pressure variations
+- Process fluid flow rate changes
+- Process fluid inlet temperature changes
+- Variations in fuel quality (e.g., calorific value changes)
+- Air-to-fuel ratio fluctuations
+- Burner dynamics or fouling (burner efficiency).
+- Heat exchanger fouling
+- Process fluid composition changes
+
+### Cascade
+- Primary disturbance handled: Fuel pressure variations
+- Possible inner loop alternative: Flue gas temperature. It is slower than the pressure controller. However, it can be used to correct changes in heating value. If the fuel becomes leaner, the flue gas temp will drop, and the inner loop will increase fuel flow to compensate.
+
+![Furnace cascade control](../../../assets/images/03-cascade-control-furnace-temperature-cascade-control.svg){#fig-furnace-cascade}
+
+:::
+:::
+
 
 
 {{< pagebreak >}}
@@ -55,6 +87,15 @@ date-modified: 2024-08-04
 
 :::
 
+<!-- ::: {.content-visible when-format="html"} -->
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Solution -->
+<!---->
+<!---->
+<!-- ::: -->
+<!-- ::: -->
+<!---->
+
 
 {{< pagebreak >}}
 
@@ -78,6 +119,15 @@ date-modified: 2024-08-04
 ![Level control](../../../assets/images/cascade-control-in-class-feedback-level-control.png)
 
 :::
+
+<!-- ::: {.content-visible when-format="html"} -->
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Solution -->
+<!---->
+<!---->
+<!-- ::: -->
+<!-- ::: -->
+<!---->
 
 
 {{< pagebreak >}}
@@ -104,6 +154,15 @@ date-modified: 2024-08-04
 
 :::
 
+<!-- ::: {.content-visible when-format="html"} -->
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Solution -->
+<!---->
+<!---->
+<!-- ::: -->
+<!-- ::: -->
+<!---->
+
 
 {{< pagebreak >}}
 
@@ -129,6 +188,15 @@ date-modified: 2024-08-04
 
 6. Simulate the system in 5 using simulink
 
+<!-- ::: {.content-visible when-format="html"} -->
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Solution -->
+<!---->
+<!---->
+<!-- ::: -->
+<!-- ::: -->
+<!---->
+
 
 {{< pagebreak >}}
 
@@ -152,6 +220,15 @@ date-modified: 2024-08-04
    $${#eq-p6-process}
 
 8. Simulate the system in 7 using simulink. 
+
+<!-- ::: {.content-visible when-format="html"} -->
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Solution -->
+<!---->
+<!---->
+<!-- ::: -->
+<!-- ::: -->
+<!---->
 
 
 {{< pagebreak >}}
@@ -182,5 +259,14 @@ date-modified: 2024-08-04
 ![Distillation column top](../../../assets/images/cascade-control-in-class-distillation-column.png)
 
 :::
+
+<!-- ::: {.content-visible when-format="html"} -->
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Solution -->
+<!---->
+<!---->
+<!-- ::: -->
+<!-- ::: -->
+<!---->
 
 
