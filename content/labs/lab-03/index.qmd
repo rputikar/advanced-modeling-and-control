@@ -3,72 +3,111 @@ title: "Lab 03: Override Control"
 date: 2023-08-13
 format:
   pdf
-date-modified: 2024-07-05
+date-modified: 2025-08-09
 ---
 
 ## Objectives
 
-1. To demonstrate the application of a Low Select (LS) control strategy for
-   protecting heat exchanger tube from overheating due to excessive heating.
+i. To demonstrate the application of a Low Select (LS) override control strategy for protecting a heat exchanger tube from overheating due to excessive heating.  
+ii. To develop a MATLAB Simulink model for the LS control strategy and evaluate its performance under different process variations.
 
-2. To develop MATLAB Simulink model for the LS control strategy
+## Process Information {#sec-process-information}
 
-## Problem Statement {#sec-process-information}
+A process fluid is heated using steam in a heat exchanger.
 
-A process fluid is heated using steam in a heat exchanger. 
+If the process fluid flow rate suddenly increases, there will be a large drop in the process fluid temperature $T$. To bring the temperature back to its setpoint, the heat transfer to the process fluid must be increased. Since $U$ (overall heat transfer coefficient) and $A$ (heat exchanger area) are fixed, the only way to increase $Q$ is by increasing $T_s$ (tube skin temperature).  
 
-If the process fluid flow rate is suddenly increased, there will
-be a large drop in the process fluid temperature T. To bring back the
-temperature to a setpoint, the heat transfer to the process fluid has to be
-increased. Since U and A are fixed, then the only way for Q to increase is that
-T~s~ (tube skin temperature) has to be increase. The danger is that increase in
-T~s~ beyond a maximum limit (depending on the tube material) will cause
-the tube be damage by overheating. Therefore, to prevent this situation, an
-override control is needed. 
+However, if $T_s$ rises above a maximum allowable limit (depending on the tube material), the tube may be damaged due to overheating. To prevent this, an override control strategy is used, where the LS block selects the lower of two control signals, one from the process fluid temperature controller and one from the tube skin temperature controller, to prevent overheating.
 
 ![Heat transfer in a heat exchanger](../../../assets/images/PID-enhancements-lab-1.png){#fig-1}
 
-Consider the following two transfer function below, which represent the process
-fluid and the heat exchanger tube temperatures. The LS control strategy is used
-to protect the heat exchanger tube from overheating in the face of an excessive
-flow rate of steam into the heat exchanger.
-
-Process fluid temperature transfer function
+### Process fluid temperature transfer function
 
 $$
-G_p(s) = \frac{4 \exp (-2 s)}{(7 s+1)}
-$${#eq-process}
+G_p(s) = \frac{4 \exp (-2 s)}{7 s + 1}
+$${#eq-process-fluid}
 
-Heat exchange tube temperature transfer function:
+### Heat exchanger tube temperature transfer function
 
 $$
-G_e(s) = \frac{3 \exp (-1.5 s)}{(6 s+1)}
-$${#eq-process}
+G_e(s) = \frac{3 \exp (-1.5 s)}{6 s + 1}
+$${#eq-tube-temp}
 
-Assume that at the steady-state condition, the nominal values for the process
-fluid and exchanger tube temperatures are 300°C and 350°C. The maximum
-allowable skin temperature is 400°C.
+At steady-state:
+- Process fluid temperature = 300°C  
+- Tube skin temperature = 350°C  
+- Maximum allowable tube skin temperature = 400°C  
+
+## Methodology
+
+1. Model Development  
+   - Create a MATLAB Simulink model for the LS control strategy.  
+   - Implement two controllers:
+     - Process fluid temperature controller
+     - Tube skin temperature controller  
+   - The LS block selects the lower output to prevent overheating.
+
+2. Simulation Cases  
+   - Nominal operation: Observe the system response to setpoint changes in process fluid temperature.
+   - High steam flow rate: Simulate a rapid increase in steam flow rate causing potential overheating.
+   - Process gain variation: Change the process gain of $G_e(s)$ by +10% and -10%.
+   - Process time constant variation: Change the time constant of $G_p(s)$ by +10% and -10%.
 
 ## Report Format
 
-The report should be no more than 5 pages excluding the cover page.
+Your report (5 pages maximum) should include the following:
 
-The report should cover the following:
+0. Submission Details
 
-1. Provide the MATLAB Simulink model and a clear explanation about the model,
-   e.g., what factor/s can you simulate. [3 marks]
+Include a brief table at the beginning of the report with the following information:
 
-2. Answer the following questions:
+|||||
+|-|-|-|-|
+| Lab Title: | Lab 01 – Feedforward Control | Student Name | ID       |
+| Unit:      | CHEN4011                     | Student 1    | 12345678 |
+| Date:      | 12 August 2025               | Student 2    | 87654321 |
 
-	1. Explain under what (possible condition) the LS control will choose the
-	   command from the tube temperature controller? [2 marks]
-	   
-   2. Discuss what will happen if the process gain of the tube temperature
-      transfer function changes, e.g., increases by 10% or decreases by 10%?
-      [2.5 marks]
+1. Objective & Problem Statement
 
-   3. Discuss what will happen if the process time constant of the process
-      fluid temperature transfer function changes, e.g., increases by 10% or
-      decreases by 10%? [2.5 marks]
+   Briefly describe the LS control strategy and its purpose in preventing heat exchanger damage.
 
+2. Methodology & Implementation
+
+   - Provide a Simulink diagram of the LS control strategy.
+   - Explain the roles of both temperature controllers.
+   - Describe how the LS block operates in the model.
+
+3. Results
+
+   - Show the system responses for:
+     - Setpoint tracking
+     - Tube skin temperature protection under excessive heating
+   - Include well-labeled plots for:
+     - Nominal operation
+     - High steam flow rate disturbance
+     - Process gain ±10% for $G_e(s)$
+     - Process time constant ±10% for $G_p(s)$
+   - Summarize relevant performance metrics (IAE, overshoot, settling time).
+
+4. Analysis and Discussion
+
+   Address the following:
+   - Under what conditions does the LS controller select the tube skin temperature controller’s output?
+   - How does a ±10% change in the gain of $G_e(s)$ affect performance and protection?
+   - How does a ±10% change in the time constant of $G_p(s)$ affect system performance?
+   - Quantitatively compare performance metrics between nominal and altered conditions.
+
+5. Conclusion
+   - Summarize your findings on LS override control effectiveness.
+   - Discuss practical applications in industrial safety control.
+
+## Assessment Rubric (20 Marks Total)
+
+| No | Section                        | Marks | Evaluation basis                                                                 |
+|-|---|-|-------|
+| 1. | Objectives & Problem           | 2     | Clarity of problem definition; articulation of objectives                        |
+| 2. | Methodology and Implementation | 4     | Correctness and clarity of Simulink model; explanation of LS control strategy    |
+| 3. | Results                        | 4     | Quality, relevance, and labeling of plots; completeness of performance data      |
+| 4. | Analysis and Discussion        | 6     | Insightful interpretation; robustness; impact of process variations              |
+| 5. | Conclusion and Presentation    | 4     | Coherent summary; quality of writing, formatting, and visual presentation        |
 
