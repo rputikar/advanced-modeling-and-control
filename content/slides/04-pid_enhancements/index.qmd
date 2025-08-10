@@ -1,7 +1,7 @@
 ---
 title: "Other advanced control techniques"
 format: revealjs
-date-modified: 2024-08-11
+date-modified: 2025-08-10
 ---
 
 ## Outline
@@ -102,7 +102,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 :::
 :::{.column width=50%}
 
-![](../../../assets/images/tank_with_pump.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-tank-with-pump.png){width=90%}
 
 
 :::
@@ -114,7 +114,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 ::::{.columns}
 :::{.column width=50%}
 
-![](../../../assets/images/tank_with_pump_level_control.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-tank-with-pump-level-control.png){width=90%}
 
 :::
 :::{.column width=50%}
@@ -160,7 +160,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 :::
 :::{.column width=50%}
 
-![](../../../assets/images/vapor_liquid_separator.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-vapor-liquid-separator.png){width=90%}
 :::
 ::::
 
@@ -180,13 +180,13 @@ What kind of accidents that can be triggered by the unsafe condition?
 :::
 :::{.column width=50%}
 
-![](../../../assets/images/vapor_liquid_separator_at_control.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-vapor-liquid-separator-at-control.png){width=90%}
 :::
 ::::
 
 ## Environmental protection
 
-![](../../../assets/images/vapor_liquid_separator_complete_control.png){width=60%}
+![](../../../assets/images/04-PID-enhancements-vapor-liquid-separator-complete-control.png){width=60%}
 
 
 ## Smooth operations: distillation column
@@ -208,7 +208,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 :::
 :::{.column width=50%}
 
-![](../../../assets/images/distillation_column.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-distillation-column.png){width=90%}
 
 :::
 ::::
@@ -234,7 +234,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 :::
 :::{.column width=50%}
 
-![](../../../assets/images/tank_with_pump_level_control.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-tank-with-pump-level-control.png){width=90%}
 
 ::: {.callout-note appearance='simple'}
   - Which are hard constraints?
@@ -246,7 +246,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 
 ## Operating constraints
 
-![](../../../assets/images/vapor_liquid_separator_complete_control.png){width=50%}
+![](../../../assets/images/04-PID-enhancements-vapor-liquid-separator-complete-control.png){width=50%}
 
 - Which are hard constraints?
 - Which are soft constraints?
@@ -268,7 +268,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 
 ## Effect of Deadtime on Control Performance
 
-![](../../../assets/images/effect_of_deadtime_on_control_performance.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-effect-of-deadtime-on-control-performance.png){width=90%}
 
 ## Smith predictor
 
@@ -311,7 +311,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 
 ## Inferential temperature control for distillation columns
 
-![](../../../assets/images/inferential_control_distillation_column.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-inferential-temperature-control-distillation-column.png){width=90%}
 
 ## Choosing a proper tray temperature location
 
@@ -319,7 +319,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 :::{.column width=60%}
 
 
-![](../../../assets/images/tray_temp_location.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-tray-temp-location.png){width=90%}
 
 :::
 :::{.column .pad width=40%}
@@ -344,7 +344,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 :::{.column width=60%}
 
 
-![](../../../assets/images/comp_temp_correlation.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-comp-temp-correlation.png){width=90%}
 
 :::
 :::{.column .pad width=40%}
@@ -367,7 +367,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 :::
 
 :::{.pad100}
-![](../../../assets/images/feedback_correction_for_feed_comp_changes.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-feedback-correction-feed-composition-change.png){width=50%}
 :::
 
 * The inferential T controller is now a slave to the composition controller
@@ -381,7 +381,7 @@ What kind of accidents that can be triggered by the unsafe condition?
 :::{.column width=50%}
 
 
-![](../../../assets/images/packed_bed_reactor.png){width=40%}
+![](../../../assets/images/04-PID-enhancements-packed-bed-reactor.png){width=40%}
 
 :::
 :::{.column .pad width=50%}
@@ -417,7 +417,7 @@ $$
 :::
 
 :::{.pad100}
-![](../../../assets/images/polymer_mwd.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-polymer-mwd.png){width=90%}
 :::
 
 :::{.pad}
@@ -444,11 +444,11 @@ $$
 :::
 :::{.column width=50%}
 
-![](../../../assets/images/heat_exchanger_control.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-heat-exchanger-control.png){width=90%}
 
 
 ![Open-Loop response for a heat exchanger for different feed
-rates.](../../../assets/images/heat_exchanger_open_loop_response.png){width=90%}
+rates.](../../../assets/images/04-PID-enhancements-heat-exchanger-open-loop-response.png){width=90%}
 
 :::
 ::::
@@ -456,7 +456,7 @@ rates.](../../../assets/images/heat_exchanger_open_loop_response.png){width=90%}
 
 ## Effect of scheduling controller tuning
 
-![](../../../assets/images/heat_exchanger_control_response.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-heat-exchanger-control-response.png){width=90%}
 
 A nonscheduled controller that was tuned for v = 7 ft/sec after the feed rate is
 changed to v = 4 ft/sec and a scheduled controller for the same upset.
@@ -481,7 +481,7 @@ changed to v = 4 ft/sec and a scheduled controller for the same upset.
 :::
 :::{.column width=60%}
 
-![](../../../assets/images/furnace_tube_temp_control.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-furnace-tube-temp-control.png){width=90%}
 
 * Furnace tube temperature constraint control
   - Two T controls: Tube T; Process fluid T
@@ -521,7 +521,7 @@ changed to v = 4 ft/sec and a scheduled controller for the same upset.
 
 :::{.pad100}
 :::
-![](../../../assets/images/furnace_tube_temp_control.png){width=90%}
+![](../../../assets/images/04-PID-enhancements-furnace-tube-temp-control.png){width=90%}
 
 :::
 ::::
@@ -530,7 +530,7 @@ changed to v = 4 ft/sec and a scheduled controller for the same upset.
 ## Column flooding constraint control
 
 ![Controllers - AC: bottom purity;  DPC: vapor
-flow](../../../assets/images/column_flooding_constraint_control.png){width=90%
+flow](../../../assets/images/04-PID-enhancements-column-flooding-constraint-control.png){width=90%
 .pad}
 
 * ΔP proportional to vapor flow. Higher ΔP means higher vapor flow across the
@@ -546,7 +546,7 @@ flow](../../../assets/images/column_flooding_constraint_control.png){width=90%
 ::::{.columns}
 :::{.column width=60%}
 ![Controllers - AC: bottom purity;  DPC: vapor
-flow](../../../assets/images/column_flooding_constraint_control.png){width=90%
+flow](../../../assets/images/04-PID-enhancements-column-flooding-constraint-control.png){width=90%
 .pad}
 
 
@@ -570,7 +570,7 @@ flow](../../../assets/images/column_flooding_constraint_control.png){width=90%
 ## Controlling multiple constraints
 
 ![Controllers - AC: bottom purity;  TC: bottom temperature; DPC: vapor
-flow](../../../assets/images/controlling_multiple_constraints.png){width=90%}
+flow](../../../assets/images/04-PID-enhancements-controlling-multiple-constraints.png){width=90%}
 
 * DPC will be active if excessive vapor flow occurs under sudden increase in
   feed flow.
@@ -583,19 +583,19 @@ flow](../../../assets/images/controlling_multiple_constraints.png){width=90%}
 
 ## Hot spot temperature control
 
-![](../../../assets/images/hotspot_temp_control.png){width=90% .pad}
+![](../../../assets/images/04-PID-enhancements-hotspot-temp-control.png){width=90% .pad}
 
 * Can be used to control the maximum temperature in a fixed-bed reactor
 * Maximum reactor temperature occurs at different locations in the reactor
 
 ## Cross-limiting firing controls
 
-![](../../../assets/images/cross_limit_firing_control.png){width=90% .pad}
+![](../../../assets/images/04-PID-enhancements-cross-limit-firing-control.png){width=90% .pad}
 
 
 ## Firing rate increase
 
-![](../../../assets/images/cross_limit_firing_control_rate_increase.png){width=90% .pad}
+![](../../../assets/images/04-PID-enhancements-cross-limit-firing-control-rate-increase.png){width=90% .pad}
 
 * HS ensures setpoint for air flow controller increases immediately.
 * Then LS sends signal to fuel controller as its setpoint.
@@ -603,7 +603,7 @@ flow](../../../assets/images/controlling_multiple_constraints.png){width=90%}
 
 ## Firing rate decrease
 
-![](../../../assets/images/cross_limit_firing_control_rate_decrease.png){width=90% .pad}
+![](../../../assets/images/04-PID-enhancements-cross-limit-firing-control-rate-decrease.png){width=90% .pad}
 
 * LS ensures setpoint for fuel controller decreases immediately.
 * Then HS sends the signal to air flow controller as its setpoint.
@@ -613,7 +613,7 @@ flow](../../../assets/images/controlling_multiple_constraints.png){width=90%}
 
 ::::{.columns}
 :::{.column width=60%}
-![](../../../assets/images/cross_limit_firing_control.png){width=90% .pad}
+![](../../../assets/images/04-PID-enhancements-cross-limit-firing-control.png){width=90% .pad}
 
 :::
 
@@ -637,7 +637,7 @@ flow](../../../assets/images/controlling_multiple_constraints.png){width=90%}
 
 ## Override control
 
-![](../../../assets/images/override_control.png){width=90% .pad}
+![](../../../assets/images/04-PID-enhancements-override-control.png){width=90% .pad}
 
 * Select control to maintain bottom product purity when a maximum reboiler
   constraint is encountered.
