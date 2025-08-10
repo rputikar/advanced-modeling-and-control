@@ -1,5 +1,5 @@
 ---
-title: "Cascade control"
+title: "Other Advanced Control Techniques"
 subtitle: In class activities
 date: 2023-08-13
 format:
@@ -7,8 +7,23 @@ format:
 resources:
    - "./PI_without_gain_scheduler.slx"
    - "./PI_with_gain_scheduler.slx"
-date-modified: 2024-08-11
+   - "./problem_4_1_pure_feedback.slx"
+   - "./problem_4_1_smith_predictor.slx"
+date-modified: 2025-08-10
 ---
+
+```{python}
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import control as ctrl
+import scipy as sp
+from scipy.optimize import minimize
+from scipy import signal
+from IPython.display import display, Markdown
+plt.style.use('../../../assets/templates/present.mpstyle')
+```
+
 
 ## Activities
 
@@ -29,6 +44,21 @@ date-modified: 2024-08-11
 
 2. Design a Smith predictor for problem 1. 
 
+   Use [problem_4_1_pure_feedback.slx](./problem_4_1_pure_feedback.slx) as a starting point. 
+
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+   [problem_4_1_pure_feedback.slx](./problem_4_1_pure_feedback.slx). 
+
+   [problem_4_1_smith_predictor](./problem_4_1_smith_predictor.slx). 
+
+:::
+:::
+
+{{< pagebreak >}}
+
 3. It is desired to control the size distribution of crystals produced in
    vacuum continuous crystallizer, but it’s very difficult to measure i.e.
    requires lengthy lab test. Some experiment suggest that crystal size
@@ -40,6 +70,48 @@ date-modified: 2024-08-11
    1. Suggest an inferential control technique for crystal size distribution
    2. Show the schematic of the control strategy. Comment on the effectiveness
       of the strategy.
+
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+Use an inferential (soft‑sensor) MPC that estimates key crystal size metrics
+from easily measured variables, then controls them.
+
+Primary CV: median size $d_{50}$. Additionally, the CoV (coefficient of variance)
+of the crystal size distribution (CSD) can also be calculated. 
+
+Build a soft sensor to estimate $d_{50}$ and CoV from $q$ (stirrer speed), $T$
+(magma temperature), $S=C-C_s(T)$ (supersaturation), and $\rho$ (mother‑liquor
+density). The soft sensor can be built using a data driven model or a
+mechanistic first principles model. 
+
+Manipulated variables: 
+  * coolant or steam valve that sets temperature, hence $C_s(T)$ and $S$
+  * vacuum or condenser duty that sets boiling rate and $T$
+  * seed addition rate or seed PSD
+  * feed concentration or solvent/antisolvent addition that sets $C$ and $\rho$
+  * agitator speed $q$ within mechanical limits
+
+Disturbance variables: feed rate, impurities, mother‑liquor recycle.
+
+Control strategy: 
+
+- Tight PID feedback loops for T, P, and q. 
+- MPC is used to adjust the setpoint
+- Optionally, a additional control loop on $\rho$ via solvent/ purge flow rate control. 
+
+Limitations:
+
+- Model mismatch
+- Sensor quality/ accuracy
+- Requires periodic lab data for bias correction
+
+:::
+:::
+
+
+{{< pagebreak >}}
 
 4. Consider two inferential model for the prediction of distillation top
    impurity fraction xD and a tray temperature T as follows: Reduction in the
@@ -55,7 +127,67 @@ date-modified: 2024-08-11
    would be the setpoint to the inferential tray temperature controller?
    Explain how you would determine the appropriate setpoint value.
 
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
 
+```{python}
+
+# Define range of xD (impurity fraction in distillate)
+xD = np.linspace(0, 0.1, 100)
+
+# Temperature models
+T_reduction = 60 + 9.5 * xD         # Reduction in heavy key fraction by 10%
+T_increase = 60.1 + 11.8 * xD       # Increase in heavy key fraction by 10%
+
+# Plotting
+plt.plot(xD, T_reduction, label="Heavy key reduced by 10%", color='#65489d')
+plt.plot(xD, T_increase, label="Heavy key increased by 10%", color='#0d5e5e')
+
+# Highlight the impurity limit (xD = 0.05)
+x_limit = 0.05
+
+t1 = 60 + 9.5 * x_limit
+t2 = 60.1 + 11.8 * x_limit
+
+# plt.axvline(x=x_limit, color='gray', linestyle='--', label=f"Impurity limit xD = {x_limit:.2f}")
+
+plt.vlines(x=x_limit, ymin=60, ymax=61.5, 
+           color='gray', ls='--', 
+           label=f"Impurity limit xD = {x_limit:.2f}")
+
+# plt.axhline(y=t1, color='gray', linestyle=':', label=f"Set point limit T = {t1:.1f}°C")
+
+plt.hlines(y=t1, xmin=0, xmax=x_limit, 
+           color='gray', ls=':', 
+           label=f"Set point limit T = {t1:.1f} °C")
+
+plt.scatter(x_limit, 60 + 9.5 * x_limit, color='#65489d')
+plt.scatter(x_limit, 60.1 + 11.8 * x_limit, color='#0d5e5e')
+
+# Acceptable range annotation
+plt.annotate("acceptable range", 
+             xy=(0.025, 61.25),  # midpoint of the range
+             ha='center', color='#388ecc')
+
+# Labels and title
+plt.xlabel("Distillate impurity fraction, $x_D$")
+plt.ylabel("Tray temperature, $T$ (°C)")
+plt.xlim([0, 0.1])
+plt.ylim([60, 62])
+plt.yticks(np.arange(60.0, 62.01, 0.5))
+plt.legend()
+# plt.grid(True)
+
+plt.show()
+
+```
+
+:::
+:::
+
+
+{{< pagebreak >}}
 
 5. **Gain Scheduling**: 
    For the furnace shown in @fig-furnace, show a schematic control strategy
@@ -72,6 +204,18 @@ date-modified: 2024-08-11
 ![Furnace](../../../assets/images/cascade-control-in-class-furnace-temperature-control.png){#fig-furnace}
 
 :::
+
+
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+![Furnace gain scheduling](../../../assets/images/04-PID-enhancements-furnace-gain-scheduling.png){#fig-furnace-gain-scheduling}
+:::
+:::
+
+
+{{< pagebreak >}}
 
 6. A cold process fluid is heated up in a shell-and-tube heat exchanger using
    steam. At the nominal process feed flow rate, the transfer function of the
@@ -128,6 +272,20 @@ date-modified: 2024-08-11
    Evaluate the controller performance. Simulink file for problem
    implementation without gain scheduling is given [here](./PI_without_gain_scheduler.slx).
 
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+[PI without gain scheduling](./PI_without_gain_scheduler.slx). 
+
+[PI with gain scheduling](./PI_with_gain_scheduler.slx). 
+
+:::
+:::
+
+
+{{< pagebreak >}}
+
 7. **Reactor-Furnace-Distillation System**:
 
    For RFD system shown in @fig-rfd, draw the schematic of LS control strategy
@@ -148,4 +306,12 @@ date-modified: 2024-08-11
 
 :::
 
- 
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+![Reactor-Furnace-Distillation system low select control](../../../assets/images/04-PID-enhancements-RFD-low-select.png){#fig-rfd-low-select}
+:::
+:::
+
+

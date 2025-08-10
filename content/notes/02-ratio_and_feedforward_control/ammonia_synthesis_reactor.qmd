@@ -1,7 +1,7 @@
 ---
 title: "Ratio control: Ammonia synthesis reactor"
 date: 2023-07-26
-date-modified: 2024-07-05
+date-modified: 2025-08-10
 ---
 
 ## Example 15.1 from [@seborg2016]
@@ -30,14 +30,30 @@ signals.
 
 ::: {.content-visible when-format="html"}
 
-![Ammonia synthesis reactor](../../../assets/images/feedforward-and-ratio-control-NH3-synthesis-reactor.png){#fig-nh3-synthesis width=60%}
+![Ammonia synthesis reactor](../../../assets/images/02-ratio-and-feedforward-control-NH3-synthesis-reactor.png){#fig-nh3-synthesis width=60%}
 
 :::
 
 ::: {.content-visible unless-format="html"}
 
-![Ammonia synthesis reactor](../../../assets/images/feedforward-and-ratio-control-NH3-synthesis-reactor.png){#fig-nh3-synthesis}
+![Ammonia synthesis reactor](../../../assets/images/02-ratio-and-feedforward-control-NH3-synthesis-reactor.png){#fig-nh3-synthesis}
 
+:::
+
+
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+![Ammonia synthesis reactor ratio control](../../../assets/images/02-ratio-and-feedforward-control-NH3-synthesis-reactor-ratio-control.png){#fig-nh3-synthesis-ratio-control}
+
+The desired stoichiometric ratio of $N_2$ to $H_2$ is 1/3. Therefore
+
+$$
+K_R = \left( \frac{1}{3} \right) \left( \frac{30 \text{l/min}}{15 \text{l/min}}\right) = \frac{2}{3}
+$$
+
+:::
 :::
 
 

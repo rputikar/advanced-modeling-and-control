@@ -4,7 +4,7 @@ subtitle: In class activities
 date: 2023-07-30
 format:
   pdf
-date-modified: 2025-07-28
+date-modified: 2025-08-10
 ---
 
 ## Activities
@@ -13,13 +13,13 @@ date-modified: 2025-07-28
 
 ::: {.content-visible when-format="html"}
 
-![Boiler drum](../../../assets/images/feedforward-and-ratio-control-boiler-drum.png){#fig-boiler-drum width=70%}
+![Boiler drum](../../../assets/images/02-ratio-and-feedforward-control-boiler-drum.png){#fig-boiler-drum width=70%}
 
 :::
 
 ::: {.content-visible unless-format="html"}
 
-![Boiler drum](../../../assets/images/feedforward-and-ratio-control-boiler-drum.png){#fig-boiler-drum}
+![Boiler drum](../../../assets/images/02-ratio-and-feedforward-control-boiler-drum.png){#fig-boiler-drum}
 
 :::
 
@@ -30,14 +30,31 @@ date-modified: 2025-07-28
 
    c. What are the drawbacks of this system?
 
-<!-- ::: {.content-visible when-format="html"} -->
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ## Solution -->
-<!---->
-<!---->
-<!-- ::: -->
-<!-- ::: -->
-<!---->
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+Controlled variable: Boiler drum liquid level.
+
+Manipulated variable: Feedwater flow, via the feedwater control valve or pump
+speed.
+
+Major disturbances: Steam demand, furnace heat input, drum
+pressure changes, feedwater pressure or temperature changes, and blowdown flow.
+
+![Boiler drum simple feedback control](../../../assets/images/02-ratio-and-feedforward-control-feedback-boiler-drum.png){#fig-feedback-boiler-drum width=70%}
+
+Drawbacks of this simple system:
+
+- Poor rejection of steam flow disturbances. A sudden increase in steam demand
+  lowers level before the controller reacts.
+
+- Shrink and swell effects. Pressure and boiling changes cause apparent level
+  changes that mislead the controller.
+
+:::
+:::
+
 
 {{< pagebreak >}}
 
@@ -48,15 +65,48 @@ date-modified: 2025-07-28
 
 ::: {.content-visible when-format="html"}
 
-![Heat exchanger](../../../assets/images/heat-exchanger-with-reactor.png){#fig-hx-reactor width=70%}
+![Heat exchanger](../../../assets/images/02-ratio-and-feedforward-control-heat-exchanger-with-reactor.png){#fig-hx-reactor width=70%}
 
 :::
 
 ::: {.content-visible unless-format="html"}
 
-![Heat exchanger](../../../assets/images/heat-exchanger-with-reactor.png){#fig-hx-reactor}
+![Heat exchanger](../../../assets/images/02-ratio-and-feedforward-control-heat-exchanger-with-reactor.png){#fig-hx-reactor}
 
 :::
+
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+Objective: keep outlet temperature at setpoint by manipulating steam flow.
+
+Controlled variable: Outlet temperature, $T_{out}$.
+
+Manipulated variable: Steam flow to the exchanger.
+
+Important disturbances:
+
+- Feed (inlet) flow rate, $F_{in}$.
+- Feed (inlet) temperature, $T_{in}$.
+- Product draw‑off flow changes (level control actions).
+- Steam supply pressure/temperature to the valve.
+- Exchanger fouling or changes in overall $UA$.
+- Condensate backpressure or trap performance.
+- Pump/recirculation rate variations.
+- Ambient heat losses and property changes ($C_p$, $\rho$).
+
+
+Target disturbance for feedforward:
+
+- The dominant, measurable load changes: inlet flow $F_{in}$ and inlet temperature $T_{in}$. 
+  Use them to compute the needed steam flow setpoint
+
+![Heat exchanger feedback feedforward control](../../../assets/images/02-ratio-and-feedforward-control-heat-exchanger-feedback-feedforward.png){#fig-hx-reactor-feedback-feedforward}
+
+:::
+:::
+
 
 
 {{< pagebreak >}}
@@ -65,13 +115,13 @@ date-modified: 2025-07-28
  
 ::: {.content-visible when-format="html"}
 
-![Blending system](../../../assets/images/blending-schematic.png){#fig-blend-system width=70%}
+![Blending system](../../../assets/images/02-ratio-and-feedforward-control-blending.png){#fig-blend-system width=70%}
 
 :::
 
 ::: {.content-visible unless-format="html"}
 
-![Blending system](../../../assets/images/blending-schematic.png){#fig-blend-system}
+![Blending system](../../../assets/images/02-ratio-and-feedforward-control-blending.png){#fig-blend-system}
 
 :::
 
@@ -86,6 +136,41 @@ date-modified: 2025-07-28
   e. Propose a strategy to control composition when inlet flowrate $w_2$ is fluctuating 
 
   f. propose a feedforward feedback control strategy
+
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+  a. Identify controlled variable
+
+   - Outlet composition x
+
+  b. Manipulated variable
+
+   - the flow of stream 2, w2
+
+  c. Disturbance
+
+   - Stream‑1 flow and composition, w1 and x1
+   - Stream‑2 composition x2 (and sometimes w2 if it is not the MV)
+   - Density or temperature changes that affect analyzer or flowmeters
+
+  d. Propose a feedforward strategy to control outlet composition
+
+![Blending system feedforward strategy](../../../assets/images/02-ratio-and-feedforward-control-feedforward-blending.png){#fig-blend-system-feedforward}
+
+  e. Propose a strategy to control composition when inlet flowrate $w_2$ is fluctuating 
+
+![Blending system feedback strategy](../../../assets/images/02-ratio-and-feedforward-control-feedback-blending.png){#fig-blend-system-feedback}
+
+  f. propose a feedforward feedback control strategy
+
+![Blending system feedforward-feedback strategy](../../../assets/images/02-ratio-and-feedforward-control-feedback-feedforward-blending.png){#fig-blend-system-feedforward-feedback}
+
+
+:::
+:::
+
 
 
 {{< pagebreak >}}
@@ -107,6 +192,16 @@ date-modified: 2025-07-28
 7. Draw a combined feedforward-feedback PID for [@fig-boiler-drum]. Implement
    feedforward-feedback system in simulink. 
 
+<!-- ::: {.content-visible when-format="html"} -->
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Solution -->
+<!---->
+<!---->
+<!-- ::: -->
+<!-- ::: -->
+<!---->
+
+
 8. Consider the following process and disturbance transfer functions:
 
    $$ \text { Process: } G_p(s)=\frac{2 \exp (-4 s)}{15 s+1} $${#eq-7-gp}
@@ -121,6 +216,16 @@ date-modified: 2025-07-28
    ii.	Obtain a feedforward controller and PID controller for the process
    above using the unified feedforward-feedback control method.
 
+<!-- ::: {.content-visible when-format="html"} -->
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Solution -->
+<!---->
+<!---->
+<!-- ::: -->
+<!-- ::: -->
+<!---->
+
+
 9. [Ratio control for ammonia synthesis reactor](./ammonia_synthesis_reactor.qmd).  
 
 {{< pagebreak >}}
@@ -133,15 +238,26 @@ date-modified: 2025-07-28
  
 ::: {.content-visible when-format="html"}
 
-![Furnace](../../../assets/images/furnace-ratio-control.png){#fig-furnace width=70%}
+![Furnace](../../../assets/images/02-ratio-and-feedforward-control-furnace-ratio-control.png){#fig-furnace width=70%}
 
 :::
 
 ::: {.content-visible unless-format="html"}
 
-![Furnace](../../../assets/images/furnace-ratio-control.png){#fig-furnace}
+![Furnace](../../../assets/images/02-ratio-and-feedforward-control-furnace-ratio-control.png){#fig-furnace}
 
 :::
+
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+![Furnace ratio control](../../../assets/images/02-ratio-and-feedforward-control-furnace-ratio-control-solution.png){#fig-furnace-ratio-control}
+
+:::
+:::
+
+
 
 {{< pagebreak >}}
 
@@ -152,15 +268,26 @@ date-modified: 2025-07-28
 
 ::: {.content-visible when-format="html"}
 
-![Wastewater treatment tank](../../../assets/images/wastewater-ph-neutralization-schematic.png){#fig-wastewater width=70%}
+![Wastewater treatment tank](../../../assets/images/02-ratio-and-feedforward-control-wastewater-ph-neutralization.png){#fig-wastewater width=70%}
 
 :::
 
 ::: {.content-visible unless-format="html"}
 
-![Wastewater treatment tank](../../../assets/images/wastewater-ph-neutralization-schematic.png){#fig-wastewater}
+![Wastewater treatment tank](../../../assets/images/02-ratio-and-feedforward-control-wastewater-ph-neutralization.png){#fig-wastewater}
 
 :::
+
+::: {.content-visible when-format="html"}
+::: {.callout-tip collapse="true"}
+## Solution
+
+![Wastewater treatment tank ratio control](../../../assets/images/02-ratio-and-feedforward-control-wastewater-ph-neutralization-solution.png){#fig-wastewater-ratio-control}
+
+:::
+:::
+
+
 
 
 

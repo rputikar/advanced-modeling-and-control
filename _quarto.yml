@@ -32,7 +32,7 @@ execute:
   freeze: auto
   enabled: true
   execute-dir: project
-  cache: true
+  cache: false
 
 website:
   title: "AMC | Advanced Modeling and Control"
