@@ -47,7 +47,7 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
 }
 
 # Ensure DeckTape
-if (-not (Get-Command decktape -ErrorAction SilentlyContinue)) {
+if (-not (Get-Command npx decktape -ErrorAction SilentlyContinue)) {
     Write-Host "🛠 Installing DeckTape..."
     npm install -g decktape
 } else {
