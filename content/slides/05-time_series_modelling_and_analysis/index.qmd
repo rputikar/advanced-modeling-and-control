@@ -3,7 +3,898 @@ title: "Time series Modelling and analysis"
 format: revealjs
 resources:
   - "./05-time_series_modelling_and_analysis.pdf"
-date-modified: 2024-07-05
+date-modified: 2025-08-18
 ---
+
+```{python}
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import control as ctrl
+import scipy as sp
+from scipy.optimize import minimize
+from scipy import signal
+from IPython.display import display, Markdown
+plt.style.use('../../../assets/templates/present.mpstyle')
+
+# Apply custom color cycle
+matplotlib.rcParams['axes.prop_cycle'] = matplotlib.cycler(
+    color=['#65489d', '#388ecc', '#105e5d', '#9f1d54', '#4d1013']
+    )
+```
+
+
+## Outline
+
+* Introduction & Motivation
+* Basics of Time Series
+* Transfer Function Models
+* Autoregressive (AR) Models
+  - ARX Models
+  - ARMAX Models
+  - ARMA/ARIMA Models
+* Model Evaluation & Selection
+* Summary & Reflection
+
+---
+
+## What is Time Series?
+
+- A time series is a sequence of observations recorded at successive points in time  
+- Each observation is ordered, meaning the position in time matters  
+- Data is often collected at regular intervals:  
+  - Seconds, minutes, hours (process monitoring sensors)  
+  - Days, months, years (economic, environmental, health data)  
+
+![](../../../assets/images/stationary-1.png){width=100%}
+
+<!---
+::: {.smaller .smaller}
+
+a.) Google stock price for 200 consecutive days  b.) Daily change in the Google
+stock price for 200 consecutive days  c.) Annual number of strikes in the US
+d.) Monthly sales of new one-family houses sold in the US  e.) Annual price of
+a dozen eggs in the US (constant dollars)  f.) Monthly total of pigs
+slaughtered in Victoria, Australia  g.) Annual total of lynx trapped in the
+McKenzie River district of north-west Canada  h.) Monthly Australian beer
+production  i.) Monthly Australian electricity production 
+
+:::
+-->
+
+---
+
+## Importance
+
+- Provides patterns and forecasts to support decisions  
+- Anticipates specification violations in process industries  
+- Typical applications:  
+  - Process control
+  - Energy demand forecasting  
+  - Equipment health monitoring  
+  - Economic and financial trends  
+  - Climate and agriculture planning  
+  - Public health surveillance  
+
+
+---
+
+## Stationary vs Non-stationary
+
+::::{.columns}
+:::{.column width=50%}
+
+### Stationary series
+- Mean and variance constant over time  
+- Fluctuates around a stable level  
+- Easier to model and forecast  
+
+```{python}
+rng = np.random.default_rng(2)
+
+# AR(2): y_t = 1.35 y_{t-1} - 0.7 y_{t-2} + e_t  -> damped oscillations (stationary)
+n = 1000
+e = rng.normal(0, 1.0, size=n)
+y = np.zeros(n)
+for t in range(2, n):
+    y[t] = 1.35*y[t-1] - 0.7*y[t-2] + e[t]
+
+t = np.arange(n)
+plt.plot(t, y)
+plt.xlabel("t"); plt.ylabel("y")
+# plt.ylim(-5, 5); 
+plt.xlim(0, n)
+plt.show()
+
+```
+
+<!-- ![](../../../assets/images/stationary-time-series.png){width=80%}
+-->
+
+:::
+:::{.column width=50%}
+
+### Non-stationary series
+- Mean or variance changes with time  
+- Shows trend, seasonality, or shifts  
+- Requires differencing or detrending  
+
+```{python}
+rng = np.random.default_rng(3)
+
+# build a linear trend and noise with slowly increasing std dev
+n = 1000
+t_full = np.arange(n)
+trend = 0.0035 * t_full                    # upward trend
+sigma = 0.8 + 0.0015 * t_full              # increasing variance
+noise = rng.normal(0, sigma)
+# y = trend + noise
+
+drift = 0.03
+e = rng.normal(0, 1.0, size=n)
+y = np.cumsum(drift + e)
+
+# show first 100 samples
+t = np.arange(n)
+plt.plot(t, y)
+plt.xlabel("t"); plt.ylabel("y")
+# plt.ylim(-4, 6); 
+plt.xlim(0, n)
+plt.show()
+
+
+```
+<!--
+![](../../../assets/images/non-stationary-time-series.png){width=80%}
+ -->
+:::
+::::
+
+
+---
+
+## Time Series Representation
+
+::::{.columns}
+:::{.column width=60%}
+
+- Time series often large and high-dimensional  
+- Representation helps simplify analysis and comparison  
+- Common approaches:  
+  - Raw series (original data)  
+  - Resampling (reducing data points, e.g., daily → monthly)  
+  - Transformation (Fourier, wavelets, PCA)  
+  - Symbolic representation (grouping values into categories)  
+
+### Benefits
+- Reduces dimensionality while preserving essential patterns  
+- Enables efficient similarity search and clustering  
+- Provides basis for further tasks:  
+  - Pattern discovery, Classification, Forecasting
+
+:::
+
+:::{.column width=40%}
+
+```{python}
+
+# Generate four separate SVG figures for time series representation:
+# 1) Raw series
+# 2) Resampled series (downsampled averages)
+# 3) Transformed series (Fourier magnitude spectrum)
+# 4) Symbolic series (discretized into categories)
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Synthetic time series: trend + seasonality + noise
+np.random.seed(7)
+n = 720  # e.g., hours over 30 days
+t = np.arange(n) / 24.0  # days
+trend = 0.02 * t
+season = 0.8 * np.sin(2 * np.pi * t) + 0.2 * np.sin(2 * np.pi * t * 4)
+noise = 0.15 * np.random.randn(n)
+x = 2.0 + trend + season + noise
+
+# 1) Raw series
+fig1, ax1 = plt.subplots(figsize=(8, 3))
+ax1.plot(t, x)
+ax1.set_xlim(t.min(), t.max())
+ax1.set_xlabel("Days")
+ax1.set_ylabel("Value")
+ax1.set_title("Raw series")
+ax1.spines['top'].set_visible(False)
+ax1.spines['right'].set_visible(False)
+plt.tight_layout()
+raw_path = "./time_series_raw.svg"
+fig1.savefig(raw_path, format="svg")
+
+# 2) Resampled series: daily averages
+days = int(np.floor(t.max())) + 1  # number of whole days
+# indices for each day
+daily_means = []
+day_axis = []
+for d in range(days):
+    mask = (t >= d) & (t < d + 1)
+    if mask.any():
+        daily_means.append(x[mask].mean())
+        day_axis.append(d + 0.5)
+daily_means = np.array(daily_means)
+day_axis = np.array(day_axis)
+
+fig2, ax2 = plt.subplots(figsize=(8, 3))
+ax2.plot(t, x)
+ax2.step(day_axis, daily_means, where='mid')
+ax2.set_xlim(t.min(), t.max())
+ax2.set_xlabel("Days")
+ax2.set_ylabel("Value")
+ax2.set_title("Resampled (daily averages)")
+ax2.spines['top'].set_visible(False)
+ax2.spines['right'].set_visible(False)
+plt.tight_layout()
+resampled_path = "./time_series_resampled.svg"
+fig2.savefig(resampled_path, format="svg")
+
+# 3) Transformed series: Fourier magnitude spectrum
+# Detrend for clarity
+x_d = x - np.polyval(np.polyfit(np.arange(n), x, 1), np.arange(n))
+Xf = np.fft.rfft(x_d)
+freqs = np.fft.rfftfreq(n, d=1/24.0)  # cycles per day
+mag = np.abs(Xf)
+
+fig3, ax3 = plt.subplots(figsize=(8, 3))
+ax3.plot(freqs, mag)
+ax3.set_xlim(0, 12)  # show up to 12 cycles/day
+ax3.set_xlabel("Frequency (cycles/day)")
+ax3.set_ylabel("Magnitude")
+ax3.set_title("Transformed (Fourier spectrum)")
+ax3.spines['top'].set_visible(False)
+ax3.spines['right'].set_visible(False)
+plt.tight_layout()
+fourier_path = "./time_series_fourier.svg"
+fig3.savefig(fourier_path, format="svg")
+
+# 4) Symbolic series: discretize into three states using quantiles
+q_low, q_high = np.quantile(x, [0.33, 0.66])
+symbols = np.digitize(x, [q_low, q_high])  # 0,1,2
+labels = {0: "Low", 1: "Mid", 2: "High"}
+
+fig4, ax4 = plt.subplots(figsize=(8, 3))
+ax4.step(t, symbols, where='post')
+ax4.set_xlim(t.min(), t.max())
+ax4.set_yticks([0, 1, 2])
+ax4.set_yticklabels(["Low", "Mid", "High"])
+ax4.set_xlabel("Days")
+ax4.set_title("Symbolic (3-level discretization)")
+ax4.spines['top'].set_visible(False)
+ax4.spines['right'].set_visible(False)
+plt.tight_layout()
+symbolic_path = "./time_series_symbolic.svg"
+fig4.savefig(symbolic_path, format="svg")
+
+```
+<!--
+![](./time_series_raw.svg){width=100%}
+![](./time_series_resampled.svg){width=100%}
+![](./time_series_fourier.svg){width=100%}
+![](./time_series_symbolic.svg){width=100%}
+-->
+
+:::
+::::
+
+---
+
+## Similarity Measures
+
+::::{.columns}
+:::{.column width=50%}
+
+- Used to compare two or more time series  
+- Important for:
+  - Clustering and classification
+  - Pattern discovery
+  - Anomaly detection  
+
+- Common measures:
+  - Euclidean distance  
+  - Correlation-based distance  
+  - Dynamic Time Warping (DTW) for misaligned series  
+
+:::
+:::{.column width=50%}
+
+```{python}
+
+# Create two similar time series with a small shift
+t = np.linspace(0, 10, 200)
+y1 = np.sin(t)
+y2 = np.sin(t - 0.5) + 0.05*np.random.randn(len(t))
+
+plt.plot(t, y1, label="Series 1")
+plt.plot(t, y2, label="Series 2")
+plt.xlabel("Time")
+plt.ylabel("Value")
+plt.legend()
+plt.title("Comparing two time series")
+plt.show()
+```
+
+:::
+::::
+
+:::{.fragment .callout-note appearance="simple"}
+
+- Euclidean distance works if sequences are aligned  
+- DTW allows matching when sequences are stretched or shifted  
+- Correlation-based measures capture shape similarity  
+- Choice of similarity measure affects clustering, anomaly detection, and forecasting
+
+:::
+
+---
+
+## Characteristics of Time Series
+- Temporal dependence: current values often depend on past values  
+- Directionality: useful for forecasting forward in time  
+- Patterns may include:  
+  - Trend (long-term increase or decrease)  
+  - Seasonality (repeated cycles, e.g., daily, monthly, yearly)  
+  - Random fluctuations (noise)  
+
+![](../../../assets/images/Time-Series-components-1-A-time-series-is-a-sequence-of-observations-measured-at-3317792006.png){width=90%}
+
+---
+
+## Time-Series Decomposition
+
+* A time series can be expressed as the sum of underlying components  
+  - Trend: long-term direction  
+  - Seasonality: repeating cycles  
+  - Cyclic variation: slower, irregular fluctuations  
+  - Residual: noise or unexpected shocks  
+
+```{python}
+#| label: gen-decomposition-svgs
+#| echo: false
+#| include: false
+#| fig-show: "hide"
+
+# data
+n_years = 10
+n = 12*n_years
+t = np.arange(n)
+trend = 0.05*t + 2.0
+seasonality = 0.8*np.sin(2*np.pi*t/12.0)
+rng = np.random.default_rng(123)
+noise = 0.25*rng.standard_normal(n)
+series = trend + seasonality + noise
+residual = series - trend - seasonality
+
+def savefig(x, y, title, path, label=None, y2=None, label2=None):
+    fig, ax = plt.subplots()
+    ax.plot(x, y, label=label)
+    if y2 is not None:
+        ax.plot(x, y2, label=label2)
+        ax.legend(frameon=False, loc="best")
+    ax.set_xlabel("Month"); ax.set_ylabel("Value"); ax.set_title(title)
+    plt.tight_layout()
+    fig.savefig(path, format="svg")
+    plt.close(fig)
+
+savefig(t, series, "Original series", "./decomp_original.svg")
+savefig(t, series, "Trend component", "./decomp_trend.svg", label="Original", y2=trend, label2="Trend")
+savefig(t, series - trend, "Detrended series", "./decomp_detrend.svg", label="Detrended")
+savefig(t, series - trend, "Seasonality component", "./decomp_seasonality.svg", label="Detrended", y2=seasonality, label2="Seasonality")
+savefig(t, residual, "Residual component", "./decomp_residual.svg")
+```
+
+::: {.r-stack}
+![](decomp_original.svg){.fragment .fade-in-then-out .absolute top=350 left=150 width=50%}
+![](decomp_trend.svg){.fragment .fade-in-then-out .absolute top=350 left=150 width=50%}
+![](decomp_detrend.svg){.fragment .fade-in-then-out .absolute top=350 left=150 width=50%}
+![](decomp_seasonality.svg){.fragment .fade-in-then-out .absolute top=350 left=150 width=50%}
+![](decomp_residual.svg){.fragment .absolute top=350 left=150 width=50%}
+:::
+
+---
+
+## Mining in Time Series
+
+- Goal: discover hidden information or patterns  
+- Common tasks:  
+  - Pattern discovery and clustering  
+  - Classification (e.g., healthy vs faulty sensor data)  
+  - Rule discovery (if X happens, Y follows)  
+  - Summarization and anomaly detection  
+
+:::{.callout-note appearance='simple'}
+These tasks often rely on similarity measures, representation, and decomposition.
+:::
+
+---
+
+## What Do We Mean by Modelling?
+
+:::: {.columns}
+::: {.column width=50%}
+
+- A model is a simplified description used to explain and predict data  
+- Two perspectives:  
+  - Structural: parameters have physical meaning (equation / transfer function)  
+  - Data-driven: parameters capture patterns (e.g., neural network)  
+- What models enable: simulation, forecasting, pattern recognition
+
+:::
+::: {.column width=50%}
+
+```{mermaid}
+%%| out-width: 100%
+flowchart TD
+    A["Time series data"]
+    B["Structural model<br/>(equation / TF)"]
+    C["Data-driven model<br/>(neural network)"]
+    D["Outcomes<br/>• Simulation<br/> • Forecasting<br/>• Pattern recognition"]
+
+    A --> B
+    A --> C
+    B --> D
+    C --> D
+
+    %% IBM Carbon color tokens
+    %% Blue 60, Green 60, Purple 60, Magenta 60, Gray 90 text
+    classDef data      fill:#65489d,stroke:#65489d,color:#ffffff;
+
+    %% color=['#65489d', '#388ecc', '#105e5d', '#9f1d54', '#4d1013']
+
+    class A data;
+    class B data;
+    class C data;
+    class D data;
+
+    %% Subtle thicker links, orthogonal/top-down feel
+    linkStyle default stroke:#525252,stroke-width:2px
+
+```
+:::
+::::
+
+---
+
+
+## Structural vs Data-Driven Models
+
+:::: {.columns}
+::: {.column width=50%}
+
+### Structural models
+- Based on physical laws and first principles  
+- Parameters have physical interpretation  
+- Examples:  
+  - Transfer functions  
+  - Differential equations  
+
+**Pros:** interpretability, extrapolation  
+**Cons:** need detailed knowledge  
+
+:::
+::: {.column width=50%}
+
+### Data-driven models
+- Based on observed data patterns  
+- Parameters capture correlations, not physics  
+- Examples:  
+  - AR, ARX, ARMAX  
+  - Neural networks  
+
+**Pros:** flexible, captures complex patterns  
+**Cons:** less interpretable, may overfit  
+
+:::
+::::
+
+---
+
+## Transfer Function Models
+
+::::{.columns}
+:::{.column width=50%}
+
+- Many physical processes can be represented by transfer functions in the Laplace domain  
+- Transfer function relates input → output dynamics  
+- Useful for:
+  - Capturing process gain, time constant, and delay
+  - Providing a baseline for time-series model comparison  
+- Often estimated from input–output data (system identification)  
+
+:::
+:::{.column width=50%}
+
+```{python}
+
+# Simulate "experimental" data from a first-order plus delay process, with added noise.
+
+# Parameters (true process)
+Kp, tau, theta = 1.5, 12.0, 4.0
+
+# Time
+t = np.linspace(0, 80, 400)
+y_true = np.zeros_like(t)
+
+# True step response with dead time
+mask = t >= theta
+y_true[mask] = Kp * (1 - np.exp(-(t[mask] - theta)/tau))
+
+# Add noise to simulate experimental measurement
+rng = np.random.default_rng(10)
+y_meas = y_true + 0.05 * rng.standard_normal(len(t))
+y_meas = np.clip(y_meas, 0, None)
+
+# "Fitted" model (slightly different parameters)
+Kp_fit, tau_fit, theta_fit = 1.48, 10.0, 5.0
+y_fit = np.zeros_like(t)
+mask2 = t >= theta_fit
+y_fit[mask2] = Kp_fit * (1 - np.exp(-(t[mask2] - theta_fit)/tau_fit))
+
+# Plot experimental vs fitted
+# fig, ax = plt.subplots(figsize=(7,4), dpi=150)
+fig, ax = plt.subplots()
+# ax.plot(t, y_meas, 'o', ms=3, alpha=0.4, label="Experimental data")
+# ax.plot(t, y_fit, lw=2, color="#388ecc", label="Transfer function fit")
+ax.plot(t, y_meas, 'o', ms=3, alpha=0.4, label="Experimental data")
+ax.plot(t, y_fit,  label="Transfer function fit")
+ax.set_xlabel("Time")
+ax.set_ylabel("Output")
+# ax.set_title("Experimental data vs Transfer function fit")
+ax.legend(frameon=False, loc="best")
+ax.set_xlim(0, 80)
+ax.set_ylim(0, 2)
+# ax.spines['top'].set_visible(False)
+# ax.spines['right'].set_visible(False)
+plt.tight_layout()
+
+out_path = "./transfer_function_fit.svg"
+fig.savefig(out_path, format="svg")
+
+
+```
+
+:::
+::::
+
+:::{.fragment}
+:::{.callout-note appearance='simple'}
+## Transfer Functions as a Starting Point
+
+- Physics-based intuition: order, delay, stability  
+- Provides initial guess for data-driven models (ARX, ARMAX)  
+- Bridges between first-principles modeling and time-series modeling
+
+:::
+:::
+
+:::{.fragment}
+:::{.callout-tip appearance='simple'}
+
+[Activity 1: Estimating Transfer Function Models for a Heat Exchanger](/content/notes/05-time_series_modelling_and_analysis/in-class-activities.html#Activities).
+
+:::
+:::
+
+---
+
+## Autoregressive (AR) Models
+
+:::: {.columns}
+::: {.column width=60%}
+
+- Concept  
+  - Current value depends on a linear combination of past values  
+  - AR(p):  
+    $$
+    y_t = \phi_1 y_{t-1} + \phi_2 y_{t-2} + \dots + \phi_p y_{t-p} + e_t
+    $$
+  - Captures short-term correlations in stationary data  
+
+- MATLAB  
+  - `ar(data, order)` estimates AR model  
+  - Order selection via AIC / FPE  
+
+- Applications  
+  - Forecasting short horizon  
+  - Identifying dominant lags  
+  - Noise modeling in ARMAX  
+
+:::
+::: {.column width=40%}
+
+```{python}
+# Example: AR(2) process
+rng = np.random.default_rng(4)
+n = 300
+e = rng.normal(0, 1, size=n)
+y = np.zeros(n)
+for t in range(2, n):
+    y[t] = 0.75*y[t-1] - 0.25*y[t-2] + e[t]
+
+plt.plot(y, label="AR(2) series")
+plt.xlabel("t"); plt.ylabel("y")
+# plt.legend(frameon=False)
+plt.tight_layout()
+plt.show()
+```
+
+:::
+::::
+
+
+---
+
+## Autoregressive (AR) Models
+
+
+* Present value depends on past values in discrete time
+* General AR(n):
+
+  $$
+  y_t = c + \sum_{i=1}^n \alpha_i y_{t-i} + \varepsilon_t
+  $$
+
+  - Where: $c$: constant; $\alpha_i$: AR coefficients; $n$: model order;
+  $\varepsilon_t$: white noise
+
+* Example for AR(2):
+
+  $$
+  y_t = c + \alpha_1 y_{t-1} + \alpha_2 y_{t-2} + \varepsilon_t
+  $$
+
+* Properties of AR models
+  * Short-term memory, good for capturing autocorrelation
+  * Flexible building block for ARX, ARMAX, ARIMA
+
+
+---
+
+## AR model with backshift operator $z^{-k}$
+
+* AR(2) in operator notation:
+
+  $$
+  y_t = c + \alpha_1 y_{t-1} + \alpha_2 y_{t-2} + \varepsilon_t
+  $$
+
+  can be written as
+
+  $$
+  (1 + \alpha_1 z^{-1} + \alpha_2 z^{-2}) y_t = c + \varepsilon_t
+  $$
+
+  $$
+  y_t = \frac{c + \varepsilon_t}{1 + \alpha_1 z^{-1} + \alpha_2 z^{-2}} \,=\, \frac{c + \varepsilon_t}{A(z)}
+  $$
+
+* Interpretation
+
+  - The AR model acts like a filter that takes in random noise and produces the
+  series.
+
+  - The filter has only poles (all-pole system), so the effect of a shock
+  gradually fades but never ends completely (infinite impulse response, IIR).
+
+  - In contrast, some models have responses that die out completely after a fixed
+  time (finite impulse response, FIR).
+
+:::{.fragment .callout-note appearance='simple'}
+## In-class Activity 2
+
+Fit an AR model to *Australia COVID-19 infection data*
+(`Australia_covid_cases.xlsx`) and evaluate order selection.
+
+:::
+
+
+---
+
+## ARX Models
+
+* ARX: Autoregressive with Exogenous Input
+* Exogenous Input
+  - Many processes are driven by outside factors (inputs, e.g. manipulated
+  variables, disturbances)  
+  - In a distillation column, the feed composition or coolant flow are
+  exogenous inputs that affect the impurity (output).
+  - In finance, the interest rate might be an exogenous input affecting stock
+  prices.
+
+  👉 Exogenous input = something external you can measure and that drives the
+     system.
+
+- Why ARX?  
+  - AR models only use past outputs → good for forecasting trends  
+  - ARX extends AR by including the exogenous inputs explicitly  
+
+---
+
+## ARX Model 
+
+### Structure  
+ $$
+ A(q^{-1}) y(t) = B(q^{-1}) u(t-n_k) + e(t)
+ $$
+  - $A(q^{-1})$: polynomial in past outputs  
+  - $B(q^{-1})$: polynomial in past inputs  
+  - $n_k$: input delay  
+  - $e(t)$: noise  
+
+- Interpretation  
+  - Captures cause–effect between input and output  
+  - Useful for system identification with I/O data  
+
+### MATLAB  
+  `m = arx(data, [na nb nk])`  
+  where `na` = AR order, `nb` = input order, `nk` = input delay.
+
+:::{.fragment}
+:::{.callout-tip appearance="simple"}
+
+[Activity 3: Develop an ARX Model for a Given Transfer Function](/content/notes/05-time_series_modelling_and_analysis/in-class-activities.html#Activities)
+
+:::
+:::
+
+---
+
+## ARMA Models
+
+- ARMA: Autoregressive Moving Average
+  - AR models capture dependence on past outputs  
+  - But sometimes random shocks persist for several steps (noise is not white)  
+  - ARMA = AR + MA, adds a moving average (MA) term for noise
+
+### Structure  
+  $$
+  A(q^{-1}) y(t) = C(q^{-1}) e(t)
+  $$
+  - $A(q^{-1})$: polynomial in past outputs  
+  - $C(q^{-1})$: polynomial in past noise (MA part);  $e(t)$: white noise  
+
+- Interpretation  
+  - Models a stationary time series without external input  
+  - Captures both memory in outputs and persistence in shocks  
+  - Building block for ARIMA models (to handle non-stationarity)
+
+### MATLAB  
+  `m = arima(p,0,q)`  
+  where `p` = AR order, `q` = MA order.  
+  Use `estimate(m, data)` to fit.
+
+---
+
+## ARMAX Models
+
+- ARMAX: Autoregressive Moving Average with Exogenous Input
+  - ARX models assume the disturbance is white noise  
+  - In practice, noise often has its own dynamics (colored noise)  
+  - ARMAX extends ARX by adding a **moving average (MA) term** for noise  
+
+### Structure  
+  $$
+  A(q^{-1}) y(t) = B(q^{-1}) u(t-n_k) + C(q^{-1}) e(t)
+  $$
+  - $A(q^{-1})$: past outputs;  $B(q^{-1})$: past inputs (exogenous input)  
+  - $C(q^{-1})$: noise dynamics (MA part);  $n_k$: input delay  
+
+- Interpretation  
+  - Captures both input–output dynamics and structured noise  
+  - More flexible and realistic than ARX  
+  - Often needed when residuals of ARX show correlation  
+
+
+---
+
+## ARIMA Models
+
+:::: {.columns}
+::: {.column width=55%}
+
+- ARIMA = Autoregressive Integrated Moving Average  
+- Extends ARMA for non-stationary series  
+  - Integration differencing step 
+
+    $\nabla y(t) = y(t) - y(t-1)$
+
+  - Makes the series stationary before ARMA modeling  
+
+- Interpretation  
+  - AR: memory of past values  
+  - I: removes trends and seasonality  
+  - MA: corrects random shocks  
+
+:::
+::: {.column width=45%}
+
+```{python}
+# Example: ARIMA modeling of non-stationary data
+import statsmodels.api as sm
+
+# Non-stationary series (random walk)
+np.random.seed(2)
+n = 200
+e = np.random.normal(0, 1, n)
+y = np.cumsum(e)   # random walk
+
+# Fit ARIMA(1,1,1)
+model = sm.tsa.ARIMA(y, order=(1,1,1))
+res = model.fit()
+
+# Plot data and fitted values
+plt.plot(y, label="Data")
+plt.plot(res.fittedvalues, label="ARIMA fit")
+plt.legend(frameon=False)
+plt.xlabel("t"); plt.ylabel("y")
+plt.show()
+``` 
+:::
+::::
+
+### MATLAB  
+  `m = arima(p,d,q)`  
+  `p` = AR order; `d` = number of differences (integration order); `q` = order of MA part
+
+
+:::{.fragment}
+:::{.callout-tip appearance="simple"}
+
+[Activity 4: Iron Ore Prices – ARIMA Modeling](/content/notes/05-time_series_modelling_and_analysis/in-class-activities.html#Activities)
+
+:::
+:::
+
+---
+
+## Model Evaluation and Selection
+
+- Many possible models → need criteria to choose the best one  
+- Avoid overfitting (too complex) and underfitting (too simple)  
+
+- Common criteria  
+  - Residual analysis (should look like white noise)  
+  - Goodness of fit (%) to validation data  
+  - Information criteria (Akaike information criteria (AIC), Final prediction error (FPE))  
+  - Prediction accuracy (on test data)
+
+- Best practice  
+  - Compare several models with different orders  
+  - Choose the simplest model that explains the data well  
+  - Validate with unseen (test) data if available  
+
+:::{.callout-note appearance="simple"}
+## In MATLAB  
+
+- `goodnessOfFit`
+- `compare(data, model1, model2, ...)` → compare fit visually  
+- `aic`, `fpe` → return information criteria  
+- `resid(data, model)` → check residuals
+:::
+
+---
+
+## Summary
+
+- Time-series data can be broken into components: trend, seasonality, cyclic
+variation, and residuals  
+- Models help us explain and predict time-series behavior  
+  - AR models: depend on past outputs  
+  - ARX models: extend AR by including exogenous inputs  
+  - ARMA/ARMAX: combine autoregression with moving average, noise modeling  
+  - ARIMA: adds differencing for non-stationary data  
+
+- Model evaluation and selection  
+  - Check residuals (should look like white noise)  
+  - Use metrics like AIC, FPE, fit percentage  
+  - Validate using unseen data  
+
+📌 Different models suit different needs — forecasting, simulation, or understanding system dynamics.
 
 

@@ -8,4 +8,6 @@ dependencies = [
     "control>=0.10.1",
     "jupyter-cache>=1.0.1",
     "jupyterlab>=4.4.3",
+    "scikit-learn>=1.7.1",
+    "statsmodels>=0.14.5",
 ]

@@ -183,6 +183,11 @@ h1.title {
   font-size: 70%;
 }
 
+.reveal .smallcaption {
+  font-size: 50%;
+  color: $gray;
+}
+
 .reveal img {
   display: block;
   margin-left: auto;

@@ -3,7 +3,7 @@ title: "Lab 02: Cascade control"
 date: 2023-08-07
 format:
   pdf
-date-modified: 2025-08-03
+date-modified: 2025-08-17
 ---
 
 ## Objectives
@@ -125,7 +125,7 @@ Your report (5 pages maximum) should include the following:
 
    |||||
    |-|-|-|-|
-   | Lab Title: | Lab 01 – Feedforward Control | Student Name | ID       |
+   | Lab Title: | Lab 02 - Cascade control | Student Name | ID       |
    | Unit:      | CHEN4011                     | Student 1    | 12345678 |
    | Date:      | 12 August 2025               | Student 2    | 87654321 |
 

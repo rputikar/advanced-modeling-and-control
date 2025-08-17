@@ -3,38 +3,233 @@ title: "Lab 04: Time Series Analysis"
 date: 2023-08-13
 format:
   pdf
-date-modified: 2024-07-05
+date-modified: 2025-08-17
 ---
 
 ## Objectives
 
-1. Demonstrate the use of system identification toolbox to generate time series models.
+1. Demonstrate the use of the System Identification Toolbox in MATLAB to generate and evaluate time series models.  
+2. Develop and compare different time series models (AR, ARX, ARMAX) for forecasting process variables.  
+3. Quantify the forecasting accuracy of the models under step and random inputs.
 
-2. Evaluate time series models. 
 
 ## Problem Statement {#sec-process-information}
 
-A distillation column produces three products: bottom stream, side-stream and distillate. 
-The bottom product impurity must be kept less than 5%, otherwise, it is considered a reject product. The major disturbance acting on the bottom product quality is the feed composition fluctuations. Based on plant step test, you have established the following transfer function that relates the feed composition to the bottom impurity:
+A distillation column produces three products: bottom stream, side stream, and
+distillate. The bottom product impurity must be kept below 5%. If the impurity
+exceeds this limit, the product is rejected.  
+
+The major disturbance affecting the bottom product quality is feed
+composition fluctuations. Based on a plant step test, the transfer function
+relating feed composition to bottom impurity is:
 
 $$
-G(s) = e^{-2s} \left( \frac{1}{(4 s^2 + s + 1)} + \frac{0.25}{(2 s+1)^2} \right)
+G(s) = e^{-2s} \left( \frac{1}{4 s^2 + s + 1} + \frac{0.25}{(2 s+1)^2} \right)
 $${#eq-process}
 
-Generate a data set when the input is stepped up by 1 unit at t = 5 unit, and then stepped down by 2 units at t = 35 unit, and finally stepped up by 1 unit at t = 55 unit. Use the dataset up to t = 55 unit to develop 3 polynomial models (AR, ARX, ARMAX) and use the models to predict the data at future times: t = 52, 54 and 56. Compute the model errors, and identify the best model, i.e., the one that gives the highest forecasting accuracy.
-Assume sampling period is 1 unit.
+Accurate short-term forecasting of impurity is essential to anticipate when the
+5% specification may be violated. In this lab, time-series models such as AR,
+ARX, and ARMAX will be developed and compared for their ability to predict
+impurity trajectories from process data.
 
-Next, apply a random input (to the distillation column. Use the previous models to forecast the future values of impurity at times, t = 10, 20 and 30 units. Explain your results of forecasting.
+## Methodology
 
-**Note**: Use System Identification toolbox to develop the models required.
+1. Data Generation
+   - Simulate the system response using MATLAB/Simulink with a sampling period
+   of $T_s = 1$ unit, over a horizon of $t = 0$–80 units.
+   - Apply the following step changes in feed composition:
+      - Up by 1 unit at $t = 5$  
+     - Down by 2 units at $t = 35$  
+     - Up by 1 unit at $t = 55$  
+   - Use data up to $t = 55$ as the training dataset for model identification.  
+   - Use data beyond $t = 55$ as the validation dataset.
+2. Model Development
+   - Using the System Identification Toolbox, develop three model structures:
+     - Autoregressive (AR)  
+     - Autoregressive with Exogenous Input (ARX)  
+     - Autoregressive Moving Average with Exogenous Input (ARMAX)  
+   - Test different model orders and delays, guided by the known dead time of 2 units.  
+   - Compare models using appropriate criteria.
+3. Forecasting (Step Input Case)
+   - Forecast impurity values at $t = 56, 61, 66, 71$.  
+   - Compute prediction errors for each model.  
+   - Identify the best model for forecasting accuracy.
+4. Forecasting (Random Input Case)
+   - Generate a random excitation signal (PRBS or band-limited white noise) as the disturbance input.  
+   - Use the previously identified models to forecast impurity at $t = 10, 20, 30$.  
+   - Compare model predictions and explain differences.
+5. Model Improvement
+   - Suggest at least two ways to improve accuracy, e.g., using longer training
+   data, optimizing model order, or applying noise modeling.
 
+## Model Evaluation Metrics
+
+When developing time-series models, several criteria are used to assess their
+quality. These can be grouped into three main categories:
+
+**1. Error-Based Measures (Prediction Accuracy)**
+
+These directly compare the predicted output $\hat y$ with the measured output $y$:
+
+* Mean Squared Error (MSE):
+
+  $$
+  MSE = \frac{1}{N}\sum_{t=1}^N (y(t) - \hat{y}(t))^2
+  $$
+
+  Where, $N$ is the number of data points.
+  This gives the average squared error between measured and predicted outputs.
+  Smaller values indicate better accuracy but large errors are penalized
+  heavily. A smaller MSE indicates higher prediction accuracy, though the value
+  can be influenced by outliers.
+
+  ```matlab
+  goodnessOfFit(yhat, y, 'MSE')
+  ```
+
+* Normalized Mean Squared Error (NMSE):
+
+  $$
+  NMSE = \frac{\sum (y - \hat y)^2}{\sum (y - \bar y)^2}
+  $$
+
+  Where $\bar y$ is the mean of the measured output
+  This measure normalizes the squared error with respect to the variance of the measured data.
+  An NMSE of zero means perfect prediction, while a value of one means the
+  model performs no better than simply using the mean. Values greater than one
+  imply the model is worse than the mean.
+
+  ```matlab
+  goodnessOfFit(yhat, y, 'NMSE')
+  ```
+* Normalized Root Mean Squared Error (NRMSE):
+
+  $$
+  NRMSE = \frac{\sqrt{\frac{1}{N}\sum (y - \hat y)^2}}{y_{\max} - y_{\min}}
+  $$
+
+  This expresses prediction error relative to the signal range, making it easy
+  to compare across variables with different magnitudes. Lower NRMSE values
+  indicate better predictive performance.
+
+  ```matlab
+  goodnessOfFit(yhat, y, 'NRMSE')
+  ```
+* Fit Percentage:
+
+  $$
+  Fit\ \% = 100 \left( 1 - \frac{\| y - \hat y \|}{\| y - \bar y \|} \right)
+  $$
+
+  This is the default metric reported by MATLAB when using the compare function.
+  A value of 100% is a perfect fit,
+  0% is equivalent to predicting the mean, and negative values mean the model
+  is worse than the mean.
+
+  ```matlab
+  compare(data, model)
+  
+  % or 
+  
+  fit = goodnessOfFit(yhat, y, 'NRMSE') * 100;
+  ```
+
+**2. Information Criteria (Model Structure Selection)**
+
+  Even if two models fit the data well, they may differ in complexity. To avoid
+  overfitting, information criteria are used:
+
+* Akaike Information Criterion (AIC):
+
+  $$
+  AIC = 2k - 2\ln(L)
+  $$
+
+  where $k$ is the number of estimated parameters and $L$ is the likelihood of
+  the model given the data. AIC provides a trade-off between model accuracy and
+  complexity, with lower values indicating models that fit well without
+  unnecessary parameters.
+
+  ```matlab
+  aicValue = aic(model);
+  ```
+
+* Final Prediction Error (FPE):
+
+  $$
+  FPE = \sigma^2 \frac{N + k}{N - k}
+  $$
+
+  where $\sigma^2$ is the variance of residuals, $N$ is the number of samples,
+  and $k$ is the number of parameters. A lower FPE means the model is likely to
+  predict future data more accurately.
+
+  ```matlab
+  fpeValue = fpe(model);
+  ```
+
+**3. Residual Analysis (Adequacy Check)**
+
+A good model should capture all the dynamics of the system, leaving only random
+noise in the residuals $e(t) = y(t) - \hat y(t)$. The residuals should
+therefore be:
+
+* Zero-mean
+* Uncorrelated with each other (no autocorrelation)
+* Uncorrelated with past inputs (no leftover dynamics)
+
+Residual whiteness tests, such as autocorrelation plots or the Ljung–Box test,
+are used to check this. If residuals are “white” (statistically independent
+noise), the model is considered adequate. If not, it suggests that some system
+dynamics remain unmodeled.
+
+```matlab
+resid(data, model);
+```
 ## Report Format
 
-The report should be no more than 5 pages excluding the cover page.
+Your report (5 pages maximum) should include the following:
 
-1. 	Build a MATLAB Simulink model to generate the data. Show the model screenshot (or snip) in the report. [3 marks]
-2. 	Develop several ARX models (different model orders) and show their prediction accuracy. [3 marks]
-3. 	Calculate the model forecasting accuracy for data at t = 56, 61, 66 and 71. Show your calculations and comments on the model accuracy. [3 marks]
-4. 	Give two comments on how to improve the model accuracy. [ 1marks]
+0. Submission Details
+   Include a brief table at the beginning of the report with the following information:
 
+   |||||
+   |-|-|-|-|
+   | Lab Title: | Lab 04 - Time Series Analysis| Student Name | ID       |
+   | Unit:      | CHEN4011                     | Student 1    | 12345678 |
+   | Date:      | 12 August 2025               | Student 2    | 87654321 |
+
+1. Objective & Problem Statement
+  - Explain the importance of time series modeling in process control.  
+  - Summarize the distillation problem and its disturbances.
+2. Methodology & Implementation
+  - Show the Simulink model used to generate the dataset.  
+  - Describe steps for building AR, ARX, and ARMAX models.  
+  - Explain the selection of model order and toolbox functions.
+3. Results
+  - Present plots of:
+    - Generated step input and output data.  
+    - Predictions from AR, ARX, and ARMAX models.  
+  - Show forecasting at $t = 56, 61, 66, 71$ (step case) and $t = 10, 20, 30$ (random case).  
+  - Include tables of prediction errors and accuracy measures.
+4. Analysis and Discussion
+  - Compare performance of AR, ARX, and ARMAX models.  
+  - Discuss forecasting accuracy for both step and random inputs.  
+  - Explain how model order and structure affect accuracy.  
+  - Comment on the best-performing model for each case.  
+  - Suggest improvements for accuracy and reliability.
+5. Conclusion
+  - Summarize key learnings about time series modeling.  
+  - State which model type is most suitable for forecasting impurity in this system.  
+  - Discuss broader applications of system identification in chemical process control.
+
+## Assessment Rubric (20 Marks Total)
+
+| No | Section                        | Marks | Evaluation basis                                                                 |
+|-|---|-|-------|
+| 1. | Objectives & Problem           | 2     | Clarity of problem definition; articulation of objectives                        |
+| 2. | Methodology and Implementation | 4     | Correctness and clarity of Simulink model; explanation of AR/ARX/ARMAX modeling  |
+| 3. | Results                        | 4     | Quality, relevance, and labeling of plots; completeness of forecasting data      |
+| 4. | Analysis and Discussion        | 6     | Insightful interpretation; comparison of models; comments on robustness          |
+| 5. | Conclusion and Presentation    | 4     | Coherent summary; quality of writing, formatting, and visual presentation        |
 

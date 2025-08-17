@@ -3,7 +3,7 @@ title: "Lab 03: Override Control"
 date: 2023-08-13
 format:
   pdf
-date-modified: 2025-08-10
+date-modified: 2025-08-17
 ---
 
 ## Objectives
@@ -64,7 +64,7 @@ Include a brief table at the beginning of the report with the following informat
 
 |||||
 |-|-|-|-|
-| Lab Title: | Lab 01 – Feedforward Control | Student Name | ID       |
+| Lab Title: | Lab 03 - Override Control | Student Name | ID       |
 | Unit:      | CHEN4011                     | Student 1    | 12345678 |
 | Date:      | 12 August 2025               | Student 2    | 87654321 |
 
