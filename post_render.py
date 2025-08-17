@@ -3,24 +3,71 @@
 # dependencies = []
 # ///
 
+import os
 import platform
 import shutil
 import subprocess
 from pathlib import Path
 
 
+def _find_decktape():
+    # 1) Direct on PATH (cmd/ps1 variants on Windows)
+    for name in ("decktape", "decktape.cmd", "decktape.ps1"):
+        p = shutil.which(name)
+        if p:
+            return ("direct", p)
+
+    # 2) Project-local node_modules/.bin
+    local_bin = Path("node_modules") / ".bin"
+    if platform.system() == "Windows":
+        for cand in ("decktape.cmd", "decktape.ps1", "decktape"):
+            lp = local_bin / cand
+            if lp.exists():
+                return ("direct", str(lp))
+    else:
+        lp = local_bin / "decktape"
+        if lp.exists():
+            return ("direct", str(lp))
+
+    # 3) npx (preferable fallback)
+    if shutil.which("npx"):
+        return ("npx", "npx")
+
+    # 4) Try npm global prefix/bin
+    if shutil.which("npm"):
+        try:
+            prefix = subprocess.check_output(["npm", "prefix", "-g"], text=True).strip()
+            if platform.system() == "Windows":
+                # Windows global bin is typically %APPDATA%\npm
+                appdata = os.environ.get("APPDATA")
+                if appdata:
+                    cand = Path(appdata) / "npm" / "decktape.cmd"
+                    if cand.exists():
+                        return ("direct", str(cand))
+                    cand = Path(appdata) / "npm" / "decktape.ps1"
+                    if cand.exists():
+                        return ("powershell", str(cand))
+            else:
+                cand = Path(prefix) / "bin" / "decktape"
+                if cand.exists():
+                    return ("direct", str(cand))
+        except Exception:
+            pass
+
+    return (None, None)
+
+
 def convert_slides_to_pdf():
     slides_dir = Path("_site/content/slides")
+    mode, decktape_path = _find_decktape()
 
-    decktape_cmd = (
-        shutil.which("decktape")
-        or shutil.which("decktape.cmd")
-        or shutil.which("decktape.ps1")
-    )
-    if not decktape_cmd:
+    if not decktape_path:
+        print("❌ DeckTape not found. Fix by either:")
+        print("   • npm install -g decktape  (and ensure npm bin is on PATH), or")
         print(
-            "❌ DeckTape not found in PATH. Please install with: npm install -g decktape"
+            "   • npm i -D decktape        (then use project-local node_modules/.bin), or"
         )
+        print("   • rely on npx (install Node/npm).")
         return
 
     for slide_path in slides_dir.iterdir():
@@ -35,23 +82,28 @@ def convert_slides_to_pdf():
             print(f"📄 Converting {index_file} to PDF...")
 
             try:
-                if decktape_cmd.endswith(".ps1"):
+                if mode == "powershell":
                     subprocess.run(
                         [
                             "powershell",
                             "-ExecutionPolicy",
                             "Bypass",
                             "-File",
-                            decktape_cmd,
+                            decktape_path,
                             "reveal",
                             str(index_file),
                             str(output_pdf),
                         ],
                         check=True,
                     )
+                elif mode == "npx":
+                    subprocess.run(
+                        ["npx", "decktape", "reveal", str(index_file), str(output_pdf)],
+                        check=True,
+                    )
                 else:
                     subprocess.run(
-                        [decktape_cmd, "reveal", str(index_file), str(output_pdf)],
+                        [decktape_path, "reveal", str(index_file), str(output_pdf)],
                         check=True,
                     )
 

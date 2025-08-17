@@ -52,6 +52,7 @@ style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width:
 100%;min-height:600px;"></iframe>
 :::
 
+<!--
 
 ## Videos
 
@@ -67,7 +68,6 @@ style="position=absolute;top: 0;left: 0;bottom: 0;right: 0;width:
 {{< video https://www.youtube.com/embed/tbgV6caAVcs >}}
 :::
 
-
 ## Lecture notes
 
 Detailed lcture notes are available for this lecture. 
@@ -82,7 +82,7 @@ the link.
 
 :::
 :::
-
+-->
 
 ## In-Class Resources
 
