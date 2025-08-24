@@ -1,0 +1,23 @@
+$-- title.tex
+$if(title)$
+\makeatletter
+% If KOMA provides \subtitle, use it. Otherwise fold subtitle into \title.
+\@ifundefined{subtitle}{
+  \title{$title$ $if(subtitle)$\\[0.6ex]{\large $subtitle$}$endif$}
+}{
+  \title{$title$}
+  $if(subtitle)$\subtitle{$subtitle$}$endif$
+}
+\makeatother
+$endif$
+
+$if(author)$
+\author{$for(author)$$author$$sep$ \\ $endfor$}
+$endif$
+
+$if(date)$
+\date{$date$}
+$else$
+\date{} % avoid extra vertical space if date omitted
+$endif$
+

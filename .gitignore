@@ -509,3 +509,5 @@ README.html
 # But keep the .gitkeep file
 !/data/.gitkeep
 
+
+/admin/*

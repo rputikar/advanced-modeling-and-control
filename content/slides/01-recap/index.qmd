@@ -1,7 +1,7 @@
 ---
 title: "Recap: Basics of Process Control and Modelling"
 format: revealjs
-date-modified: 2025-07-21
+date-modified: 2025-08-24
 ---
 
 ```{python}
@@ -14,6 +14,10 @@ from scipy.optimize import minimize
 from scipy import signal
 from IPython.display import display, Markdown
 plt.style.use('../../../assets/templates/present.mpstyle')
+
+matplotlib.rcParams['axes.prop_cycle'] = matplotlib.cycler(
+    color=['#65489d', '#388ecc', '#105e5d', '#9f1d54', '#4d1013']
+    )
 ```
 
 # Why process control 
@@ -244,19 +248,6 @@ Real plants can have similar ICOs but different ECOs
 ## Overview of control system design
 
 ![](../../../assets/images/major-steps-control-system-developement.png)
-
-<!-- :::: {.columns} -->
-<!---->
-<!-- ::: {.column width=50%} -->
-<!-- ![](../../../assets/images/major-steps-control-system-developement.png) -->
-<!-- ::: -->
-<!---->
-<!-- ::: {.column width=50%} -->
-<!---->
-<!-- ::: -->
-<!---->
-<!-- :::: -->
-<!---->
 
 # Fundamentals of process modeling
 
@@ -747,7 +738,6 @@ change in the input.
 ::: {.column}
 
 ```{python}
-
 # FOPDT system
 # G(s) = K_p / (τs + 1) * e^(-θs)
 
@@ -784,23 +774,33 @@ t_632 = t_by_tau[np.where(y >= y_632)[0][0]]
 t_by_tau_5 = 5
 y_t_by_tau_5 = y[np.where(t_by_tau >= t_by_tau_5)[0][0]]
 
-plt.plot(t_by_tau,y, color='#65489d')
+# Create fig and ax
+fig, ax = plt.subplots()
 
-plt.plot([0, t_632], [y_632, y_632], color='#0d5e5e', linestyle='--')
-plt.plot([t_632, t_632], [0, y_632], color='#0d5e5e', linestyle='--')
+ax.plot(t_by_tau, y, color='#65489d')
 
-plt.plot([0, t_by_tau_5], [y_t_by_tau_5, y_t_by_tau_5], color='#0d5e5e', linestyle='--')
-plt.plot([t_by_tau_5, t_by_tau_5], [0, y_t_by_tau_5], color='#0d5e5e', linestyle='--')
+ax.plot([0, t_632], [y_632, y_632], color='#0d5e5e', linestyle='--')
+ax.plot([t_632, t_632], [0, y_632], color='#0d5e5e', linestyle='--')
 
-plt.xlabel('$\\frac{t}{\\tau}$')
-plt.ylabel('Normalized Response $\\left[\\frac{h(t)}{h(\\infty)}\\right]$')
-plt.xlim([0, 8])
-plt.ylim([0, 1.2])
+ax.plot([0, t_by_tau_5], [y_t_by_tau_5, y_t_by_tau_5], color='#0d5e5e', linestyle='--')
+ax.plot([t_by_tau_5, t_by_tau_5], [0, y_t_by_tau_5], color='#0d5e5e', linestyle='--')
 
-plt.text(1.1, 0.632, '0.632')
+ax.set_xlabel('$\\frac{t}{\\tau}$')
+ax.set_ylabel('Normalized Response $\\left[\\frac{h(t)}{h(\\infty)}\\right]$')
+ax.set_xlim([0, 8])
+ax.set_ylim([0, 1.2])
 
-plt.show()
+ax.text(1.1, 0.632, '0.632')
+
+# Save as SVG
+fig.tight_layout()
+filename = "./fopdt-normalized-response.svg"
+fig.savefig(filename, format="svg")
+
+plt.close(fig)
 ```
+![](./fopdt-normalized-response.svg){width=90%}
+
 :::
 
 ::: {.column}
@@ -832,8 +832,9 @@ termed 'self-regulation'.
 
 ## Response of first-order systems
 
-```{python}
 
+
+```{python}
 tau = 10
 theta = 10
 
@@ -864,32 +865,42 @@ yd2 = np.concatenate((np.zeros(delay_samples), y2[:len(y2) - delay_samples]))
 yd3 = np.concatenate((np.zeros(delay_samples), y3[:len(y3) - delay_samples]))
 yd4 = np.concatenate((np.zeros(delay_samples), y4[:len(y4) - delay_samples]))
 
-plt.xlabel('$\\frac{t}{\\tau}$')
-plt.ylabel('Normalized Response $\\left[\\frac{h(t)}{h(\\infty)}\\right]$')
-plt.xlim([0, 8])
-plt.ylim([0, 4.2])
+fig, ax = plt.subplots()
+# fig.subplots_adjust(right=0.85)
 
-plt.plot(t_by_tau,yd1, color='#65489d')
-plt.plot(t_by_tau,yd2, color='#388ecc')
-plt.plot(t_by_tau,yd3, color='#0d5e5e')
-plt.plot(t_by_tau,yd4, color='#9f1d54')
+ax.set_xlabel('$\\frac{t}{\\tau}$')
+ax.set_ylabel('Normalized Response $\\left[\\frac{h(t)}{h(\\infty)}\\right]$')
+ax.set_xlim([0, 8])
+ax.set_ylim([0, 4.2])
 
-# plt.text(1.1, 0.632, '0.632')
+ax.plot(t_by_tau, yd1)
+ax.plot(t_by_tau, yd2)
+ax.plot(t_by_tau, yd3)
+ax.plot(t_by_tau, yd4)
 
-plt.text(1.4, 0.2, '$\\tau_d = \\tau$')
-plt.arrow(1.4, 0.2, -0.3, -0.15, color='black', width=0.01, length_includes_head=True)
+# Text + arrow
+ax.text(1.4, 0.2, '$\\tau_d = \\tau$')
+ax.arrow(1.4, 0.2, -0.3, -0.15, color='black', width=0.01, length_includes_head=True)
 
-plt.text(8.2, 1, '$k = 1$')
-plt.text(8.2, 2.4, '$k = 2.5$')
-plt.text(8.2, 4, '$k = 4$')
+ax.text(8.2, 1, '$k = 1$')
+ax.text(8.2, 2.4, '$k = 2.5$')
+ax.text(8.2, 4, '$k = 4$')
 
-plt.text(6.9, 3.8, '$\\tau = 1$')
-plt.text(6.9, 1.05, '$\\tau = 1$')
-plt.text(6.9, 2.55, '$\\tau = 2$')
-plt.text(6.9, 2.25, '$\\tau = 1$')
+# Tau labels
+ax.text(6.9, 3.8, '$\\tau = 1$')
+ax.text(6.9, 1.05, '$\\tau = 1$')
+ax.text(6.9, 2.55, '$\\tau = 2$')
+ax.text(6.9, 2.25, '$\\tau = 1$')
 
-plt.show()
+# Save to SVG
+fig.tight_layout()
+filename = "./response-of-first-order-system.svg"
+fig.savefig(filename, format="svg")
+
+plt.close(fig)
+
 ```
+![](./response-of-first-order-system.svg)
 
 ## Response of second-order systems
 
@@ -970,25 +981,28 @@ t, y20 = signal.step(system20, T=t)
 
 # Plot the response
 
-plt.plot(t,y5, color='#65489d', label ='$\\tau = 5$')
-plt.plot(t,y10, color='#388ecc', label ='$\\tau = 10$')
-plt.plot(t,y20, color='#0d5e5e', label ='$\\tau = 20$')
+fig, ax = plt.subplots()
 
-plt.axhline(1.0, color='#535353', linestyle='--')
+ax.plot(t, y5,  label=r'$\tau = 5$')
+ax.plot(t, y10, label=r'$\tau = 10$')
+ax.plot(t, y20, label=r'$\tau = 20$')
 
-plt.xlabel('Time')
-plt.ylabel('y(t)')
-plt.legend(loc='lower right')
+ax.axhline(1.0, color='#535353', linestyle='--')
 
-plt.xlim([0, 120])
-plt.ylim([0, 1.2])
+ax.set_xlabel('Time')
+ax.set_ylabel('y(t)')
+ax.set_xlim([0, 120])
+ax.set_ylim([0, 1.2])
 
-# plt.text(22, 0.9, '$\\tau = 5$')
-# plt.text(45, 0.9, '$\\tau = 10$')
-# plt.text(88, 0.9, '$\\tau =20$')
+ax.legend(loc='lower right')
 
-plt.show()
+# Save instead of show
+fig.tight_layout()
+fig.savefig("tau-comparison.svg", format="svg")
+plt.close(fig)
 ```
+![](./tau-comparison.svg)
+
 ::: {.smaller}
 
 - Output response becomes more sluggish as τ increases.
@@ -1043,23 +1057,30 @@ t, y_zp25 = signal.step(system_zp25, T=t)
 
 # Plot the response
 
-plt.plot(t,y_z2, color='#65489d', label='$\\xi = 2$')
-plt.plot(t,y_z, color='#388ecc', label='$\\xi = 1$')
-plt.plot(t,y_zp5, color='#0d5e5e', label='$\\xi = 0.5$')
-plt.plot(t,y_zp25, color='#9f1d54', label='$\\xi = 0.25$')
-# plt.plot(t,y_zm1, color='#4d1013', label='$\\xi = -0.1$')
+fig, ax = plt.subplots()
 
-plt.axhline(1.0, color='#535353', linestyle='--')
+ax.plot(t, y_z2,   label=r'$\xi = 2$')
+ax.plot(t, y_z,    label=r'$\xi = 1$')
+ax.plot(t, y_zp5,  label=r'$\xi = 0.5$')
+ax.plot(t, y_zp25, label=r'$\xi = 0.25$')
+# ax.plot(t, y_zm1, label=r'$\xi = -0.1$')
 
-plt.xlabel('Time')
-plt.ylabel('y(t)')
-plt.legend(loc='lower right')
+ax.axhline(1.0, color='#535353', linestyle='--')
 
-plt.xlim([0, 120])
-plt.ylim([0, 1.5])
+ax.set_xlabel('Time')
+ax.set_ylabel('y(t)')
+ax.set_xlim([0, 120])
+ax.set_ylim([0, 1.5])
 
-plt.show()
+ax.legend(loc='lower right')
+
+# Save to SVG instead of showing
+fig.tight_layout()
+fig.savefig("damping-ratio-responses.svg", format="svg")
+plt.close(fig)
+
 ```
+![](./damping-ratio-responses.svg)
 
 ::: {.smaller}
 
@@ -1150,6 +1171,12 @@ of the roots of the characteristic equation.
 
 :::{.column width=60%}
 
+- Characteristic equation
+
+  $$
+  a_0 s^n + a_1 s^{n-1} + a_2 s^{n-2} + \dots + a_n = 0
+  $$
+
 - The first step in Routh's Criterion is to set up the Routh array.
 
 - Then, we examine the first column of the array. If there are no sign changes
@@ -1201,64 +1228,8 @@ system stability changes with varying gain.
 
 ::: {.column width=40%}
 
-```{python}
+![](root_locus.png){width=90%}
 
-# Define the system
-num = [1]
-den = [1, 1, 0]  # Coefficients of the characteristic equation
-sys = ctrl.TransferFunction(num, den)
-
-# Calculate and plot the root locus
-# rlist, klist = ctrl.root_locus(sys)
-
-# In newer versions, the control.root_locus function returns a single value, a
-# tuple containing the root locations and gain values, instead of two separate
-# values.
-root_locus_data = ctrl.root_locus(sys)
-rlist = root_locus_data[0,0]
-klist = root_locus_data[0,1]
-
-
-plt.xlabel('Re')
-plt.ylabel('Im')
-
-plt.xlim([-1, 0])
-plt.ylim([-1, 1])
-
-# plt.arrow(-0.8, 0, 0.3, 0, color='black', width=0.01, length_includes_head=True)
-
-plt.show()
-
-# # Define the system
-# num = [1]
-# den = [1, 1, 0]  # Coefficients of the characteristic equation
-# sys = ctrl.TransferFunction(num, den)
-#
-# # Calculate the root locus
-# rlist, klist = ctrl.root_locus(sys)
-#
-# # Create the plot
-# plt.figure()
-# for i in range(rlist.shape[1]):
-#     # plot a line for this branch
-#     branch = rlist[:, i]
-#     plt.plot(branch.real, branch.imag)
-#
-#     # plot an arrow at 25% and 75% along the line
-#     for loc in [0.25, 0.75]:
-#         s = int(np.round(loc * len(branch)))
-#         plt.arrow(branch[s-1].real, branch[s-1].imag,
-#                   branch[s].real - branch[s-1].real,
-#                   branch[s].imag - branch[s-1].imag,
-#                   shape='full', lw=0, length_includes_head=True, head_width=.03)
-#
-# plt.title('Root Locus for the System s^2 + s + k')
-# plt.xlabel('Re')
-# plt.ylabel('Im')
-# plt.grid(True)
-# plt.show()
-#
-```
 :::
 
 ::::
@@ -1441,25 +1412,31 @@ t_cl_p5, y_setpoint_p5 = ctrl.step_response(closed_loop_sys_p5, t)
 t_cl_1, y_setpoint_1 = ctrl.step_response(closed_loop_sys_1, t)
 t_cl_4, y_setpoint_4 = ctrl.step_response(closed_loop_sys_4, t)
 
+fig, ax = plt.subplots()
+# fig.subplots_adjust(right=0.70)
+
 # Plot the responses
-plt.plot(t_ol,y_open_loop, color='#65489d')
-plt.plot(t_cl_p5,y_setpoint_p5, color='#388ecc')
-plt.plot(t_cl_1,y_setpoint_1, color='#0d5e5e')
-plt.plot(t_cl_4,y_setpoint_4, color='#9f1d54')
+ax.plot(t_ol,y_open_loop)
+ax.plot(t_cl_p5,y_setpoint_p5)
+ax.plot(t_cl_1,y_setpoint_1)
+ax.plot(t_cl_4,y_setpoint_4)
 
-plt.xlabel('Time')
-plt.ylabel('$y(t)$')
-plt.xlim([0, 30])
-plt.ylim([0, 1])
+ax.set_xlabel('Time')
+ax.set_label('$y(t)$')
+ax.set_xlim([0, 30])
+ax.set_ylim([0, 1])
 
-plt.text(31, 1-0.01, 'Open loop response')
-plt.text(31, 0.5-0.01, '$K_p = 0.5$')
-plt.text(31, 0.33-0.01,'$K_p = 1$')
-plt.text(31, 0.1-0.01, '$K_p = 4$')
+ax.text(31, 1-0.01, 'Open loop response')
+ax.text(31, 0.5-0.01, '$K_p = 0.5$')
+ax.text(31, 0.33-0.01,'$K_p = 1$')
+ax.text(31, 0.1-0.01, '$K_p = 4$')
 
-plt.show()
+fig.tight_layout()
+fig.savefig("kp-responses.svg", format="svg")
+plt.close(fig)
 
 ```
+![](./kp-responses.svg)
 
 ## Integral mode
 
@@ -1530,28 +1507,27 @@ t_sp_10, y_setpoint_10 = ctrl.step_response(setpoint_tf_10, t)
 t_sp_30, y_setpoint_30 = ctrl.step_response(setpoint_tf_30, t)
 
 # Plot the responses
-plt.plot(t_sp_2,y_setpoint_2, color='#65489d')
-plt.plot(t_sp_10,y_setpoint_10, color='#388ecc')
-plt.plot(t_sp_30, y_setpoint_30, color='#0d5e5e')
+fig, ax = plt.subplots()
 
+ax.plot(t_sp_2,y_setpoint_2)
+ax.plot(t_sp_10,y_setpoint_10)
+ax.plot(t_sp_30, y_setpoint_30)
 
-# Plot the responses
-# plt.plot(t_sp_2, y_setpoint_2, label="$\\tau_I = 2$")
-# plt.plot(t_sp_10, y_setpoint_10, label="$\\tau_I = 10$")
-# plt.plot(t_sp_30, y_setpoint_30, label="$\\tau_I = 30$")
+ax.set_xlabel('Time')
+ax.set_ylabel('$y(t)$')
+ax.set_xlim([0, 60])
+ax.set_ylim([0, 1.8])
 
-plt.xlabel('Time')
-plt.ylabel('$y(t)$')
-plt.xlim([0, 60])
-plt.ylim([0, 1.8])
+ax.text(4, 1.67, "$\\tau_I = 2$")
+ax.text(10, 1.37, "$\\tau_I = 10$")
+ax.text(20, 1.15,"$\\tau_I = 30$")
 
-plt.text(4, 1.67, "$\\tau_I = 2$")
-plt.text(10, 1.37, "$\\tau_I = 10$")
-plt.text(20, 1.15,"$\\tau_I = 30$")
-
-plt.show()
-
+fig.tight_layout()
+fig.savefig("taui-responses.svg", format="svg")
+plt.close(fig)
 ```
+![](./taui-responses.svg)
+
 ## Derivative mode
 
 ::: {.fragment}
@@ -1625,32 +1601,29 @@ t_cl_d10, y_d10 = ctrl.step_response(closed_loop_sys_d10, t)
 t_cl_d30, y_d30 = ctrl.step_response(closed_loop_sys_d30, t)
 
 # Plot the responses
-plt.plot(t_cl_d2,y_d2, color='#65489d')
-plt.plot(t_cl_d10,y_d10, color='#388ecc')
-plt.plot(t_cl_d30, y_d30, color='#0d5e5e')
 
-plt.xlabel('Time')
-plt.ylabel('$y(t)$')
-plt.xlim([0, 300])
-plt.ylim([-0.04, 0.14])
+fig, ax = plt.subplots()
+# fig.subplots_adjust(left=0.05)
 
-plt.text(10, 0.125, "$\\tau_d = 2$")
-plt.text(20, 0.085, "$\\tau_d = 10$")
-plt.text(30, 0.06,"$\\tau_d = 30$")
+ax.plot(t_cl_d2,y_d2)
+ax.plot(t_cl_d10,y_d10)
+ax.plot(t_cl_d30, y_d30)
 
-plt.show()
+ax.set_xlabel('Time')
+ax.set_ylabel('$y(t)$')
+ax.set_xlim([0, 300])
+ax.set_ylim([-0.04, 0.14])
 
+ax.text(10, 0.125, "$\\tau_d = 2$")
+ax.text(20, 0.085, "$\\tau_d = 10$")
+ax.text(30, 0.06,"$\\tau_d = 30$")
 
-# # Plot the responses
-# plt.plot(t_cl_d2, y_d2, label="$\\tau_d = 2$")
-# plt.plot(t_cl_d10, y_d10, label="$\\tau_d = 10$")
-# plt.plot(t_cl_d30, y_d30, label="$\\tau_d = 30$")
-# plt.xlabel('Time')
-# plt.ylabel('$y(t)$')
-# plt.legend()
-# plt.show()
-#
+fig.tight_layout()
+fig.savefig("taud-responses.svg", format="svg")
+plt.close(fig)
 ```
+![](./taud-responses.svg)
+
 
 ## Mixing tank
 
@@ -1730,19 +1703,22 @@ _, y_pi = ctrl.forced_response(closed_loop_sp_pi, t, t_sp)
 _, y_pid = ctrl.forced_response(closed_loop_sp_pid, t, t_sp)
 
 # Plot the responses
-plt.plot(t,y_p, color='#65489d', label='P')
-plt.plot(t,y_pi, color='#388ecc', label='PI')
-plt.plot(t, y_pid, color='#0d5e5e', label='PID')
+fig, ax = plt.subplots()
+ax.plot(t,y_p,  label='P')
+ax.plot(t,y_pi,  label='PI')
+ax.plot(t, y_pid,  label='PID')
 
-plt.xlabel('Time')
-plt.ylabel('$y(t)$')
-plt.xlim([0, 40])
-plt.ylim([0.0, 1.4])
-plt.legend()
-plt.show()
+ax.set_xlabel('Time')
+ax.set_ylabel('$y(t)$')
+ax.set_xlim([0, 40])
+ax.set_ylim([0.0, 1.4])
+ax.legend()
 
-
+fig.tight_layout()
+fig.savefig("mixing-tank-setpoint-change.svg", format="svg")
+plt.close(fig)
 ```
+![](./mixing-tank-setpoint-change.svg)
 
 ## Mixing tank: disturbance rejection
 
@@ -1797,18 +1773,24 @@ _, y_pi = ctrl.forced_response(closed_loop_dr_pi, t, t_disturbance)
 _, y_pid = ctrl.forced_response(closed_loop_dr_pid, t, t_disturbance)
 
 # Plot the responses
-plt.plot(t,y_p, color='#65489d', label='P')
-plt.plot(t,y_pi, color='#388ecc', label='PI')
-plt.plot(t, y_pid, color='#0d5e5e', label='PID')
+fig, ax = plt.subplots()
+# fig.subplots_adjust(left=0.05)
 
-plt.xlabel('Time')
-plt.ylabel('$y(t)$')
-plt.xlim([0, 40])
-plt.ylim([-0.04, 0.005])
-plt.legend()
-plt.show()
+ax.plot(t,y_p, label='P')
+ax.plot(t,y_pi, label='PI')
+ax.plot(t, y_pid, label='PID')
 
+ax.set_xlabel('Time')
+ax.set_ylabel('$y(t)$')
+ax.set_xlim([0, 40])
+ax.set_ylim([-0.04, 0.005])
+ax.legend()
+
+fig.tight_layout()
+fig.savefig("mixing-tank-disturbance-rejection.svg", format="svg")
+plt.close(fig)
 ```
+![](./mixing-tank-disturbance-rejection.svg)
 
 ## Further topics
 

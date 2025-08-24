@@ -1,8 +1,25 @@
 ---
 title: "Other advanced control techniques"
 format: revealjs
-date-modified: 2025-08-10
+date-modified: 2025-08-24
 ---
+
+```{python}
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import control as ctrl
+import scipy as sp
+from scipy.optimize import minimize
+from scipy import signal
+from IPython.display import display, Markdown
+plt.style.use('../../../assets/templates/present.mpstyle')
+
+matplotlib.rcParams['axes.prop_cycle'] = matplotlib.cycler(
+    color=['#65489d', '#388ecc', '#105e5d', '#9f1d54', '#4d1013']
+    )
+```
+
 
 ## Outline
 
@@ -268,7 +285,70 @@ What kind of accidents that can be triggered by the unsafe condition?
 
 ## Effect of Deadtime on Control Performance
 
-![](../../../assets/images/04-PID-enhancements-effect-of-deadtime-on-control-performance.png){width=90%}
+```{python}
+
+# Closed-loop response for Gp = 1/((5s+1)(3s+1)) with PI (Kc=2, tauI=6)
+# Step setpoint starts at t = 1 s
+# Compare no-delay vs delays of 1 s and 2 s
+
+import numpy as np
+import matplotlib.pyplot as plt
+import control as ctrl
+
+# --- Plant and controller ---
+s = ctrl.tf([1, 0], [1])
+Gp = 1 / ((5*s + 1)*(3*s + 1))
+Kc, tauI = 2.0, 6.0
+Gc = Kc * (tauI*s + 1) / (tauI*s)
+
+# --- Helper: Closed loop with given delay ---
+def closed_loop_with_delay(Gp, delay, pade_order=4):
+    if delay > 0:
+        num_d, den_d = ctrl.pade(delay, pade_order)
+        Gp = Gp * ctrl.tf(num_d, den_d)
+    return ctrl.feedback(Gc*Gp, 1)
+
+# Systems: no delay, 1s delay, 2s delay
+Gcl0 = closed_loop_with_delay(Gp, 0)
+Gcl1 = closed_loop_with_delay(Gp, 1.0)
+Gcl2 = closed_loop_with_delay(Gp, 2.0)
+
+# --- Simulation with delayed step ---
+t = np.linspace(0, 60, 3000)
+t_step = 1.0
+r = (t >= t_step).astype(float)
+
+def simulate(Gcl, t, r):
+    resp = ctrl.forced_response(Gcl, T=t, U=r)
+    if isinstance(resp, tuple) and len(resp) == 3:
+        t_out, y, _ = resp
+    else:
+        t_out, y = resp
+    return t_out, y
+
+t0, y0 = simulate(Gcl0, t, r)
+t1, y1 = simulate(Gcl1, t, r)
+t2, y2 = simulate(Gcl2, t, r)
+
+# --- Plot ---
+fig, ax = plt.subplots()
+ax.plot(t, r, 'k--', label="setpoint")
+ax.plot(t0, y0, label="no delay")
+ax.plot(t1, y1, label="1 s delay")
+ax.plot(t2, y2, label="2 s delay")
+
+ax.set_xlabel("time (s)")
+ax.set_ylabel("response")
+ax.set_xlim(0, t[-1])
+ax.set_ylim(0, 1.8)
+ax.legend()
+
+fig.tight_layout()
+fig.savefig("effect-of-deadtime.svg", format="svg")
+plt.close(fig)
+
+```
+![](./effect-of-deadtime.svg){width=70%}
 
 ## Smith predictor
 

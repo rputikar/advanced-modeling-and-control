@@ -1,7 +1,7 @@
 ---
 title: "Feedforward and ratio control"
 format: revealjs
-date-modified: 2024-07-05
+date-modified: 2025-08-24
 ---
 
 ```{python}
@@ -268,6 +268,17 @@ Typical applications
 
 (4) holding the fuel-air ratio to a furnace at the optimum value.
 
+
+:::{.fragment .callout-note appearance='simple'}
+## Trim in ratio control
+
+In practice, the measured variables may have bias, drift, or mismatch. A
+trim factor (bias or small corrective feedback) is added to the ratio
+station to compensate for such deviations.
+
+* Example: $u = R \cdot d + b$, where $b$ is the trim signal.
+* Trim allows fine-tuning of the ratio to meet quality or performance targets.
+:::
 
 ##  Ratio control schemes
 
