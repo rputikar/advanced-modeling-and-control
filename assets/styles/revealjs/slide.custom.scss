@@ -328,3 +328,28 @@ katex-inline.keepfont {
     font-size: 1em;
   }
 }
+
+/* Fragment dimming for table rows */
+.reveal .slides tr.fragment {
+  transition:
+    opacity 250ms ease,
+    filter 250ms ease,
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+/* Older rows: gray and soft */
+.reveal .slides tr.fragment.visible:not(.current-fragment) {
+  opacity: 0.35;
+  filter: grayscale(100%);
+}
+
+/* Active row: full strength + subtle highlight */
+.reveal .slides tr.fragment.current-fragment {
+  opacity: 1 !important;
+  filter: none !important;
+}
+.reveal .slides tr.fragment.current-fragment td {
+  // background-color: rgba($yellow, 0.12);
+  // box-shadow: inset 3px 0 0 0 $magenta; /* left accent bar */
+}

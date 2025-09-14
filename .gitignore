@@ -511,3 +511,7 @@ README.html
 
 
 /admin/*
+
+# matlab
+*/slprj/*
+*.slxc

@@ -3,40 +3,136 @@ title: "Lab 06: Multi-loop PID Control Simulation"
 date: 2023-09-17
 format:
   pdf
-resources:
-  - ./abx_process.slx
-date-modified: 2024-07-05
+date-modified: 2025-09-15
 ---
 
 ## Objectives
 
-1.	To develop a MATLAB Simulink model for multi-loop PID control simulation
-2.	To apply controller tuning methods.
+i. To develop a MATLAB Simulink model for multi-loop PID control of a 2×2 MIMO
+process.  
+
+ii. To apply and compare different PI controller tuning methods for multi-loop
+systems.  
+
+iii. To evaluate the performance of the tuned controllers for setpoint
+tracking, disturbance rejection, and robustness under model uncertainty.  
 
 ## Problem Statement {#sec-process-information}
 
-Consider a 2x2 MIMO process given as follows:
+In many industrial systems, processes involve multiple inputs and multiple
+outputs (MIMO) that are dynamically coupled. Controller design for such
+processes requires careful pairing of manipulated and controlled variables and
+effective tuning of multiple loops.  
+
+Consider the 2×2 MIMO process represented by the transfer function matrix:
 
 $$
-G(s)=\left[\begin{array}{ll}
-\frac{22.89 e^{-0.2 s}}{4.572 s+1} & \frac{-11.64 e^{-0.4 s}}{1.807 s+1} \\
-\frac{4.689 e^{-0.2 s}}{2.174 s+1} & \frac{5.80 e^{-0.4 s}}{1.801 s+1}
-\end{array}\right]
+G(s) = 
+\begin{bmatrix}
+\frac{22.89 e^{-0.2 s}}{4.572 s + 1} & \frac{-11.64 e^{-0.4 s}}{1.807 s + 1} \\
+\frac{4.689 e^{-0.2 s}}{2.174 s + 1} & \frac{5.80 e^{-0.4 s}}{1.801 s + 1}
+\end{bmatrix}
 $${#eq-1}
 
-## Tasks
-1. Determine suitable controller pairings for the MIMO process given above. Based on the results of the controller pairing analysis, next reduce the decentralized system above to a diagonal form with two effective open-loop transfer functions (EOTF). [2.5 marks]
+This process exhibits cross-coupling between manipulated inputs and controlled
+outputs. To achieve satisfactory performance, an appropriate controller
+pairing strategy must be chosen, and decentralized controllers must be tuned
+for each loop.
 
-2. Complete the multi-loop PI controller tuning using the aforementioned 2 different tuning methods stated in the objectives. Then, evaluate the multi-loop PI controller performances for sequential setpoint tracking to 1 unit step change in the setpoints of y_1 and y_2. Analysis the simulation results and identify which of the 2 tuning methods gives the best performance for this particular MIMO process. [2.5 marks]
+## Methodology
 
-3. Next, evaluate the multi-loop PI controller performance for disturbance rejection: consider 1 unit step changes in the output disturbances to y_1 and y_2. Again, based on your analysis of the simulation results identify the best multi-loop PI control system. [2.5 marks]
+1. Controller Pairing and Decoupling  
+   - Use a controller pairing method (e.g., Relative Gain Array to select
+     suitable input–output pairings.  
 
-4. Suppose that there are modelling errors in the process model where the gain errors are 10% and deadtime errors are 20%. Under these modelling errors, run the simulation of the multi-loop PI control systems involved. Analyze the simulation results and summarize 2 key findings from the simulation. [2.5 marks]
+   - Reduce the decentralized system to a diagonal form by defining two
+     Effective Open-Loop Transfer Functions (EOTFs).  
+
+2. PI Controller Tuning  
+   - Apply two different tuning methods for the decentralized loops (e.g.,
+     Ziegler–Nichols, IMC tuning, or other methods).  
+
+   - Design two sets of PI controllers based on the chosen methods.  
+
+   - Implement the controllers in MATLAB Simulink.  
+
+3. Setpoint Tracking Tests  
+
+   - Perform simulations for sequential setpoint changes:  
+     - +1 unit step change in $y_1$ setpoint  
+     - +1 unit step change in $y_2$ setpoint  
+
+   - Record and compare the closed-loop responses under both tuning methods.  
+
+4. Disturbance Rejection Tests  
+
+   - Apply +1 unit step disturbances directly to the outputs $y_1$ and $y_2$.  
+
+   - Compare controller performance for disturbance rejection between the two
+     tuning methods.  
+
+5. Robustness to Model Errors  
+   - Introduce model mismatches:  
+     - Gain errors of ±10%  
+     - Dead-time errors of ±20%  
+   - Simulate the closed-loop system under these uncertainties.  
+   - Compare and summarize the effect of model mismatch on each tuning method.  
 
 
-## Notes
+## Report Format
 
--	Show the Simulink model in the report
--	Provide a few figures or plots to show your control system responses
--	Use tables to summarize your results
--	Maximum report is 5 pages excluding the cover page
+Your report (5 pages maximum) should include the following:
+
+0. Submission Details
+   Include a brief table at the beginning of the report with the following information:
+
+   |||||
+   |-|-|-|-|
+   | Lab Title: | Lab 06 - Multi-loop PID Control Simulation | Student Name | ID       |
+   | Unit:      | CHEN4011                     | Student 1    | 12345678 |
+   | Date:      | 12 August 2025               | Student 2    | 87654321 |
+
+
+1. Objective & Problem Statement
+
+   Briefly describe the motivation for multi-loop control, challenges of
+   coupling in MIMO processes, and the aim of this lab.
+
+2. Methodology & Implementation
+  - Describe the pairing strategy and how EOTFs were obtained.  
+  - Provide tuning equations and explain the two tuning methods used.  
+  - Show Simulink model diagrams of the multi-loop control system.  
+
+3. Results
+  - Show time-domain responses for:  
+    - Sequential setpoint changes  
+    - Disturbance rejection  
+    - Robustness under model mismatch  
+  - Provide well-labeled plots (axes, legends, units).  
+  - Summarize controller settings and key performance metrics (e.g., IAE,
+    settling time, overshoot) in tables.  
+
+4. Analysis and Discussion
+  - Compare controller pairings and explain the chosen configuration.  
+  - Discuss which tuning method gave better results for setpoint tracking.  
+  - Discuss which method performed better for disturbance rejection.  
+  - Comment on robustness under gain and dead-time errors.  
+  - Summarize strengths and weaknesses of each tuning method.  
+
+5. Conclusion
+  - Summarize overall findings from the simulations.  
+  - Identify the best tuning method for this MIMO process and justify your choice.  
+  - Reflect on the practical significance of multi-loop control in industrial systems.  
+
+---
+
+## Assessment Rubric (20 Marks Total)
+
+| No | Section                        | Marks | Evaluation basis                                                                 |
+|-|---|-|-------|
+| 1. | Objectives & Problem           | 2     | Clarity of problem definition; articulation of objectives                        |
+| 2. | Methodology and Implementation | 6     | Pairing analysis; EOTFs; PI tuning details; Simulink implementation              |
+| 3. | Results                        | 4     | Quality, labeling, and completeness of plots and tables; setpoint and disturbance tests |
+| 4. | Analysis and Discussion        | 6     | Comparison of tuning methods; insight on robustness; identification of best method |
+| 5. | Conclusion and Presentation    | 2     | Coherent summary; quality of writing, formatting, and visual presentation        |
+
