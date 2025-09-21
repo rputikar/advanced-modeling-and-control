@@ -5,27 +5,150 @@ format:
   pdf
 resources:
   - ./abx_process.slx
-date-modified: 2024-07-05
+date-modified: 2025-09-22
 ---
 
 ## Objectives
 
-1. To develop PLS models using plsregress function.
-2. To compare the PLS model predictive accuracies for different input shapes:
-3. Uniform random numbers for sampling periods T~s~=0.5 and T~s~=1.5
-4. Sequential step changes for sampling periods T~s~=0.5 and T~s~=1.5
-5. To implement the PLS models as soft sensors for y~1~ and y~2~
+1. To develop Partial Least Squares (PLS) models using the `plsregress`
+   function in MATLAB.  
+2. To evaluate and compare the predictive accuracies of PLS models for
+   different input excitation patterns and sampling periods.  
+3. To implement PLS models as soft sensors for predicting distillate and bottom
+   product impurities.  
 
 ## Problem Statement {#sec-process-information}
 
-@fig-1 shows a distillation process that is represented using the [Simulink model](./abx_process.slx). The outputs (responses) are the distillate product impurity y~1~ and bottom product impurity y~2~. There are 3 measured state variables: x~1~ and x~2~ are tray temperatures while x~3~ is column pressure. Also, there 3 measured inputs: u~1~ is feed flow rate, u~2~ reflux flow rate and u~3~ steam flow rate to the distillation boiler. Note that both response variables y~1~ and y~2~ are difficult to measure but their values must be kept with acceptable ranges. Also note that, the values shown by the Simulink model simulation are based on the nominal operating values, not the absolute values. As a process control engineer in your company, you are responsible for the profitable operation of the distillation column. To enable tight control of the two response variables, you have decided to build two soft sensors for measuring the variables. The soft sensors are developed using the well-known PLS models.
+Distillation columns are complex multivariable systems where direct measurement
+of quality variables such as distillate impurity ($y_1$) and bottom impurity
+($y_2$) is often difficult or expensive. Instead, quality prediction can be
+achieved through soft sensors based on easily measured process variables.  
+
+The process considered in this lab is represented by the [Simulink
+model](./abx_process.slx). The model has the following structure:  
+
+- Inputs (manipulated variables):  
+  - $u_1$: Feed flow rate  
+  - $u_2$: Reflux flow rate  
+  - $u_3$: Steam flow rate to the reboiler  
+
+- Measured states (secondary variables):  
+  - $x_1$: Tray temperature 1  
+  - $x_2$: Tray temperature 2  
+  - $x_3$: Column pressure  
+
+- Outputs (quality variables, difficult to measure):  
+  - $y_1$: Distillate impurity  
+  - $y_2$: Bottom impurity  
 
 ![Distillation process: distillate impurity y~1~ and bottom product y~2~.](./abx_process.png){#fig-1}
 
-## Tasks
-i.	Construct several PLS models using the plsregress function in Matlab for the different input shapes and sampling periods. Tabulate the regression coefficients and MSE values of all PLS models.
-[3 marks]
-ii.	Compare the PLS modelling accuracies based on the MSE values. Comments on the impact of input shapes and sampling periods on the modelling accuracies.
-[3 marks]
-iii.	Implement 2 of your best PLS models on the given Simulink model. Run the simulation for some input changes (you may mix both shapes, e.g., step tests for inputs 1 and 2, and random number for input 3). Plot the actual and predicted profiles of the response variables. Comments on the results.
-[4 marks]
+Your task is to develop PLS regression models that use the available input
+and state variables to predict $y_1$ and $y_2$. These PLS models will serve as
+soft sensors, providing real-time estimates of impurities for control and
+monitoring.  
+
+## Methodology
+
+1. Data Generation
+   - Generate datasets from the Simulink model under different input excitation
+   schemes:  
+     - Uniform random signals for $u_1$, $u_2$, $u_3$ with sampling times
+     $T_s=0.5$ and $T_s=1.5$.  
+     - Sequential step changes in $u_1$, $u_2$, $u_3$ with the same two
+     sampling times.  
+   - Collect time series of inputs ($u_1, u_2, u_3$), measured states ($x_1,
+   x_2, x_3$), and outputs ($y_1, y_2$).  
+   - Normalize or mean-center the data if required.
+
+2. PLS Model Construction
+   - Use the MATLAB `plsregress` function to build PLS models for predicting
+   $y_1$ and $y_2$ from the inputs and states.  
+   - Construct separate models for each dataset (input shape × sampling
+   period).  
+   - Record regression coefficients, number of components, and model error
+   metrics (MSE).  
+
+   Example in MATLAB:
+   ```matlab
+   [XL, YL, XS, YS, beta, PCTVAR, MSE] = plsregress(X, Y, ncomp);
+   ```
+where `X = [u1 u2 u3 x1 x2 x3]` and `Y = [y1 y2]`.
+
+3. Accuracy Comparison
+
+   * Tabulate regression coefficients and MSE values for all models.
+   * Compare performance across different excitation patterns and sampling
+   periods.
+
+4. Soft Sensor Implementation
+
+   * Select the two best-performing PLS models (lowest MSE).
+   * Implement them in the Simulink model as prediction blocks for $y_1$ and
+   $y_2$.
+   * Test predictive capability under mixed excitations (e.g., steps in
+   $u_1$, $u_2$ and random input in $u_3$).
+   * Compare predicted impurity profiles against actual values.
+
+5. Evaluation
+
+   * Comment on which conditions (input shape, sampling period) gave the most
+   accurate models.
+   * Discuss robustness and limitations of PLS soft sensors.
+
+## Report Format
+
+Your report (5 pages maximum) should include the following:
+
+0. Submission Details
+   Include a brief table at the beginning of the report with the following information:
+
+   |||||
+   |-|-|-|-|
+   | Lab Title: | Lab 07 - PLS Modelling| Student Name | ID       |
+   | Unit:      | CHEN4011                     | Student 1    | 12345678 |
+   | Date:      | 12 August 2025               | Student 2    | 87654321 |
+
+
+Your report (maximum 5 pages excluding submission details) should include:
+
+1. Objective & Problem Statement
+
+Summarize the purpose of PLS modeling and the need for soft sensors in
+distillation processes.
+
+2. Methodology & Implementation
+
+  * Describe datasets used (input shapes, sampling periods).
+  * Explain how PLS models were built using `plsregress`.
+  * State number of latent variables/components chosen.
+
+3. Results
+
+  * Present regression coefficients and MSE values in tables.
+  * Show plots comparing actual vs predicted $y_1$ and $y_2$.
+  * Include results for both training and validation datasets.
+
+4. Analysis and Discussion
+
+  * Compare accuracy of models for different input excitations and sampling periods.
+  * Identify which models are most effective and why.
+  * Discuss implications for designing reliable soft sensors.
+
+5. Conclusion
+
+  * Summarize key findings on PLS model performance.
+  * State which model(s) are recommended as soft sensors for $y_1$ and $y_2$.
+  * Discuss broader applications of PLS in chemical process monitoring and control.
+
+
+## Assessment Rubric 
+
+| No | Section                        | Marks | Evaluation basis                                                                  |
+|-|---|-|-------|
+| 1. | Objectives & Problem           | 2     | Clarity of problem definition; articulation of objectives                         |
+| 2. | Methodology and Implementation | 5     | Dataset preparation; correct use of `plsregress`; explanation of latent variables |
+| 3. | Results                        | 4     | Quality of tables and plots; completeness of regression coefficients and MSE data |
+| 4. | Analysis and Discussion        | 6     | Comparison across cases; insights on input shapes, sampling times, and accuracy   |
+| 5. | Conclusion and Presentation    | 3     | Clear summary; quality of writing, formatting, and visual presentation            |
+

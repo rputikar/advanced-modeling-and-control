@@ -14,8 +14,11 @@ resources:
   - ./dtsrm_from_sopdt.mlx
   - ./discrete_timestep_response_model.mlx
   - ./discrete_timestep_response_model.m
+  - ./wood_barry.m
+  - ./wood_barry.mlx
+  - ./wood_barry.slx
 
-date-modified: 2024-09-30
+date-modified: 2025-09-22
 ---
 
 ## Activities
@@ -23,6 +26,99 @@ date-modified: 2024-09-30
 1. Explain the advantages and limitations of Model Predictive Control compared to the conventional decentralized PID control system.
 
 2. Consider the process given by
+
+$$
+G(s)=\left[\begin{array}{cc}
+\frac{2 \exp (-7 s)}{10 s+1} & \frac{0.5 \exp (-4 s)}{19 s+1} \\
+\frac{\exp (-2 s)}{20 s+1} & \frac{1.5 \exp (-3 s)}{15 s+1}
+\end{array}\right]
+$${#eq-4}
+
+Design the decouplers $D_{12}$ and $D_{21}$ and comment whether the systems are physically realizable or not.
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+### Decoupler $D_{12}$ design
+
+$$
+D_{12} = - \frac{g_{12}}{g_{11}}
+$$
+
+$$
+D_{12} = - \frac{\frac{0.5 e^{-4s}}{19s + 1}}{\frac{2 e^{-7s}}{10s + 1}}
+$$
+
+$$
+D_{12} = - \frac{0.5 e^{-4s}}{19s + 1} \times \frac{10s + 1}{2 e^{-7s}}
+$$
+
+$$
+D_{12} = - \frac{0.5(10s + 1)}{2(19s + 1)} \times e^{3s}
+$$
+
+$$
+D_{12} = - \frac{0.25(10s + 1) e^{3s}}{19s + 1}
+$$
+
+The presence of $e^{+3s}$ indicates that the decoupler has a predictive
+capability – it can predict the future input change that affects the current
+output, i.e., the output change first before the input change (this can’t
+happen in our physical world). Therefore, the decoupler is considered a
+non-causal system, thus cannot be realized physically.
+
+### Decoupler $D_{21}$ design
+
+$$
+D_{21} = - \frac{g_{21}}{g_{22}}
+$$
+
+$$
+D_{21} = - \frac{\frac{e^{(-2s)}}{20s + 1}}{\frac{1.5 e^{(-3s)}}{15s + 1}}
+$$
+
+$$
+D_{21} = - \frac{0.67(15s + 1) e^{-s}}{20s + 1}
+$$
+
+The decoupler is physically realizable, i.e., order of numerator is not higher
+than the order of denominator, and also there is no predictive term, only a
+delay term in the decoupler. 
+
+:::
+
+3. Wood Berry Column controller design
+
+The control objective in the WB distillation column is to maintain the desired
+compositions in both the overhead (distillate) and bottom products by
+manipulating the reflux flow rate and steam flow rate. However, since both
+inputs affect both outputs, decoupling and interaction management are often
+required to ensure efficient and stable control of the system. 
+
+This model is
+widely used in process control to study interactions in distillation columns,
+and it simplifies the control of more complex chemical processes.
+
+$$
+G=\left[\begin{array}{cc}
+\frac{12.8 \exp (-s)}{16.7 s+1} & \frac{-18.9 \exp (-3 s)}{21 s+1} \\
+\frac{6.6 \exp (-7 s)}{10.9 s+1} & \frac{-19.4 \exp (-3 s)}{14.4 s+1}
+\end{array}\right]
+$${#eq-5}
+
+::: {.callout-tip collapse="true"}
+## Solution
+
+The code for calculating RGA and controller pairing is given in [Matlab
+file](./wood_barry.m)/ [mlx
+file](./wood_barry.mlx). 
+
+A simulink implementation using `lti system` block is in
+[wood_barry.slx](./wood_barry.slx).
+:::
+
+
+4. Consider the process given by
 
 $$
 G(s)=\left[\begin{array}{ll}
@@ -43,7 +139,7 @@ file](./decoupler_for_multivariable_system.mlx).
 :::
 
 
-3. The discrete-time step response model of a process is given in @tbl-1.
+5. The discrete-time step response model of a process is given in @tbl-1.
 
 | t | i | $\Delta u$ | y(t) | a~i~ |
 | - | - | - | - | -                |
@@ -72,7 +168,7 @@ downloaded from [discrete_time_response.csv](./discrete_time_response.csv).
 
 :::
 
-4. Develop a DTSRM for the following transfer function
+6. Develop a DTSRM for the following transfer function
 
 $$
 G_p(s) = \frac{ 2 e^{-2s} } { 5s + 1 }
@@ -144,7 +240,7 @@ The code for calculating $a_i$ is given in [Matlab
 file](./dtsrm_from_fopdt.m)/ [mlx file](./dtsrm_from_fopdt.mlx). 
 :::
 
-5. Second-Order Plus Dead-Time (SOPDT) Model to DTSRM
+7. Second-Order Plus Dead-Time (SOPDT) Model to DTSRM
 
 For the following transfer function 
 
