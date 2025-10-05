@@ -1,37 +1,132 @@
 ---
-title: "Lab 08: Digital control"
+title: "Lab 08: Digital Control"
 date: 2023-10-08
 format:
   pdf
-date-modified: 2024-07-05
+date-modified: 2025-10-06
 ---
 
 ## Objectives
 
-1. To develop MATLAB Simulink model of continuous and digital control systems.
-2. To simulate digital PI controller vs. continuous PI controller performance for different sampling periods T: 0.5, 1, 2.
-
+* To develop MATLAB Simulink models for continuous and digital PI control systems.  
+* To simulate and compare the performance of continuous and discrete
+(digital) PI controllers for different sampling periods: $T_s = 0.5$, $1.0$,
+and $2.0$ seconds.  
+* To analyze the effect of sampling period on control
+performance and stability.  
 
 ## Problem Statement {#sec-process-information}
 
-A continuous process is represented by the following transfer function:
+In practical control systems, continuous-time controllers are often implemented
+digitally using sampling and zero-order hold (ZOH) techniques. The sampling
+period significantly affects control accuracy and stability — too slow a
+sampling rate degrades performance, while too fast a rate increases
+computational cost.  
+
+The process under consideration is represented by the following transfer
+function:
 
 $$
-G_p (s) = \frac{5 exp(-2s)}{(7s+1)(s+1)}
+G_p(s) = \frac{5 e^{-2s}}{(7s + 1)(s + 1)}
 $${#eq-process}
 
-Also, an output disturbance transfer function is given by,
+An output disturbance enters through the following transfer function:
 
 $$
-G_d (s) = \frac{1.4 exp(-3s)}{( 10s+1)}
+G_d(s) = \frac{1.4 e^{-3s}}{(10s + 1)}
 $${#eq-disturbance}
 
-For the digital PI controller implementation, use zero-order hold and sampler where the sampling period can be varied as mentioned in the objectives.
+You are required to implement and compare continuous and digital PI control
+systems for this process using MATLAB Simulink. The digital controller should
+use a zero-order hold and sampler, and the sampling period should be
+varied as described in the objectives.  
 
-## Tasks
+## Methodology
 
-i.	Develop a Simulink model that contains the continuous and digital control systems. Provide the screenshot of the Simulink model in the report. [2 marks]
-ii. Tune a PI controller for the continuous control system, e.g., using Control System Designer. [1 mark]
-iii. Apply the PI controller tuning in (b) to the continuous and digital systems. For the digital system, switch the continuous mode to the discrete mode. [2 marks]
-iv. Compare the performance of the digital PI controller for the 3 different sampling periods mentioned above with the continuous PI controller. Plot the responses and give comments on the results. [5 marks]
+1. Simulink Model Development
+   - Create a combined Simulink model that includes:
+     - The process $G_p(s)$  
+     - The disturbance path $G_d(s)$  
+     - A continuous PI controller  
+     - A discrete PI controller implemented with Zero-Order Hold (ZOH) and Sampler blocks  
+   - Configure the sampling period $T_s$ for the digital controller as 0.5, 1.0, and 2.0 seconds.  
+   - Use the same controller gains for both implementations.  
+
+2. PI Controller Tuning
+   - Tune a continuous PI controller for the process using Control System Designer or IMC-based tuning.  
+   - Record the controller gains ($K_c$, $\tau_I$).  
+   - Verify the closed-loop response for reference tracking and disturbance rejection.  
+
+3. Digital PI Controller Conversion
+   - Discretize the continuous PI controller using the Tustin (bilinear) or backward Euler method.  
+   - Implement the digital controller in Simulink using either:
+     - The Discrete PID Controller block, or  
+     - The continuous PID block with sample time = $T_s$.  
+   - Ensure a zero-order hold (ZOH) is used between the digital controller and the process.  
+
+4. Simulation Setup
+   - Simulate step changes in the setpoint and output disturbance for both the continuous and digital control loops.  
+   - Run simulations for $T_s = 0.5$, $1.0$, and $2.0$ seconds.  
+   - Observe and record key performance parameters: rise time, overshoot, settling time, and steady-state error.  
+
+5. Performance Comparison
+   - Compare continuous and digital control performance using time-domain plots.  
+   - Analyze the degradation in response with increasing sampling time.  
+   - Discuss the trade-off between sampling speed, control accuracy, and computational cost.  
+
+
+## Report Format
+
+Your report (maximum 5 pages excluding submission details) should include:
+
+0. Submission Details: 
+Include a brief table at the beginning of the report with the following information:
+
+|||||
+|-|-|-|-|
+| Lab Title: | Lab 08 – Digital Control | Student Name | ID |
+| Unit: | CHEN4011 | Student 1 | 12345678 |
+| Date: | 12 October 2025 | Student 2 | 87654321 |
+
+1. Objective & Problem Statement
+
+   Summarize the aim of digital control implementation and explain why sampling
+   period selection is important. Include the process and disturbance transfer
+   functions.
+
+2. Methodology & Implementation
+
+   Describe the structure of the Simulink model and key components (ZOH, sampler, discrete PID).  
+   Explain how the PI controller was tuned and discretized.  
+   Provide screenshots of the Simulink model and show where the sampling period is defined.  
+
+3. Results
+
+   Present time-domain responses (setpoint tracking and disturbance rejection) for both continuous and digital controllers.  
+   Show results for $T_s = 0.5$, $1.0$, and $2.0$.  
+   Include a table summarizing rise time, settling time, overshoot, and steady-state error for each case.  
+
+4. Analysis and Discussion
+
+   Compare performance between continuous and discrete systems.  
+   Discuss how the sampling period influences controller accuracy and stability.  
+   Explain any performance degradation at larger $T_s$.  
+   Relate findings to real-world digital control implementation.  
+
+5. Conclusion
+
+   Summarize key findings.  
+   Recommend an appropriate sampling period based on the trade-off between speed and accuracy.  
+   Reflect on the importance of sampling rate selection in digital control system design.  
+
+
+## Assessment Rubric (20 Marks Total)
+
+| No | Section                        | Marks | Evaluation basis                                                                 |
+|-|---|-|-------|
+| 1. | Objectives & Problem           | 2     | Clarity of objectives; explanation of digital control context                    |
+| 2. | Methodology and Implementation | 5     | Correct Simulink setup; explanation of ZOH/sampler; controller tuning process    |
+| 3. | Results                        | 5     | Quality and labeling of response plots; completeness of tabulated performance data|
+| 4. | Analysis and Discussion        | 6     | Comparison across sampling periods; insights on performance degradation          |
+| 5. | Conclusion and Presentation    | 2     | Summary of findings; clarity, formatting, and presentation quality               |
 
