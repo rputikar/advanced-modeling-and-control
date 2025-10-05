@@ -96,28 +96,30 @@ Include a brief table at the beginning of the report with the following informat
 
 2. Methodology & Implementation
 
-   Describe the structure of the Simulink model and key components (ZOH, sampler, discrete PID).  
-   Explain how the PI controller was tuned and discretized.  
-   Provide screenshots of the Simulink model and show where the sampling period is defined.  
+   Describe the structure of the Simulink model and key components (ZOH,
+   sampler, discrete PID).  Explain how the PI controller was tuned and
+   discretized.  Provide screenshots of the Simulink model and show where the
+   sampling period is defined.  
 
 3. Results
 
-   Present time-domain responses (setpoint tracking and disturbance rejection) for both continuous and digital controllers.  
-   Show results for $T_s = 0.5$, $1.0$, and $2.0$.  
-   Include a table summarizing rise time, settling time, overshoot, and steady-state error for each case.  
+   Present time-domain responses (setpoint tracking and disturbance rejection)
+   for both continuous and digital controllers. Show results for $T_s = 0.5$,
+   $1.0$, and $2.0$. Include a table summarizing rise time, settling time,
+   overshoot, and steady-state error for each case.  
 
 4. Analysis and Discussion
 
-   Compare performance between continuous and discrete systems.  
-   Discuss how the sampling period influences controller accuracy and stability.  
-   Explain any performance degradation at larger $T_s$.  
-   Relate findings to real-world digital control implementation.  
+   Compare performance between continuous and discrete systems.  Discuss how
+   the sampling period influences controller accuracy and stability.  Explain any
+   performance degradation at larger $T_s$.  Relate findings to real-world digital
+   control implementation.  
 
 5. Conclusion
 
-   Summarize key findings.  
-   Recommend an appropriate sampling period based on the trade-off between speed and accuracy.  
-   Reflect on the importance of sampling rate selection in digital control system design.  
+   Summarize key findings. Recommend an appropriate sampling period based on
+   the trade-off between speed and accuracy. Reflect on the importance of
+   sampling rate selection in digital control system design.  
 
 
 ## Assessment Rubric (20 Marks Total)
